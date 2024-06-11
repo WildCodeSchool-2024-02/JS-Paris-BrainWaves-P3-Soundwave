@@ -1,0 +1,74 @@
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #eee;
+  margin: 0;
+}
+@font-face {
+  font-family: neue-metana-regular;
+  src: url("../src/assets/fonts/NeueMetana-Regular.otf");
+}
+@font-face {
+  font-family: neue-metana-bold;
+  src: url("../src/assets/fonts/NeueMetana-Bold.otf");
+}
+p {
+  font-family: var(--font-title-r);
+}
+.test {
+  font-family: var(--font-title-b);
+}
+:root {
+  --font-title-r: neue-metana-regular;
+  --font-title-b: neue-metana-bold;
+  --font-body: "Courier New", Courier, monospace;
+  --text: #f2f2f2;
+  --primary-color: #7b00ff;
+  --secondary-color: #dedcff;
+  --background-color: #181818;
+  --accent: #ffb128;
+  background-color: #181818;
+}
+
+.logo {
+  font-size: 20px;
+  margin-top: 16px;
+}
+
+.navbar ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+footer {
+  border-top: var(--secondary-color) 1px solid;
+  position: absolute;
+  top: 85%;
+}
+
+@media screen and (max-width: 760px) {
+  .logo {
+    display: none;
+  }
+
+  .container {
+    justify-content: center;
+  }
+
+  footer {
+    position: absolute;
+    top: 85%;
+    left: 20%;
+  }
+}
+
+@media screen and (min-width: 761px) and (max-width: 960px) {
+  footer {
+    position: absolute;
+    top: 85%;
+    left: 60%;
+  }
+}
