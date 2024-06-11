@@ -18,10 +18,8 @@ class AbstractRepository {
     this.database = database;
   }
 
-  async readAll () {
-    const [rows] = await this.database.query(
-      `SELECT * FROM ${this.table}`
-    );
+  async readAll() {
+    const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
     return rows;
   }
 
