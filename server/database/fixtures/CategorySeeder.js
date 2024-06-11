@@ -1,0 +1,29 @@
+const AbstractSeeder = require("./AbstractSeeder");
+
+class CategorySeeder extends AbstractSeeder {
+    constructor() {
+        super({ table: "category", truncate: true });
+    }
+
+    run() {
+        const cat1 = {
+            name: "House"
+        }
+        const cat2 = {
+            name: "Techno"
+        }
+        const cat3 = {
+            name: "Trance"
+        }
+        const cat4 = {
+            name: "Dub"
+        }
+        const cat5 = {
+            name: "Tech House"
+        }
+
+        this.insert(cat1, cat2, cat3, cat4, cat5)
+    }
+};
+
+module.exports = CategorySeeder;
