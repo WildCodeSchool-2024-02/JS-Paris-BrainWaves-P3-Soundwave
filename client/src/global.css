@@ -37,12 +37,6 @@ p {
   margin-top: 16px;
 }
 
-.navbar ul {
-  display: flex;
-  gap: 20px;
-  list-style: none;
-}
-
 footer {
   border-top: var(--secondary-color) 1px solid;
   position: absolute;
