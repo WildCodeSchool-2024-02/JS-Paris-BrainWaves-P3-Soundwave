@@ -1,13 +1,12 @@
 import "./reset.css";
 
 import "./global.css";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
     <main className="container">
-      <p>hello worlod</p>
-      <p className="test">lehlo world</p>
-      <footer>💜🔪</footer>
+      <Outlet />
     </main>
   );
 }
