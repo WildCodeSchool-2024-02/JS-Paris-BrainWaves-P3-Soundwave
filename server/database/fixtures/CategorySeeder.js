@@ -22,7 +22,11 @@ class CategorySeeder extends AbstractSeeder {
             name: "Tech House"
         }
 
-        this.insert(cat1, cat2, cat3, cat4, cat5)
+        this.insert(cat1);
+        this.insert(cat2);
+        this.insert(cat3);
+        this.insert(cat4);
+        this.insert(cat5);
     }
 };
 

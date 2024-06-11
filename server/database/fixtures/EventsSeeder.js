@@ -34,7 +34,9 @@ class EventsSeeder extends AbstractSeeder {
             image: "https://scontent.fcdg3-1.fna.fbcdn.net/v/t39.30808-6/431236957_932139475586155_3782091657230810251_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_ohc=swRk3TtClzAQ7kNvgFPtLyS&_nc_ht=scontent.fcdg3-1.fna&oh=00_AYD7hUlxIY14jghLI6ri_SAIIiZOzDWH8rZliL7IMmnghQ&oe=666E098B",
         };
 
-        this.insert(event1, event2, event3);
+        this.insert(event1);
+        this.insert(event2);
+        this.insert(event3);
 
     }
 }
