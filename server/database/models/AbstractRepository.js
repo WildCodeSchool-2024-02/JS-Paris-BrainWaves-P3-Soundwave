@@ -24,6 +24,14 @@ class AbstractRepository {
     );
     return rows;
   }
+
+  async readOne(id) {
+    const [[row]] = await this.database.query(
+      `SELECT * FROM ${this.table} WHERE id = ?`,
+      [id]
+    );
+    return row;
+  }
 }
 
 // Ready to export
