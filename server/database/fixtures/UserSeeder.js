@@ -11,11 +11,11 @@ class UserSeeder extends AbstractSeeder {
   run() {
     const userAdmin = {
       firstname: "toto",
-      lastname:"tata",
-      email:"toto@gmail.com",
+      lastname: "tata",
+      email: "toto@gmail.com",
       password: "toto",
       role: "admin",
-    }
+    };
 
     const userCrew1 = {
       firstname: "yann",
@@ -23,32 +23,36 @@ class UserSeeder extends AbstractSeeder {
       email: "la@gmail.com",
       password: "toto",
       role: "crew",
-    }
+    };
 
     const userCrew2 = {
-      firstname:"aude",
+      firstname: "aude",
       lastname: "sed",
-      email:"sed@gmail.com",
-      password:"toto",
-      role:"crew",
-    }
-
-    const userCrew3 = {
-      firstname:"manue",
-      lastname:"cu",
-      email:"cu@gmail.com",
+      email: "sed@gmail.com",
       password: "toto",
       role: "crew",
-    }
+    };
+
+    const userCrew3 = {
+      firstname: "manue",
+      lastname: "cu",
+      email: "cu@gmail.com",
+      password: "toto",
+      role: "crew",
+    };
 
     const userClient = {
-      firstname:"adam",
-      lastname:"ma",
-      email:"ma@gmail.com",
+      firstname: "adam",
+      lastname: "ma",
+      email: "ma@gmail.com",
       password: "toto",
       role: "client",
-    }
-    this.insert(userAdmin, userCrew1, userCrew2, userCrew3, userClient)
+    };
+    this.insert(userAdmin);
+    this.insert(userCrew1);
+    this.insert(userCrew2);
+    this.insert(userCrew3);
+    this.insert(userClient);
   }
 }
 

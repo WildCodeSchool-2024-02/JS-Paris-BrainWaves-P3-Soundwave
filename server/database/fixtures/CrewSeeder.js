@@ -32,7 +32,9 @@ class CrewSeeder extends AbstractSeeder {
       owner_id: 3,
     };
 
-    this.insert(crew1, crew2, crew3);
+    this.insert(crew1);
+    this.insert(crew2);
+    this.insert(crew3);
   }
 }
 
