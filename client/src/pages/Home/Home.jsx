@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import heart from "../assets/images/masquote.svg";
-import "./style/home.css";
+import heart from "../../assets/images/masquote.svg";
+import "./home.css";
 
 function Home() {
   const navigate = useNavigate();
