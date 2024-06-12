@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./navbar.css";
 import { FaSearch } from "react-icons/fa";
-import soundwave from "../assets/images/SoundWave.svg";
-import mascot from "../assets/images/masquote.svg";
+import soundwave from "../../assets/images/SoundWave.svg";
+import mascot from "../../assets/images/masquote.svg";
+import ModalLogIn from "../ModalLogIn";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -11,6 +12,8 @@ function NavBar() {
   const [burgerClass, setBurgerClass] = useState("burger-bar unclicked");
   const [menuClass, setMenuClass] = useState("menu hidden");
   const [isMenuClicked, setIsMenuClicked] = useState(false);
+
+  const [openModalLogIn, setOpenModalLogIn] = useState(false);
 
   const updateMenu = () => {
     if (!isMenuClicked) {
@@ -21,6 +24,12 @@ function NavBar() {
       setMenuClass("menu hidden");
     }
     setIsMenuClicked(!isMenuClicked);
+  };
+
+  const handleModal = () => {
+    setOpenModalLogIn(true);
+    setMenuClass("menu hidden");
+    setBurgerClass("burger-bar unclicked");
   };
 
   return (
@@ -63,9 +72,12 @@ function NavBar() {
           >
             Collectifs
           </p>
-          <p>Log In</p>
+          <p role="presentation" onClick={handleModal}>
+            Log In
+          </p>
         </div>
       </nav>
+      {openModalLogIn && <ModalLogIn closeModalLogIn={setOpenModalLogIn}/>}
       <div className={menuClass}>
         <div className="navbar-btns">
           <p
@@ -90,7 +102,9 @@ function NavBar() {
           >
             Collectifs
           </p>
-          <p>Log In</p>
+          <p role="presentation" onClick={handleModal}>
+            Log In
+          </p>
           <img src={mascot} alt="mascot" />
         </div>
       </div>

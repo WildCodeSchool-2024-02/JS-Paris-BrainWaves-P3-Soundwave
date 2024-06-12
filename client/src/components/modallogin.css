@@ -1,0 +1,84 @@
+.display-modal-log-in {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(grey);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+}
+
+.btn-close-modal-log-in {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.section-modal-log-in {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  height: 70%;
+  box-shadow: var(--secondary-color) 0 0 10px 0;
+  gap: 1rem;
+}
+
+.title-modal-login {
+  color: var(--secondary-color);
+}
+
+.section-connexion-log-in {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 45%;
+  color: var(--secondary-color);
+}
+
+.input-login {
+  border: none;
+  background-color: var(--background-color);
+  border-bottom: 1px solid var(--secondary-color);
+  height: 15%;
+}
+
+.btn-connexion-log-in {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+  border-radius: 5px;
+  width: 60%;
+  height: 10%;
+}
+
+@media (min-width: 1024px) {
+  .section-connexion-log-in {
+    width: 70%;
+  }
+
+  .section-connexion-log-in {
+    align-items: flex-start;
+    height: 50%;
+  }
+
+  .section-infos-login {
+    display: flex;
+    align-items: center;
+    height: 15%;
+  }
+
+  .input-login {
+    width: 100%;
+  }
+
+  .btn-connexion-log-in {
+    width: 50%;
+    font-size: 2.5rem;
+  }
+}
