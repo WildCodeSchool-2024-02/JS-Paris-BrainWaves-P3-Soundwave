@@ -34,20 +34,21 @@ function NavBar() {
           onClick={() => navigate("/")}
           onKeyDown={() => navigate("/")}
         />
-        <div
-          className="burger-menu"
-          role="presentation"
-          onClick={updateMenu}
-          onKeyDown={updateMenu}
-        >
-          <div className={burgerClass} />
-          <div className={burgerClass} />
-          <div className={burgerClass} />
+        <div className="navigation">
+          <FaSearch className="logo-searchbar" />
+          <div
+            className="burger-menu"
+            role="presentation"
+            onClick={updateMenu}
+            onKeyDown={updateMenu}
+          >
+            <div className={burgerClass} />
+            <div className={burgerClass} />
+            <div className={burgerClass} />
+          </div>
         </div>
         <div className="navbar-desktop-btns">
-          <p>
-            <FaSearch />
-          </p>
+          <FaSearch className="logo-searchbar-desktop" />
           <p
             role="presentation"
             onClick={() => navigate("/events-list")}
