@@ -1,4 +1,4 @@
-import PropTypes from "react";
+import PropTypes from "prop-types";
 import "./eventcard.css";
 import { FaRegHeart } from "react-icons/fa";
 
