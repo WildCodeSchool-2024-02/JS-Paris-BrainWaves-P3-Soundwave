@@ -1,25 +1,3 @@
-body {
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.7;
-  color: #eee;
-  margin: 0;
-}
-@font-face {
-  font-family: neue-metana-regular;
-  src: url("../src/assets/fonts/NeueMetana-Regular.otf");
-}
-@font-face {
-  font-family: neue-metana-bold;
-  src: url("../src/assets/fonts/NeueMetana-Bold.otf");
-}
-p {
-  font-family: var(--font-title-r);
-}
-.test {
-  font-family: var(--font-title-b);
-}
 :root {
   --font-title-r: neue-metana-regular;
   --font-title-b: neue-metana-bold;
@@ -30,39 +8,32 @@ p {
   --background-color: #181818;
   --accent: #ffb128;
   background-color: #181818;
+  text-align: center;
+  color: var(--text);
 }
 
-.logo {
-  font-size: 20px;
-  margin-top: 16px;
+@font-face {
+  font-family: neue-metana-regular;
+  src: url("../src/assets/fonts/NeueMetana-Regular.otf");
+}
+@font-face {
+  font-family: neue-metana-bold;
+  src: url("../src/assets/fonts/NeueMetana-Bold.otf");
+}
+p {
+  font-family: var(--font-body);
 }
 
-footer {
-  border-top: var(--secondary-color) 1px solid;
-  position: absolute;
-  top: 85%;
+ul {
+  display: flex;
+  list-style: none;
 }
 
-@media screen and (max-width: 760px) {
-  .logo {
-    display: none;
-  }
-
-  .container {
-    justify-content: center;
-  }
-
-  footer {
-    position: absolute;
-    top: 85%;
-    left: 20%;
-  }
-}
-
-@media screen and (min-width: 761px) and (max-width: 960px) {
-  footer {
-    position: absolute;
-    top: 85%;
-    left: 60%;
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-title-b);
 }

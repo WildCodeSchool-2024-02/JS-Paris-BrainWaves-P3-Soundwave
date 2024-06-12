@@ -1,9 +1,3 @@
-function EventsList(){
-    return (
-        <div>
-            Events Lists
-        </div>
-    );
-}
+function EventsList() {}
 
 export default EventsList;
