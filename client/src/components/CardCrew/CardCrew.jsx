@@ -3,11 +3,13 @@ import "./cardcrew.css";
 
 function CardCrew({result}) {
     return (
-        <div>
+        <section className="specific-crew-card">
+            <div className="crew-card-presentation">
             <img src={result.image} alt="logo du collectif"/>
-            <h1>{result.name}</h1>
+            <h2>{result.name}</h2>
+            </div>
             <p>{result.description}</p>
-        </div>
+        </section>
     )
 };
 

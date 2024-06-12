@@ -1,0 +1,17 @@
+.specific-crew-card {
+    h2 {
+        color: var(--accent);
+        text-align: center;
+    }
+    img {
+        width: 50%;
+        height: 10%;
+        border-radius: 10px;
+    }
+    .crew-card-presentation {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
