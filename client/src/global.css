@@ -24,26 +24,11 @@ p {
   font-family: var(--font-body);
 }
 
-.logo {
-  font-size: 20px;
-  margin-top: 16px;
-}
-
 ul {
   display: flex;
-  gap: 20px;
   list-style: none;
 }
 
-footer {
-  border-top: var(--secondary-color) 1px solid;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  bottom: 0;
-  margin-top: 5%;
-  display: flex;
-}
 h1,
 h2,
 h3,

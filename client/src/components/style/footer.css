@@ -1,0 +1,9 @@
+footer {
+  border-top: var(--secondary-color) 1px solid;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  margin-top: 5%;
+  display: flex;
+}
