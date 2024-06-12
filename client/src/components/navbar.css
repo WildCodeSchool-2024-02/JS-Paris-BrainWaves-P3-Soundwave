@@ -1,22 +1,21 @@
 nav {
-  width: 100%;
+  width: 100vw;
   height: 5vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px;
+  padding: 0.5rem;
   z-index: 1;
 }
 
 .navbar-logo {
   width: 35%;
-  margin: 10px 0;
 }
 
 .navigation {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 1rem;
   height: 100%;
 }
 
@@ -38,7 +37,7 @@ nav {
 .burger-bar {
   width: 30px;
   height: 5px;
-  margin-top: 3px;
+  margin-top: 0.25rem;
   background-color: var(--primary-color);
   border-radius: 5px;
 }
@@ -65,7 +64,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     width: 80vw;
-    padding: 15px;
+    padding: 1.5rem;
   }
   p {
     border-bottom: 1px solid var(--secondary-color);
@@ -109,7 +108,7 @@ nav {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 100%;
+    width: 100vw;
   }
 
   .navigation {
@@ -123,7 +122,6 @@ nav {
 
   .navbar-logo {
     width: 15%;
-    margin: 10px 0;
     cursor: pointer;
   }
 
@@ -135,7 +133,7 @@ nav {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 32vw;
+    width: 30%;
     p {
       cursor: pointer;
       color: var(--secondary-color);
