@@ -1,0 +1,32 @@
+.event-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.event-list-container h1 {
+  font-size: 1rem;
+  font-family: var(--font-title-r);
+  margin: 1rem 0rem 0rem 0rem;
+}
+
+.event-list-container h2 {
+  font-size: 1em;
+  font-family: var(--font-title-r);
+  margin: 0;
+}
+
+@media screen and (min-width: 1024px) {
+  .event-title-section {
+    width: 80vw;
+    margin-left: 0.2rem;
+    text-align: left;
+    font-size: 2.2em;
+  }
+
+  .event-list-container h1 {
+    font-size: 1.5em;
+    margin-top: 0;
+    padding-bottom: 3rem;
+  }
+}

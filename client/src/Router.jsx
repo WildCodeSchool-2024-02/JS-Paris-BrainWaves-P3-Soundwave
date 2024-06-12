@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Home from "./pages/Home";
-import EventsList from "./pages/EventsList";
+import EventsList from "./pages/EventList/EventsList";
 import EventDetails from "./pages/EventDetails";
 import CollectifsList from "./pages/CollectifsList";
 import CollectifProfil from "./pages/CollectifProfil";
@@ -20,6 +20,7 @@ const router = createBrowserRouter([
       {
         path: "/events-list",
         element: <EventsList />,
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/api/events`),
       },
       {
         path: "/event-details",
