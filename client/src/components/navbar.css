@@ -21,6 +21,7 @@ nav {
   height: 100%;
   width: 7vw;
   cursor: pointer;
+
   z-index: 2;
 }
 
