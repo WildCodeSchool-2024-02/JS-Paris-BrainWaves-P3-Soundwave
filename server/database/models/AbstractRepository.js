@@ -17,6 +17,19 @@ class AbstractRepository {
     // Provide access to the database client
     this.database = database;
   }
+
+  async readAll() {
+    const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
+    return rows;
+  }
+
+  async readOne(id) {
+    const [[row]] = await this.database.query(
+      `SELECT * FROM ${this.table} WHERE id = ?`,
+      [id]
+    );
+    return row;
+  }
 }
 
 // Ready to export

@@ -9,40 +9,40 @@ import Admin from "./pages/Admin";
 import UserProfil from "./pages/UserProfil";
 
 const router = createBrowserRouter([
-    {
-        path:"/",
-        element: <App/>,
-        children: [
-            {
-                path:"/",
-                element: <Home />,
-            },
-            {
-                path:"/events-list",
-                element: <EventsList />,
-            },
-            {
-                path:"/event-details",
-                element: <EventDetails />,
-            },
-            {
-                path:"/collectifs-list",
-                element: <CollectifsList />,
-            },
-            {
-                path:"/collectif-details",
-                element: <CollectifProfil />,
-            },
-            {
-                path:"/admin",
-                element: <Admin />,
-            },
-            {
-                path:"/user-profil",
-                element: <UserProfil />,
-            },
-        ],
-    },
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/events-list",
+        element: <EventsList />,
+      },
+      {
+        path: "/event-details",
+        element: <EventDetails />,
+      },
+      {
+        path: "/collectifs-list",
+        element: <CollectifsList />,
+      },
+      {
+        path: "/collectif-details",
+        element: <CollectifProfil />,
+      },
+      {
+        path: "/admin",
+        element: <Admin />,
+      },
+      {
+        path: "/user-profil",
+        element: <UserProfil />,
+      },
+    ],
+  },
 ]);
 
 export default router;
