@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
 import EventsList from "./pages/EventList/EventsList";
 import EventDetails from "./pages/EventDetails";
-import CollectifsList from "./pages/CollectifsList";
-import CollectifProfil from "./pages/CollectifProfil";
+import CrewsList from "./pages/CrewsList/CrewsList";
+import CrewProfil from "./pages/CrewProfil";
 import Admin from "./pages/Admin";
 import UserProfil from "./pages/UserProfil";
 
@@ -29,12 +29,13 @@ const router = createBrowserRouter([
           fetch(`${import.meta.env.VITE_API_URL}/api/events/${params.id}`),
       },
       {
-        path: "/collectifs-list",
-        element: <CollectifsList />,
+        path: "/crews-list",
+        element: <CrewsList />,
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/api/crews`),
       },
       {
-        path: "/collectif-details",
-        element: <CollectifProfil />,
+        path: "/crew-details/:id",
+        element: <CrewProfil />,
       },
       {
         path: "/admin",

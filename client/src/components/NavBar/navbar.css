@@ -1,0 +1,146 @@
+nav {
+  width: 100vw;
+  height: 5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  z-index: 1;
+}
+
+.navbar-logo {
+  width: 35%;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+}
+
+.logo-searchbar {
+  color: var(--primary-color);
+  width: 80%;
+  height: 80%;
+}
+
+.burger-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  cursor: pointer;
+
+  z-index: 2;
+}
+
+.burger-bar {
+  width: 30px;
+  height: 5px;
+  margin-top: 0.25rem;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+}
+
+.menu {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--background-color);
+  position: absolute;
+  top: 0;
+}
+
+.navbar-desktop-btns {
+  display: none;
+}
+
+.navbar-btns {
+  position: relative;
+  top: 40px;
+
+  p,
+  img {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80vw;
+    padding: 1.5rem;
+  }
+  p {
+    border-bottom: 1px solid var(--secondary-color);
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.burger-bar.clicked {
+  margin: 0;
+}
+
+.burger-bar.clicked:nth-child(1) {
+  transform: rotate(45deg) translate(2vw, 3vw);
+  transition: ease-out 0.5s;
+}
+.burger-bar.clicked:nth-child(2) {
+  transform: scale(0.1);
+  transition: ease-out 0.5s;
+}
+.burger-bar.clicked:nth-child(3) {
+  transform: rotate(135deg) translate(1.5vw, 0vw);
+  transition: ease-out 0.5s;
+}
+
+.burger-bar.unclicked {
+  transform: rotate(0) translate(0);
+  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+}
+
+@media (min-width: 1024px) {
+  .display-navbar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100vw;
+  }
+
+  .navigation {
+    display: none;
+  }
+
+  .logo-searchbar-desktop {
+    color: var(--secondary-color);
+    cursor: pointer;
+  }
+
+  .navbar-logo {
+    width: 15%;
+    cursor: pointer;
+  }
+
+  .burger-menu {
+    display: none;
+  }
+
+  .navbar-desktop-btns {
+    display: flex;
+    align-items: center;
+    width: 35%;
+    ul {
+      width: 100%;
+      padding: 0;
+      justify-content: space-evenly;
+      font-family: var(--font-title-b);
+      cursor: pointer;
+      color: var(--secondary-color);
+    }
+  }
+}

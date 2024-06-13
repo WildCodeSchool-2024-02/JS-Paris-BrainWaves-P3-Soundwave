@@ -44,10 +44,21 @@ class EventsSeeder extends AbstractSeeder {
             image: "https://scontent-cdg4-2.xx.fbcdn.net/v/t39.30808-6/366509081_317271337477771_1297028564986031302_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=rsVwbNOqT6oQ7kNvgFB7VLs&_nc_ht=scontent-cdg4-2.xx&oh=00_AYCHz_wrCvyN4ortP8Hn9P8wLHgWwV8_KUJx-5SAvyX94w&oe=66706BDF",
         };
 
+        const event5 = {
+            name: "Toto au Cabaret Sauvage",
+            date:"2024-05-24",
+            starting_hour: "23:00:00",
+            address: "12 rue du Cabaret", 
+            description: "Encore une Super soirée avec Dj Toto", 
+            image: "https://scontent-cdg4-1.xx.fbcdn.net/v/t39.30808-6/441541612_943403427791497_6711421318461903339_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GjU8KYF0TwsQ7kNvgG_KtFC&_nc_ht=scontent-cdg4-1.xx&oh=00_AYCxKbsou3VttalBEKxLodL_atFe2q5E_XxQ8yc3ocENGw&oe=6670C239"
+        };
+
+
         this.insert(event1);
         this.insert(event2);
         this.insert(event3);
         this.insert(event4);
+        this.insert(event5);
 
     }
 }
