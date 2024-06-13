@@ -6,4 +6,24 @@ footer {
   bottom: 0;
   margin-top: 5%;
   display: flex;
+  white-space: wrap;
+}
+.p-footer {
+  width: 80%;
+  white-space: wrap;
+  align-self: center;
+  justify-self: center;
+  margin: auto;
+}
+.ul-footer {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-right: 3rem;
+  position: relative;
+  white-space: nowrap;
+}
+.lien-footer {
+  text-decoration: none;
+  color: var(--text);
 }

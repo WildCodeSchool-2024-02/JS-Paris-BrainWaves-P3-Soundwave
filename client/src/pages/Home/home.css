@@ -47,7 +47,7 @@
     display: -webkit-box;
     transition: all 2s ease-in-out;
   }
-  h1 {
+  .title-header-home-page {
     color: var(--secondary-color);
   }
 }
@@ -67,10 +67,7 @@
 
   color: var(--text);
 }
-a {
-  text-decoration: none;
-  color: var(--text);
-}
+
 .label-slider-home-page {
   text-align: left;
   margin: 2rem;
@@ -148,6 +145,7 @@ a {
   .heart-home {
     height: 50vh;
     animation: none;
+    z-index: 1;
   }
   .home-btn {
     width: 20rem;

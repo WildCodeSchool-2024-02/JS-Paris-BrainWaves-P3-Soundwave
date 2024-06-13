@@ -48,30 +48,6 @@ function HomeSlider() {
           alt=""
         />
       </SwiperSlide>
-      <SwiperSlide>
-        <img
-          src="https://www.merchandisingplaza.fr/40763/4/T-shirts-L-inspecteur-Gadget-T-shirt-L-Inspecteur-Gadget-Go-Go-Gadget-l.jpg"
-          alt=""
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img
-          src="https://www.merchandisingplaza.fr/40763/4/T-shirts-L-inspecteur-Gadget-T-shirt-L-Inspecteur-Gadget-Go-Go-Gadget-l.jpg"
-          alt=""
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img
-          src="https://www.merchandisingplaza.fr/40763/4/T-shirts-L-inspecteur-Gadget-T-shirt-L-Inspecteur-Gadget-Go-Go-Gadget-l.jpg"
-          alt=""
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img
-          src="https://www.merchandisingplaza.fr/40763/4/T-shirts-L-inspecteur-Gadget-T-shirt-L-Inspecteur-Gadget-Go-Go-Gadget-l.jpg"
-          alt=""
-        />
-      </SwiperSlide>
     </Swiper>
   );
 }
