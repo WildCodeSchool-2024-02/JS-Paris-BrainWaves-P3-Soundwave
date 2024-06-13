@@ -1,16 +1,28 @@
 nav {
-  width: 100%;
+  width: 100vw;
   height: 5vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px;
+  padding: 0.5rem;
   z-index: 1;
 }
 
 .navbar-logo {
   width: 35%;
-  margin: 10px 0;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+}
+
+.logo-searchbar {
+  color: var(--primary-color);
+  width: 80%;
+  height: 80%;
 }
 
 .burger-menu {
@@ -18,16 +30,15 @@ nav {
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-around;
-  height: 100%;
-  width: 7vw;
   cursor: pointer;
 
   z-index: 2;
 }
 
 .burger-bar {
-  width: 7vw;
-  height: 10%;
+  width: 30px;
+  height: 5px;
+  margin-top: 0.25rem;
   background-color: var(--primary-color);
   border-radius: 5px;
 }
@@ -54,7 +65,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     width: 80vw;
-    padding: 15px;
+    padding: 1.5rem;
   }
   p {
     border-bottom: 1px solid var(--secondary-color);
@@ -71,8 +82,12 @@ nav {
   align-items: center;
 }
 
+.burger-bar.clicked {
+  margin: 0;
+}
+
 .burger-bar.clicked:nth-child(1) {
-  transform: rotate(45deg) translate(0.45em, 0.5em);
+  transform: rotate(45deg) translate(2vw, 3vw);
   transition: ease-out 0.5s;
 }
 .burger-bar.clicked:nth-child(2) {
@@ -80,7 +95,7 @@ nav {
   transition: ease-out 0.5s;
 }
 .burger-bar.clicked:nth-child(3) {
-  transform: rotate(135deg) translate(-0.45em, 0.5em);
+  transform: rotate(135deg) translate(1.5vw, 0vw);
   transition: ease-out 0.5s;
 }
 
@@ -94,12 +109,21 @@ nav {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 100%;
+    width: 100vw;
+  }
+
+  .navigation {
+    display: none;
+  }
+
+  .logo-searchbar-desktop {
+    color: var(--secondary-color);
+    cursor: pointer;
   }
 
   .navbar-logo {
     width: 15%;
-    margin: 10px 0;
+    cursor: pointer;
   }
 
   .burger-menu {
@@ -108,7 +132,15 @@ nav {
 
   .navbar-desktop-btns {
     display: flex;
-    justify-content: space-evenly;
-    width: 32vw;
+    align-items: center;
+    width: 35%;
+    ul {
+      width: 100%;
+      padding: 0;
+      justify-content: space-evenly;
+      font-family: var(--font-title-b);
+      cursor: pointer;
+      color: var(--secondary-color);
+    }
   }
 }

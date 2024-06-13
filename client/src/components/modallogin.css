@@ -1,0 +1,145 @@
+.display-modal-log-in {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(grey);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+}
+
+.modal-login-logo {
+  display: none;
+}
+
+.btn-close-modal-log-in {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.section-modal-log-in {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  /* height: 70%; */
+  box-shadow: var(--secondary-color) 0 0 10px 0;
+  gap: 1rem;
+}
+
+.title-modal-login {
+  color: var(--secondary-color);
+  font-family: var(--font-title-b);
+  font-size: clamp(1em, 7vw, 3em);
+}
+
+.section-connexion-log-in {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 30vh;
+  color: var(--secondary-color);
+}
+
+.label-login {
+  margin-top: 0.5rem;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.input-login {
+  border: none;
+  background-color: var(--background-color);
+  border-bottom: 1px solid var(--secondary-color);
+  height: 15%;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.error-login {
+  color: red;
+  font-size: clamp(0.75em, 2vw, 0.75em);
+}
+
+.display-btn-connexion-login {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  width: 100%;
+  height: 10vh;
+}
+
+.btn-connexion-log-in {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+  border-radius: 10px;
+  width: 80%;
+  height: 55%;
+  font-size: 0.75rem;
+  font-family: var(--font-title-b);
+}
+
+.section-not-login {
+  font-size: 0.5rem;
+  text-align: center;
+}
+
+.redirection-sign-in {
+  color: var(--primary-color);
+}
+
+@media (min-width: 1024px) {
+  .modal-login-logo {
+    display: block;
+  }
+
+  .section-modal-log-in {
+    padding: 1rem;
+  }
+
+  .title-modal-login {
+    margin: 0;
+  }
+
+  .section-connexion-log-in {
+    justify-content: center;
+    height: 35%;
+    gap: 0.5rem;
+    width: 70%;
+  }
+
+  .section-infos-login {
+    display: flex;
+    align-items: center;
+    height: 15%;
+  }
+
+  .input-login {
+    width: 100%;
+  }
+
+  .display-btn-connexion-login {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    width: 100%;
+    height: 20vh;
+  }
+
+  .btn-connexion-log-in {
+    width: 80%;
+    height: 8vh;
+    font-size: 1.5rem;
+  }
+
+  .section-not-login {
+    display: flex;
+    gap: 0.5rem;
+  }
+}
