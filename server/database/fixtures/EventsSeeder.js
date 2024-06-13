@@ -1,9 +1,10 @@
 const AbstractSeeder = require("./AbstractSeeder");
+const CrewSeeder = require("./CrewSeeder")
 
 class EventsSeeder extends AbstractSeeder {
     constructor() {
       // Call the constructor of the parent class (AbstractSeeder) with appropriate options
-      super({ table: "event", truncate: true });
+      super({ table: "event", truncate: true, dependencie: [CrewSeeder]});
     }
 
     run() {
@@ -34,9 +35,30 @@ class EventsSeeder extends AbstractSeeder {
             image: "https://scontent.fcdg3-1.fna.fbcdn.net/v/t39.30808-6/431236957_932139475586155_3782091657230810251_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_ohc=swRk3TtClzAQ7kNvgFPtLyS&_nc_ht=scontent.fcdg3-1.fna&oh=00_AYD7hUlxIY14jghLI6ri_SAIIiZOzDWH8rZliL7IMmnghQ&oe=666E098B",
         };
 
+        const event4 = {
+            name: "Toto au Rex Club",
+            date:"2024-06-29",
+            starting_hour: "23:00:00",
+            address: "12 rue du Rex", 
+            description: "Super soirée avec Dj Toto", 
+            image: "https://scontent-cdg4-2.xx.fbcdn.net/v/t39.30808-6/366509081_317271337477771_1297028564986031302_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=rsVwbNOqT6oQ7kNvgFB7VLs&_nc_ht=scontent-cdg4-2.xx&oh=00_AYCHz_wrCvyN4ortP8Hn9P8wLHgWwV8_KUJx-5SAvyX94w&oe=66706BDF",
+        };
+
+        const event5 = {
+            name: "Toto au Cabaret Sauvage",
+            date:"2024-05-24",
+            starting_hour: "23:00:00",
+            address: "12 rue du Cabaret", 
+            description: "Encore une Super soirée avec Dj Toto", 
+            image: "https://scontent-cdg4-1.xx.fbcdn.net/v/t39.30808-6/441541612_943403427791497_6711421318461903339_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GjU8KYF0TwsQ7kNvgG_KtFC&_nc_ht=scontent-cdg4-1.xx&oh=00_AYCxKbsou3VttalBEKxLodL_atFe2q5E_XxQ8yc3ocENGw&oe=6670C239"
+        };
+
+
         this.insert(event1);
         this.insert(event2);
         this.insert(event3);
+        this.insert(event4);
+        this.insert(event5);
 
     }
 }
