@@ -132,10 +132,13 @@ nav {
 
   .navbar-desktop-btns {
     display: flex;
-    justify-content: space-evenly;
     align-items: center;
-    width: 30%;
-    p {
+    width: 35%;
+    ul {
+      width: 100%;
+      padding: 0;
+      justify-content: space-evenly;
+      font-family: var(--font-title-b);
       cursor: pointer;
       color: var(--secondary-color);
     }

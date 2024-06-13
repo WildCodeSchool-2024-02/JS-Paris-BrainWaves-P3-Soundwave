@@ -5,12 +5,11 @@
   }
 }
 
-
 @media (min-width: 1024px) {
-    .card-crew-container{
-        margin: 2rem 6rem;
-        h1 {
-            font-size: 4em;
-        }
+  .card-crew-container {
+    margin: 2rem 6rem;
+    h1 {
+      font-size: 4em;
     }
+  }
 }
