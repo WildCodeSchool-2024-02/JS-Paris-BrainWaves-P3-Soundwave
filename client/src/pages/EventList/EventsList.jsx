@@ -14,7 +14,7 @@ function EventsList() {
   };
 
   return (
-    <div>
+    <main>
       <div className="event-list-container">
         <img src={data[2].image} alt="" className="event-page-img" />
         <h1 className="title-txt-list">Trouve ta soirée pour t'éclater</h1>
@@ -35,7 +35,7 @@ function EventsList() {
           ))}
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 
