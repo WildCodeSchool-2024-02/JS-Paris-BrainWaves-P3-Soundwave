@@ -10,9 +10,7 @@ function App() {
   return (
     <>
       <NavBar />
-      <main className="container">
-        <Outlet />
-      </main>
+      <Outlet />
       <Footer />
     </>
   );

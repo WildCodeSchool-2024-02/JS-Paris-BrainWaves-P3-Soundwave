@@ -1,0 +1,48 @@
+.main-crew-profil {
+  display: block;
+  margin: 3rem 2rem;
+}
+.header-crew-profil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5rem;
+  img {
+    width: 50%;
+  }
+  .crew-profil-title-options {
+    margin: 1rem 0;
+    h1 {
+      margin: 1rem 0;
+    }
+  }
+  .button-container-crew-profil {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    button {
+        background-color: var(--accent);
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .main-crew-profil {
+    display: block;
+    margin: 6rem 4rem;
+  }
+
+  .header-crew-profil {
+    display: flex;
+    justify-content: space-around;
+    img {
+      border-radius: 10px;
+      width: 30%;
+    }
+  }
+  .crew-profil-title-options {
+    h1 {
+      color: var(--accent);
+    }
+  }
+}
