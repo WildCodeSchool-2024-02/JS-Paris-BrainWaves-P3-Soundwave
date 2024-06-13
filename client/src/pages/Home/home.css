@@ -1,7 +1,8 @@
 .titan {
   height: 25vh;
   margin-top: 10vh;
-  /* margin: auto; */
+
+  animation: spin 15s infinite linear;
 }
 .home {
   display: flex;
@@ -32,6 +33,7 @@ header {
     height: fit-content;
     margin: auto;
     text-align: left;
+    transition: all 2s ease-in-out;
   }
   .header-p-more {
     width: 90%;
@@ -42,6 +44,7 @@ header {
     -webkit-line-clamp: 5;
     overflow: hidden;
     display: -webkit-box;
+    transition: all 2s ease-in-out;
   }
   h1 {
     color: var(--secondary-color);
@@ -119,23 +122,31 @@ a {
     flex-direction: row;
     gap: 10rem;
   }
+  .titan:hover {
+    animation: spin 15s infinite linear;
+  }
   header {
     height: 70vh;
     flex-direction: row;
     align-items: center;
 
-    p {
-      width: 40vw;
+    .header-p-more {
+      width: 70%;
       height: fit-content;
       margin: auto;
+      text-align: left;
+      -webkit-line-clamp: 10;
     }
   }
   .btn-side {
     width: 20rem;
   }
+  .swiperr {
+    margin: auto;
+  }
   .titan {
     height: 50vh;
-    /* margin: auto; */
+    animation: none;
   }
   .home-btn {
     width: 20rem;
@@ -146,5 +157,42 @@ a {
         font-size: 1em;
       }
     }
+  }
+  .btn-show {
+    display: none;
+  }
+}
+
+.titan:hover {
+  animation: spin 15s infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateZ(0deg) scale(1);
+  }
+  10% {
+    transform: rotateZ(10deg) scale(1.01);
+  }
+  20% {
+    transform: rotateZ(0deg) scale(1.01);
+  }
+  30% {
+    transform: rotateZ(-10deg) scale(1.01);
+  }
+  50% {
+    transform: rotateZ(10deg) scale(1.01);
+  }
+  70% {
+    transform: rotateZ(0deg) scale(1.01);
+  }
+  80% {
+    transform: rotateZ(-10deg) scale(1.01);
+  }
+  90% {
+    transform: rotateZ(10deg) scale(1.01);
+  }
+  100% {
+    transform: rotateZ(0deg) scale(1);
   }
 }

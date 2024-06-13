@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import heart from "../../assets/images/masquote.svg";
 import "./home.css";
+import HomeSlider from "../../components/HomeSlider/HomeSlider";
 
 function Home() {
   const navigate = useNavigate();
@@ -14,15 +15,14 @@ function Home() {
           <h1>Bienvenue sur SoundWave</h1>
           <div>
             <p className={isOpen ? "header-p-less" : "header-p-more"}>
-              Curabitur tempor quis eros tempus lacinia. Nam bibendum
-              pellentesque quam a convallis. Sed ut vulputate nisi. Integer in
-              felis sed leo vestibulum venenatis. Suspendisse quis arcu sem.
-              Aenean feugiat ex eu vestibulum vestibulum. Morbi a eleifend
-              magna. Nam metus lacus, porttitor eu mauris a, blandit ultrices
-              nibh. Mauris sit amet magna non ligula vestibulum eleifend. Nulla
-              varius volutpat turpis sed lacinia. Nam eget mi in purus lobortis
-              eleifend. Sed nec ante dictum sem condimentum ullamcorper quis
-              venenatis nisi. Proin vitae facilisis nisi, ac posuere leo.
+              Soundwave est la plateforme ultime pour découvrir tous les
+              événements des collectifs français, que ce soit pour les
+              passionnés de soirées ou les organisateurs. Viens explorer les
+              soirées incontournables et les événements exclusifs près de chez
+              toi grâce à notre interface intuitive. Pour les organisateurs,
+              c'est l'outil idéal pour partager et promouvoir tes événements
+              auprès d'un large public. Engage et développe ton projet comme
+              jamais auparavant !
             </p>
             <button
               type="button"
@@ -37,7 +37,7 @@ function Home() {
       <main>
         <div>
           <h3 className="label-slider">Événements</h3>
-          <div className="slider">slider</div>
+          <HomeSlider className="swiperr" />
         </div>
         <p className="p-title">REJOINS NOUS !</p>
         <div className="btn-div">

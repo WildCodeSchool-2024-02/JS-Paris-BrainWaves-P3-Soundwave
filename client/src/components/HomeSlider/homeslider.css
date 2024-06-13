@@ -1,0 +1,30 @@
+.swiper-slide img {
+  display: block;
+  border-radius: 10px;
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover;
+}
+@media screen and (min-width: 760px) {
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .swiper {
+    width: 100vw;
+    height: 100%;
+  }
+
+  .swiper-slide img {
+    display: block;
+    border-radius: 10px;
+    width: 20rem;
+    height: 20rem;
+    object-fit: cover;
+  }
+}
