@@ -1,10 +1,43 @@
+import { useState } from "react";
 import "./modallogin.css";
 import { ImCross } from "react-icons/im";
 import PropTypes from "prop-types";
+import mascot from "../assets/images/masquote.svg";
 
 function ModalLogIn({ closeModalLogIn }) {
   const handleCloseModalLogIn = () => {
     closeModalLogIn(false);
+  };
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState([]);
+
+  const validate = () => {
+    const error = {};
+    if (!email) {
+      error.email = "Email requis";
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      error.email = "Saisissez votre adresse mail";
+    } else {
+      error.email = "";
+    }
+
+    if (!password) {
+      error.password = "Mot de passe requis";
+    } else if (password.length < 4) {
+      error.password = "Saisissez votre mot de passe";
+    } else {
+      error.password = "";
+    }
+
+    return error;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const errorData = validate();
+    setErrors(errorData);
   };
 
   return (
@@ -14,24 +47,43 @@ function ModalLogIn({ closeModalLogIn }) {
           onClick={handleCloseModalLogIn}
           className="btn-close-modal-log-in"
         />
+        <img src={mascot} alt="mascot" className="modal-login-logo" />
         <h1 className="title-modal-login">Salut toi !</h1>
-        <div className="section-connexion-log-in">
+        <form className="section-connexion-log-in" onSubmit={handleSubmit}>
           <label htmlFor="email" className="label-login">
-            Email :
+            Email
           </label>
           <input
-            type="text"
+            type="email"
+            name="email"
             placeholder="youremail@gmail.com"
             className="input-login"
+            onChange={(e) => setEmail(e.target.value)}
           />
-          <label htmlFor="email" className="label-login">
-            Mot de passe :
+          {errors.email && <div className="error-login">{errors.email}</div>}
+          <label htmlFor="password" className="label-login">
+            Mot de passe
           </label>
-          <input type="text" placeholder="*******" className="input-login" />
+          <input
+            type="password"
+            name="password"
+            placeholder="********"
+            className="input-login"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {errors.password && (
+            <div className="error-login">{errors.password}</div>
+          )}
+          <div className="display-btn-connexion-login">
+            <button type="submit" className="btn-connexion-log-in">
+              C'est bien moi
+            </button>
+          </div>
+        </form>
+        <div className="section-not-login">
+          <p>Tu n’as pas encore de compte ? </p>
+          <p className="redirection-sign-in">Inscris-toi !</p>
         </div>
-        <button type="button" className="btn-connexion-log-in">
-          C'est bien moi
-        </button>
       </div>
     </div>
   );
