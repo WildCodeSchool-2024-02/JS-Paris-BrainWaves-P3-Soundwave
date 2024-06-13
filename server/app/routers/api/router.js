@@ -7,10 +7,12 @@ const router = express.Router();
 /* ************************************************************************* */
 
 const itemsRouter = require("./items/router");
-const eventRouter = require("./events/router")
+const eventRouter = require("./events/router");
+const crewRouter = require("./crews/router");
 
 router.use("/items", itemsRouter);
 router.use("/events", eventRouter);
+router.use("/crews", crewRouter);
 
 /* ************************************************************************* */
 

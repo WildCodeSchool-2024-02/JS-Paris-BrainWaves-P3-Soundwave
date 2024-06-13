@@ -1,6 +1,7 @@
 // Import the repository modules responsible for handling data operations on the tables
 const ItemRepository = require("./models/ItemRepository");
-const EventRepository = require("./models/EventRepository")
+const EventRepository = require("./models/EventRepository");
+const CrewRepository = require("./models/CrewRepository");
 
 // Create an empty object to hold data repositories for different tables
 const tables = {};
@@ -12,6 +13,7 @@ const tables = {};
 // Register each repository as data access point for its table
 tables.item = new ItemRepository();
 tables.event = new EventRepository();
+tables.crew = new CrewRepository();
 
 /* ************************************************************************* */
 

@@ -31,6 +31,7 @@ nav {
   align-items: flex-start;
   justify-content: space-around;
   cursor: pointer;
+
   z-index: 2;
 }
 
