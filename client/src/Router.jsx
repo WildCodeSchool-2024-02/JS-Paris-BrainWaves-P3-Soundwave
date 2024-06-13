@@ -23,8 +23,10 @@ const router = createBrowserRouter([
         loader: () => fetch(`${import.meta.env.VITE_API_URL}/api/events`),
       },
       {
-        path: "/event-details",
+        path: "/event-details/:id",
         element: <EventDetails />,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/api/events/${params.id}`),
       },
       {
         path: "/collectifs-list",

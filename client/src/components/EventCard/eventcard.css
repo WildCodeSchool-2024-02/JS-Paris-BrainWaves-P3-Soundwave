@@ -71,4 +71,13 @@
     width: 2rem;
     height: 2rem;
   }
+
+  .event-all-container h1 {
+    font-size: 2em;
+    margin: 0;
+  }
+
+  .event-all-container p {
+    font-size: 1em;
+  }
 }
