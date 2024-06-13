@@ -58,53 +58,57 @@ function NavBar() {
         </div>
         <div className="navbar-desktop-btns">
           <FaSearch className="logo-searchbar-desktop" />
-          <p
-            role="presentation"
-            onClick={() => navigate("/events-list")}
-            onKeyDown={() => navigate("/events-list")}
-          >
-            Événements
-          </p>
-          <p
-            role="presentation"
-            onClick={() => navigate("/collectifs-list")}
-            onKeyDown={() => navigate("/collectifs-list")}
-          >
-            Collectifs
-          </p>
-          <p role="presentation" onClick={handleModal}>
-            Log In
-          </p>
+          <ul>
+            <li
+              role="presentation"
+              onClick={() => navigate("/events-list")}
+              onKeyDown={() => navigate("/events-list")}
+            >
+              Événements
+            </li>
+            <li
+              role="presentation"
+              onClick={() => navigate("/crews-list")}
+              onKeyDown={() => navigate("/crews-list")}
+            >
+              Collectifs
+            </li>
+            <li role="presentation" onClick={handleModal}>
+              Log In
+            </li>
+          </ul>
         </div>
       </nav>
-      {openModalLogIn && <ModalLogIn closeModalLogIn={setOpenModalLogIn}/>}
+      {openModalLogIn && <ModalLogIn closeModalLogIn={setOpenModalLogIn} />}
       <div className={menuClass}>
         <div className="navbar-btns">
-          <p
-            role="presentation"
-            onClick={() => {
-              navigate("/events-list");
-              setMenuClass("menu hidden");
-              setBurgerClass("burger-bar unclicked");
-            }}
-            onKeyDown={() => navigate("/events-list")}
-          >
-            Événements
-          </p>
-          <p
-            role="presentation"
-            onClick={() => {
-              navigate("/collectifs-list");
-              setMenuClass("menu hidden");
-              setBurgerClass("burger-bar unclicked");
-            }}
-            onKeyDown={() => navigate("/collectifs-list")}
-          >
-            Collectifs
-          </p>
-          <p role="presentation" onClick={handleModal}>
-            Log In
-          </p>
+          <ul>
+            <li
+              role="presentation"
+              onClick={() => {
+                navigate("/events-list");
+                setMenuClass("menu hidden");
+                setBurgerClass("burger-bar unclicked");
+              }}
+              onKeyDown={() => navigate("/events-list")}
+            >
+              Événements
+            </li>
+            <li
+              role="presentation"
+              onClick={() => {
+                navigate("/crews-list");
+                setMenuClass("menu hidden");
+                setBurgerClass("burger-bar unclicked");
+              }}
+              onKeyDown={() => navigate("/crews-list")}
+            >
+              Collectifs
+            </li>
+            <li role="presentation" onClick={handleModal}>
+              Log In
+            </li>
+          </ul>
           <img src={mascot} alt="mascot" />
         </div>
       </div>
