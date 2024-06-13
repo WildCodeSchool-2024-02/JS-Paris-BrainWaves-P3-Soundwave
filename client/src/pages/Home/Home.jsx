@@ -8,10 +8,10 @@ function Home() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="home">
-      <header>
-        <img className="titan" src={heart} alt="" />
-        <div className="presentation">
+    <main className="home">
+      <section className="header-home-page">
+        <img className="heart-home" src={heart} alt="" />
+        <div className=".presentation-home-page ">
           <h1>Bienvenue sur SoundWave</h1>
           <div>
             <p className={isOpen ? "header-p-less" : "header-p-more"}>
@@ -26,20 +26,20 @@ function Home() {
             </p>
             <button
               type="button"
-              className="btn-show"
+              className="btn-show-home-page"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? "read less..." : "read more..."}
             </button>
           </div>
         </div>
-      </header>
-      <main>
+      </section>
+      <section className="main-home-page">
         <div>
-          <h3 className="label-slider">Événements</h3>
+          <h3 className="label-slider-home-page">Événements</h3>
           <HomeSlider className="swiperr" />
         </div>
-        <p className="p-title">REJOINS NOUS !</p>
+        <p className="p-title-header-home-page">REJOINS NOUS !</p>
         <div className="btn-div">
           <div className="btn-side">
             <div
@@ -78,8 +78,8 @@ function Home() {
             </div>
           </div>
         </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }
 export default Home;
