@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import CardCrew from "../../components/CardCrew/CardCrew";
-import "./crewslist.css"
+import "./crewslist.css";
 
 function CrewsList() {
   const results = useLoaderData();

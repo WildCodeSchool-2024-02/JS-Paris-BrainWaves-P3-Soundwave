@@ -1,24 +1,50 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 import "./cardcrew.css";
 
-function CardCrew({result}) {
-    return (
-        <section className="specific-crew-card">
-            <div className="crew-card-presentation">
-            <img src={result.image} alt="logo du collectif"/>
+function CardCrew({ result }) {
+  const navigate = useNavigate();
+  console.info(result.id);
+  return (
+    <section
+      className="specific-crew-card"
+      onClick={() => navigate(`/crew-details/${result.id}`)}
+      onKeyDown={() => navigate(`/crew-details/${result.id}`)}
+      role="presentation"
+    >
+      {window.innerWidth < 1024 && (
+        <>
+          <div className="crew-card-presentation">
+            <img src={result.image} alt="logo du collectif" />
             <h2>{result.name}</h2>
-            </div>
+          </div>
+          {result.description.length <= 100 ? (
             <p>{result.description}</p>
-        </section>
-    )
-};
+          ) : (
+            <p>{result.description.slice(0, 100)}...</p>
+          )}
+        </>
+      )}
+      {window.innerWidth >= 1024 && (
+        <>
+          <img src={result.image} alt="logo du collectif" />
+          <div className="crew-card-desc">
+            <h2>{result.name}</h2>
+            <p>{result.description}</p>
+          </div>
+        </>
+      )}
+    </section>
+  );
+}
 
 CardCrew.propTypes = {
-    result: PropTypes.shape({
-        image: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired
-    }).isRequired
+  result: PropTypes.shape({
+    image: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default CardCrew;

@@ -58,8 +58,8 @@ function NavBar() {
           </p>
           <p
             role="presentation"
-            onClick={() => navigate("/collectifs-list")}
-            onKeyDown={() => navigate("/collectifs-list")}
+            onClick={() => navigate("/crews-list")}
+            onKeyDown={() => navigate("/crews-list")}
           >
             Collectifs
           </p>
@@ -82,11 +82,11 @@ function NavBar() {
           <p
             role="presentation"
             onClick={() => {
-              navigate("/collectifs-list");
+              navigate("/crews-list");
               setMenuClass("menu hidden");
               setBurgerClass("burger-bar unclicked");
             }}
-            onKeyDown={() => navigate("/collectifs-list")}
+            onKeyDown={() => navigate("/crews-list")}
           >
             Collectifs
           </p>
