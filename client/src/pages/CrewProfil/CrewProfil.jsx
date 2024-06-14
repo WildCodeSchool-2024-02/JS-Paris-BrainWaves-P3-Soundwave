@@ -12,7 +12,7 @@ function CrewProfil(){
             <div className="crew-profil-title-options">
             <h1>{crew.name}</h1>
             <div className="button-container-crew-profil">
-            {!login && <button type="button">edit</button>}
+            {!login && <button type="button">éditer</button>}
             </div>
             </div>
             </section>
