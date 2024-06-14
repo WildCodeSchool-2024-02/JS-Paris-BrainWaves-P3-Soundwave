@@ -1,9 +1,15 @@
 .swiper-slide img {
   display: block;
   border-radius: 10px;
-  width: 8rem;
-  height: 8rem;
+  width: 7rem;
+  height: 7rem;
   object-fit: cover;
+}
+.swiper {
+  width: 90vw;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
 }
 @media screen and (min-width: 760px) {
   .swiper-slide {
@@ -16,6 +22,7 @@
   .swiper {
     width: 100vw;
     height: 100%;
+    z-index: -1;
   }
 
   .swiper-slide img {

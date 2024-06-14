@@ -5,7 +5,6 @@ import { FaRegHeart } from "react-icons/fa";
 
 function CardCrew({ result }) {
   const navigate = useNavigate();
-  console.info(result.id);
   return (
     <section
       className="specific-crew-card"
