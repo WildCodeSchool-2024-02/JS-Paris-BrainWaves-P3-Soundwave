@@ -1,4 +1,5 @@
-import { useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+
 import { useState } from "react";
 import heart from "../../assets/images/masquote.svg";
 import "./home.css";
@@ -6,6 +7,8 @@ import HomeSlider from "../../components/HomeSlider/HomeSlider";
 
 function Home() {
   const navigate = useNavigate();
+  const results = useLoaderData();
+  console.info(results);
   const [isOpen, setIsOpen] = useState(false);
   return (
     <main className="home">
@@ -37,41 +40,41 @@ function Home() {
       <section className="main-home-page">
         <div>
           <h3 className="label-slider-home-page">Événements</h3>
-          <HomeSlider className="swiperr" />
+          <HomeSlider props={results} className="swiperr" />
         </div>
         <p className="p-title-header-home-page">REJOINS NOUS !</p>
-        <div className="btn-div">
-          <div className="btn-side">
+        <div className="div-btn-insciption">
+          <div className="btn-side-home">
             <div
               className="home-btn"
               role="presentation"
               onClick={() => navigate("/")}
               onKeyDown={() => navigate("/")}
             >
-              <p>Waver</p>
+              <p className="p-home-btn">Waver</p>
             </div>
             <div className="description">
-              <p>Qu’est ce qu’un Waver ?</p>
-              <p>
+              <p className="p-home-btn">Qu’est ce qu’un Waver ?</p>
+              <p className="p-home-btn">
                 Si tu ne trouves jamais d’événements où t’ambiancer, crée ton
                 espace perso !
               </p>
             </div>
           </div>
 
-          <div className="btn-side">
+          <div className="btn-side-home">
             <div
               className="home-btn"
               role="presentation"
               onClick={() => navigate("/")}
               onKeyDown={() => navigate("/")}
             >
-              <p>Soundwaver</p>
+              <p className="p-home-btn">Soundwaver</p>
             </div>
 
             <div className="description">
-              <p>Qu’est ce qu’un Soundwaver ? </p>
-              <p>
+              <p className="p-home-btn">Qu’est ce qu’un Soundwaver ? </p>
+              <p className="p-home-btn">
                 Tu es un collectif et tu souhaites promouvoir ton projet et tes
                 événements, crée ton compte !
               </p>

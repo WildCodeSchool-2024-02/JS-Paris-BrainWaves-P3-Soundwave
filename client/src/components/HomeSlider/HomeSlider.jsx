@@ -1,28 +1,28 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { FreeMode, Autoplay, Mousewheel } from "swiper/modules";
+import PropTypes from "prop-types";
+
+import { FreeMode, Autoplay } from "swiper/modules";
 import "./homeslider.css";
 import { useState, useEffect } from "react";
 
-function HomeSlider() {
+function HomeSlider({ props }) {
   const [spaceBetween, setSpaceBetween] = useState(5);
+  const events = props;
+  console.info(events.img);
 
   useEffect(() => {
     const updateSpaceBetween = () => {
       if (window.innerWidth > 760) {
-        setSpaceBetween(5);
+        setSpaceBetween(15);
       } else {
         setSpaceBetween(20);
       }
     };
-
-    // Initial check
     updateSpaceBetween();
 
-    // Add event listener
     window.addEventListener("resize", updateSpaceBetween);
 
-    // Clean up the event listener
     return () => window.removeEventListener("resize", updateSpaceBetween);
   }, []);
 
@@ -31,25 +31,33 @@ function HomeSlider() {
       direction="horizontal"
       slidesPerView={3}
       spaceBetween={spaceBetween}
-      mousewheel
       loop
       freeMode
-      speed={18000}
+      speed={1800}
       autoplay={{
-        delay: 0,
+        delay: 1,
         disableOnInteraction: false,
       }}
-      modules={[FreeMode, Autoplay, Mousewheel]}
+      modules={[FreeMode, Autoplay]}
       className="mySwiper"
     >
-      <SwiperSlide>
-        <img
-          src="https://www.merchandisingplaza.fr/40763/4/T-shirts-L-inspecteur-Gadget-T-shirt-L-Inspecteur-Gadget-Go-Go-Gadget-l.jpg"
-          alt=""
-        />
-      </SwiperSlide>
+      {events.map((result) => (
+        <SwiperSlide key={result.id}>
+          <img key={result.id} src={result.image} alt="" />
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 }
+HomeSlider.propTypes = {
+  props: PropTypes.arrayOf(
+    PropTypes.shape({
+      image: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+};
 
 export default HomeSlider;

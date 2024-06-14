@@ -4,7 +4,6 @@ import "./crewslist.css";
 
 function CrewsList() {
   const results = useLoaderData();
-  console.info("essai", results);
   return (
     <div className="card-crew-container">
       <h1>Nos collectifs</h1>

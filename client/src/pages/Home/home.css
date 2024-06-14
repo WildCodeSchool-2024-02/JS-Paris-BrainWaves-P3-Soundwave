@@ -76,19 +76,19 @@
   font-size: 1.25rem;
   font-weight: bold;
 }
-.btn-div {
+.div-btn-insciption {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   margin: auto;
   align-items: baseline;
 }
-.btn-side {
+.btn-side-home {
   display: flex;
   flex-direction: column;
   width: 80vw;
   gap: 1rem;
-  p {
+  .p-home-btn {
     font-size: 0.813rem;
     text-align: left;
   }
@@ -96,11 +96,11 @@
 .home-btn {
   cursor: pointer;
   border-radius: 10px;
-  p {
+  .p-home-btn {
     font-size: 1.25rem;
     font-family: var(--font-title-b);
   }
-  width: 80vw;
+
   height: 7vh;
   display: flex;
   align-items: center;
@@ -115,7 +115,7 @@
     margin-left: 3rem;
     gap: 2rem;
   }
-  .btn-div {
+  .div-btn-insciption {
     display: flex;
     flex-direction: row;
     gap: 10rem;
@@ -136,9 +136,7 @@
       -webkit-line-clamp: 10;
     }
   }
-  .btn-side {
-    width: 20rem;
-  }
+
   .swiperr {
     margin: auto;
   }
@@ -147,12 +145,11 @@
     animation: none;
     z-index: 1;
   }
-  .home-btn {
+
+  .btn-side-home {
     width: 20rem;
-  }
-  .btn-side {
     .description {
-      p {
+      .p-home-btn {
         font-size: 1em;
       }
     }
