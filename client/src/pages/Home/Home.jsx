@@ -2,44 +2,44 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import heart from "../../assets/images/masquote.svg";
 import "./home.css";
+import HomeSlider from "../../components/HomeSlider/HomeSlider";
 
 function Home() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="home">
-      <header>
-        <img className="titan" src={heart} alt="" />
-        <div className="presentation">
-          <h1>Bienvenue sur SoundWave</h1>
+    <main className="home">
+      <section className="header-home-page">
+        <img className="heart-home" src={heart} alt="" />
+        <div className="presentation-home-page">
+          <h1 className="title-header-home-page">Bienvenue sur SoundWave</h1>
           <div>
             <p className={isOpen ? "header-p-less" : "header-p-more"}>
-              Curabitur tempor quis eros tempus lacinia. Nam bibendum
-              pellentesque quam a convallis. Sed ut vulputate nisi. Integer in
-              felis sed leo vestibulum venenatis. Suspendisse quis arcu sem.
-              Aenean feugiat ex eu vestibulum vestibulum. Morbi a eleifend
-              magna. Nam metus lacus, porttitor eu mauris a, blandit ultrices
-              nibh. Mauris sit amet magna non ligula vestibulum eleifend. Nulla
-              varius volutpat turpis sed lacinia. Nam eget mi in purus lobortis
-              eleifend. Sed nec ante dictum sem condimentum ullamcorper quis
-              venenatis nisi. Proin vitae facilisis nisi, ac posuere leo.
+              Soundwave est la plateforme ultime pour découvrir tous les
+              événements des collectifs français, que ce soit pour les
+              passionnés de soirées ou les organisateurs. Viens explorer les
+              soirées incontournables et les événements exclusifs près de chez
+              toi grâce à notre interface intuitive. Pour les organisateurs,
+              c'est l'outil idéal pour partager et promouvoir tes événements
+              auprès d'un large public. Engage et développe ton projet comme
+              jamais auparavant !
             </p>
             <button
               type="button"
-              className="btn-show"
+              className="btn-show-home-page"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? "read less..." : "read more..."}
             </button>
           </div>
         </div>
-      </header>
-      <main>
+      </section>
+      <section className="main-home-page">
         <div>
-          <h3 className="label-slider">Événements</h3>
-          <div className="slider">slider</div>
+          <h3 className="label-slider-home-page">Événements</h3>
+          <HomeSlider className="swiperr" />
         </div>
-        <p className="p-title">REJOINS NOUS !</p>
+        <p className="p-title-header-home-page">REJOINS NOUS !</p>
         <div className="btn-div">
           <div className="btn-side">
             <div
@@ -78,8 +78,8 @@ function Home() {
             </div>
           </div>
         </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }
 export default Home;

@@ -11,9 +11,7 @@ function App() {
   return (
     <>
       <NavBar setDataUser={setDataUser} />
-      <main className="container">
         <Outlet context={{ dataUser, setDataUser }} />
-      </main>
       <Footer />
     </>
   );
