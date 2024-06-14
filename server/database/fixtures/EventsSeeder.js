@@ -1,10 +1,10 @@
 const AbstractSeeder = require("./AbstractSeeder");
-const CrewSeeder = require("./CrewSeeder")
+// const CrewSeeder = require("./CrewSeeder")
 
 class EventsSeeder extends AbstractSeeder {
     constructor() {
       // Call the constructor of the parent class (AbstractSeeder) with appropriate options
-      super({ table: "event", truncate: true, dependencie: [CrewSeeder]});
+      super({ table: "event", truncate: true});
     }
 
     run() {
@@ -53,12 +53,23 @@ class EventsSeeder extends AbstractSeeder {
             image: "https://scontent-cdg4-1.xx.fbcdn.net/v/t39.30808-6/441541612_943403427791497_6711421318461903339_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GjU8KYF0TwsQ7kNvgG_KtFC&_nc_ht=scontent-cdg4-1.xx&oh=00_AYCxKbsou3VttalBEKxLodL_atFe2q5E_XxQ8yc3ocENGw&oe=6670C239"
         };
 
+        const event6 = {
+            name: "Toto a la Rotonde de Stalincrack",
+            date:"2024-07-24",
+            starting_hour: "23:00:00",
+            address: "12 rue du crack", 
+            description: "Encore une mega super soirée avec Dj Toto", 
+            image: "https://scontent-cdg4-1.xx.fbcdn.net/v/t39.30808-6/371846629_330081256196779_319580765884456587_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=7xtESdTZQDkQ7kNvgG61-qR&_nc_ht=scontent-cdg4-1.xx&oh=00_AYAwR3vH4hzxToIvnPT6gfOyEGNqary02vBIHEQhyfY42Q&oe=6671D28A"
+        };
+
+
 
         this.insert(event1);
         this.insert(event2);
         this.insert(event3);
         this.insert(event4);
         this.insert(event5);
+        this.insert(event6);
 
     }
 }

@@ -5,12 +5,12 @@ class EventRepository extends AbstractRepository {
         super ({table : 'event'});
         }
         
-        // async create () {
-        //     const [results] = await this.database.query(
-        //         `INSERT INTO ${this.table} (name) VALUES`
-        //     )
-        //     return results
-        // }
+        async readCurrent () {
+            const [rows] = await this.database.query(
+                `SELECT * FROM ${this.table} WHERE date(date) >= CURDATE()`
+            )
+            return rows
+        }
 
 
 }

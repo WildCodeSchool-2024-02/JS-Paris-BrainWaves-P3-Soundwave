@@ -8,8 +8,22 @@ function EventsList() {
   const sortDates = (a, b) => {
     const dateA = new Date(a.date);
     const dateB = new Date(b.date);
+
+    const yearA = dateA.getFullYear();
+    const yearB = dateB.getFullYear();
+
+    const monthA = dateA.getMonth();
+    const monthB = dateB.getMonth();
+
     if (dateA > dateB) return 1;
     if (dateA < dateB) return -1;
+
+    if (yearA > yearB) return 1;
+    if (yearA < yearB) return -1;
+
+    if (monthA > monthB) return 1;
+    if (monthA < monthB) return -1;
+
     return 0;
   };
 

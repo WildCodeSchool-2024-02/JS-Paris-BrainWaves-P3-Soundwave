@@ -2,7 +2,7 @@ const tables = require("../../database/tables");
 
 const browse = async ({ res, next }) => {
   try {
-    const events = await tables.event.readAll();
+    const events = await tables.event.readCurrent();
     res.status(200).json(events);
   } catch (error) {
     next(error);
