@@ -10,7 +10,7 @@ class CrewEventSeeder extends AbstractSeeder {
     run() {
         const crewEvent1 = {
             crew_id : 1,
-            event_id: 3
+            event_id: 4
         };
         const crewEvent2 = {
             crew_id : 2,
@@ -18,7 +18,7 @@ class CrewEventSeeder extends AbstractSeeder {
         };
         const crewEvent3 = {
             crew_id : 2,
-            event_id: 4
+            event_id: 3
         };
         const crewEvent4 = {
             crew_id : 3,
@@ -28,12 +28,12 @@ class CrewEventSeeder extends AbstractSeeder {
             crew_id : 3,
             event_id: 5
         };
-        this.insert(crewEvent1);
-        this.insert(crewEvent2);
-        this.insert(crewEvent3);
-        this.insert(crewEvent4);
-        this.insert(crewEvent5);
-    }
+    this.insert(crewEvent1);
+    this.insert(crewEvent2);
+    this.insert(crewEvent3);
+    this.insert(crewEvent4);
+    this.insert(crewEvent5);
+        }
 };
 
-module.export = CrewEventSeeder;
+module.exports = CrewEventSeeder;
