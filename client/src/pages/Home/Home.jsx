@@ -8,7 +8,6 @@ import HomeSlider from "../../components/HomeSlider/HomeSlider";
 function Home() {
   const navigate = useNavigate();
   const results = useLoaderData();
-  console.info(results);
   const [isOpen, setIsOpen] = useState(false);
   return (
     <main className="home">
@@ -39,7 +38,7 @@ function Home() {
       </section>
       <section className="main-home-page">
         <div>
-          <h3 className="label-slider-home-page">Événements</h3>
+          <h3 className="label-slider-home-page">Nos Événements</h3>
           <HomeSlider props={results} className="swiperr" />
         </div>
         <p className="p-title-header-home-page">REJOINS NOUS !</p>

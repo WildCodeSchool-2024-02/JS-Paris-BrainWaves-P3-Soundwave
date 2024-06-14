@@ -4,7 +4,6 @@ import "./cardcrew.css";
 
 function CardCrew({ result }) {
   const navigate = useNavigate();
-  console.info(result.id);
   return (
     <section
       className="specific-crew-card"

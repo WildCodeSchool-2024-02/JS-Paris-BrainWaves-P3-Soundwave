@@ -9,7 +9,6 @@ import { useState, useEffect } from "react";
 function HomeSlider({ props }) {
   const [spaceBetween, setSpaceBetween] = useState(5);
   const events = props;
-  console.info(events.img);
 
   useEffect(() => {
     const updateSpaceBetween = () => {
