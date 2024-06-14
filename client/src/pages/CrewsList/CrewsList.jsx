@@ -5,12 +5,12 @@ import "./crewslist.css";
 function CrewsList() {
   const results = useLoaderData();
   return (
-    <div className="card-crew-container">
+    <main className="card-crew-container">
       <h1>Nos collectifs</h1>
       {results.map((result) => (
         <CardCrew result={result} key={result.id} />
       ))}
-    </div>
+    </main>
   );
 }
 

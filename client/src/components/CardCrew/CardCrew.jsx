@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import "./cardcrew.css";
+import { FaRegHeart } from "react-icons/fa";
 
 function CardCrew({ result }) {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ function CardCrew({ result }) {
           <div className="crew-card-presentation">
             <img src={result.image} alt="logo du collectif" />
             <h2>{result.name}</h2>
+            <FaRegHeart className="heart-icon" />
           </div>
           {result.description.length <= 100 ? (
             <p>{result.description}</p>
@@ -30,6 +32,7 @@ function CardCrew({ result }) {
           <img src={result.image} alt="logo du collectif" />
           <div className="crew-card-desc">
             <h2>{result.name}</h2>
+            <FaRegHeart className="heart-icon" />
             <p>{result.description}</p>
           </div>
         </>
