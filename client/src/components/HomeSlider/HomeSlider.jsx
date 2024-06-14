@@ -16,13 +16,10 @@ function HomeSlider() {
       }
     };
 
-    // Initial check
     updateSpaceBetween();
 
-    // Add event listener
     window.addEventListener("resize", updateSpaceBetween);
 
-    // Clean up the event listener
     return () => window.removeEventListener("resize", updateSpaceBetween);
   }, []);
 
