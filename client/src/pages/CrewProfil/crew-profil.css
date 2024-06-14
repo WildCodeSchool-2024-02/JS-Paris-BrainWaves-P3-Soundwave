@@ -29,6 +29,17 @@
     }
   }
 }
+.evaluate-admin-buttons {
+    display: flex;
+    svg {
+        background-color: var(--accent);
+        color : black;
+        border-radius: 5px;
+        margin: 0 0.5rem;
+        height: 1.5em;
+        width: 2em;
+    }
+}
 .desc-crew-profil {
     text-align: left;
     display: flex;
@@ -39,6 +50,7 @@
 
 .events-crew-profil {
     text-align: left;
+    display: flex;
 }
 
 @media screen and (min-width: 1024px) {

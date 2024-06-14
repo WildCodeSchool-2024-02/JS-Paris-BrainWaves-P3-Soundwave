@@ -1,6 +1,9 @@
 .specific-crew-card {
   margin: 1rem 0;
   cursor: pointer;
+  border: 1px dashed var(--primary-color);
+  border-radius: 5px;
+  padding: 1rem;
   h2 {
     color: var(--accent);
     text-align: center;
@@ -12,12 +15,19 @@
     height: 10%;
     border-radius: 10px;
   }
+
   .crew-card-presentation {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 1rem;
+    position: relative;
+    svg {
+      position: absolute;
+      top: 2px;
+      right: 5px;
+    }
   }
   p {
     text-align: left;
@@ -28,6 +38,11 @@
 .specific-crew-card:nth-child(odd) {
   .crew-card-presentation {
     flex-direction: row-reverse;
+    svg {
+      position: absolute;
+      top: 2px;
+      left: 5px;
+    }
   }
 }
 
@@ -38,25 +53,31 @@
     justify-content: space-around;
     align-items: flex-start;
     margin: 3rem 0;
+    border: none;
     img {
       width: 25%;
     }
     .crew-card-desc {
       display: flex;
       flex-direction: column;
+      align-items: flex-start;
       width: 60%;
       gap: 3rem;
       h2 {
-        text-align: left;
         width: auto;
       }
     }
   }
+  .specific-crew-card:hover {
+    border: 1px dashed var(--primary-color);
+    border-radius: 5px;
+    padding: 1rem;
+    transition: ease-in-out 0.3s;
+  }
   .specific-crew-card:nth-child(odd) {
     flex-direction: row-reverse;
-    h2,
-    p {
-      text-align: right;
+    .crew-card-desc {
+      align-items: flex-end;
     }
   }
 }
