@@ -14,7 +14,6 @@
 @media screen and (min-width: 760px) {
   .swiper-slide {
     text-align: center;
-    font-size: 18px;
 
     display: flex;
     justify-content: center;
