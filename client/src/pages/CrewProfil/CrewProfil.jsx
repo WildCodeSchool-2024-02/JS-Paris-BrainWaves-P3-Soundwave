@@ -15,9 +15,9 @@ function CrewProfil() {
         <div className="crew-profil-title-options">
           <h1>{crew.name}</h1>
           <div className="button-container-crew-profil">
-            {!login && <FaRegHeart className="heart-icon"/>}
+            {login && <FaRegHeart className="heart-icon"/>}
             {login && <button type="button">Editer</button>}
-            {admin && (
+            {!admin && (
               <div className="evaluate-admin-buttons">
                 <TiTick role="button"/>
                 <TiTimes role="button"/>
