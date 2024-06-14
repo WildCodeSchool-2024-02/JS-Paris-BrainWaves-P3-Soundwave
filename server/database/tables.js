@@ -2,6 +2,7 @@
 const ItemRepository = require("./models/ItemRepository");
 const EventRepository = require("./models/EventRepository");
 const CrewRepository = require("./models/CrewRepository");
+const UserRepository = require("./models/UserRepository");
 
 // Create an empty object to hold data repositories for different tables
 const tables = {};
@@ -14,6 +15,7 @@ const tables = {};
 tables.item = new ItemRepository();
 tables.event = new EventRepository();
 tables.crew = new CrewRepository();
+tables.user = new UserRepository();
 
 /* ************************************************************************* */
 

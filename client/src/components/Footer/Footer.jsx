@@ -3,11 +3,13 @@ import "./footer.css";
 function Footer() {
   return (
     <footer className="footer">
-      <div className="container">
+      <div className="footer-container">
         <div className="footer-content">
-          <p className="p-footer">
-            &copy; 2024 Your Company Name. All rights reserved.
-          </p>
+          <div>
+            <p className="p-footer">
+              &copy; 2024 Your Company Name. All rights reserved.
+            </p>
+          </div>
 
           <ul className="ul-footer">
             <li>
