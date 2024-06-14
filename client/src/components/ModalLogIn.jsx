@@ -1,91 +1,111 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./modallogin.css";
 import { ImCross } from "react-icons/im";
 import PropTypes from "prop-types";
 import mascot from "../assets/images/masquote.svg";
 
-function ModalLogIn({ closeModalLogIn }) {
-  const handleCloseModalLogIn = () => {
-    closeModalLogIn(false);
-  };
-
+function ModalLogIn({ closeModalLogIn, setDataUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+
+  const navigate = useNavigate();
 
   const validate = () => {
     const error = {};
     if (!email) {
       error.email = "Email requis";
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      error.email = "Saisissez votre adresse mail";
-    } else {
-      error.email = "";
+      error.email = "Saisissez une adresse mail";
     }
 
     if (!password) {
       error.password = "Mot de passe requis";
     } else if (password.length < 4) {
       error.password = "Saisissez votre mot de passe";
-    } else {
-      error.password = "";
     }
 
     return error;
   };
 
+  async function userData() {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/users`,
+        {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        }
+      );
+      if (response.status === 200) {
+        const result = await response.json();
+        setDataUser(result);
+        navigate("/user-profil");
+      } else {
+        setErrors({ login: "Identifiant inconnu" });
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  const handleCloseModalLogIn = () => {
+    closeModalLogIn(false);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const errorData = validate();
-    setErrors(errorData);
+    if (Object.keys(errorData).length > 0) setErrors(errorData);
+    else {
+      handleCloseModalLogIn();
+      userData();
+    }
   };
 
   return (
-    <div className="display-modal-log-in">
-      <div className="section-modal-log-in">
+    <dialog className="display-modal-log-in">
+      <section className="section-modal-log-in">
         <ImCross
           onClick={handleCloseModalLogIn}
           className="btn-close-modal-log-in"
         />
-        <img src={mascot} alt="mascot" className="modal-login-logo" />
-        <h1 className="title-modal-login">Salut toi !</h1>
-        <form className="section-connexion-log-in" onSubmit={handleSubmit}>
-          <label htmlFor="email" className="label-login">
-            Email
-          </label>
+        <img src={mascot} alt="mascot" />
+        <h1>Salut toi !</h1>
+        <form className="section-connexion-log-in">
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             name="email"
             placeholder="youremail@gmail.com"
-            className="input-login"
             onChange={(e) => setEmail(e.target.value)}
           />
-          {errors.email && <div className="error-login">{errors.email}</div>}
-          <label htmlFor="password" className="label-login">
-            Mot de passe
-          </label>
+          {errors.email && <p className="error-login-infos">{errors.email}</p>}
+          <label htmlFor="password">Mot de passe</label>
           <input
             type="password"
             name="password"
             placeholder="********"
-            className="input-login"
             onChange={(e) => setPassword(e.target.value)}
           />
           {errors.password && (
-            <div className="error-login">{errors.password}</div>
+            <p className="error-login-infos">{errors.password}</p>
           )}
           <div className="display-btn-connexion-login">
-            <button type="submit" className="btn-connexion-log-in">
+            <button type="button" onClick={handleSubmit}>
               C'est bien moi
             </button>
+            {errors.login && <p className="error-login">{errors.login}</p>}
           </div>
         </form>
-        <div className="section-not-login">
+        <section className="section-not-login">
           <p>Tu n’as pas encore de compte ? </p>
           <p className="redirection-sign-in">Inscris-toi !</p>
-        </div>
-      </div>
-    </div>
+        </section>
+      </section>
+    </dialog>
   );
 }
 
@@ -93,4 +113,5 @@ export default ModalLogIn;
 
 ModalLogIn.propTypes = {
   closeModalLogIn: PropTypes.func.isRequired,
+  setDataUser: PropTypes.func.isRequired,
 };
