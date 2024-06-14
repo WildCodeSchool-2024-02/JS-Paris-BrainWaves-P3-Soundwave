@@ -1,0 +1,44 @@
+.event-page-img {
+  width: 100%;
+  height: 150px;
+  margin: 3rem 0rem 3rem 0rem;
+}
+
+.event-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-txt-list {
+  font-size: 1rem;
+  font-family: var(--font-body);
+  margin: 1rem 0rem 2rem 0rem;
+}
+
+.event-list-container h2 {
+  font-size: 1em;
+  font-family: var(--font-title-r);
+  margin: 0;
+}
+
+@media screen and (min-width: 1024px) {
+  .event-title-section {
+    width: 80vw;
+    margin-left: 0.2rem;
+    text-align: left;
+    font-size: 2.2em;
+  }
+
+  .event-page-img {
+    width: 100%;
+    height: 300px;
+    margin: 3rem 0rem 3rem 0rem;
+  }
+
+  .title-txt-list {
+    margin-bottom: 5rem;
+    font-size: 2.5em;
+    font-family: var(--font-body);
+  }
+}
