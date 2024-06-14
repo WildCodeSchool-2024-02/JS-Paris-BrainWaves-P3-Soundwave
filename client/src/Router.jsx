@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Home from "./pages/Home/Home";
 import EventsList from "./pages/EventList/EventsList";
-import EventDetails from "./pages/EventDetails";
+import EventDetails from "./pages/EventDetails/EventDetails";
 import CrewsList from "./pages/CrewsList/CrewsList";
 import CrewProfil from "./pages/CrewProfil";
 import Admin from "./pages/Admin";

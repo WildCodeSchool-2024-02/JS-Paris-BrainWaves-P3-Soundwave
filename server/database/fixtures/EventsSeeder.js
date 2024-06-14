@@ -1,11 +1,11 @@
 const AbstractSeeder = require("./AbstractSeeder");
-// const CrewSeeder = require("./CrewSeeder")
+const CrewSeeder = require("./CrewSeeder");
 
 class EventsSeeder extends AbstractSeeder {
-    constructor() {
-      // Call the constructor of the parent class (AbstractSeeder) with appropriate options
-      super({ table: "event", truncate: true});
-    }
+  constructor() {
+    // Call the constructor of the parent class (AbstractSeeder) with appropriate options
+    super({ table: "event", truncate: true, dependencie: [CrewSeeder] });
+  }
 
     run() {
         const event1 = {
