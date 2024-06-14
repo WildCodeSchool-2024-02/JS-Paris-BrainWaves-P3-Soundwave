@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Home from "./pages/Home/Home";
-import EventsList from "./pages/EventsList";
+import EventsList from "./pages/EventList/EventsList";
 import EventDetails from "./pages/EventDetails";
 import CrewsList from "./pages/CrewsList/CrewsList";
 import CrewProfil from "./pages/CrewProfil";
@@ -21,10 +21,13 @@ const router = createBrowserRouter([
       {
         path: "/events-list",
         element: <EventsList />,
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/api/events`),
       },
       {
-        path: "/event-details",
+        path: "/event-details/:id",
         element: <EventDetails />,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/api/events/${params.id}`),
       },
       {
         path: "/crews-list",
