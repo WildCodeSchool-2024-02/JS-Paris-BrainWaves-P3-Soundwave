@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import "./navbar.css";
 import { FaSearch } from "react-icons/fa";
 import soundwave from "../../assets/images/SoundWave.svg";
 import mascot from "../../assets/images/masquote.svg";
 import ModalLogIn from "../ModalLogIn";
 
-function NavBar() {
+function NavBar({ dataUser, setDataUser }) {
   const navigate = useNavigate();
 
   const [burgerClass, setBurgerClass] = useState("burger-bar unclicked");
@@ -79,7 +80,13 @@ function NavBar() {
           </ul>
         </div>
       </nav>
-      {openModalLogIn && <ModalLogIn closeModalLogIn={setOpenModalLogIn} />}
+      {openModalLogIn && (
+        <ModalLogIn
+          closeModalLogIn={setOpenModalLogIn}
+          dataUser={dataUser}
+          setDataUser={setDataUser}
+        />
+      )}
       <div className={menuClass}>
         <div className="navbar-btns">
           <ul>
@@ -117,3 +124,8 @@ function NavBar() {
 }
 
 export default NavBar;
+
+NavBar.propTypes = {
+  dataUser: PropTypes.func.isRequired,
+  setDataUser: PropTypes.func.isRequired,
+};
