@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./crew-profil.css";
 import { FaRegHeart } from "react-icons/fa";
 import { TiTick, TiTimes } from "react-icons/ti";
@@ -8,6 +8,13 @@ function CrewProfil() {
   const crew = useLoaderData();
   const [login] = useState(false);
   const [admin] = useState(false);
+  console.info(crew.id);
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/crews/${crew.id}/events`)
+    .then(response => response.json())
+    .then(response => console.info(response))
+  }, [])
   return (
     <main className="main-crew-profil">
       <section className="header-crew-profil">
