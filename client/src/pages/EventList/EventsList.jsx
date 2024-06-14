@@ -48,7 +48,9 @@ function EventsList() {
             (eventList, index) =>
               eventList.length > 0 && (
                 <>
-                  <h3>{months[index]}</h3>
+                  <div className="month-event">
+                    <h3>{months[index]}</h3>
+                  </div>
                   {eventList.map((event) => (
                     <EventCard
                       key={event.id}
