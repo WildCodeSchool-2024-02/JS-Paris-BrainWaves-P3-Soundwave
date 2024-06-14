@@ -10,23 +10,23 @@ class CrewEventSeeder extends AbstractSeeder {
     run() {
         const crewEvent1 = {
             crew_id : 1,
-            event_id: 4
+            event_id: 2
         };
         const crewEvent2 = {
-            crew_id : 2,
-            event_id: 2
+            crew_id : 1,
+            event_id: 4
         };
         const crewEvent3 = {
             crew_id : 2,
             event_id: 3
         };
         const crewEvent4 = {
-            crew_id : 3,
-            event_id: 1
+            crew_id : 2,
+            event_id: 5
         };
         const crewEvent5 = {
             crew_id : 3,
-            event_id: 5
+            event_id: 1
         };
     this.insert(crewEvent1);
     this.insert(crewEvent2);
