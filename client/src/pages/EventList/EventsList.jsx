@@ -1,17 +1,39 @@
+import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import EventCard from "../../components/EventCard/EventCard";
 import "./eventlist.css";
 
 function EventsList() {
   const data = useLoaderData();
+  const [events, setEvents] = useState([]);
+  const months = [
+    "Janvier",
+    "Février",
+    "Mars",
+    "Avril",
+    "Mai",
+    "Juin",
+    "Juillet",
+    "Août",
+    "Septembre",
+    "Octobre",
+    "Novembre",
+    "Decembre",
+  ];
 
-  const sortDates = (a, b) => {
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
-    if (dateA > dateB) return 1;
-    if (dateA < dateB) return -1;
-    return 0;
-  };
+  useEffect(() => {
+    function filterEventsByMonth() {
+      const filteredEvents = [];
+      for (let index = 0; index < 11; index += 1) {
+        filteredEvents[index] = data.filter((event) => {
+          const month = new Date(event.date).getMonth();
+          return month === index;
+        });
+      }
+      setEvents(filteredEvents);
+    }
+    filterEventsByMonth();
+  }, []);
 
   return (
     <main>
@@ -22,17 +44,27 @@ function EventsList() {
           <h2>Événements</h2>
         </section>
         <div className="card-event-content">
-          {data.sort(sortDates).map((eventList) => (
-            <EventCard
-              key={eventList.id}
-              id={eventList.id}
-              image={eventList.image}
-              name={eventList.name}
-              description={eventList.description}
-              date={eventList.date}
-              startingHour={eventList.starting_hour}
-            />
-          ))}
+          {events.map(
+            (eventList, index) =>
+              eventList.length > 0 && (
+                <>
+                  <div className="month-event">
+                    <h3>{months[index]}</h3>
+                  </div>
+                  {eventList.map((event) => (
+                    <EventCard
+                      key={event.id}
+                      id={event.id}
+                      image={event.image}
+                      name={event.name}
+                      description={event.description}
+                      date={event.date}
+                      startingHour={event.starting_hour}
+                    />
+                  ))}
+                </>
+              )
+          )}
         </div>
       </div>
     </main>

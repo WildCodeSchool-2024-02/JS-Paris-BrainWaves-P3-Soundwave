@@ -21,45 +21,45 @@
     flex-direction: column;
     align-items: flex-end;
     button {
-        background-color: var(--accent);
-        border-radius: 10px;
-        font-family: var(--font-title-b);
-        font-size: clamp(0.7em, 3vw, 1.5em);
-        padding: 0.3em 1em;
+      background-color: var(--accent);
+      border-radius: 10px;
+      font-family: var(--font-title-b);
+      font-size: clamp(0.7em, 3vw, 1.5em);
+      padding: 0.3em 1em;
     }
   }
 }
 .evaluate-admin-buttons {
-    display: flex;
-    svg {
-        background-color: var(--accent);
-        color : black;
-        border-radius: 5px;
-        margin: 0 0.5rem;
-        height: 1.5em;
-        width: 2em;
-    }
+  display: flex;
+  svg {
+    background-color: var(--accent);
+    color: black;
+    border-radius: 5px;
+    margin: 0 0.5rem;
+    height: 1.5em;
+    width: 2em;
+  }
 }
 .desc-crew-profil {
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    gap: 2em;
-    margin-bottom: 4rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  margin-bottom: 4rem;
 }
 
 .events-crew-profil-title {
-    text-align: left;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    button {
-        background-color: var(--accent);
-        border-radius: 10px;
-        font-family: var(--font-title-b);
-        font-size: clamp(0.7em, 3vw, 1em);
-        padding: 0.3em 1em;
-    }
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  button {
+    background-color: var(--accent);
+    border-radius: 10px;
+    font-family: var(--font-title-b);
+    font-size: clamp(0.7em, 3vw, 1em);
+    padding: 0.3em 1em;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -67,7 +67,7 @@
     display: block;
     margin: 6rem 4rem;
     h2 {
-        font-size: 2em;
+      font-size: 2em;
     }
   }
 
@@ -80,13 +80,13 @@
       width: 30%;
     }
     h1 {
-        font-size: 3em;
+      font-size: 3em;
     }
   }
   .evaluate-admin-buttons {
     svg {
-        height: 2.5em;
-        width: 3.5em;
+      height: 2.5em;
+      width: 3.5em;
     }
   }
 }
