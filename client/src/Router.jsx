@@ -4,9 +4,9 @@ import Home from "./pages/Home/Home";
 import EventsList from "./pages/EventList/EventsList";
 import EventDetails from "./pages/EventDetails";
 import CrewsList from "./pages/CrewsList/CrewsList";
-import CrewProfil from "./pages/CrewProfil/CrewProfil";
+import CrewProfile from "./pages/CrewProfile/CrewProfile";
 import Admin from "./pages/Admin";
-import UserProfil from "./pages/UserProfil";
+import UserProfile from "./pages/UserProfile";
 
 const router = createBrowserRouter([
   {
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/crew-details/:id",
-        element: <CrewProfil />,
+        element: <CrewProfile />,
         loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/api/crews/${params.id}`),
       },
       {
@@ -44,8 +44,8 @@ const router = createBrowserRouter([
         element: <Admin />,
       },
       {
-        path: "/user-profil",
-        element: <UserProfil />,
+        path: "/user-profile",
+        element: <UserProfile />,
       },
     ],
   },

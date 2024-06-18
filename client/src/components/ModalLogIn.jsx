@@ -42,7 +42,7 @@ function ModalLogIn({ closeModalLogIn, setDataUser }) {
       if (response.status === 200) {
         const result = await response.json();
         setDataUser(result);
-        navigate("/user-profil");
+        navigate("/user-profile");
       } else {
         setErrors({ login: "Identifiant inconnu" });
       }
