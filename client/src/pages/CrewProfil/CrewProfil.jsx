@@ -15,12 +15,12 @@ function CrewProfil() {
         <div className="crew-profil-title-options">
           <h1>{crew.name}</h1>
           <div className="button-container-crew-profil">
-            {login && <FaRegHeart className="heart-icon"/>}
+            {login && <FaRegHeart className="heart-icon" />}
             {login && <button type="button">Editer</button>}
             {!admin && (
               <div className="evaluate-admin-buttons">
-                <TiTick role="button"/>
-                <TiTimes role="button"/>
+                <TiTick role="button" />
+                <TiTimes role="button" />
               </div>
             )}
           </div>
@@ -32,13 +32,12 @@ function CrewProfil() {
       </section>
       <section className="events-crew-profil">
         <div className="events-crew-profil-title">
-        <h2>Evènements</h2>
-        {!login && <button type="button">Ajouter</button>}
+          <h2>Evènements</h2>
+          {!login && <button type="button">Ajouter</button>}
         </div>
         <p>on mappera les events du collectif en question</p>
       </section>
     </main>
   );
 }
-
 export default CrewProfil;
