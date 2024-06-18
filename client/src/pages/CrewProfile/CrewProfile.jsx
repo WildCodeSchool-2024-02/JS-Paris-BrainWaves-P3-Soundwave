@@ -1,11 +1,11 @@
 import { useLoaderData } from "react-router-dom";
 import { useState, useEffect } from "react";
-import "./crew-profil.css";
+import "./crew-profile.css";
 import { FaRegHeart } from "react-icons/fa";
 import { TiTick, TiTimes } from "react-icons/ti";
 import EventCard from "../../components/EventCard/EventCard";
 
-function CrewProfil() {
+function CrewProfile() {
   const crew = useLoaderData();
   const [login] = useState(false);
   const [admin] = useState(false);
@@ -18,12 +18,12 @@ function CrewProfil() {
   }, []);
 
   return (
-    <main className="main-crew-profil">
-      <section className="header-crew-profil">
+    <main className="main-crew-profile">
+      <section className="header-crew-profile">
         <img src={crew.image} alt="logo du collectif" />
-        <div className="crew-profil-title-options">
+        <div className="crew-profile-title-options">
           <h1>{crew.name}</h1>
-          <div className="button-container-crew-profil">
+          <div className="button-container-crew-profile">
             {login && <FaRegHeart className="heart-icon" />}
             {!login && <button type="button">Editer</button>}
             {admin && (
@@ -35,12 +35,12 @@ function CrewProfil() {
           </div>
         </div>
       </section>
-      <section className="desc-crew-profil">
+      <section className="desc-crew-profile">
         <h2>Description</h2>
         <p>{crew.description}</p>
       </section>
-      <section className="events-crew-profil">
-        <div className="events-crew-profil-title">
+      <section className="events-crew-profile">
+        <div className="events-crew-profile-title">
           <h2>Evènements</h2>
           {!login && <button type="button">Ajouter</button>}
         </div>
@@ -60,4 +60,4 @@ function CrewProfil() {
   );
 }
 
-export default CrewProfil;
+export default CrewProfile;
