@@ -18,7 +18,7 @@ function Admin() {
   }, []);
 
   return (
-    <main>
+    <main className="admin-page-main">
       <h1>Bonjour Administrateur !</h1>
       <div className="button-container-admin-page">
         <button type="button" onClick={() => setToggleButtons(true)}>Evènements</button>
