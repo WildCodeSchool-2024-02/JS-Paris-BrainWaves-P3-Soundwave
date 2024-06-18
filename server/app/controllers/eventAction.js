@@ -15,9 +15,18 @@ const read = async (req, res, next) => {
     const event = await tables.event.readOne(id);
     if (event) {
       res.json(event);
-      } else {
+    } else {
       res.sendStatus(404);
     }
+  } catch (error) {
+    next(error);
+  }
+};
+
+const add = async (req, res, next) => {
+  try {
+    const event = await tables.event.create(req.body);
+    res.status(201).json(event);
   } catch (error) {
     next(error);
   }
@@ -26,4 +35,5 @@ const read = async (req, res, next) => {
 module.exports = {
   browse,
   read,
+  add,
 };

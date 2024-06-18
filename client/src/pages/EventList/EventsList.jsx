@@ -38,7 +38,7 @@ function EventsList() {
   return (
     <main>
       <div className="event-list-container">
-        <img src={data[2].image} alt="" className="event-page-img" />
+        <img src={data[1].image} alt="" className="event-page-img" />
         <h1 className="title-txt-list">Trouve ta soirée pour t'éclater</h1>
         <section className="event-title-section">
           <h2>Événements</h2>

@@ -20,7 +20,7 @@ function EventCard({ image, name, description, date, startingHour, id }) {
         <img src={image} alt="event" className="event-img" />
         <div className="event-info">
           <h1 className="event-card-title">{name}</h1>
-          <p>{description}</p>
+          <p>{description.slice(0, 100)}</p>
           <p className="date-hour">
             {date.slice(0, 10)} | {startingHour.slice(0, 5)}
           </p>
