@@ -47,7 +47,8 @@ class EventsSeeder extends AbstractSeeder {
       date: "2024-06-29",
       starting_hour: "23:00:00",
       address: "12 rue du Rex",
-      description: "Super soirée avec Dj Toto",
+      description:
+        "Après deux expéditions mémorables, Outdom est de retour au Cabaret pour une troisième ¡𝗦𝗮𝘂𝘃𝗮𝗴𝗲?, en très dangereuse compagnie, Pour cette troisième édition, nous avons chargé NICOLAS LUTZ de piloter le vaisseau Sauvage et de nous emmener Outdom, en dehors de tout domaine connu, pour nous faire découvrir les précieux mais dangereux monolithes sur lesquels il a fait main basse. Depuis plusieurs décennies, il semblerait que le fondateur de My Own Jupiter et chasseur de vinyles ait développé comme un Disc Buster, un piège unique capable de capturer tout objet circulaire renfermant quelque monstrueuse puissance.",
       image:
         "https://imgproxy.ra.co/_/quality:66/aHR0cHM6Ly9pbWFnZXMucmEuY28vY2I2MmU3MGIyODI0ZTVlZTZkMGExYTEzMmNjMGE3Y2U0NjgxMGE4My5wbmc=",
       refName: "event_4",
@@ -72,6 +73,7 @@ class EventsSeeder extends AbstractSeeder {
       description: "Encore une mega super soirée avec Dj Toto",
       image:
         "https://scontent-cdg4-1.xx.fbcdn.net/v/t39.30808-6/371846629_330081256196779_319580765884456587_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=7xtESdTZQDkQ7kNvgG61-qR&_nc_ht=scontent-cdg4-1.xx&oh=00_AYAwR3vH4hzxToIvnPT6gfOyEGNqary02vBIHEQhyfY42Q&oe=6671D28A",
+      lineup: "Retrolog, Latent, DjToto, MisterDJ",
     };
 
     this.insert(event1);

@@ -4,12 +4,21 @@ import "./crew-profile.css";
 import { FaRegHeart } from "react-icons/fa";
 import { TiTick, TiTimes } from "react-icons/ti";
 import EventCard from "../../components/EventCard/EventCard";
+import ModalEvent from "../../EventCreationModal/ModalEvent";
+
 
 function CrewProfile() {
   const crew = useLoaderData();
   const [login] = useState(false);
   const [admin] = useState(false);
   const [events, setEvents] = useState([]);
+  const [openModalEvent, setOpenModalEvent] = useState(false);
+
+  const handleOpenModal = () => {
+    setOpenModalEvent(true);
+  };
+
+
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/crews/${crew.id}/events`)
@@ -42,7 +51,8 @@ function CrewProfile() {
       <section className="events-crew-profile">
         <div className="events-crew-profile-title">
           <h2>Evènements</h2>
-          {!login && <button type="button">Ajouter</button>}
+          {!login && <button type="button" onClick={handleOpenModal}>Ajouter</button>}
+          {openModalEvent && <ModalEvent closeModal={setOpenModalEvent} />}
         </div>
         {events.map((event) => (
           <EventCard
