@@ -37,7 +37,7 @@
   }
 }
 
-.section-connexion-event {
+.section-event {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -102,13 +102,16 @@
     }
   }
 
-  .section-connexion-event {
+  .section-event {
     justify-content: center;
     height: 35%;
     gap: 0.5rem;
     width: 70%;
     input {
       width: 100%;
+    }
+    label {
+      font-size: 1.2em;
     }
   }
 

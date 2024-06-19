@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import PropTypes from "prop-types";
+import Mascot from "../assets/images/masquote.svg";
 import "./modalevent.css";
 
 function ModalEvent({ closeModal }) {
@@ -55,8 +56,9 @@ function ModalEvent({ closeModal }) {
     <dialog className="display-modal-event">
       <section className="section-modal-event">
         <ImCross className="btn-close-modal-event" onClick={handleCloseModal} />
+        <img src={Mascot} alt="mascot logo" />
         <h1>Crée ton événement</h1>
-        <form className="section-connexion-event">
+        <form className="section-event">
           <label htmlFor="text">Nom</label>
           <input placeholder="Nom de l'événement" ref={name} />
           <label htmlFor="date">Date</label>
