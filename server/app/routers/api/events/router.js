@@ -5,8 +5,8 @@ const router = express.Router();
 const {browse, read, readUnvalide, add} = require("../../../controllers/eventAction")
 
 router.get("/", browse);
-router.get("/:id", read);
 router.get("/tovalidate", readUnvalide);
+router.get("/:id", read);
 router.post("/", add)
 
 

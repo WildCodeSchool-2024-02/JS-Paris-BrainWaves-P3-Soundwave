@@ -9,8 +9,8 @@ const {
 } = require("../../../controllers/crewAction");
 
 router.get("/", browse);
+router.get("/tovalidate", readUnvalide);
 router.get("/:id", read);
 router.get("/:id/events", readEventsByCrewId);
-router.get("/tovalidate", readUnvalide);
 
 module.exports = router;

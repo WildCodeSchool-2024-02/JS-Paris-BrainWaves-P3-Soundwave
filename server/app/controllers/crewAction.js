@@ -32,8 +32,8 @@ const readEventsByCrewId = async (req, res, next) => {
 const readUnvalide = async ({ res, next }) => {
   try {
     const unvalideCrews = await tables.crew.readAllUnvalide();
-    res.status(200).json(unvalideCrews);
     console.info(unvalideCrews);
+    res.status(200).json(unvalideCrews);
   } catch (error) {
     next(error);
   }

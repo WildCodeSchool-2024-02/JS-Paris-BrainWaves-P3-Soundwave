@@ -26,6 +26,7 @@ const read = async (req, res, next) => {
 const readUnvalide = async ({ res, next }) => {
   try {
     const unvalideEvents = await tables.event.readAllUnvalide();
+    console.info(unvalideEvents);
     res.status(200).json(unvalideEvents);
   } catch (error) {
     next(error);

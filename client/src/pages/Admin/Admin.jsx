@@ -9,10 +9,10 @@ function Admin() {
   const [toggleButtons, setToggleButtons] = useState(true);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/events`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/events/tovalidate`)
       .then((response) => response.json())
       .then((data) => setEvents(data));
-    fetch(`${import.meta.env.VITE_API_URL}/api/crews`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/crews/tovalidate`)
       .then((response) => response.json())
       .then((data) => setCrews(data));
   }, []);
@@ -21,27 +21,35 @@ function Admin() {
     <main className="admin-page-main">
       <h1>Bonjour Administrateur !</h1>
       <div className="button-container-admin-page">
-        <button type="button" onClick={() => setToggleButtons(true)}>Evènements</button>
-        <button type="button" onClick={() => setToggleButtons(false)}>Collectifs</button>
+        <button type="button" onClick={() => setToggleButtons(true)}>
+          Evènements
+        </button>
+        <button type="button" onClick={() => setToggleButtons(false)}>
+          Collectifs
+        </button>
       </div>
-     {toggleButtons && <section className="events-to-validate">
-        {events.map((event) => (
-          <EventCard
-            key={event.id}
-            image={event.image}
-            name={event.name}
-            description={event.description}
-            date={event.date}
-            startingHour={event.starting_hour}
-            id={event.id}
-          />
-        ))}
-      </section>}
-     {!toggleButtons && <section className="crews-to-validate">
-        {crews.map((crew) => (
-          <CardCrew key={crew.id} result={crew} />
-        ))}
-      </section>}
+      {toggleButtons && (
+        <section className="events-to-validate">
+          {events.map((event) => (
+            <EventCard
+              key={event.id}
+              image={event.image}
+              name={event.name}
+              description={event.description}
+              date={event.date}
+              startingHour={event.starting_hour}
+              id={event.id}
+            />
+          ))}
+        </section>
+      )}
+      {!toggleButtons && (
+        <section className="crews-to-validate">
+          {crews.map((crew) => (
+            <CardCrew key={crew.id} result={crew} />
+          ))}
+        </section>
+      )}
     </main>
   );
 }
