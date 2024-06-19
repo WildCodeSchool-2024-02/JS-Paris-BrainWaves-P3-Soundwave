@@ -1,14 +1,20 @@
-import { useLoaderData, useNavigate } from "react-router-dom";
-
+import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
 import heart from "../../assets/images/masquote.svg";
 import "./home.css";
 import HomeSlider from "../../components/HomeSlider/HomeSlider";
+import ModalCreateAccount from "../../components/Modal/ModalCreateAccount";
 
 function Home() {
-  const navigate = useNavigate();
   const results = useLoaderData();
   const [isOpen, setIsOpen] = useState(false);
+  const [openModalCreateAccount, setOpenModalCreateAccount] = useState(false);
+
+  const handleCreateModal = () => {
+    setOpenModalCreateAccount(true);
+    document.body.classList.add("active");
+  };
+
   return (
     <main className="home">
       <section className="header-home-page">
@@ -44,14 +50,18 @@ function Home() {
         <p className="p-title-header-home-page">REJOINS NOUS !</p>
         <div className="div-btn-insciption">
           <div className="btn-side-home">
-            <div
+            <button
               className="home-btn"
-              role="presentation"
-              onClick={() => navigate("/")}
-              onKeyDown={() => navigate("/")}
+              type="button"
+              onClick={handleCreateModal}
             >
-              <p className="p-home-btn">Waver</p>
-            </div>
+              Waver
+            </button>
+            {openModalCreateAccount && (
+              <ModalCreateAccount
+                closeModalCreateAccount={setOpenModalCreateAccount}
+              />
+            )}
             <div className="description">
               <p className="p-home-btn">Qu’est ce qu’un Waver ?</p>
               <p className="p-home-btn">
@@ -60,17 +70,14 @@ function Home() {
               </p>
             </div>
           </div>
-
           <div className="btn-side-home">
-            <div
+            <button
               className="home-btn"
-              role="presentation"
-              onClick={() => navigate("/")}
-              onKeyDown={() => navigate("/")}
+              type="button"
+              onClick={handleCreateModal}
             >
-              <p className="p-home-btn">Soundwaver</p>
-            </div>
-
+              Soundwaver
+            </button>
             <div className="description">
               <p className="p-home-btn">Qu’est ce qu’un Soundwaver ? </p>
               <p className="p-home-btn">

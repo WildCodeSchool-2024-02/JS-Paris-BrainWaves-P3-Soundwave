@@ -6,12 +6,13 @@
   top: 0;
   width: 100vw;
   height: 100vh;
-  background-color: grey;
+  background-color: transparent;
   backdrop-filter: blur(15px);
   z-index: 9999;
 }
 
 .btn-close-modal-log-in {
+  color: var(--secondary-color);
   position: absolute;
   top: 5px;
   right: 5px;
@@ -24,6 +25,7 @@
   justify-content: center;
   align-items: center;
   width: 70%;
+  padding: 1rem;
   background-color: var(--background-color);
   box-shadow: var(--secondary-color) 0 0 10px 0;
   gap: 1rem;
@@ -37,23 +39,19 @@
   }
 }
 
-.section-connexion-log-in {
+.section-inscritpion-log-in {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  height: 30vh;
   color: var(--secondary-color);
+  font-family: "Courier New", Courier, monospace;
+  padding: 0.5rem;
   label {
-    margin-top: 0.5rem;
-    font-family: "Courier New", Courier, monospace;
+    text-align: start;
   }
   input {
     border: none;
     background-color: var(--background-color);
     border-bottom: 1px solid var(--secondary-color);
-    height: 15%;
-    font-family: "Courier New", Courier, monospace;
     color: var(--secondary-color);
   }
   p {
@@ -79,12 +77,18 @@
     font-size: 0.75rem;
     font-family: var(--font-title-b);
   }
+  p {
+    color: red;
+    font-size: clamp(0.75em, 2vw, 0.75em);
+  }
 }
 
 .section-not-login {
   display: flex;
+  flex-wrap: wrap;
   font-size: 0.5rem;
   text-align: center;
+  color: var(--secondary-color);
 }
 
 .redirection-sign-in {
@@ -96,19 +100,26 @@
     padding: 1rem;
     img {
       display: block;
+      width: 10%;
     }
     h1 {
       margin: 0;
     }
   }
 
-  .section-connexion-log-in {
-    justify-content: center;
-    height: 35%;
-    gap: 0.5rem;
-    width: 70%;
-    input {
-      width: 100%;
+  .form-log-in {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    .section-inscritpion-log-in {
+      justify-content: center;
+      height: 35%;
+      gap: 0.5rem;
+      width: 70%;
+      input {
+        width: 100%;
+      }
     }
   }
 

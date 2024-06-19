@@ -1,0 +1,28 @@
+.section-user-profile-infos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  gap: 4rem;
+  p {
+    font-family: var(--font-title-b);
+  }
+}
+
+.avatar {
+  width: 20%;
+  height: 20%;
+  background-color: var(--accent);
+  border-radius: 100%;
+}
+
+.section-user-events {
+  text-align: start;
+  color: var(--secondary-color);
+}
+
+.section-user-crews {
+  text-align: start;
+  color: var(--secondary-color);
+}
