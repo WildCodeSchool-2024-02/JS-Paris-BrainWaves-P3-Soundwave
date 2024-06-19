@@ -6,7 +6,7 @@ const {browse, read, readUnvalide, add} = require("../../../controllers/eventAct
 
 router.get("/", browse);
 router.get("/:id", read);
-router.get("/to-validate", readUnvalide);
+router.get("/tovalidate", readUnvalide);
 router.post("/", add)
 
 

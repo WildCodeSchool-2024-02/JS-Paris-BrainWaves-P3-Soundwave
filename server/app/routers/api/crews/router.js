@@ -11,6 +11,6 @@ const {
 router.get("/", browse);
 router.get("/:id", read);
 router.get("/:id/events", readEventsByCrewId);
-router.get("/to-validate", readUnvalide);
+router.get("/tovalidate", readUnvalide);
 
 module.exports = router;
