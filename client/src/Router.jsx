@@ -44,8 +44,10 @@ const router = createBrowserRouter([
         element: <Admin />,
       },
       {
-        path: "/user-profile",
+        path: "/user-profile/:id",
         element: <UserProfile />,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/api/users/${params.id}`),
       },
     ],
   },
