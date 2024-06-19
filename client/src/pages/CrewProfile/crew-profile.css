@@ -1,8 +1,8 @@
-.main-crew-profil {
+.main-crew-profile {
   display: block;
   margin: 3rem 2rem;
 }
-.header-crew-profil {
+.header-crew-profile {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,13 +10,13 @@
   img {
     width: 50%;
   }
-  .crew-profil-title-options {
+  .crew-profile-title-options {
     margin: 1rem 0;
     h1 {
       margin: 1rem 0;
     }
   }
-  .button-container-crew-profil {
+  .button-container-crew-profile {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -40,7 +40,7 @@
     width: 2em;
   }
 }
-.desc-crew-profil {
+.desc-crew-profile {
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -48,7 +48,7 @@
   margin-bottom: 4rem;
 }
 
-.events-crew-profil-title {
+.events-crew-profile-title {
   text-align: left;
   display: flex;
   justify-content: space-between;
@@ -63,7 +63,7 @@
 }
 
 @media screen and (min-width: 1024px) {
-  .main-crew-profil {
+  .main-crew-profile {
     display: block;
     margin: 6rem 4rem;
     h2 {
@@ -71,7 +71,7 @@
     }
   }
 
-  .header-crew-profil {
+  .header-crew-profile {
     display: flex;
     flex-direction: row;
     justify-content: space-around;

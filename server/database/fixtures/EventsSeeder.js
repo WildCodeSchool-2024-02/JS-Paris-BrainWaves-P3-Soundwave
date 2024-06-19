@@ -15,8 +15,8 @@ class EventsSeeder extends AbstractSeeder {
       address: "14 rue de toto paris",
       description: "ça va bourlinguer sevère les amis lol",
       image:
-        "https://scontent.fcdg3-1.fna.fbcdn.net/v/t39.30808-6/436262251_738245651831998_6625109006347954237_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_ohc=riqeI716jl8Q7kNvgGH6CC-&_nc_ht=scontent.fcdg3-1.fna&oh=00_AYBmREJzwXV-zHbbbf_Qb_mShsIvFd2dgsdTj7EjSi_I4g&oe=666E2313",
-      lineup: "Claquette, chaussettes, DjToto, MisterDJ",
+        "https://imgproxy.ra.co/_/quality:66/w:1442/rt:fill/aHR0cHM6Ly9pbWFnZXMucmEuY28vNTQ5YzJlODFkNGFlN2UyNGI3YzZkMzE1MjNlMDAzZDIyMmVmMGI3MC5wbmc=",
+      refName: "event_1",
     };
 
     const event2 = {
@@ -27,8 +27,8 @@ class EventsSeeder extends AbstractSeeder {
       description:
         "Attention ça va swinguer dans le vaisseau spatial SEE YOU IN SPACE",
       image:
-        "https://scontent.fcdg3-1.fna.fbcdn.net/v/t39.30808-6/419218938_863595245772316_8656101159860795969_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=yJYodf-EJfcQ7kNvgEiRaCE&_nc_ht=scontent.fcdg3-1.fna&oh=00_AYDnSpJ3jPnxxJTCcWJdKC9f85X2BWOO1CrKWXcUE0zIZw&oe=666E0052",
-      lineup: "Retrolog, Latent, DjToto, MisterDJ",
+        "https://res.cloudinary.com/shotgun/image/upload/ar_16:9,c_limit,f_auto,fl_lossy,q_auto,w_1280/v1705338215/production/artworks/FACEBOOK-EVENT-COVER_ttppwf",
+      refName: "event_2",
     };
 
     const event3 = {
@@ -38,8 +38,8 @@ class EventsSeeder extends AbstractSeeder {
       address: "12 rue de l'aéroport CDG ROISSY ORLY EN FRANCE",
       description: "ça va décoler sevère n'oubliez votre farine",
       image:
-        "https://scontent.fcdg3-1.fna.fbcdn.net/v/t39.30808-6/431236957_932139475586155_3782091657230810251_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_ohc=swRk3TtClzAQ7kNvgFPtLyS&_nc_ht=scontent.fcdg3-1.fna&oh=00_AYD7hUlxIY14jghLI6ri_SAIIiZOzDWH8rZliL7IMmnghQ&oe=666E098B",
-      lineup: "Retrolog, Latent, DjToto, MisterDJ",
+        "https://res.cloudinary.com/shotgun/image/upload/ar_16:9,c_limit,f_auto,fl_lossy,q_auto,w_1280/v1709718645/production/artworks/TARMAC_BERCY_test_2_o1ayak",
+      refName: "event_3",
     };
 
     const event4 = {
@@ -50,8 +50,8 @@ class EventsSeeder extends AbstractSeeder {
       description:
         "Après deux expéditions mémorables, Outdom est de retour au Cabaret pour une troisième ¡𝗦𝗮𝘂𝘃𝗮𝗴𝗲?, en très dangereuse compagnie, Pour cette troisième édition, nous avons chargé NICOLAS LUTZ de piloter le vaisseau Sauvage et de nous emmener Outdom, en dehors de tout domaine connu, pour nous faire découvrir les précieux mais dangereux monolithes sur lesquels il a fait main basse. Depuis plusieurs décennies, il semblerait que le fondateur de My Own Jupiter et chasseur de vinyles ait développé comme un Disc Buster, un piège unique capable de capturer tout objet circulaire renfermant quelque monstrueuse puissance.",
       image:
-        "https://scontent-cdg4-2.xx.fbcdn.net/v/t39.30808-6/366509081_317271337477771_1297028564986031302_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=rsVwbNOqT6oQ7kNvgFB7VLs&_nc_ht=scontent-cdg4-2.xx&oh=00_AYCHz_wrCvyN4ortP8Hn9P8wLHgWwV8_KUJx-5SAvyX94w&oe=66706BDF",
-      lineup: "Retrolog, Latent, DjToto, MisterDJ",
+        "https://imgproxy.ra.co/_/quality:66/aHR0cHM6Ly9pbWFnZXMucmEuY28vY2I2MmU3MGIyODI0ZTVlZTZkMGExYTEzMmNjMGE3Y2U0NjgxMGE4My5wbmc=",
+      refName: "event_4",
     };
 
     const event5 = {
@@ -61,8 +61,8 @@ class EventsSeeder extends AbstractSeeder {
       address: "12 rue du Cabaret",
       description: "Encore une Super soirée avec Dj Toto",
       image:
-        "https://scontent-cdg4-1.xx.fbcdn.net/v/t39.30808-6/441541612_943403427791497_6711421318461903339_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GjU8KYF0TwsQ7kNvgG_KtFC&_nc_ht=scontent-cdg4-1.xx&oh=00_AYCxKbsou3VttalBEKxLodL_atFe2q5E_XxQ8yc3ocENGw&oe=6670C239",
-      lineup: "Retrolog, Latent, DjToto, MisterDJ",
+        "https://res.cloudinary.com/shotgun/image/upload/ar_16:9,c_limit,f_auto,fl_lossy,q_auto,w_1280/v1630943002/production/artworks/GABARIT_COVER_EVENT_FB_bbwedb",
+      refName: "event_5",
     };
 
     const event6 = {
