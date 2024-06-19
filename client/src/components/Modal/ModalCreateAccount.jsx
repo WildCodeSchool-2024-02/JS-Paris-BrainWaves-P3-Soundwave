@@ -18,15 +18,15 @@ function ModalCreateAccount({ closeModalCreateAccount }) {
     const error = {};
 
     if (!firstname.current.value) {
-      error.firstname = "Prénom requis";
+      error.firstname = "Prénom obligatoire";
     }
 
     if (!lastname.current.value) {
-      error.lastname = "Nom requis";
+      error.lastname = "Nom obligatoire";
     }
 
     if (!email.current.value) {
-      error.email = "Email requis";
+      error.email = "Email obligatoire";
     } else if (
       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email.current.value)
     ) {
@@ -34,7 +34,7 @@ function ModalCreateAccount({ closeModalCreateAccount }) {
     }
 
     if (!password.current.value) {
-      error.password = "Mot de passe requis";
+      error.password = "Mot de passe obligatoire";
     } else if (password.current.value.length < 4) {
       error.password = "Le mot de passe doit contenir au moins 4 caractères";
     }
@@ -141,7 +141,7 @@ function ModalCreateAccount({ closeModalCreateAccount }) {
               <p className="error-create-account-infos">{errors.password}</p>
             )}
           </div>
-          <div className="display-btn-connexion-create-account">
+          <div className="display-btn-connection-create-account">
             <button type="button" onClick={handleSubmit}>
               Je m'inscris
             </button>

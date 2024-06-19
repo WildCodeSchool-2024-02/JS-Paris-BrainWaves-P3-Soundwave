@@ -97,7 +97,7 @@ function ModalLogIn({ closeModalLogIn, setDataUser }) {
             />
             {errors.password && <p>{errors.password}</p>}
           </div>
-          <div className="display-btn-connexion-login">
+          <div className="display-btn-connection-login">
             <button type="button" onClick={handleSubmit}>
               C'est bien moi
             </button>
