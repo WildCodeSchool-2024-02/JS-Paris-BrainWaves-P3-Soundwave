@@ -19,6 +19,17 @@ const read = async (req, res, next) => {
   }
 };
 
+const add = async (req, res, next) => {
+  try {
+    const userData = req.body;
+    const result = await tables.user.insertOne(userData);
+    const users = await tables.user.readOne(result.insertId);
+    res.status(201).json(users)
+  } catch(err) {
+    next(err);
+  }
+};
+
 const readLogin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -30,4 +41,4 @@ const readLogin = async (req, res, next) => {
   }
 };
 
-module.exports = { browse, read, readLogin };
+module.exports = { browse, read, add, readLogin };

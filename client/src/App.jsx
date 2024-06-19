@@ -10,8 +10,8 @@ function App() {
 
   return (
     <>
-      <NavBar setDataUser={setDataUser} />
-        <Outlet context={{ dataUser, setDataUser }} />
+      <NavBar dataUser={dataUser} setDataUser={setDataUser} />
+      <Outlet context={{ dataUser, setDataUser }} />
       <Footer />
     </>
   );

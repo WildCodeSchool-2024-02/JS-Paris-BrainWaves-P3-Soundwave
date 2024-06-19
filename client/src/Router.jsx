@@ -6,7 +6,7 @@ import EventDetails from "./pages/EventDetails/EventDetails";
 import CrewsList from "./pages/CrewsList/CrewsList";
 import CrewProfile from "./pages/CrewProfile/CrewProfile";
 import Admin from "./pages/Admin";
-import UserProfile from "./pages/UserProfile";
+import UserProfile from "./pages/UserProfile/UserProfile";
 
 const router = createBrowserRouter([
   {
@@ -44,8 +44,10 @@ const router = createBrowserRouter([
         element: <Admin />,
       },
       {
-        path: "/user-profile",
+        path: "/user-profile/:id",
         element: <UserProfile />,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/api/users/${params.id}`),
       },
     ],
   },

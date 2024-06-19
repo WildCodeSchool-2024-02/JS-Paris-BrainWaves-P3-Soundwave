@@ -5,7 +5,7 @@ import "./navbar.css";
 import { FaSearch } from "react-icons/fa";
 import soundwave from "../../assets/images/SoundWave.svg";
 import mascot from "../../assets/images/masquote.svg";
-import ModalLogIn from "../ModalLogIn";
+import ModalLogIn from "../Modal/ModalLogIn";
 
 function NavBar({ dataUser, setDataUser }) {
   const navigate = useNavigate();
@@ -31,6 +31,7 @@ function NavBar({ dataUser, setDataUser }) {
     setOpenModalLogIn(true);
     setMenuClass("menu hidden");
     setBurgerClass("burger-bar unclicked");
+    document.body.classList.add("active");
   };
 
   return (
@@ -87,7 +88,7 @@ function NavBar({ dataUser, setDataUser }) {
           setDataUser={setDataUser}
         />
       )}
-      <div className={menuClass}>
+      <nav className={menuClass}>
         <div className="navbar-btns">
           <ul>
             <li
@@ -118,7 +119,7 @@ function NavBar({ dataUser, setDataUser }) {
           </ul>
           <img src={mascot} alt="mascot" />
         </div>
-      </div>
+      </nav>
     </section>
   );
 }
