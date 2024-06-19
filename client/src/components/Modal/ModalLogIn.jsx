@@ -18,8 +18,6 @@ function ModalLogIn({ closeModalLogIn, setDataUser }) {
       error.email = "Email requis";
     } else if (!/\S+@\S+\.\S+/.test(email.current.value)) {
       error.email = "Saisissez une adresse mail valide";
-    } else if (!email.current.value === undefined) {
-      error.email = "Email inconnu";
     }
 
     if (!password.current.value) {
@@ -51,7 +49,7 @@ function ModalLogIn({ closeModalLogIn, setDataUser }) {
         const result = await response.json();
         setDataUser(result);
         handleCloseModalLogIn();
-        navigate("/user-profil");
+        navigate("/user-profile");
       } else {
         setErrors({ login: "Identifiant inconnu" });
       }
@@ -79,7 +77,7 @@ function ModalLogIn({ closeModalLogIn, setDataUser }) {
         <img src={mascot} alt="mascot" />
         <h1>Salut toi !</h1>
         <form className="form-log-in">
-          <div className="section-inscritpion-log-in">
+          <div className="section-register-log-in">
             <label htmlFor="email">Email</label>
             <input
               type="email"
@@ -89,7 +87,7 @@ function ModalLogIn({ closeModalLogIn, setDataUser }) {
             />
             {errors.email && <p>{errors.email}</p>}
           </div>
-          <div className="section-inscritpion-log-in">
+          <div className="section-register-log-in">
             <label htmlFor="password">Mot de passe</label>
             <input
               type="password"

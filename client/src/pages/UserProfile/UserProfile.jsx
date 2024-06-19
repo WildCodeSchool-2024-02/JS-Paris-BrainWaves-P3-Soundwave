@@ -2,7 +2,7 @@ import "./userprofile.css";
 import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
 
-function UserProfil() {
+function UserProfile() {
   const user = useLoaderData();
   const [login] = useState(false);
   return (
@@ -25,4 +25,4 @@ function UserProfil() {
   );
 }
 
-export default UserProfil;
+export default UserProfile;

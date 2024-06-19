@@ -1,11 +1,12 @@
 import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
+import PropTypes from "prop-types";
 import heart from "../../assets/images/masquote.svg";
 import "./home.css";
 import HomeSlider from "../../components/HomeSlider/HomeSlider";
 import ModalCreateAccount from "../../components/Modal/ModalCreateAccount";
 
-function Home() {
+function Home({ dataUser }) {
   const results = useLoaderData();
   const [isOpen, setIsOpen] = useState(false);
   const [openModalCreateAccount, setOpenModalCreateAccount] = useState(false);
@@ -48,7 +49,7 @@ function Home() {
           <HomeSlider props={results} className="swiperr" />
         </div>
         <p className="p-title-header-home-page">REJOINS NOUS !</p>
-        <div className="div-btn-insciption">
+        <div className="div-btn-register">
           <div className="btn-side-home">
             <button
               className="home-btn"
@@ -59,6 +60,7 @@ function Home() {
             </button>
             {openModalCreateAccount && (
               <ModalCreateAccount
+                dataUser={dataUser}
                 closeModalCreateAccount={setOpenModalCreateAccount}
               />
             )}
@@ -92,3 +94,7 @@ function Home() {
   );
 }
 export default Home;
+
+Home.propTypes = {
+  dataUser: PropTypes.func.isRequired,
+};

@@ -59,7 +59,7 @@ function ModalCreateAccount({ closeModalCreateAccount }) {
         }
       );
       if (response.ok) {
-        navigate("/user-profil/");
+        navigate(`/user-profile/`);
       } else {
         console.error("Il y a une erreur");
       }
@@ -93,7 +93,7 @@ function ModalCreateAccount({ closeModalCreateAccount }) {
         <img src={mascot} alt="mascot" />
         <h1>Dis m'en plus sur toi !</h1>
         <form className="form-create-account">
-          <div className="section-inscritpion-create-account">
+          <div className="section-register-create-account">
             <label htmlFor="firstname">Prénom</label>
             <input
               type="text"
@@ -105,7 +105,7 @@ function ModalCreateAccount({ closeModalCreateAccount }) {
               <p className="error-create-account-infos">{errors.firstname}</p>
             )}
           </div>
-          <div className="section-inscritpion-create-account">
+          <div className="section-register-create-account">
             <label htmlFor="lastname">Nom</label>
             <input
               type="text"
@@ -117,7 +117,7 @@ function ModalCreateAccount({ closeModalCreateAccount }) {
               <p className="error-create-account-infos">{errors.lastname}</p>
             )}
           </div>
-          <div className="section-inscritpion-create-account">
+          <div className="section-register-create-account">
             <label htmlFor="email">Email</label>
             <input
               type="email"
@@ -129,7 +129,7 @@ function ModalCreateAccount({ closeModalCreateAccount }) {
               <p className="error-create-account-infos">{errors.email}</p>
             )}
           </div>
-          <div className="section-inscritpion-create-account">
+          <div className="section-register-create-account">
             <label htmlFor="password">Mot de passe</label>
             <input
               type="password"
