@@ -14,6 +14,7 @@ class CrewSeeder extends AbstractSeeder {
       description:
         "Outdom est l association du préfixe out et du suffixe dom, qui signifie hors des concepts. La signature sonore du label peut être définie par son esthétique rétro-futuriste et rave. Inspiré par le son électro-house, tech-house et breaks des années 90 et du début des années 2000, créant un style hybride à base de basses électro funky et grinçantes, des vocoders robotiques, des synthés spooky ou cosmiques, des échantillons de vinyle et des grooves de breaks tranchants. Dans un style orienté vers le dancefloor, visant à faire vibrer foule, comme ils ont l habitude de le faire lors de leurs évènement à Paris.",
       owner_id: 2,
+      refName: "crew_1",
     };
 
     const crew2 = {
@@ -23,6 +24,7 @@ class CrewSeeder extends AbstractSeeder {
       description:
         "Vos pilotes préférés débarquent pour vous faire danser toute la nuit",
       owner_id: 4,
+      refName: "crew_2",
     };
 
     const crew3 = {
@@ -31,6 +33,7 @@ class CrewSeeder extends AbstractSeeder {
         "https://res.cloudinary.com/shotgun/image/upload/v1700670540/production/artworks/logo_saison_3_neutre_siv3p2.jpg",
       description: "La fête, l'amour, la plage et un shoot de bonnes vibes !",
       owner_id: 3,
+      refName: "crew_3",
     };
 
     this.insert(crew1);

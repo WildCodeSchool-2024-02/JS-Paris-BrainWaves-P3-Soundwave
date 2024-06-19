@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `sound_wavedb`.`event` (
   `description` TEXT NOT NULL,
   `image` TEXT NOT NULL,
   `is_validated` TINYINT NULL,
+  `lineup` TEXT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
