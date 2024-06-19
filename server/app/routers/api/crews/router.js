@@ -1,10 +1,16 @@
 const express = require("express");
 
 const router = express.Router();
-const { browse, read, readEventsByCrewId } = require("../../../controllers/crewAction");
+const {
+  browse,
+  read,
+  readEventsByCrewId,
+  readUnvalide,
+} = require("../../../controllers/crewAction");
 
 router.get("/", browse);
 router.get("/:id", read);
 router.get("/:id/events", readEventsByCrewId);
+router.get("/to-validate", readUnvalide);
 
 module.exports = router;

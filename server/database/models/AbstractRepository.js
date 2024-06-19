@@ -30,6 +30,11 @@ class AbstractRepository {
     );
     return row;
   }
+
+  async readAllUnvalide() {
+    const [rows] = await this.database.query(`SELECT * FROM ${this.table} WHERE is_validated IS false`);
+    return rows;
+  }
 }
 
 // Ready to export

@@ -23,6 +23,15 @@ const read = async (req, res, next) => {
   }
 };
 
+const readUnvalide = async ({ res, next }) => {
+  try {
+    const unvalideEvents = await tables.event.readAllUnvalide();
+    res.status(200).json(unvalideEvents);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const add = async (req, res, next) => {
   try {
     const event = await tables.event.create(req.body);
@@ -35,5 +44,6 @@ const add = async (req, res, next) => {
 module.exports = {
   browse,
   read,
+  readUnvalide,
   add,
 };

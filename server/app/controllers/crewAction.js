@@ -17,7 +17,7 @@ const read = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};  
+};
 
 const readEventsByCrewId = async (req, res, next) => {
   try {
@@ -29,4 +29,13 @@ const readEventsByCrewId = async (req, res, next) => {
   }
 };
 
-module.exports = { browse, read, readEventsByCrewId };
+const readUnvalide = async ({ res, next }) => {
+  try {
+    const unvalideCrews = await tables.crew.readAllUnvalide();
+    res.status(200).json(unvalideCrews);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { browse, read, readEventsByCrewId, readUnvalide };

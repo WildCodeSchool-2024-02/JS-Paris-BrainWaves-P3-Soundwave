@@ -16,6 +16,7 @@ class EventsSeeder extends AbstractSeeder {
       description: "ça va bourlinguer sevère les amis lol",
       image:
         "https://imgproxy.ra.co/_/quality:66/w:1442/rt:fill/aHR0cHM6Ly9pbWFnZXMucmEuY28vNTQ5YzJlODFkNGFlN2UyNGI3YzZkMzE1MjNlMDAzZDIyMmVmMGI3MC5wbmc=",
+      is_validated: true,
       refName: "event_1",
     };
 
@@ -28,6 +29,7 @@ class EventsSeeder extends AbstractSeeder {
         "Attention ça va swinguer dans le vaisseau spatial SEE YOU IN SPACE",
       image:
         "https://res.cloudinary.com/shotgun/image/upload/ar_16:9,c_limit,f_auto,fl_lossy,q_auto,w_1280/v1705338215/production/artworks/FACEBOOK-EVENT-COVER_ttppwf",
+      is_validated: true,
       refName: "event_2",
     };
 
@@ -39,6 +41,7 @@ class EventsSeeder extends AbstractSeeder {
       description: "ça va décoler sevère n'oubliez votre farine",
       image:
         "https://res.cloudinary.com/shotgun/image/upload/ar_16:9,c_limit,f_auto,fl_lossy,q_auto,w_1280/v1709718645/production/artworks/TARMAC_BERCY_test_2_o1ayak",
+      is_validated: true,
       refName: "event_3",
     };
 
@@ -51,6 +54,7 @@ class EventsSeeder extends AbstractSeeder {
         "Après deux expéditions mémorables, Outdom est de retour au Cabaret pour une troisième ¡𝗦𝗮𝘂𝘃𝗮𝗴𝗲?, en très dangereuse compagnie, Pour cette troisième édition, nous avons chargé NICOLAS LUTZ de piloter le vaisseau Sauvage et de nous emmener Outdom, en dehors de tout domaine connu, pour nous faire découvrir les précieux mais dangereux monolithes sur lesquels il a fait main basse. Depuis plusieurs décennies, il semblerait que le fondateur de My Own Jupiter et chasseur de vinyles ait développé comme un Disc Buster, un piège unique capable de capturer tout objet circulaire renfermant quelque monstrueuse puissance.",
       image:
         "https://imgproxy.ra.co/_/quality:66/aHR0cHM6Ly9pbWFnZXMucmEuY28vY2I2MmU3MGIyODI0ZTVlZTZkMGExYTEzMmNjMGE3Y2U0NjgxMGE4My5wbmc=",
+      is_validated: true,
       refName: "event_4",
     };
 
@@ -62,6 +66,7 @@ class EventsSeeder extends AbstractSeeder {
       description: "Encore une Super soirée avec Dj Toto",
       image:
         "https://res.cloudinary.com/shotgun/image/upload/ar_16:9,c_limit,f_auto,fl_lossy,q_auto,w_1280/v1630943002/production/artworks/GABARIT_COVER_EVENT_FB_bbwedb",
+      is_validated: false,
       refName: "event_5",
     };
 
@@ -74,6 +79,7 @@ class EventsSeeder extends AbstractSeeder {
       image:
         "https://scontent-cdg4-1.xx.fbcdn.net/v/t39.30808-6/371846629_330081256196779_319580765884456587_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=7xtESdTZQDkQ7kNvgG61-qR&_nc_ht=scontent-cdg4-1.xx&oh=00_AYAwR3vH4hzxToIvnPT6gfOyEGNqary02vBIHEQhyfY42Q&oe=6671D28A",
       lineup: "Retrolog, Latent, DjToto, MisterDJ",
+      is_validated: false,
     };
 
     this.insert(event1);
