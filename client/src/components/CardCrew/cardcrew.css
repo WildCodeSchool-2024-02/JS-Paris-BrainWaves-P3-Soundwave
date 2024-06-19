@@ -23,7 +23,7 @@
     justify-content: space-between;
     margin-bottom: 1rem;
     position: relative;
-    svg {
+    .heart-icon {
       position: absolute;
       top: 2px;
       right: 5px;
@@ -33,12 +33,32 @@
     text-align: left;
     font-size: 0.8em;
   }
+  .evaluate-admin-buttons-for-crews {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    svg {
+      background-color: var(--accent);
+      color: black;
+      border-radius: 5px;
+      margin: 0 0.5rem;
+      height: 1.5em;
+      width: 2em;
+    }
+  }
 }
 
 .specific-crew-card:nth-child(odd) {
   .crew-card-presentation {
     flex-direction: row-reverse;
-    svg {
+    .heart-icon {
+      position: absolute;
+      top: 2px;
+      left: 5px;
+    }
+    .evaluate-admin-buttons-for-crews {
       position: absolute;
       top: 2px;
       left: 5px;
@@ -66,6 +86,20 @@
       h2 {
         width: auto;
       }
+      .crew-card-name-buttons {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      .evaluate-admin-buttons-for-crews{
+        position: initial;
+        svg {
+          height: 2.5em;
+          width: 3.5em;
+        }
+      }
+      }
     }
   }
   .specific-crew-card:hover {
@@ -78,6 +112,9 @@
     flex-direction: row-reverse;
     .crew-card-desc {
       align-items: flex-end;
+      .crew-card-name-buttons-for-crews {
+        flex-direction: row-reverse;
+      }
     }
   }
 }

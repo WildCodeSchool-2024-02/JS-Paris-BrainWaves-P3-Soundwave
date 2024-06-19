@@ -1,10 +1,13 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./cardcrew.css";
 import { FaRegHeart } from "react-icons/fa";
+import { TiTick, TiTimes } from "react-icons/ti";
 
 function CardCrew({ result }) {
   const navigate = useNavigate();
+  const [admin] = useState(false);
   return (
     <section
       className="specific-crew-card"
@@ -17,7 +20,14 @@ function CardCrew({ result }) {
           <div className="crew-card-presentation">
             <img src={result.image} alt="logo du collectif" />
             <h2>{result.name}</h2>
+            {!admin ? (
+              <div className="evaluate-admin-buttons-for-crews">
+                <TiTick role="button" />
+                <TiTimes role="button" />
+              </div>
+            ) :
             <FaRegHeart className="heart-icon" />
+            }
           </div>
           {result.description.length <= 100 ? (
             <p>{result.description}</p>
@@ -30,8 +40,17 @@ function CardCrew({ result }) {
         <>
           <img src={result.image} alt="logo du collectif" />
           <div className="crew-card-desc">
+            <div className="crew-card-name-buttons">
             <h2>{result.name}</h2>
+            {!admin ? (
+              <div className="evaluate-admin-buttons-for-crews">
+                <TiTick role="button" />
+                <TiTimes role="button" />
+              </div>
+            ) :
             <FaRegHeart className="heart-icon" />
+            }
+            </div>
             <p>{result.description}</p>
           </div>
         </>

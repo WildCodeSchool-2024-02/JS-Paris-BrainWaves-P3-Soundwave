@@ -1,10 +1,13 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./eventcard.css";
 import { FaRegHeart } from "react-icons/fa";
+import { TiTick, TiTimes } from "react-icons/ti";
 
 function EventCard({ image, name, description, date, startingHour, id }) {
   const navigate = useNavigate();
+  const [admin] = useState(false);
 
   const handleDetailsEvent = () => {
     navigate(`/event-details/${id}`);
@@ -26,9 +29,16 @@ function EventCard({ image, name, description, date, startingHour, id }) {
           </p>
         </div>
       </div>
-      <div className="heart-icon-container">
-        <FaRegHeart className="heart-icon" />
-      </div>
+      {!admin ? (
+        <div className="evaluate-admin-buttons-for-events">
+          <TiTick role="button" />
+          <TiTimes role="button" />
+        </div>
+      ) : (
+        <div className="heart-icon-container">
+          <FaRegHeart className="heart-icon" />
+        </div>
+      )}
     </div>
   );
 }

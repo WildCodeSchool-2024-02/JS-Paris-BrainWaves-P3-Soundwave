@@ -5,6 +5,25 @@
   border: 1px dashed var(--primary-color);
   border-radius: 5px;
   padding: 1rem 1rem 1rem 1rem;
+  .evaluate-admin-buttons-for-events {
+    display: flex;
+    justify-content: flex-end;
+    svg {
+      background-color: var(--accent);
+      color: black;
+      border-radius: 5px;
+      margin: 0 0.5rem;
+      height: 1.5em;
+      width: 2em;
+    }
+  }
+  h1 {
+    font-size: 1rem;
+  }
+  p {
+    font-size: 0.6rem;
+    margin: 0;
+  }
 }
 
 .event-card-container:hover {
@@ -18,15 +37,6 @@
 
 .event-img {
   border-radius: 5px;
-}
-
-.event-card-container h1 {
-  font-size: 1rem;
-}
-
-.event-card-container p {
-  font-size: 0.6rem;
-  margin: 0;
 }
 
 .date-hour {
@@ -60,6 +70,12 @@
     width: 80vw;
     display: flex;
     flex-direction: row;
+    .evaluate-admin-buttons-for-events {
+      svg {
+        height: 2.5em;
+        width: 3.5em;
+      }
+    }
   }
 
   .event-info {
@@ -74,19 +90,17 @@
   .event-all-container {
     display: flex;
     width: 95%;
+    h1 {
+      font-size: 2em;
+      margin: 0;
+    }
+    p {
+      font-size: 1em;
+    }
   }
 
   .heart-icon {
     width: 2rem;
     height: 2rem;
-  }
-
-  .event-all-container h1 {
-    font-size: 2em;
-    margin: 0;
-  }
-
-  .event-all-container p {
-    font-size: 1em;
   }
 }

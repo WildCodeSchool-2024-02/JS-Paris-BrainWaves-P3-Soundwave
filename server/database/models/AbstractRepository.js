@@ -19,7 +19,7 @@ class AbstractRepository {
   }
 
   async readAll() {
-    const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
+    const [rows] = await this.database.query(`SELECT * FROM ${this.table} WHERE is_validated IS true`);
     return rows;
   }
 

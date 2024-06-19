@@ -6,7 +6,7 @@ import EventDetails from "./pages/EventDetails/EventDetails";
 import CrewsList from "./pages/CrewsList/CrewsList";
 import CrewProfile from "./pages/CrewProfile/CrewProfile";
 import Admin from "./pages/Admin/Admin";
-import UserProfile from "./pages/UserProfile";
+import UserProfile from "./pages/UserProfile/UserProfile";
 
 const router = createBrowserRouter([
   {

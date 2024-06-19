@@ -7,7 +7,7 @@ class EventRepository extends AbstractRepository {
 
   async readCurrent() {
     const [rows] = await this.database.query(
-      `SELECT * FROM ${this.table} WHERE date(date) >= CURDATE()`
+      `SELECT * FROM ${this.table} WHERE date(date) >= CURDATE() AND is_validated IS true`
     );
     return rows;
   }
