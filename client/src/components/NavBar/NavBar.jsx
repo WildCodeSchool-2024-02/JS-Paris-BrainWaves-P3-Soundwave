@@ -6,6 +6,7 @@ import { FaSearch } from "react-icons/fa";
 import soundwave from "../../assets/images/SoundWave.svg";
 import mascot from "../../assets/images/masquote.svg";
 import ModalLogIn from "../Modal/ModalLogIn";
+import ModalSearchBar from "../ModalSearchBar/ModalSearchBar";
 
 function NavBar({ dataUser, setDataUser }) {
   const navigate = useNavigate();
@@ -13,8 +14,8 @@ function NavBar({ dataUser, setDataUser }) {
   const [burgerClass, setBurgerClass] = useState("burger-bar unclicked");
   const [menuClass, setMenuClass] = useState("menu hidden");
   const [isMenuClicked, setIsMenuClicked] = useState(false);
-
   const [openModalLogIn, setOpenModalLogIn] = useState(false);
+  const [openModalSearchBar, setOpenModalSearchBar] = useState(false);
 
   const updateMenu = () => {
     if (!isMenuClicked) {
@@ -34,6 +35,11 @@ function NavBar({ dataUser, setDataUser }) {
     document.body.classList.add("active");
   };
 
+  const handleModalSearchBar = () => {
+    setOpenModalSearchBar(true);
+    document.body.classList.add("active");
+  };
+
   return (
     <section className="display-navbar">
       <nav>
@@ -46,7 +52,11 @@ function NavBar({ dataUser, setDataUser }) {
           onKeyDown={() => navigate("/")}
         />
         <div className="navigation">
-          <FaSearch className="logo-searchbar" />
+          <FaSearch
+            className="logo-searchbar"
+            onClick={handleModalSearchBar}
+          />
+          {openModalSearchBar && <ModalSearchBar closeModalSearchBar={setOpenModalSearchBar}/>}
           <div
             className="burger-menu"
             role="presentation"
