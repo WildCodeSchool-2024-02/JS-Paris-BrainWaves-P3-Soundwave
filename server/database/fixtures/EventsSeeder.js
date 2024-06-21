@@ -66,7 +66,7 @@ class EventsSeeder extends AbstractSeeder {
       description: "Encore une Super soirée avec Dj Toto",
       image:
         "https://res.cloudinary.com/shotgun/image/upload/ar_16:9,c_limit,f_auto,fl_lossy,q_auto,w_1280/v1630943002/production/artworks/GABARIT_COVER_EVENT_FB_bbwedb",
-      is_validated: false,
+      is_validated: null,
       refName: "event_5",
     };
 
@@ -79,7 +79,7 @@ class EventsSeeder extends AbstractSeeder {
       image:
         "https://scontent-cdg4-1.xx.fbcdn.net/v/t39.30808-6/371846629_330081256196779_319580765884456587_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=7xtESdTZQDkQ7kNvgG61-qR&_nc_ht=scontent-cdg4-1.xx&oh=00_AYAwR3vH4hzxToIvnPT6gfOyEGNqary02vBIHEQhyfY42Q&oe=6671D28A",
       lineup: "Retrolog, Latent, DjToto, MisterDJ",
-      is_validated: false,
+      is_validated: null,
     };
 
     this.insert(event1);

@@ -32,7 +32,12 @@ class AbstractRepository {
   }
 
   async readAllUnvalide() {
-    const [rows] = await this.database.query(`SELECT * FROM ${this.table} WHERE is_validated IS false`);
+    const [rows] = await this.database.query(`SELECT * FROM ${this.table} WHERE is_validated IS null`);
+    return rows;
+  }
+
+  async validate(isValidated, id) {
+    const [rows] = await this.database.query(`UPDATE ${this.table} SET is_validated = ? WHERE id = ?`, [isValidated, id]);
     return rows;
   }
 }

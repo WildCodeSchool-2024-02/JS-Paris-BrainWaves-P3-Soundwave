@@ -1,13 +1,21 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import "./eventcard.css";
 import { FaRegHeart } from "react-icons/fa";
-import { TiTick, TiTimes } from "react-icons/ti";
+import AdminButton from "../AdminButtons/AdminButtons";
 
-function EventCard({ image, name, description, date, startingHour, id }) {
+function EventCard({
+  image,
+  name,
+  description,
+  date,
+  startingHour,
+  id,
+  updateEvents,
+  setUpdateEvents,
+}) {
   const navigate = useNavigate();
-  const [admin] = useState(false);
+  const { admin } = useOutletContext();
 
   const handleDetailsEvent = () => {
     navigate(`/event-details/${id}`);
@@ -30,10 +38,11 @@ function EventCard({ image, name, description, date, startingHour, id }) {
         </div>
       </div>
       {!admin ? (
-        <div className="evaluate-admin-buttons-for-events">
-          <TiTick role="button" />
-          <TiTimes role="button" />
-        </div>
+        <AdminButton
+          id={id}
+          updateEvents={updateEvents}
+          setUpdateEvents={setUpdateEvents}
+        />
       ) : (
         <div className="heart-icon-container">
           <FaRegHeart className="heart-icon" />

@@ -1,6 +1,5 @@
 .specific-crew-card {
   margin: 1rem 0;
-  cursor: pointer;
   border: 1px dashed var(--primary-color);
   border-radius: 5px;
   padding: 1rem;
@@ -33,32 +32,12 @@
     text-align: left;
     font-size: 0.8em;
   }
-  .evaluate-admin-buttons-for-crews {
-    display: flex;
-    flex-direction: row;
-    position: absolute;
-    top: 2px;
-    right: 5px;
-    svg {
-      background-color: var(--accent);
-      color: black;
-      border-radius: 5px;
-      margin: 0 0.5rem;
-      height: 1.5em;
-      width: 2em;
-    }
-  }
 }
 
 .specific-crew-card:nth-child(odd) {
   .crew-card-presentation {
     flex-direction: row-reverse;
     .heart-icon {
-      position: absolute;
-      top: 2px;
-      left: 5px;
-    }
-    .evaluate-admin-buttons-for-crews {
       position: absolute;
       top: 2px;
       left: 5px;
@@ -92,13 +71,6 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      .evaluate-admin-buttons-for-crews{
-        position: initial;
-        svg {
-          height: 2.5em;
-          width: 3.5em;
-        }
-      }
       }
     }
   }

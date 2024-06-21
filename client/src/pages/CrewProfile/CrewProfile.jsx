@@ -1,24 +1,21 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useOutletContext } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./crew-profile.css";
 import { FaRegHeart } from "react-icons/fa";
-import { TiTick, TiTimes } from "react-icons/ti";
 import EventCard from "../../components/EventCard/EventCard";
 import ModalEvent from "../../EventCreationModal/ModalEvent";
-
+import AdminButton from "../../components/AdminButtons/AdminButtons";
 
 function CrewProfile() {
   const crew = useLoaderData();
+  const {admin, updateCrews, setUpdateCrews, updateEvents, setUpdateEvents} = useOutletContext();
   const [login] = useState(false);
-  const [admin] = useState(false);
   const [events, setEvents] = useState([]);
   const [openModalEvent, setOpenModalEvent] = useState(false);
 
   const handleOpenModal = () => {
     setOpenModalEvent(true);
   };
-
-
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/crews/${crew.id}/events`)
@@ -34,13 +31,8 @@ function CrewProfile() {
           <h1>{crew.name}</h1>
           <div className="button-container-crew-profile">
             {login && <FaRegHeart className="heart-icon" />}
-            {!login && <button type="button">Editer</button>}
-            {admin && (
-              <div className="evaluate-admin-buttons">
-                <TiTick role="button" />
-                <TiTimes role="button" />
-              </div>
-            )}
+            {login && <button type="button">Editer</button>}
+            {!admin && <AdminButton id = {crew.id} updateCrews={updateCrews} setUpdateCrews={setUpdateCrews}/>}
           </div>
         </div>
       </section>
@@ -51,7 +43,11 @@ function CrewProfile() {
       <section className="events-crew-profile">
         <div className="events-crew-profile-title">
           <h2>Evènements</h2>
-          {!login && <button type="button" onClick={handleOpenModal}>Ajouter</button>}
+          {login && (
+            <button type="button" onClick={handleOpenModal}>
+              Ajouter
+            </button>
+          )}
           {openModalEvent && <ModalEvent closeModal={setOpenModalEvent} />}
         </div>
         {events.map((event) => (
@@ -63,6 +59,8 @@ function CrewProfile() {
             description={event.description}
             date={event.date}
             startingHour={event.starting_hour}
+            updateEvents={updateEvents}
+            setUpdateEvents={setUpdateEvents}
           />
         ))}
       </section>

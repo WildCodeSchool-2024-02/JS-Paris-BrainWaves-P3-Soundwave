@@ -42,9 +42,22 @@ const add = async (req, res, next) => {
   }
 };
 
+const editStatus = async (req, res, next) => {
+  const { id } = req.params;
+  const isValidated = req.body.is_validated;
+  try {
+    await tables.event.validate(isValidated, id);
+    const getOne = await tables.event.readOne(id);
+    res.status(200).json(getOne);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   browse,
   read,
   readUnvalide,
   add,
+  editStatus,
 };
