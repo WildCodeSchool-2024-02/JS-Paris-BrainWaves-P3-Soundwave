@@ -34,9 +34,26 @@ function ModalSearchBar({ closeModalSearchBar }) {
   const shuffleEvents = shuffle(events);
   const shuffleCrews = shuffle(crews);
 
-  const filteredEvents = shuffleEvents.filter((event) =>
-    event.name.toLowerCase().includes(dataText.toLowerCase())
-  );
+  const filteredEvents = shuffleEvents.filter((event) => {
+    const nameEvents = event.name
+      .toLowerCase()
+      .includes(dataText.toLowerCase());
+    const dateEvents = event.date;
+    const dateObject = new Date(dateEvents);
+
+    const year = dateObject.getFullYear();
+    const month = dateObject.toLocaleString("default", { month: "long" });
+    const day = dateObject.getDate();
+    const hours = dateObject.getHours();
+    const minutes = dateObject.getMinutes();
+    const seconds = dateObject.getSeconds();
+
+    // const formattedDate = `${year}-${month.toString().padStart(2, "0")}-${day.toString().padStart(2, "0")} ${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+    const formattedDate = `${day.toString().padStart(2, "0")} ${month} ${year} ${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+
+    const dateEventsMatch = formattedDate.includes(dataText.toLowerCase());
+    return nameEvents || dateEventsMatch;
+  });
 
   const filteredCrews = shuffleCrews.filter((crew) =>
     crew.name.toLowerCase().includes(dataText.toLowerCase())
@@ -72,6 +89,7 @@ function ModalSearchBar({ closeModalSearchBar }) {
               />
             ))}
           </div>
+          {filteredEvents.length === 0 && <p>No Events Found</p>}
           <h2>Collectifs</h2>
           <div className="display-search-crews">
             {filteredCrews.map((crew) => (
@@ -82,9 +100,10 @@ function ModalSearchBar({ closeModalSearchBar }) {
                 className="picture-crews"
               />
             ))}
+            {filteredCrews.length === 0 && <p>No Crews Found</p>}
           </div>
         </section>
-        <img src={mascot} alt="mascot" className="mascot" />
+        <img src={mascot} alt="mascot" className="mascot-search-bar" />
       </section>
     </dialog>
   );

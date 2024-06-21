@@ -52,11 +52,10 @@ function NavBar({ dataUser, setDataUser }) {
           onKeyDown={() => navigate("/")}
         />
         <div className="navigation">
-          <FaSearch
-            className="logo-searchbar"
-            onClick={handleModalSearchBar}
-          />
-          {openModalSearchBar && <ModalSearchBar closeModalSearchBar={setOpenModalSearchBar}/>}
+          <FaSearch className="logo-searchbar" onClick={handleModalSearchBar} />{" "}
+          {openModalSearchBar && (
+            <ModalSearchBar closeModalSearchBar={setOpenModalSearchBar} />
+          )}
           <div
             className="burger-menu"
             role="presentation"
@@ -69,7 +68,13 @@ function NavBar({ dataUser, setDataUser }) {
           </div>
         </div>
         <div className="navbar-desktop-btns">
-          <FaSearch className="logo-searchbar-desktop" />
+          <FaSearch
+            className="logo-searchbar-desktop"
+            onClick={handleModalSearchBar}
+          />
+          {openModalSearchBar && (
+            <ModalSearchBar closeModalSearchBar={setOpenModalSearchBar} />
+          )}
           <ul>
             <li
               role="presentation"
