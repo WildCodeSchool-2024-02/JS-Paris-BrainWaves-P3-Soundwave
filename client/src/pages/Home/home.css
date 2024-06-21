@@ -24,6 +24,7 @@
   gap: 1rem;
   align-items: center;
 }
+
 .header-home-page {
   display: flex;
   flex-direction: column;
@@ -61,10 +62,9 @@
     rgb(255, 255, 255, 0.4)
   );
   font-family: var(--font-body);
-  width: 90%;
-  border: none;
+  width: 50%;
+  border-radius: 0.5rem;
   height: 30%;
-
   color: var(--text);
 }
 
@@ -72,17 +72,20 @@
   text-align: left;
   margin: 2rem;
 }
+
 .p-title-header-home-page {
   font-size: 1.25rem;
   font-weight: bold;
 }
-.div-btn-insciption {
+
+.div-btn-register {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   margin: auto;
   align-items: baseline;
 }
+
 .btn-side-home {
   display: flex;
   flex-direction: column;
@@ -93,21 +96,19 @@
     text-align: left;
   }
 }
+
 .home-btn {
   cursor: pointer;
   border-radius: 10px;
-  .p-home-btn {
-    font-size: 1.25rem;
-    font-family: var(--font-title-b);
-  }
-
   height: 7vh;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+  color: var(--secondary-color);
   background-image: url("../../assets/images/Noise.png");
   background-color: var(--primary-color);
+  font-size: 1.25rem;
+  font-family: var(--font-title-b);
+  border: none;
 }
+
 @media screen and (min-width: 760px) {
   .home {
     justify-content: center;
@@ -115,7 +116,7 @@
     margin-left: 3rem;
     gap: 2rem;
   }
-  .div-btn-insciption {
+  .div-btn-register {
     display: flex;
     flex-direction: row;
     gap: 10rem;

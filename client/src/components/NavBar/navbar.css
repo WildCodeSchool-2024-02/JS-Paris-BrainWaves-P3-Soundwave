@@ -58,16 +58,21 @@ nav {
 .navbar-btns {
   position: relative;
   top: 40px;
-
-  p,
+  ul,
   img {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     width: 80vw;
     padding: 1.5rem;
   }
-  p {
+  ul > li {
+    width: 100%;
+    text-align: center;
+    font-family: var(--font-title-b);
+    font-size: 1.5rem;
+    padding: 1rem;
     border-bottom: 1px solid var(--secondary-color);
   }
 }

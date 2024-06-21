@@ -1,18 +1,33 @@
 const AbstractRepository = require("./AbstractRepository");
 
 class EventRepository extends AbstractRepository {
-    constructor() {
-        super ({table : 'event'});
-        }
-        
-        // async create () {
-        //     const [results] = await this.database.query(
-        //         `INSERT INTO ${this.table} (name) VALUES`
-        //     )
-        //     return results
-        // }
+  constructor() {
+    super({ table: "event" });
+  }
 
+  async readCurrent() {
+    const [rows] = await this.database.query(
+      `SELECT * FROM ${this.table} WHERE date(date) >= CURDATE()`
+    );
+    return rows;
+  }
 
+  async create(event) {
+    const [results] = await this.database.query(
+      `INSERT INTO ${this.table} (name, date, starting_hour, location, address, description, image, lineup) VALUES(?,?,?,?,?,?,?,?)`,
+      [
+        event.name,
+        event.date,
+        event.starting_hour,
+        event.location,
+        event.address,
+        event.description,
+        event.image,
+        event.lineup,
+      ]
+    );
+    return results;
+  }
 }
 
 module.exports = EventRepository;

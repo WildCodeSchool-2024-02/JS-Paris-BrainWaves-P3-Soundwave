@@ -1,10 +1,12 @@
 import { useLoaderData } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./crew-profile.css";
 import { FaRegHeart } from "react-icons/fa";
 import { TiTick, TiTimes } from "react-icons/ti";
+import ModalEvent from "../../EventCreationModal/ModalEvent";
+import EventCard from "../../components/EventCard/EventCard";
 
-function Crewprofile() {
+function CrewProfile() {
   const crew = useLoaderData();
   const [login] = useState(false);
   const [edit, setEdit] = useState(false);
@@ -13,6 +15,12 @@ function Crewprofile() {
   const [username, setUsername] = useState(crew.name);
   const [description, setDescription] = useState(crew.description);
   const [errors, setErrors] = useState({});
+  const [events, setEvents] = useState([]);
+  const [openModalEvent, setOpenModalEvent] = useState(false);
+
+  const handleOpenModal = () => {
+    setOpenModalEvent(true);
+  };
 
   const handleBtnValue = () => {
     setEdit((prevEdit) => !prevEdit);
@@ -67,7 +75,11 @@ function Crewprofile() {
       console.error(err);
     }
   }
-
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/crews/${crew.id}/events`)
+      .then((response) => response.json())
+      .then((data) => setEvents(data));
+  }, []);
   const handleSubmit = async (e) => {
     if (e) e.preventDefault();
     const errorData = validate();
@@ -116,17 +128,19 @@ function Crewprofile() {
           <p>{description}</p>
         </section>
       ) : (
-        <textarea
-          className="input-description-crew-profile"
-          onChange={handleInputChange}
-          style={{
-            height: "auto",
-            minHeight: "10rem",
-            width: "50rem",
-            minWidth: "10rem",
-          }}
-          value={description}
-        />
+        <section className="desc-crew-profile">
+          <textarea
+            className="input-description-crew-profile"
+            onChange={handleInputChange}
+            style={{
+              height: "auto",
+              minHeight: "10rem",
+              width: "50rem",
+              minWidth: "10rem",
+            }}
+            value={description}
+          />
+        </section>
       )}
       {errors.username && <p className="error">{errors.username}</p>}
       {errors.description && <p className="error">{errors.description}</p>}
@@ -135,12 +149,27 @@ function Crewprofile() {
       <section className="events-crew-profile">
         <div className="events-crew-profile-title">
           <h2>Evènements</h2>
-          {!login && <button type="button">Ajouter</button>}
+          {!login && (
+            <button type="button" onClick={handleOpenModal}>
+              Ajouter
+            </button>
+          )}
+          {openModalEvent && <ModalEvent closeModal={setOpenModalEvent} />}
         </div>
-        <p>on mappera les events du collectif en question</p>
+        {events.map((event) => (
+          <EventCard
+            key={event.id}
+            id={event.id}
+            image={event.image}
+            name={event.name}
+            description={event.description}
+            date={event.date}
+            startingHour={event.starting_hour}
+          />
+        ))}
       </section>
     </main>
   );
 }
 
-export default Crewprofile;
+export default CrewProfile;

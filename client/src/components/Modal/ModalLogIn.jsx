@@ -1,48 +1,55 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./modallogin.css";
 import { ImCross } from "react-icons/im";
 import PropTypes from "prop-types";
-import mascot from "../assets/images/masquote.svg";
+import mascot from "../../assets/images/masquote.svg";
 
 function ModalLogIn({ closeModalLogIn, setDataUser }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const email = useRef("");
+  const password = useRef("");
   const [errors, setErrors] = useState([]);
 
   const navigate = useNavigate();
 
   const validate = () => {
     const error = {};
-    if (!email) {
+    if (!email.current.value) {
       error.email = "Email requis";
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      error.email = "Saisissez une adresse mail";
+    } else if (!/\S+@\S+\.\S+/.test(email.current.value)) {
+      error.email = "Saisissez une adresse mail valide";
     }
 
-    if (!password) {
+    if (!password.current.value) {
       error.password = "Mot de passe requis";
-    } else if (password.length < 4) {
-      error.password = "Saisissez votre mot de passe";
     }
 
     return error;
   };
 
+  const handleCloseModalLogIn = () => {
+    closeModalLogIn(false);
+    document.body.classList.remove("active");
+  };
+
   async function userData() {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/users`,
+        `${import.meta.env.VITE_API_URL}/api/users/login`,
         {
           method: "post",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password }),
+          body: JSON.stringify({
+            email: email.current.value,
+            password: password.current.value,
+          }),
         }
       );
       if (response.status === 200) {
         const result = await response.json();
         setDataUser(result);
-        navigate("/user-profil");
+        handleCloseModalLogIn();
+        navigate("/user-profile");
       } else {
         setErrors({ login: "Identifiant inconnu" });
       }
@@ -51,16 +58,11 @@ function ModalLogIn({ closeModalLogIn, setDataUser }) {
     }
   }
 
-  const handleCloseModalLogIn = () => {
-    closeModalLogIn(false);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const errorData = validate();
     if (Object.keys(errorData).length > 0) setErrors(errorData);
     else {
-      handleCloseModalLogIn();
       userData();
     }
   };
@@ -74,30 +76,32 @@ function ModalLogIn({ closeModalLogIn, setDataUser }) {
         />
         <img src={mascot} alt="mascot" />
         <h1>Salut toi !</h1>
-        <form className="section-connexion-log-in">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            placeholder="youremail@gmail.com"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          {errors.email && <p className="error-login-infos">{errors.email}</p>}
-          <label htmlFor="password">Mot de passe</label>
-          <input
-            type="password"
-            name="password"
-            placeholder="********"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          {errors.password && (
-            <p className="error-login-infos">{errors.password}</p>
-          )}
-          <div className="display-btn-connexion-login">
+        <form className="form-log-in">
+          <div className="section-register-log-in">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="youremail@gmail.com"
+              ref={email}
+            />
+            {errors.email && <p>{errors.email}</p>}
+          </div>
+          <div className="section-register-log-in">
+            <label htmlFor="password">Mot de passe</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="********"
+              ref={password}
+            />
+            {errors.password && <p>{errors.password}</p>}
+          </div>
+          <div className="display-btn-connection-login">
             <button type="button" onClick={handleSubmit}>
               C'est bien moi
             </button>
-            {errors.login && <p className="error-login">{errors.login}</p>}
+            {errors.login && <p>{errors.login}</p>}
           </div>
         </form>
         <section className="section-not-login">
