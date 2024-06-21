@@ -39,6 +39,20 @@ const readUnvalide = async ({ res, next }) => {
   }
 };
 
+const edit = async (req, res, next) => {
+  try {
+    const crew = await tables.crew.edit(req.body, req.params.id);
+    if (crew) {
+      const crewProfile = await tables.crew.readOne(req.params.id);
+      res.status(200).json(crewProfile);
+    } else {
+      res.status(404);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 const editStatus = async (req, res, next) => {
   const { id } = req.params;
   const isValidated = req.body.is_validated;
@@ -50,4 +64,4 @@ const editStatus = async (req, res, next) => {
     next(error);
   }
 };
-module.exports = { browse, read, readEventsByCrewId, readUnvalide, editStatus };
+module.exports = { browse, read, readEventsByCrewId, readUnvalide, editStatus, edit };

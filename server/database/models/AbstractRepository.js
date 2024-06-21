@@ -39,8 +39,15 @@ class AbstractRepository {
   async validate(isValidated, id) {
     const [rows] = await this.database.query(`UPDATE ${this.table} SET is_validated = ? WHERE id = ?`, [isValidated, id]);
     return rows;
+  }    
+  async edit(body, id) {
+    const [row] = await this.database.query(
+      `UPDATE ${this.table} SET ? WHERE id = ? `,
+      [body, id]
+    );
+    return row;
   }
-}
+};  
 
 // Ready to export
 module.exports = AbstractRepository;
