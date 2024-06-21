@@ -1,10 +1,10 @@
 import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
-import "./crew-profil.css";
+import "./crew-profile.css";
 import { FaRegHeart } from "react-icons/fa";
 import { TiTick, TiTimes } from "react-icons/ti";
 
-function CrewProfil() {
+function Crewprofile() {
   const crew = useLoaderData();
   const [login] = useState(false);
   const [edit, setEdit] = useState(false);
@@ -79,10 +79,10 @@ function CrewProfil() {
   };
 
   return (
-    <main className="main-crew-profil">
-      <section className="header-crew-profil">
+    <main className="main-crew-profile">
+      <section className="header-crew-profile">
         <img src={crew.image} alt="logo du collectif" />
-        <div className="crew-profil-title-options">
+        <div className="crew-profile-title-options">
           {!edit ? (
             <h1>{username}</h1>
           ) : (
@@ -92,7 +92,7 @@ function CrewProfil() {
               value={username}
             />
           )}
-          <div className="button-container-crew-profil">
+          <div className="button-container-crew-profile">
             {login && <FaRegHeart className="heart-icon" />}
             <button
               onClick={edit ? handleSubmit : handleBtnValue}
@@ -111,13 +111,13 @@ function CrewProfil() {
       </section>
 
       {!edit ? (
-        <section className="desc-crew-profil">
+        <section className="desc-crew-profile">
           <h2>Description</h2>
           <p>{description}</p>
         </section>
       ) : (
         <textarea
-          className="input-description-crew-profil"
+          className="input-description-crew-profile"
           onChange={handleInputChange}
           style={{
             height: "auto",
@@ -132,8 +132,8 @@ function CrewProfil() {
       {errors.description && <p className="error">{errors.description}</p>}
       {errors.update && <p className="error">{errors.update}</p>}
 
-      <section className="events-crew-profil">
-        <div className="events-crew-profil-title">
+      <section className="events-crew-profile">
+        <div className="events-crew-profile-title">
           <h2>Evènements</h2>
           {!login && <button type="button">Ajouter</button>}
         </div>
@@ -143,4 +143,4 @@ function CrewProfil() {
   );
 }
 
-export default CrewProfil;
+export default Crewprofile;
