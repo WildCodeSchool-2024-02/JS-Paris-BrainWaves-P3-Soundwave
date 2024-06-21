@@ -19,4 +19,17 @@ const read = async (req, res, next) => {
   }
 };
 
-module.exports = { browse, read };
+const edit = async (req, res, next) => {
+  try {
+    const crew = await tables.crew.edit(req.body, req.params.id);
+    if (crew) {
+      const crewProfile = await tables.crew.readOne(req.params.id);
+      res.status(200).json(crewProfile);
+    } else {
+      res.status(404);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+module.exports = { browse, read, edit };
