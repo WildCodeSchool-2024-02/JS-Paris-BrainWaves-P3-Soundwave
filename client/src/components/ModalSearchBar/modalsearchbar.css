@@ -58,15 +58,22 @@
     border-radius: 10px;
   }
   p {
+    display: flex;
     color: var(--secondary-color);
+    font-size: 0.75rem;
   }
 }
 
 .display-search-events {
   display: flex;
-  overflow: hidden;
   gap: 1rem;
+  width: 90vw;
+  overflow: hidden;
   overflow-x: scroll;
+  .info-searchbar-events {
+    width: 90vw;
+  }
+
   .picture-events {
     width: 40%;
   }
@@ -98,13 +105,13 @@
   }
   .display-search-events {
     .picture-events {
-      width: 25%;
+      width: 20%;
     }
   }
 
   .display-search-crews {
     .picture-crews {
-      width: 20%;
+      width: 15%;
     }
   }
 

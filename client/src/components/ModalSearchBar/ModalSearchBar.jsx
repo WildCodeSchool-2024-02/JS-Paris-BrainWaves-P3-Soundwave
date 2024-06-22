@@ -81,12 +81,14 @@ function ModalSearchBar({ closeModalSearchBar }) {
           <h2>Événements</h2>
           <div className="display-search-events">
             {filteredEvents.map((event) => (
-              <img
-                key={event.id}
-                src={event.image}
-                alt="cover-event"
-                className="picture-events"
-              />
+              <div key={event.id} className="info-searchbar-events">
+                <img
+                  src={event.image}
+                  alt="cover-event"
+                  className="picture-events"
+                />
+                <p>{event.name}</p>
+              </div>
             ))}
           </div>
           {filteredEvents.length === 0 && <p>No Events Found</p>}
