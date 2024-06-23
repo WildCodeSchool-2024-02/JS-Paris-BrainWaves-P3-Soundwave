@@ -87,7 +87,7 @@ function ModalSearchBar({ closeModalSearchBar }) {
                   alt="cover-event"
                   className="picture-events"
                 />
-                <p>{event.name}</p>
+                <p className="title-search-events">{event.name}</p>
               </div>
             ))}
           </div>

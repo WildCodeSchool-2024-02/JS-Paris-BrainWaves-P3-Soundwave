@@ -71,11 +71,14 @@
   overflow: hidden;
   overflow-x: scroll;
   .info-searchbar-events {
-    width: 90vw;
+    width: 90%;
   }
-
   .picture-events {
-    width: 40%;
+    width: 100%;
+    height: 50%;
+  }
+  .title-search-events {
+    text-align: start;
   }
 }
 
