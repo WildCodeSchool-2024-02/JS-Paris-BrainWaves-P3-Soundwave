@@ -36,12 +36,17 @@ class EventCategorySeeder extends AbstractSeeder {
       category_id: this.getRef("category_5").insertId,
       event_id: this.getRef("event_6").insertId,
     };
+    const catEvent7 = {
+      category_id: this.getRef("category_1").insertid,
+      event_id: this.getRef("event_3").insertId,
+    }
     this.insert(catEvent1);
     this.insert(catEvent2);
     this.insert(catEvent3);
     this.insert(catEvent4);
     this.insert(catEvent5);
     this.insert(catEvent6);
+    this.insert(catEvent7);
   }
 }
 
