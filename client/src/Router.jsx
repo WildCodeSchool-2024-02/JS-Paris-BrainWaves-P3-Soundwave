@@ -37,7 +37,8 @@ const router = createBrowserRouter([
       {
         path: "/crew-details/:id",
         element: <CrewProfile />,
-        loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/api/crews/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/api/crews/${params.id}`),
       },
       {
         path: "/admin",

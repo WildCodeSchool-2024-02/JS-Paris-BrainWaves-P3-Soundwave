@@ -30,6 +30,14 @@ class AbstractRepository {
     );
     return row;
   }
+
+  async edit(body, id) {
+    const [row] = await this.database.query(
+      `UPDATE ${this.table} SET ? WHERE id = ? `,
+      [body, id]
+    );
+    return row;
+  }
 }
 
 // Ready to export

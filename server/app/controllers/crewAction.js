@@ -17,7 +17,7 @@ const read = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};  
+};
 
 const readEventsByCrewId = async (req, res, next) => {
   try {
@@ -29,4 +29,17 @@ const readEventsByCrewId = async (req, res, next) => {
   }
 };
 
-module.exports = { browse, read, readEventsByCrewId };
+const edit = async (req, res, next) => {
+  try {
+    const crew = await tables.crew.edit(req.body, req.params.id);
+    if (crew) {
+      const crewProfile = await tables.crew.readOne(req.params.id);
+      res.status(200).json(crewProfile);
+    } else {
+      res.status(404);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+module.exports = { browse, read, readEventsByCrewId, edit };
