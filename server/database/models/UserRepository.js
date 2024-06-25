@@ -14,21 +14,23 @@ class UserRepository extends AbstractRepository {
   }
 
   async insertOne(userData) {
-    const {firstname, lastname, email, password} = userData
+    const {firstname, lastname, email, password, role} = userData
     const [user] = await this.database.query(
-      `INSERT INTO ${this.table} (firstname, lastname, email, password) VALUES (?, ?, ?, ?)`,
-      [firstname, lastname, email, password]
+      `INSERT INTO ${this.table} (firstname, lastname, email, password, role) VALUES (?, ?, ?, ?, ?)`,
+      [firstname, lastname, email, password, role]
     );
     return user;
   }
 
-  async logIn(email, password) {
+  async findByEmail(email) {
     const [users] = await this.database.query(
-      `SELECT id, email FROM ${this.table} WHERE email = ? AND password = ?`,
-      [email, password]
+      `SELECT * FROM ${this.table} WHERE email = ? `,
+      [email]
     );
     return users;
   }
+
+  
 }
 
 module.exports = UserRepository;

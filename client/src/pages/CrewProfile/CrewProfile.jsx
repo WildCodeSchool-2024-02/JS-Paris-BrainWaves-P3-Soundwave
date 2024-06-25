@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import "./crew-profile.css";
 import { FaRegHeart } from "react-icons/fa";
 import { TiTick, TiTimes } from "react-icons/ti";
-import ModalEvent from "../../EventCreationModal/ModalEvent";
 import EventCard from "../../components/EventCard/EventCard";
+import ModalEvent from "../../components/EventCreationModal/ModalEvent";
+
 
 function CrewProfile() {
   const crew = useLoaderData();
@@ -20,6 +21,8 @@ function CrewProfile() {
 
   const handleOpenModal = () => {
     setOpenModalEvent(true);
+    document.body.classList.add("active");
+
   };
 
   const handleBtnValue = () => {
