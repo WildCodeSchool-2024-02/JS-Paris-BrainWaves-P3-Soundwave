@@ -10,6 +10,7 @@ function Home({ dataUser }) {
   const results = useLoaderData();
   const [isOpen, setIsOpen] = useState(false);
   const [openModalCreateAccount, setOpenModalCreateAccount] = useState(false);
+  const [role, setRole] = useState("");
 
   const handleCreateModal = () => {
     setOpenModalCreateAccount(true);
@@ -54,7 +55,10 @@ function Home({ dataUser }) {
             <button
               className="home-btn"
               type="button"
-              onClick={handleCreateModal}
+              onClick={() => {
+                handleCreateModal();
+                setRole("client");
+              }}
             >
               Waver
             </button>
@@ -62,6 +66,7 @@ function Home({ dataUser }) {
               <ModalCreateAccount
                 dataUser={dataUser}
                 closeModalCreateAccount={setOpenModalCreateAccount}
+                role={role}
               />
             )}
             <div className="description">
@@ -76,7 +81,10 @@ function Home({ dataUser }) {
             <button
               className="home-btn"
               type="button"
-              onClick={handleCreateModal}
+              onClick={() => {
+                handleCreateModal();
+                setRole("crew");
+              }}
             >
               Soundwaver
             </button>
