@@ -1,17 +1,21 @@
 const ValidateForm = (req, res, next) => {
-  const { name, date, starting_hour: startingHour, address, description, image, lineup } =
-    req.body;
+  const {
+    name,
+    date,
+    starting_hour: startingHour,
+    address,
+    description,
+    image,
+    lineup,
+  } = req.body;
 
   const errors = [];
 
   if (!name || name.length >= 255) {
     errors.push({ label: "nameRequire", error: "Nom obligatoire" });
-  } 
+  }
 
-  const currentDate = Date();
-
-
-  if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date) || currentDate > date) {
+  if (!date || !/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(date)) {
     errors.push({
       label: "dateRequire",
       error: "Utiliser format YYYY-MM-DD",
@@ -48,9 +52,9 @@ const ValidateForm = (req, res, next) => {
     errors.push({ label: "lineupRequire", error: "Programmation obligatoire" });
   }
 
-  // if (errors !== 0) {
-  //   return res.status(400).json(errors);
-  // }
+  if (errors.length !== 0) {
+    return res.status(400).json(errors);
+  }
 
   return next();
 };

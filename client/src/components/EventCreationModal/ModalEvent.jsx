@@ -101,7 +101,6 @@ function ModalEvent({ closeModal }) {
           <div className="section-create-event">
             <label htmlFor="hour">Heure</label>
             <input type="text" placeholder="ex: 23:00:00" ref={startingHour} />
-            {/* {formErrors.hourRequire && <p>{formErrors.hourRequire}</p>} */}
             {formErrors.hourFormat && <p>{formErrors.hourFormat}</p>}
           </div>
           <div className="section-create-event">
