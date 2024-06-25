@@ -5,13 +5,12 @@ import { ImCross } from "react-icons/im";
 import PropTypes from "prop-types";
 import mascot from "../../assets/images/masquote.svg";
 
-function ModalCreateAccount({ closeModalCreateAccount }) {
+function ModalCreateAccount({ closeModalCreateAccount, role }) {
   const firstname = useRef("");
   const lastname = useRef("");
   const email = useRef("");
   const password = useRef("");
   const [errors, setErrors] = useState({});
-
   const navigate = useNavigate();
 
   const validate = () => {
@@ -41,7 +40,6 @@ function ModalCreateAccount({ closeModalCreateAccount }) {
 
     return error;
   };
-
   async function createUser() {
     try {
       const response = await fetch(
@@ -54,7 +52,7 @@ function ModalCreateAccount({ closeModalCreateAccount }) {
             lastname: lastname.current.value,
             email: email.current.value,
             password: password.current.value,
-            role: "client",
+            role,
           }),
         }
       );
@@ -161,4 +159,5 @@ export default ModalCreateAccount;
 
 ModalCreateAccount.propTypes = {
   closeModalCreateAccount: PropTypes.func.isRequired,
+  role: PropTypes.func.isRequired,
 };

@@ -24,6 +24,7 @@ class EventRepository extends AbstractRepository {
         event.description,
         event.image,
         event.lineup,
+    
       ]
     );
     return results;

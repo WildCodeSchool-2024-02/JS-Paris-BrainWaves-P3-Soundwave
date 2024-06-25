@@ -24,7 +24,7 @@ function EventsList() {
   useEffect(() => {
     function filterEventsByMonth() {
       const filteredEvents = [];
-      for (let index = 0; index < 11; index += 1) {
+      for (let index = 0; index < 12; index += 1) {
         filteredEvents[index] = data.filter((event) => {
           const month = new Date(event.date).getMonth();
           return month === index;

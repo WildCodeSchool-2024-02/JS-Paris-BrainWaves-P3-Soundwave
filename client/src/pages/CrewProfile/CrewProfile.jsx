@@ -20,6 +20,8 @@ function CrewProfile() {
 
   const handleOpenModal = () => {
     setOpenModalEvent(true);
+    document.body.classList.add("active");
+
   };
 
   const handleBtnValue = () => {

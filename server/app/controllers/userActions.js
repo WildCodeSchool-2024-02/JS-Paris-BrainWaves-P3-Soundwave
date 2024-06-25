@@ -1,3 +1,4 @@
+const argon2 = require("argon2");
 const tables = require("../../database/tables");
 
 const browse = async ({ res, next }) => {
@@ -21,21 +22,30 @@ const read = async (req, res, next) => {
 
 const add = async (req, res, next) => {
   try {
+    const hash = await argon2.hash(req.body.password);
+    req.body.password = hash;
     const userData = req.body;
     const result = await tables.user.insertOne(userData);
     const users = await tables.user.readOne(result.insertId);
-    res.status(201).json(users)
-  } catch(err) {
+    res.status(201).json(users);
+  } catch (err) {
     next(err);
   }
 };
 
 const readLogin = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
-    const [user] = await tables.user.logIn(email, password);
-    if (user) res.status(200).json(user);
-    else res.sendStatus(400);
+    const [user] = await tables.user.findByEmail(req.body.email);
+    if (user) {
+      if (await argon2.verify(user.password, req.body.password)) {
+        delete user.password;
+        res.status(200).json(user);
+      } else {
+        res.status(400).json("Wrong Credentials");
+      }
+    } else {
+      res.sendStatus(404);
+    }
   } catch (err) {
     next(err);
   }
