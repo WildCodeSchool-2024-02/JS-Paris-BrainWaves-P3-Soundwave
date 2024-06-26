@@ -74,6 +74,7 @@ class EventsSeeder extends AbstractSeeder {
       image:
         "https://scontent-cdg4-1.xx.fbcdn.net/v/t39.30808-6/371846629_330081256196779_319580765884456587_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=7xtESdTZQDkQ7kNvgG61-qR&_nc_ht=scontent-cdg4-1.xx&oh=00_AYAwR3vH4hzxToIvnPT6gfOyEGNqary02vBIHEQhyfY42Q&oe=6671D28A",
       lineup: "Retrolog, Latent, DjToto, MisterDJ",
+      refName: "event_6"
     };
 
     this.insert(event1);
