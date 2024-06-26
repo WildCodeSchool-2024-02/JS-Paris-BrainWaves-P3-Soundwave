@@ -7,27 +7,27 @@ class CategorySeeder extends AbstractSeeder {
 
   run() {
     const cat1 = {
-      name: "House",
+      genre: "House",
       refName: "category_1",
     };
     const cat2 = {
-      name: "Techno",
+      genre: "Techno",
       refName: "category_2",
     };
     const cat3 = {
-      name: "Trance",
+      genre: "Trance",
       refName: "category_3",
     };
     const cat4 = {
-      name: "Dub",
+      genre: "Dub",
       refName: "category_4",
     };
     const cat5 = {
-      name: "Tech House",
+      genre: "Tech House",
       refName: "category_5",
     };
     const cat6 = {
-      name: "Electro",
+      genre: "Electro",
       refName: "category_6",
     };
 
