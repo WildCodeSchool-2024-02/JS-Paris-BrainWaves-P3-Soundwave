@@ -7,7 +7,7 @@ class UserRepository extends AbstractRepository {
 
   async readOne(id) {
     const [[users]] = await this.database.query(
-      `SELECT * FROM ${this.table} WHERE id = ? AND role = "client"`,
+      `SELECT * FROM ${this.table} WHERE id = ? `,
       [id]
     );
     return users;
@@ -23,11 +23,11 @@ class UserRepository extends AbstractRepository {
   }
 
   async findByEmail(email) {
-    const [users] = await this.database.query(
+    const [user] = await this.database.query(
       `SELECT * FROM ${this.table} WHERE email = ? `,
       [email]
     );
-    return users;
+    return user;
   }
 
   

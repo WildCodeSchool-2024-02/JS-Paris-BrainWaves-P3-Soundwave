@@ -6,18 +6,22 @@ import Footer from "./components/Footer/Footer";
 import "./global.css";
 
 function App() {
-  const [dataUser, setDataUser] = useState({});
+const [auth, setAuth] = useState({
+  isLogged: false,
+  user: null,
+  token: null,
+});
   const [admin] = useState(false);
   const [updateEvents, setUpdateEvents] = useState(false);
   const [updateCrews, setUpdateCrews] = useState(false);
 
   return (
     <>
-      <NavBar dataUser={dataUser} setDataUser={setDataUser} />
+      <NavBar auth={auth} setAuth={setAuth} />
       <Outlet
         context={{
-          dataUser,
-          setDataUser,
+          auth,
+          setAuth,
           admin,
           updateCrews,
           setUpdateCrews,
