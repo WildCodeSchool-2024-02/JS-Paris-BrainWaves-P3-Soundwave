@@ -34,8 +34,8 @@ const add = async (req, res, next) => {
 
 const readCategoryEvents = async (req, res, next) => {
   try {
-    const [category] = await tables.event.readCategory(req.params.genre);
-    res.status(200).json(category);
+    const [results] = await tables.event.readCategory(req.params.genre);
+    res.status(200).json(results);
   } catch (error) {
     next(error);
   }

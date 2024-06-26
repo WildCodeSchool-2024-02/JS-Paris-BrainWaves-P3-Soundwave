@@ -7,30 +7,26 @@ import "./modalsearchbar.css";
 function ModalSearchBar({ closeModalSearchBar }) {
   const [events, setEvents] = useState([]);
   const [crews, setCrews] = useState([]);
-  const [category, setCategory] = useState("house");
+  const [categories, setCategories] = useState([]);
   const [dataText, setDataText] = useState("");
-  
+
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/events`)
-    .then((response) => response.json())
-    .then((data) => setEvents(data));
+      .then((response) => response.json())
+      .then((data) => setEvents(data));
   }, []);
-  
+
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/crews`)
-    .then((response) => response.json())
-    .then((data) => setCrews(data));
+      .then((response) => response.json())
+      .then((data) => setCrews(data));
   }, []);
-  
+
   useEffect(() => {
-
-    fetch(`${import.meta.env.VITE_API_URL}/api/events/category/${category}`)
-    .then((response) => response.json())
-    .then((data) => { setCategory(data);
-    });
-    
-  },[category])
-
+    fetch(`${import.meta.env.VITE_API_URL}/api/category`)
+      .then((response) => response.json())
+      .then((data) => setCategories(data));
+  }, []);
 
   const handleCloseModalSearchBar = () => {
     closeModalSearchBar(false);
@@ -49,21 +45,7 @@ function ModalSearchBar({ closeModalSearchBar }) {
     const nameEvents = event.name
       .toLowerCase()
       .includes(dataText.toLowerCase());
-
-    const dateEvents = event.date;
-    const dateObject = new Date(dateEvents);
-
-    const year = dateObject.getFullYear();
-    const month = dateObject.toLocaleString("default", { month: "long" });
-    const day = dateObject.getDate();
-    const hours = dateObject.getHours();
-    const minutes = dateObject.getMinutes();
-    const seconds = dateObject.getSeconds();
-
-    const formattedDate = `${day.toString().padStart(2, "0")} ${month} ${year} ${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-
-    const dateEventsMatch = formattedDate.includes(dataText.toLowerCase());
-    return nameEvents || dateEventsMatch;
+    return nameEvents;
   });
 
   const filteredCrews = shuffleCrews.filter((crew) =>
@@ -88,6 +70,24 @@ function ModalSearchBar({ closeModalSearchBar }) {
           value={dataText}
           onChange={handleChange}
         />
+        <section className="section-option-date-category">
+          <select label="select" type="select" name="date" id="date">
+            <option label="Date" />
+            {events.map((eventDate) => (
+              <option key={eventDate.id} value={eventDate.id}>
+                {eventDate.date}
+              </option>
+            ))}
+          </select>
+          <select label="select" type="select" name="style" id="style">
+            <option label="Genres" />
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.style}
+              </option>
+            ))}
+          </select>
+        </section>
         <section className="section-display-suggestions">
           <h2>Événements</h2>
           <div className="display-search-events">

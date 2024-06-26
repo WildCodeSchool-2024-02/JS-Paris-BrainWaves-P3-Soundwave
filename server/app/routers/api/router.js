@@ -10,11 +10,13 @@ const itemsRouter = require("./items/router");
 const eventRouter = require("./events/router");
 const crewRouter = require("./crews/router");
 const userRouter = require("./users/router");
+const categoryRouter = require("./category/router");
 
 router.use("/items", itemsRouter);
 router.use("/events", eventRouter);
 router.use("/crews", crewRouter);
 router.use("/users", userRouter);
+router.use("/category", categoryRouter);
 
 /* ************************************************************************* */
 
