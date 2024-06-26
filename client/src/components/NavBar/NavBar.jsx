@@ -7,7 +7,7 @@ import soundwave from "../../assets/images/SoundWave.svg";
 import mascot from "../../assets/images/masquote.svg";
 import ModalLogIn from "../Modal/ModalLogIn";
 
-function NavBar({ dataUser, setDataUser }) {
+function NavBar({ auth, setAuth }) {
   const navigate = useNavigate();
 
   const [burgerClass, setBurgerClass] = useState("burger-bar unclicked");
@@ -84,8 +84,8 @@ function NavBar({ dataUser, setDataUser }) {
       {openModalLogIn && (
         <ModalLogIn
           closeModalLogIn={setOpenModalLogIn}
-          dataUser={dataUser}
-          setDataUser={setDataUser}
+          auth={auth}
+          setAuth={setAuth}
         />
       )}
       <nav className={menuClass}>
@@ -127,6 +127,6 @@ function NavBar({ dataUser, setDataUser }) {
 export default NavBar;
 
 NavBar.propTypes = {
-  dataUser: PropTypes.func.isRequired,
-  setDataUser: PropTypes.func.isRequired,
+  auth: PropTypes.func.isRequired,
+  setAuth: PropTypes.func.isRequired,
 };
