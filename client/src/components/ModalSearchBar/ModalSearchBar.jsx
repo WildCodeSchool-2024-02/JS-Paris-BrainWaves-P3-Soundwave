@@ -41,12 +41,9 @@ function ModalSearchBar({ closeModalSearchBar }) {
   const shuffleEvents = shuffle(events);
   const shuffleCrews = shuffle(crews);
 
-  const filteredEvents = shuffleEvents.filter((event) => {
-    const nameEvents = event.name
-      .toLowerCase()
-      .includes(dataText.toLowerCase());
-    return nameEvents;
-  });
+  const filteredEvents = shuffleEvents.filter((event) =>
+    event.name.toLowerCase().includes(dataText.toLowerCase())
+  );
 
   const filteredCrews = shuffleCrews.filter((crew) =>
     crew.name.toLowerCase().includes(dataText.toLowerCase())

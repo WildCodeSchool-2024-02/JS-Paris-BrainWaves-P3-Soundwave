@@ -16,7 +16,7 @@ router.use("/items", itemsRouter);
 router.use("/events", eventRouter);
 router.use("/crews", crewRouter);
 router.use("/users", userRouter);
-router.use("/category", categoryRouter);
+router.use("/categories", categoryRouter);
 
 /* ************************************************************************* */
 
