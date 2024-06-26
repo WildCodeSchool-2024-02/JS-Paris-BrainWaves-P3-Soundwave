@@ -6,15 +6,16 @@ import { FaSearch } from "react-icons/fa";
 import soundwave from "../../assets/images/SoundWave.svg";
 import mascot from "../../assets/images/masquote.svg";
 import ModalLogIn from "../Modal/ModalLogIn";
+import ModalSearchBar from "../ModalSearchBar/ModalSearchBar";
 
-function NavBar({ dataUser, setDataUser }) {
+function NavBar({ auth, setAuth }) {
   const navigate = useNavigate();
 
   const [burgerClass, setBurgerClass] = useState("burger-bar unclicked");
   const [menuClass, setMenuClass] = useState("menu hidden");
   const [isMenuClicked, setIsMenuClicked] = useState(false);
-
   const [openModalLogIn, setOpenModalLogIn] = useState(false);
+  const [openModalSearchBar, setOpenModalSearchBar] = useState(false);
 
   const updateMenu = () => {
     if (!isMenuClicked) {
@@ -34,6 +35,11 @@ function NavBar({ dataUser, setDataUser }) {
     document.body.classList.add("active");
   };
 
+  const handleModalSearchBar = () => {
+    setOpenModalSearchBar(true);
+    document.body.classList.add("active");
+  };
+
   return (
     <section className="display-navbar">
       <nav>
@@ -46,7 +52,10 @@ function NavBar({ dataUser, setDataUser }) {
           onKeyDown={() => navigate("/")}
         />
         <div className="navigation">
-          <FaSearch className="logo-searchbar" />
+          <FaSearch className="logo-searchbar" onClick={handleModalSearchBar} />{" "}
+          {openModalSearchBar && (
+            <ModalSearchBar closeModalSearchBar={setOpenModalSearchBar} />
+          )}
           <div
             className="burger-menu"
             role="presentation"
@@ -59,7 +68,13 @@ function NavBar({ dataUser, setDataUser }) {
           </div>
         </div>
         <div className="navbar-desktop-btns">
-          <FaSearch className="logo-searchbar-desktop" />
+          <FaSearch
+            className="logo-searchbar-desktop"
+            onClick={handleModalSearchBar}
+          />
+          {openModalSearchBar && (
+            <ModalSearchBar closeModalSearchBar={setOpenModalSearchBar} />
+          )}
           <ul>
             <li
               role="presentation"
@@ -84,8 +99,8 @@ function NavBar({ dataUser, setDataUser }) {
       {openModalLogIn && (
         <ModalLogIn
           closeModalLogIn={setOpenModalLogIn}
-          dataUser={dataUser}
-          setDataUser={setDataUser}
+          auth={auth}
+          setAuth={setAuth}
         />
       )}
       <nav className={menuClass}>
@@ -127,6 +142,6 @@ function NavBar({ dataUser, setDataUser }) {
 export default NavBar;
 
 NavBar.propTypes = {
-  dataUser: PropTypes.func.isRequired,
-  setDataUser: PropTypes.func.isRequired,
+  auth: PropTypes.func.isRequired,
+  setAuth: PropTypes.func.isRequired,
 };

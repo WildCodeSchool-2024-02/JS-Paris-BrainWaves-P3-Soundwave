@@ -72,7 +72,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sound_wavedb`.`category` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(80) NOT NULL,
+  `style` VARCHAR(80) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
