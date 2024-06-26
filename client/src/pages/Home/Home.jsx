@@ -1,15 +1,15 @@
 import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
-import PropTypes from "prop-types";
 import heart from "../../assets/images/masquote.svg";
 import "./home.css";
 import HomeSlider from "../../components/HomeSlider/HomeSlider";
 import ModalCreateAccount from "../../components/Modal/ModalCreateAccount";
 
-function Home({ dataUser }) {
+function Home() {
   const results = useLoaderData();
   const [isOpen, setIsOpen] = useState(false);
   const [openModalCreateAccount, setOpenModalCreateAccount] = useState(false);
+  const [role, setRole] = useState("");
 
   const handleCreateModal = () => {
     setOpenModalCreateAccount(true);
@@ -54,14 +54,17 @@ function Home({ dataUser }) {
             <button
               className="home-btn"
               type="button"
-              onClick={handleCreateModal}
+              onClick={() => {
+                handleCreateModal();
+                setRole("client");
+              }}
             >
               Waver
             </button>
             {openModalCreateAccount && (
               <ModalCreateAccount
-                dataUser={dataUser}
                 closeModalCreateAccount={setOpenModalCreateAccount}
+                role={role}
               />
             )}
             <div className="description">
@@ -76,7 +79,10 @@ function Home({ dataUser }) {
             <button
               className="home-btn"
               type="button"
-              onClick={handleCreateModal}
+              onClick={() => {
+                handleCreateModal();
+                setRole("crew");
+              }}
             >
               Soundwaver
             </button>
@@ -94,7 +100,3 @@ function Home({ dataUser }) {
   );
 }
 export default Home;
-
-Home.propTypes = {
-  dataUser: PropTypes.func.isRequired,
-};

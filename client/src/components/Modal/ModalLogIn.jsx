@@ -5,7 +5,7 @@ import { ImCross } from "react-icons/im";
 import PropTypes from "prop-types";
 import mascot from "../../assets/images/masquote.svg";
 
-function ModalLogIn({ closeModalLogIn, setDataUser }) {
+function ModalLogIn({ closeModalLogIn, setAuth }) {
   const email = useRef("");
   const password = useRef("");
   const [errors, setErrors] = useState([]);
@@ -46,10 +46,10 @@ function ModalLogIn({ closeModalLogIn, setDataUser }) {
         }
       );
       if (response.status === 200) {
-        const result = await response.json();
-        setDataUser(result);
+        const { user, token } = await response.json();
+        setAuth({ isLogged: true, user, token });
         handleCloseModalLogIn();
-        navigate("/user-profile");
+        navigate(`/`);
       } else {
         setErrors({ login: "Identifiant inconnu" });
       }
@@ -117,5 +117,5 @@ export default ModalLogIn;
 
 ModalLogIn.propTypes = {
   closeModalLogIn: PropTypes.func.isRequired,
-  setDataUser: PropTypes.func.isRequired,
+  setAuth: PropTypes.func.isRequired,
 };
