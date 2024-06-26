@@ -12,11 +12,11 @@ function EventDetail() {
           <img src={event.image} alt="poster" className="event-details-img" />
         </div>
         <section className="event-details-info">
-          <div className="heart-icon-container">
+          <div className="heart-icon-details-container">
             <FaRegHeart className="heart-icon" />
+            <h1>{event.name}</h1>
           </div>
           <div className="event-main-info">
-            <h1>{event.name}</h1>
             <p className="date-hour">
               {event.date.slice(0, 10)} | {event.starting_hour.slice(0, 5)}
             </p>

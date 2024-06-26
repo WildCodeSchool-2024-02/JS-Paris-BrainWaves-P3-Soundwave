@@ -21,6 +21,13 @@
   }
 }
 
+.heart-icon-details-container {
+  display: flex;
+  width: 85vw;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
 .event-details-info {
   display: flex;
   flex-direction: column;
@@ -35,7 +42,7 @@
 
 .event-details-description {
   font-size: 0.7em;
-  width: 60%;
+  width: 80%;
 }
 
 @media screen and (min-width: 1024px) {
@@ -47,5 +54,10 @@
   .details-img-container {
     display: flex;
     justify-content: center;
+  }
+
+  .event-details-description {
+    font-size: 1em;
+    width: 80%;
   }
 }

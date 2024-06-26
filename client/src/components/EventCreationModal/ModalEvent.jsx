@@ -17,8 +17,10 @@ function ModalEvent({ closeModal }) {
   const [formErrors, setFormErrors] = useState({
     nameRequire: null,
     dateRequire: null,
-    hourRequire: null,
+    dateCurrent: null,
     dateFormat: null,
+    hourRequire: null,
+    hourFormat: null,
     addressRequire: null,
     descriptionRequire: null,
     imageRequire: null,
@@ -61,6 +63,8 @@ function ModalEvent({ closeModal }) {
         setFormErrors({
           nameRequire: null,
           dateRequire: null,
+          dateCurrent: null,
+          dateFormat: null,
           hourRequire: null,
           hourFormat: null,
           addressRequire: null,
@@ -96,7 +100,9 @@ function ModalEvent({ closeModal }) {
           <div className="section-create-event">
             <label htmlFor="date">Date</label>
             <input type="text" placeholder="ex: YYYY-MM-DD" ref={date} />
-            {formErrors.dateRequire && <p>{formErrors.dateRequire}</p>}
+            {formErrors.dateRequire && <p>{formErrors.dateRequire} </p>}
+            {formErrors.dateCurrent && <p>{formErrors.dateCurrent} </p>}
+            {formErrors.dateFormat && <p>{formErrors.dateFormat}</p>}
           </div>
           <div className="section-create-event">
             <label htmlFor="hour">Heure</label>
