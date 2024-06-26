@@ -1,14 +1,18 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import PropTypes from "prop-types";
-
+import { useNavigate } from "react-router-dom";
 import { FreeMode, Autoplay } from "swiper/modules";
 import "./homeslider.css";
 import { useState, useEffect } from "react";
 
-function HomeSlider({ props }) {
+function HomeSlider({ events }) {
   const [spaceBetween, setSpaceBetween] = useState(5);
-  const events = props;
+  const navigate = useNavigate();
+
+  const handleDetailsEvent = (id) => {
+    navigate(`/event-details/${id}`);
+  };
 
   useEffect(() => {
     const updateSpaceBetween = () => {
@@ -33,6 +37,7 @@ function HomeSlider({ props }) {
       loop
       freeMode
       speed={1800}
+      preventClicks
       autoplay={{
         delay: 1,
         disableOnInteraction: false,
@@ -42,14 +47,21 @@ function HomeSlider({ props }) {
     >
       {events.map((result) => (
         <SwiperSlide key={result.id}>
-          <img key={result.id} src={result.image} alt="" />
+          <img
+            onClick={() => handleDetailsEvent(result.id)}
+            onKeyDown={() => handleDetailsEvent(result.id)}
+            role="presentation"
+            src={result.image}
+            alt={result.name}
+          />
         </SwiperSlide>
       ))}
     </Swiper>
   );
 }
+
 HomeSlider.propTypes = {
-  props: PropTypes.arrayOf(
+  events: PropTypes.arrayOf(
     PropTypes.shape({
       image: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
