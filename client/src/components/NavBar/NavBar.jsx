@@ -6,6 +6,7 @@ import { FaSearch } from "react-icons/fa";
 import soundwave from "../../assets/images/SoundWave.svg";
 import mascot from "../../assets/images/masquote.svg";
 import ModalLogIn from "../Modal/ModalLogIn";
+import ModalSearchBar from "../ModalSearchBar/ModalSearchBar";
 
 function NavBar({ auth, setAuth }) {
   const navigate = useNavigate();
@@ -13,8 +14,8 @@ function NavBar({ auth, setAuth }) {
   const [burgerClass, setBurgerClass] = useState("burger-bar unclicked");
   const [menuClass, setMenuClass] = useState("menu hidden");
   const [isMenuClicked, setIsMenuClicked] = useState(false);
-
   const [openModalLogIn, setOpenModalLogIn] = useState(false);
+  const [openModalSearchBar, setOpenModalSearchBar] = useState(false);
 
   const updateMenu = () => {
     if (!isMenuClicked) {
@@ -34,6 +35,11 @@ function NavBar({ auth, setAuth }) {
     document.body.classList.add("active");
   };
 
+  const handleModalSearchBar = () => {
+    setOpenModalSearchBar(true);
+    document.body.classList.add("active");
+  };
+
   return (
     <section className="display-navbar">
       <nav>
@@ -46,7 +52,10 @@ function NavBar({ auth, setAuth }) {
           onKeyDown={() => navigate("/")}
         />
         <div className="navigation">
-          <FaSearch className="logo-searchbar" />
+          <FaSearch className="logo-searchbar" onClick={handleModalSearchBar} />{" "}
+          {openModalSearchBar && (
+            <ModalSearchBar closeModalSearchBar={setOpenModalSearchBar} />
+          )}
           <div
             className="burger-menu"
             role="presentation"
@@ -59,7 +68,13 @@ function NavBar({ auth, setAuth }) {
           </div>
         </div>
         <div className="navbar-desktop-btns">
-          <FaSearch className="logo-searchbar-desktop" />
+          <FaSearch
+            className="logo-searchbar-desktop"
+            onClick={handleModalSearchBar}
+          />
+          {openModalSearchBar && (
+            <ModalSearchBar closeModalSearchBar={setOpenModalSearchBar} />
+          )}
           <ul>
             <li
               role="presentation"
