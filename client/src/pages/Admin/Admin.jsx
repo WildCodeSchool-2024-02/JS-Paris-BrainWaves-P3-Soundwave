@@ -8,7 +8,7 @@ function Admin() {
   const [events, setEvents] = useState([]);
   const [crews, setCrews] = useState([]);
   const [toggleButtons, setToggleButtons] = useState(true);
-  const { updateEvents, updateCrews } = useOutletContext();
+  const { auth, updateEvents, updateCrews } = useOutletContext();
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/events/tovalidate`)
@@ -20,7 +20,7 @@ function Admin() {
   }, [updateEvents, updateCrews]);
   return (
     <main className="admin-page-main">
-      <h1>Bonjour Administrateur !</h1>
+      <h1>Bonjour {auth.user.firstname} !</h1>
       <div className="button-container-admin-page">
         <button type="button" onClick={() => setToggleButtons(true)}>
           Evènements

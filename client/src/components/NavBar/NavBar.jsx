@@ -127,6 +127,6 @@ function NavBar({ auth, setAuth }) {
 export default NavBar;
 
 NavBar.propTypes = {
-  auth: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
   setAuth: PropTypes.func.isRequired,
 };

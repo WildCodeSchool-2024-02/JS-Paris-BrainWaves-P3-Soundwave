@@ -1,6 +1,5 @@
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { TiTick, TiTimes } from "react-icons/ti";
-import "react-toastify/dist/ReactToastify.css";
 import "./admin-buttons.css";
 
 function AdminButton({ id }) {
@@ -112,7 +111,6 @@ function AdminButton({ id }) {
           unvalidateEvent();
         }}
       />
-      <ToastContainer />
     </div>
   );
 }
