@@ -4,9 +4,9 @@ import "./cardcrew.css";
 import { FaRegHeart } from "react-icons/fa";
 import AdminButton from "../AdminButtons/AdminButtons";
 
-function CardCrew({ result, updateCrews, setUpdateCrews }) {
+function CardCrew({ result }) {
   const navigate = useNavigate();
-  const { admin } = useOutletContext();
+  const { admin, updateCrews, setUpdateCrews } = useOutletContext();
 
   return (
     <section
@@ -24,7 +24,7 @@ function CardCrew({ result, updateCrews, setUpdateCrews }) {
               <AdminButton
                 updateCrews={updateCrews}
                 setUpdateCrews={setUpdateCrews}
-                id = {result.id}
+                id={result.id}
               />
             ) : (
               <FaRegHeart className="heart-icon" />
@@ -47,7 +47,7 @@ function CardCrew({ result, updateCrews, setUpdateCrews }) {
                 <AdminButton
                   updateCrews={updateCrews}
                   setUpdateCrews={setUpdateCrews}
-                  id = {result.id}
+                  id={result.id}
                 />
               ) : (
                 <FaRegHeart className="heart-icon" />

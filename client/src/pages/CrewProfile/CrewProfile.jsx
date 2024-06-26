@@ -3,12 +3,12 @@ import { useState, useEffect } from "react";
 import "./crew-profile.css";
 import { FaRegHeart } from "react-icons/fa";
 import EventCard from "../../components/EventCard/EventCard";
-import ModalEvent from "../../EventCreationModal/ModalEvent";
+import ModalEvent from "../../components/EventCreationModal/ModalEvent";
 import AdminButton from "../../components/AdminButtons/AdminButtons";
 
 function CrewProfile() {
   const crew = useLoaderData();
-  const {admin, updateCrews, setUpdateCrews, updateEvents, setUpdateEvents} = useOutletContext();
+  const { admin } = useOutletContext();
   const [login] = useState(false);
   const [edit, setEdit] = useState(false);
   const [btnValue, setBtnValue] = useState("editer");
@@ -21,7 +21,6 @@ function CrewProfile() {
   const handleOpenModal = () => {
     setOpenModalEvent(true);
     document.body.classList.add("active");
-
   };
 
   const handleBtnValue = () => {
@@ -114,7 +113,7 @@ function CrewProfile() {
             >
               {btnValue}
             </button>
-            {!admin && <AdminButton id = {crew.id} updateCrews={updateCrews} setUpdateCrews={setUpdateCrews}/>}
+            {!admin && <AdminButton id={crew.id} />}
           </div>
         </div>
       </section>
@@ -162,8 +161,6 @@ function CrewProfile() {
             description={event.description}
             date={event.date}
             startingHour={event.starting_hour}
-            updateEvents={updateEvents}
-            setUpdateEvents={setUpdateEvents}
           />
         ))}
       </section>

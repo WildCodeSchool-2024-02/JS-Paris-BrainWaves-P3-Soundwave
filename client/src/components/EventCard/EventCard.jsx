@@ -4,16 +4,7 @@ import "./eventcard.css";
 import { FaRegHeart } from "react-icons/fa";
 import AdminButton from "../AdminButtons/AdminButtons";
 
-function EventCard({
-  image,
-  name,
-  description,
-  date,
-  startingHour,
-  id,
-  updateEvents,
-  setUpdateEvents,
-}) {
+function EventCard({ image, name, description, date, startingHour, id }) {
   const navigate = useNavigate();
   const { admin } = useOutletContext();
 
@@ -38,11 +29,7 @@ function EventCard({
         </div>
       </div>
       {!admin ? (
-        <AdminButton
-          id={id}
-          updateEvents={updateEvents}
-          setUpdateEvents={setUpdateEvents}
-        />
+        <AdminButton id={id} />
       ) : (
         <div className="heart-icon-container">
           <FaRegHeart className="heart-icon" />

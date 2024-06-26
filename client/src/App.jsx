@@ -6,11 +6,11 @@ import Footer from "./components/Footer/Footer";
 import "./global.css";
 
 function App() {
-const [auth, setAuth] = useState({
-  isLogged: false,
-  user: null,
-  token: null,
-});
+  const [auth, setAuth] = useState({
+    isLogged: false,
+    user: null,
+    token: null,
+  });
   const [admin] = useState(false);
   const [updateEvents, setUpdateEvents] = useState(false);
   const [updateCrews, setUpdateCrews] = useState(false);

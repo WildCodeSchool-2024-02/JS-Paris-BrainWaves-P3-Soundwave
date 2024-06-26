@@ -5,7 +5,7 @@ import AdminButton from "../../components/AdminButtons/AdminButtons";
 
 function EventDetail() {
   const event = useLoaderData();
-  const {admin, updateEvents, setUpdateEvents} = useOutletContext();
+  const { admin } = useOutletContext();
 
   return (
     <main className="main-event-details">
@@ -15,7 +15,7 @@ function EventDetail() {
         </div>
         <section className="event-details-info">
           {!admin ? (
-            <AdminButton id={event.id} updateEvents={updateEvents} setUpdateEvents={setUpdateEvents}/>
+            <AdminButton id={event.id} />
           ) : (
             <div className="heart-icon-container">
               <FaRegHeart className="heart-icon" />

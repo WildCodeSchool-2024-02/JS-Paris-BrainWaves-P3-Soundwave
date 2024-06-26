@@ -1,30 +1,14 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { TiTick, TiTimes } from "react-icons/ti";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./admin-buttons.css";
 
-function AdminButton({
-  id,
-  updateEvents,
-  setUpdateEvents,
-  updateCrews,
-  setUpdateCrews,
-}) {
+function AdminButton({ id }) {
   const navigate = useNavigate();
-  // messages de succès
-  const successNotificationForValidation = () => {
-    toast.success(`évènement validé !`, {
-      position: toast.POSITION.TOP_RIGHT,
-    });
-  };
-  const successNotificationForRejection = (item) => {
-    toast.success(`${item} rejeté !`, {
-      position: toast.POSITION.TOP_RIGHT,
-    });
-  };
+  const { updateEvents, setUpdateEvents, updateCrews, setUpdateCrews } =
+    useOutletContext();
 
-  // accepter un évènement
+  // validate an event
   async function validateEvent() {
     try {
       const response = await fetch(
@@ -40,14 +24,13 @@ function AdminButton({
       if (response.ok) {
         setUpdateEvents(!updateEvents);
         navigate("/admin");
-        successNotificationForValidation();
       }
     } catch (error) {
       console.error(error);
     }
   }
 
-  // refuser un évènement
+  // reject an event
   async function unvalidateEvent() {
     try {
       const response = await fetch(
@@ -63,14 +46,13 @@ function AdminButton({
       if (response.ok) {
         setUpdateEvents(!updateEvents);
         navigate("/admin");
-        successNotificationForRejection("évènement");
       }
     } catch (error) {
       console.error(error);
     }
   }
 
-  // accepter un collectif
+  // validate a crew
   async function validateCrew() {
     try {
       const response = await fetch(
@@ -92,7 +74,7 @@ function AdminButton({
     }
   }
 
-  // refuser un évènement
+  // reject a crew
   async function unvalidateCrew() {
     try {
       const response = await fetch(
