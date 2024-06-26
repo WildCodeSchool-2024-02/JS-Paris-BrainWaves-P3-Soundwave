@@ -6,12 +6,16 @@ import Footer from "./components/Footer/Footer";
 import "./global.css";
 
 function App() {
-  const [dataUser, setDataUser] = useState({});
+  const [auth, setAuth] = useState({
+    isLogged: false,
+    user: null,
+    token: null,
+  });
 
   return (
     <>
-      <NavBar dataUser={dataUser} setDataUser={setDataUser} />
-      <Outlet context={{ dataUser, setDataUser }} />
+      <NavBar auth={auth} setAuth={setAuth} />
+      <Outlet context={{ auth, setAuth }} />
       <Footer />
     </>
   );
