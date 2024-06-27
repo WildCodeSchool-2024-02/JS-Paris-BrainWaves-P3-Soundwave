@@ -53,6 +53,14 @@ const editStatus = async (req, res, next) => {
     next(error);
   }
 };
+const readCategoryEvents = async (req, res, next) => {
+  try {
+    const [results] = await tables.event.readCategory(req.params.genre);
+    res.status(200).json(results);
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   browse,
@@ -60,4 +68,5 @@ module.exports = {
   readUnvalide,
   add,
   editStatus,
+  readCategoryEvents,
 };
