@@ -48,14 +48,13 @@ function ModalLogIn({ closeModalLogIn, auth, setAuth }) {
       if (response.status === 200) {
         const { user, token } = await response.json();
         setAuth({ isLogged: true, user, token });
-        console.log(auth.user);
-        if (auth.user.role === "admin") {
-          navigate("/admin");
-        }
-        else if (auth.user.role === "client" || "crew"){
-          navigate(`/`);
-        }
-        handleCloseModalLogIn();
+          if (auth.user.role === "admin") {
+            navigate("/admin");
+          }
+          else if (auth.user.role === "client" || "crew"){
+            navigate("/");
+          }
+          handleCloseModalLogIn();
       } else {
         setErrors({ login: "Identifiant inconnu" });
       }

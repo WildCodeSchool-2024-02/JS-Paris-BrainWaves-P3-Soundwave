@@ -1,5 +1,6 @@
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { TiTick, TiTimes } from "react-icons/ti";
+import { toast } from "react-toastify";
 import "./admin-buttons.css";
 
 function AdminButton({ id }) {
@@ -23,9 +24,11 @@ function AdminButton({ id }) {
       if (response.ok) {
         setUpdateEvents(!updateEvents);
         navigate("/admin");
+        toast.success("L'évènement a été validé !");
       }
     } catch (error) {
       console.error(error);
+      toast.error("Une erreur est survenue");
     }
   }
 
@@ -45,9 +48,11 @@ function AdminButton({ id }) {
       if (response.ok) {
         setUpdateEvents(!updateEvents);
         navigate("/admin");
+        toast.success("L'évènement a été rejeté");
       }
     } catch (error) {
       console.error(error);
+      toast.error("Une erreur est survenue");
     }
   }
 
@@ -67,9 +72,11 @@ function AdminButton({ id }) {
       if (response.ok) {
         setUpdateCrews(!updateCrews);
         navigate("/admin");
+        toast.success("Le collectif a été validé !");
       }
     } catch (error) {
       console.error(error);
+      toast.error("Une erreur est survenue");
     }
   }
 
@@ -89,9 +96,11 @@ function AdminButton({ id }) {
       if (response.ok) {
         setUpdateCrews(!updateCrews);
         navigate("/admin");
+        toast.success("Le collectif a été rejeté");
       }
     } catch (error) {
       console.error(error);
+      toast.error("Une erreur est survenue");
     }
   }
 

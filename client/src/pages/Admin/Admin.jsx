@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import CardCrew from "../../components/CardCrew/CardCrew";
 import EventCard from "../../components/EventCard/EventCard";
 import "./admin.css";
@@ -21,6 +23,7 @@ function Admin() {
   return (
     <main className="admin-page-main">
       <h1>Bonjour {auth.user.firstname} !</h1>
+      <ToastContainer />
       <div className="button-container-admin-page">
         <button type="button" onClick={() => setToggleButtons(true)}>
           Evènements

@@ -8,7 +8,7 @@ import AdminButton from "../../components/AdminButtons/AdminButtons";
 
 function CrewProfile() {
   const crew = useLoaderData();
-  const { admin } = useOutletContext();
+  const { auth } = useOutletContext();
   const [login] = useState(false);
   const [edit, setEdit] = useState(false);
   const [btnValue, setBtnValue] = useState("editer");
@@ -113,7 +113,9 @@ function CrewProfile() {
             >
               {btnValue}
             </button>
-            {!admin && <AdminButton id={crew.id} />}
+            {auth.isLogged &&
+              auth.user.role === "admin" &&
+              !crew.is_validated && <AdminButton id={crew.id} />}
           </div>
         </div>
       </section>
@@ -161,6 +163,7 @@ function CrewProfile() {
             description={event.description}
             date={event.date}
             startingHour={event.starting_hour}
+            isValidated={event.is_validated}
           />
         ))}
       </section>

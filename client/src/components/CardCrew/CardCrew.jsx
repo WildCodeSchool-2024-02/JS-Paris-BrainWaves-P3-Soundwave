@@ -6,7 +6,7 @@ import AdminButton from "../AdminButtons/AdminButtons";
 
 function CardCrew({ result }) {
   const navigate = useNavigate();
-  const { admin, updateCrews, setUpdateCrews } = useOutletContext();
+  const { updateCrews, setUpdateCrews, auth } = useOutletContext();
 
   return (
     <section
@@ -20,7 +20,9 @@ function CardCrew({ result }) {
           <div className="crew-card-presentation">
             <img src={result.image} alt="logo du collectif" />
             <h2>{result.name}</h2>
-            {admin ? (
+            {auth.isLogged &&
+            auth.user.role === "admin" &&
+            !result.is_validated ? (
               <AdminButton
                 updateCrews={updateCrews}
                 setUpdateCrews={setUpdateCrews}
@@ -43,7 +45,9 @@ function CardCrew({ result }) {
           <div className="crew-card-desc">
             <div className="crew-card-name-buttons">
               <h2>{result.name}</h2>
-              {!admin ? (
+              {auth.isLogged &&
+              auth.user.role === "admin" &&
+              !result.is_validated ? (
                 <AdminButton
                   updateCrews={updateCrews}
                   setUpdateCrews={setUpdateCrews}

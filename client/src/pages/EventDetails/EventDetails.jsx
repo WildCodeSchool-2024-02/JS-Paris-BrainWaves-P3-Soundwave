@@ -5,7 +5,7 @@ import AdminButton from "../../components/AdminButtons/AdminButtons";
 
 function EventDetail() {
   const event = useLoaderData();
-  const { admin } = useOutletContext();
+  const { auth } = useOutletContext();
 
   return (
     <main className="main-event-details">
@@ -14,7 +14,9 @@ function EventDetail() {
           <img src={event.image} alt="poster" className="event-details-img" />
         </div>
         <section className="event-details-info">
-          {!admin ? (
+          {auth.isLogged &&
+          auth.user.role === "admin" &&
+          !event.is_validated ? (
             <AdminButton id={event.id} />
           ) : (
             <div className="heart-icon-container">
