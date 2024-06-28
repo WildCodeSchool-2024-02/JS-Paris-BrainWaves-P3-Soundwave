@@ -31,7 +31,7 @@ class AbstractRepository {
     return row;
   }
 
-  async readAllUnvalide() {
+  async readAllPendings() {
     const [rows] = await this.database.query(`SELECT * FROM ${this.table} WHERE is_validated IS null`);
     return rows;
   }

@@ -23,11 +23,10 @@ const read = async (req, res, next) => {
   }
 };
 
-const readUnvalide = async ({ res, next }) => {
+const readPendingEvents = async ({ res, next }) => {
   try {
-    const unvalideEvents = await tables.event.readAllUnvalide();
-    console.info(unvalideEvents);
-    res.status(200).json(unvalideEvents);
+    const pendingEvents = await tables.event.readAllPendings();
+    res.status(200).json(pendingEvents);
   } catch (error) {
     next(error);
   }
@@ -65,7 +64,7 @@ const readCategoryEvents = async (req, res, next) => {
 module.exports = {
   browse,
   read,
-  readUnvalide,
+  readPendingEvents,
   add,
   editStatus,
   readCategoryEvents,

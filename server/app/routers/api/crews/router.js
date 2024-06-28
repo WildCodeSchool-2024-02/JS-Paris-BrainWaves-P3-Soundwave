@@ -5,13 +5,13 @@ const {
   browse,
   read,
   readEventsByCrewId,
-  readUnvalide,
+  readPendingCrews,
   editStatus,
   edit
 } = require("../../../controllers/crewAction");
 
 router.get("/", browse);
-router.get("/tovalidate", readUnvalide);
+router.get("/tovalidate", readPendingCrews);
 router.get("/:id", read);
 router.put("/:id", edit);
 router.put("/:id", editStatus)
