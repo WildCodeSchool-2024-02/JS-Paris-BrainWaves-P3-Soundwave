@@ -9,6 +9,22 @@ function ModalSearchBar({ closeModalSearchBar }) {
   const [crews, setCrews] = useState([]);
   const [categories, setCategories] = useState([]);
   const [dataText, setDataText] = useState("");
+  const [selectedMonth, setSelectedMonth] = useState("");
+  const [filteredEvents, setFilteredEvents] = useState([]);
+  const months = [
+    "Janvier",
+    "Février",
+    "Mars",
+    "Avril",
+    "Mai",
+    "Juin",
+    "Juillet",
+    "Août",
+    "Septembre",
+    "Octobre",
+    "Novembre",
+    "Decembre",
+  ];
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/events`)
@@ -23,10 +39,24 @@ function ModalSearchBar({ closeModalSearchBar }) {
   }, []);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/category`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/categories`)
       .then((response) => response.json())
       .then((data) => setCategories(data));
   }, []);
+
+  useEffect(() => {
+    if (selectedMonth !== "") {
+      const monthIndex = months.indexOf(selectedMonth);
+      const filtered = events.filter((event) => {
+        const eventMonth = new Date(event.date).getMonth();
+        return eventMonth === monthIndex;
+      });
+      setFilteredEvents(filtered);
+    } else {
+      setFilteredEvents(events);
+    }
+  }, [events, selectedMonth]);
+
 
   const handleCloseModalSearchBar = () => {
     closeModalSearchBar(false);
@@ -38,12 +68,8 @@ function ModalSearchBar({ closeModalSearchBar }) {
     return newArray;
   };
 
-  const shuffleEvents = shuffle(events);
   const shuffleCrews = shuffle(crews);
 
-  const filteredEvents = shuffleEvents.filter((event) =>
-    event.name.toLowerCase().includes(dataText.toLowerCase())
-  );
 
   const filteredCrews = shuffleCrews.filter((crew) =>
     crew.name.toLowerCase().includes(dataText.toLowerCase())
@@ -54,67 +80,70 @@ function ModalSearchBar({ closeModalSearchBar }) {
     setDataText(e.target.value);
   };
 
+  const handleMonthChange = (e) => {
+    setSelectedMonth(e.target.value);
+  };
+
   return (
     <dialog className="display-modal-search-bar">
-      <section className="section-modal-search-bar">
-        <ImCross
-          onClick={handleCloseModalSearchBar}
-          className="btn-close-modal-search-bar"
-        />
-        <input
-          type="search"
-          placeholder="Recherche un événement, un collectif, une date ..."
-          value={dataText}
-          onChange={handleChange}
-        />
-        <section className="section-option-date-category">
-          <select label="select" type="select" name="date" id="date">
-            <option label="Date" />
-            {events.map((eventDate) => (
-              <option key={eventDate.id} value={eventDate.id}>
-                {eventDate.date}
-              </option>
-            ))}
-          </select>
-          <select label="select" type="select" name="style" id="style">
-            <option label="Genres" />
-            {categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.style}
-              </option>
-            ))}
-          </select>
-        </section>
-        <section className="section-display-suggestions">
-          <h2>Événements</h2>
-          <div className="display-search-events">
-            {filteredEvents.map((event) => (
-              <div key={event.id} className="info-searchbar-events">
-                <img
-                  src={event.image}
-                  alt="cover-event"
-                  className="picture-events"
-                />
-                <p className="title-search-events">{event.name}</p>
-              </div>
-            ))}
-          </div>
-          {filteredEvents.length === 0 && <p>No Events Found</p>}
-          <h2>Collectifs</h2>
-          <div className="display-search-crews">
-            {filteredCrews.map((crew) => (
-              <img
-                key={crew.id}
-                src={crew.image}
-                alt="profile-crew"
-                className="picture-crews"
-              />
-            ))}
-            {filteredCrews.length === 0 && <p>No Crews Found</p>}
-          </div>
-        </section>
-        <img src={mascot} alt="mascot" className="mascot-search-bar" />
+      <ImCross
+        onClick={handleCloseModalSearchBar}
+        className="btn-close-modal-search-bar"
+      />
+      <input
+        type="search"
+        placeholder="Recherche un événement, un collectif, une date ..."
+        value={dataText}
+        onChange={handleChange}
+      />
+      <section className="section-option-date-category">
+        <select
+          id="date"
+          name="date"
+          value={selectedMonth}
+          onChange={handleMonthChange}
+        >
+          <option label="Date" />
+          {months.map((month) => (
+            <option key={month.id} value={month}>
+              {month}
+            </option>
+          ))}
+        </select>
+        <select label="select" type="select" name="style" id="style">
+          <option label="Genres" />
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.style}
+            </option>
+          ))}
+        </select>
       </section>
+      <h2 className="search-events-crews-title">Événements</h2>
+      <section className="section-display-suggestions">
+          {filteredEvents.map((event) => (
+              <img
+              key={event.id}
+                src={event.image}
+                alt="cover-event"
+                className="picture-events"
+              />
+          ))}
+        {filteredEvents.length === 0 && <p>No Events Found</p>}
+      </section>
+      <h2 className="search-events-crews-title">Collectifs</h2>
+      <section className="section-display-suggestions">
+          {filteredCrews.map((crew) => (
+              <img
+              key={crew.id}
+              src={crew.image}
+              alt="profile-crew"
+              className="picture-crews"
+            />
+          ))}
+        {filteredCrews.length === 0 && <p>No Crews Found</p>}
+      </section>
+      <img src={mascot} alt="mascot" className="mascot-search-bar" />
     </dialog>
   );
 }
