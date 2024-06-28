@@ -46,7 +46,7 @@ function Home() {
       <section className="main-home-page">
         <div>
           <h3 className="label-slider-home-page">Nos Événements</h3>
-          <HomeSlider props={results} className="swiperr" />
+          <HomeSlider events={results} className="swiperr" />
         </div>
         <p className="p-title-header-home-page">REJOINS NOUS !</p>
         <div className="div-btn-register">
