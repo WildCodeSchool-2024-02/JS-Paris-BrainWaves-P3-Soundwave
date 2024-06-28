@@ -21,7 +21,11 @@ function Home() {
       <section className="header-home-page">
         <img className="heart-home" src={heart} alt="" />
         <div className="presentation-home-page">
-          <h1 className="title-header-home-page">Bienvenue sur SoundWave</h1>
+          <span>
+            <h1 className="title-header-home-page">Welcome to</h1>
+            <h1 className="title-header-home-page">SoundWave</h1>
+          </span>
+          {/* <h1 className="title-header-home-page">Bienvenue sur SoundWave</h1> */}
           <div>
             <p className={isOpen ? "header-p-less" : "header-p-more"}>
               Soundwave est la plateforme ultime pour découvrir tous les

@@ -158,6 +158,12 @@
   .btn-show-home-page {
     display: none;
   }
+  span {
+    .title-header-home-page {
+      color: var(--secondary-color);
+      font-size: 5em;
+    }
+  }
 }
 
 @keyframes spin {
