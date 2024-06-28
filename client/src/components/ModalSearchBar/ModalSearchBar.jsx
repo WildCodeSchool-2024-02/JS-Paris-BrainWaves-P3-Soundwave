@@ -57,7 +57,6 @@ function ModalSearchBar({ closeModalSearchBar }) {
     }
   }, [events, selectedMonth]);
 
-
   const handleCloseModalSearchBar = () => {
     closeModalSearchBar(false);
     document.body.classList.remove("active");
@@ -69,7 +68,6 @@ function ModalSearchBar({ closeModalSearchBar }) {
   };
 
   const shuffleCrews = shuffle(crews);
-
 
   const filteredCrews = shuffleCrews.filter((crew) =>
     crew.name.toLowerCase().includes(dataText.toLowerCase())
@@ -121,26 +119,26 @@ function ModalSearchBar({ closeModalSearchBar }) {
       </section>
       <h2 className="search-events-crews-title">Événements</h2>
       <section className="section-display-suggestions">
-          {filteredEvents.map((event) => (
-              <img
-              key={event.id}
-                src={event.image}
-                alt="cover-event"
-                className="picture-events"
-              />
-          ))}
-        {filteredEvents.length === 0 && <p>No Events Found</p>}
+        {filteredEvents.map((event) => (
+          <img
+            key={event.id}
+            src={event.image}
+            alt="cover-event"
+            className="picture-events"
+          />
+        ))}
+        {/* {filteredEvents.length === 0 && <p>No Events Found</p>} */}
       </section>
       <h2 className="search-events-crews-title">Collectifs</h2>
       <section className="section-display-suggestions">
-          {filteredCrews.map((crew) => (
-              <img
-              key={crew.id}
-              src={crew.image}
-              alt="profile-crew"
-              className="picture-crews"
-            />
-          ))}
+        {filteredCrews.map((crew) => (
+          <img
+            key={crew.id}
+            src={crew.image}
+            alt="profile-crew"
+            className="picture-crews"
+          />
+        ))}
         {filteredCrews.length === 0 && <p>No Crews Found</p>}
       </section>
       <img src={mascot} alt="mascot" className="mascot-search-bar" />
