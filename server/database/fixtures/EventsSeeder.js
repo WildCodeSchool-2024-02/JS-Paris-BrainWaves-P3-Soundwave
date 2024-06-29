@@ -60,7 +60,7 @@ class EventsSeeder extends AbstractSeeder {
 
     const event5 = {
       name: "Toto au Cabaret Sauvage",
-      date: "2024-05-24",
+      date: "2024-08-24",
       starting_hour: "23:00:00",
       address: "12 rue du Cabaret",
       description: "Encore une Super soirée avec Dj Toto",

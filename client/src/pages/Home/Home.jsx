@@ -1,4 +1,4 @@
-import { useLoaderData, useOutletContext } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
 import heart from "../../assets/images/masquote.svg";
 import "./home.css";

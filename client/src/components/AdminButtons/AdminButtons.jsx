@@ -1,12 +1,29 @@
 import { useNavigate, useOutletContext } from "react-router-dom";
+import { useState } from "react";
 import { TiTick, TiTimes } from "react-icons/ti";
 import { toast } from "react-toastify";
 import "./admin-buttons.css";
+import ModalValidation from "../ModalValidation/ModalValidation";
+
 
 function AdminButton({ id }) {
   const navigate = useNavigate();
   const { updateEvents, setUpdateEvents, updateCrews, setUpdateCrews } =
     useOutletContext();
+    const [openValidation, setOpenValidation] = useState(false);
+    const [text, setText] = useState(true);
+
+    // handle open Modal
+    const handleValidationModal = (e) => {
+      setOpenValidation(true);
+      if (e.target.value= "validate") {
+        setText(false);
+      }
+      else {
+        setText(false);
+      }
+    }
+    console.info(text);
 
   // validate an event
   async function validateEvent() {
@@ -23,8 +40,8 @@ function AdminButton({ id }) {
       );
       if (response.ok) {
         setUpdateEvents(!updateEvents);
-        navigate("/admin");
         toast.success("L'évènement a été validé !");
+        navigate("/admin");
       }
     } catch (error) {
       console.error(error);
@@ -71,8 +88,8 @@ function AdminButton({ id }) {
       );
       if (response.ok) {
         setUpdateCrews(!updateCrews);
-        navigate("/admin");
         toast.success("Le collectif a été validé !");
+        navigate("/admin");
       }
     } catch (error) {
       console.error(error);
@@ -107,19 +124,22 @@ function AdminButton({ id }) {
   return (
     <div className="evaluate-admin-buttons">
       <TiTick
-        role="button"
+        role="button" value="validate"
         onClick={() => {
-          validateCrew();
-          validateEvent();
+          // validateCrew();
+          // validateEvent();
+          handleValidationModal() 
         }}
       />
       <TiTimes
-        role="button"
+        role="button" value="unvalidate"
         onClick={() => {
-          unvalidateCrew();
-          unvalidateEvent();
+          // unvalidateCrew();
+          // unvalidateEvent();
+          handleValidationModal()
         }}
       />
+      {openValidation && <ModalValidation setOpenValidation={setOpenValidation} text={text} setText={setText}/>}
     </div>
   );
 }
