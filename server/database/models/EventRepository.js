@@ -42,6 +42,7 @@ class EventRepository extends AbstractRepository {
     const [eventCrewId] = await this.database.query(
       `INSERT INTO crew_event (crew_id, event_id) value (?, ?)`, [crewId, eventId]
     )
+    
     return eventCrewId;
   }
 
