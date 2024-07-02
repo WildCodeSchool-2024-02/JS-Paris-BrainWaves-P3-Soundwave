@@ -1,85 +1,91 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import PropTypes from "prop-types";
 import mascot from "../../assets/images/masquote.svg";
 import "./modalsearchbar.css";
 
 function ModalSearchBar({ closeModalSearchBar }) {
-  const [events, setEvents] = useState([]);
   const [crews, setCrews] = useState([]);
   const [categories, setCategories] = useState([]);
   const [dataText, setDataText] = useState("");
-  const [selectedMonth, setSelectedMonth] = useState("");
   const [filteredEvents, setFilteredEvents] = useState([]);
-  const months = [
-    "Janvier",
-    "Février",
-    "Mars",
-    "Avril",
-    "Mai",
-    "Juin",
-    "Juillet",
-    "Août",
-    "Septembre",
-    "Octobre",
-    "Novembre",
-    "Decembre",
-  ];
+  const navigate = useNavigate();
 
-  useEffect(() => {
+  const fetchEvent = () => {
     fetch(`${import.meta.env.VITE_API_URL}/api/events`)
       .then((response) => response.json())
-      .then((data) => setEvents(data));
-  }, []);
+      .then((data) => setFilteredEvents(data));
+  };
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/crews`)
       .then((response) => response.json())
       .then((data) => setCrews(data));
-  }, []);
 
-  useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/categories`)
       .then((response) => response.json())
-      .then((data) => setCategories(data));
+      .then((data) => {
+        setCategories(data);
+      });
+
+    fetchEvent();
   }, []);
 
-  useEffect(() => {
-    if (selectedMonth !== "") {
-      const monthIndex = months.indexOf(selectedMonth);
-      const filtered = events.filter((event) => {
-        const eventMonth = new Date(event.date).getMonth();
-        return eventMonth === monthIndex;
-      });
-      setFilteredEvents(filtered);
+  const handleThemesSelect = (theme) => {
+    if (theme !== "") {
+      fetch(`${import.meta.env.VITE_API_URL}/api/events/category/${theme}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setFilteredEvents(data);
+        });
     } else {
-      setFilteredEvents(events);
+      fetchEvent();
     }
-  }, [events, selectedMonth]);
+  };
 
   const handleCloseModalSearchBar = () => {
     closeModalSearchBar(false);
     document.body.classList.remove("active");
   };
 
-  const shuffle = (array) => {
-    const newArray = [...array].sort(() => Math.random() - 0.5);
-    return newArray;
-  };
-
-  const shuffleCrews = shuffle(crews);
-
-  const filteredCrews = shuffleCrews.filter((crew) =>
+  const filteredCrews = crews.filter((crew) =>
     crew.name.toLowerCase().includes(dataText.toLowerCase())
   );
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    setDataText(e.target.value);
+  const filterEventSearchBar = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/events`
+      );
+      if (response.status === 200) {
+        const result = await response.json();
+        const filteredEventsData = result.filter((event) =>
+          event.name.toLowerCase().includes(dataText.toLowerCase())
+        );
+        setFilteredEvents(filteredEventsData);
+      } else {
+        console.error("je suis dans erros");
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
-  const handleMonthChange = (e) => {
-    setSelectedMonth(e.target.value);
+  const handleChange = async (e) => {
+    e.preventDefault();
+    setDataText(e.target.value);
+    filterEventSearchBar();
+  };
+
+  const handleClickEvents = (id) => {
+    navigate(`/event-details/${id}`);
+    handleCloseModalSearchBar();
+  };
+
+  const handleClickCrews = (id) => {
+    navigate(`/crew-details/${id}`);
+    handleCloseModalSearchBar();
   };
 
   return (
@@ -96,22 +102,15 @@ function ModalSearchBar({ closeModalSearchBar }) {
       />
       <section className="section-option-date-category">
         <select
-          id="date"
-          name="date"
-          value={selectedMonth}
-          onChange={handleMonthChange}
+          label="select"
+          type="select"
+          name="style"
+          id="style"
+          onChange={(e) => handleThemesSelect(e.target.value)}
         >
-          <option label="Date" />
-          {months.map((month) => (
-            <option key={month.id} value={month}>
-              {month}
-            </option>
-          ))}
-        </select>
-        <select label="select" type="select" name="style" id="style">
           <option label="Genres" />
           {categories.map((category) => (
-            <option key={category.id} value={category.id}>
+            <option key={category.id} value={category.style}>
               {category.style}
             </option>
           ))}
@@ -125,9 +124,12 @@ function ModalSearchBar({ closeModalSearchBar }) {
             src={event.image}
             alt="cover-event"
             className="picture-events"
+            role="presentation"
+            onClick={() => handleClickEvents(event.id)}
+            onKeyDown={() => handleClickEvents(event.id)}
           />
         ))}
-        {/* {filteredEvents.length === 0 && <p>No Events Found</p>} */}
+        {filteredEvents.length === 0 && <p>No Events Found</p>}
       </section>
       <h2 className="search-events-crews-title">Collectifs</h2>
       <section className="section-display-suggestions">
@@ -137,6 +139,9 @@ function ModalSearchBar({ closeModalSearchBar }) {
             src={crew.image}
             alt="profile-crew"
             className="picture-crews"
+            role="presentation"
+            onClick={() => handleClickCrews(crew.id)}
+            onKeyDown={() => handleClickCrews(crew.id)}
           />
         ))}
         {filteredCrews.length === 0 && <p>No Crews Found</p>}
