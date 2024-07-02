@@ -1,10 +1,16 @@
+<<<<<<< HEAD
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+=======
+import { useLoaderData, useOutletContext } from "react-router-dom";
+>>>>>>> a8507d359fba431642a4f1e66a584332cb40149b
 import { FaRegHeart } from "react-icons/fa";
 import "./eventdetails.css";
+import AdminButton from "../../components/AdminButtons/AdminButtons";
 
 function EventDetail() {
   const event = useLoaderData();
+<<<<<<< HEAD
   const navigate = useNavigate();
   const [crewByEvent, setCrewByEvent] = useState([]);
 
@@ -17,6 +23,9 @@ function EventDetail() {
   const handleCrewPage = () => {
     navigate(`/crew-details/${crewByEvent.id}`);
   };
+=======
+  const { auth } = useOutletContext();
+>>>>>>> a8507d359fba431642a4f1e66a584332cb40149b
 
   return (
     <main className="main-event-details">
@@ -26,10 +35,16 @@ function EventDetail() {
         </div>
         <section className="event-details-info">
           <p onClick={handleCrewPage} onKeyDown={handleCrewPage} role= "presentation" className="crew-name-event">Powerd by: {crewByEvent.name}</p>
-          <div className="heart-icon-details-container">
-            <FaRegHeart className="heart-icon" />
-            <h1>{event.name}</h1>
-          </div>
+          <h1>{event.name}</h1>
+          {auth.isLogged &&
+          auth.user.role === "admin" &&
+          !event.is_validated ? (
+            <AdminButton id={event.id} />
+          ) : (
+            <div className="heart-icon-container">
+              <FaRegHeart className="heart-icon" />
+            </div>
+          )}
           <div className="event-main-info">
             <p className="date-hour">
               {event.date.slice(0, 10)} | {event.starting_hour.slice(0, 5)}
