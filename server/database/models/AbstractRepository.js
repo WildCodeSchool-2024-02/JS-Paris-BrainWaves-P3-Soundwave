@@ -19,7 +19,7 @@ class AbstractRepository {
   }
 
   async readAll() {
-    const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
+    const [rows] = await this.database.query(`SELECT * FROM ${this.table} WHERE is_validated IS true`);
     return rows;
   }
 
@@ -31,6 +31,15 @@ class AbstractRepository {
     return row;
   }
 
+  async readAllPendings() {
+    const [rows] = await this.database.query(`SELECT * FROM ${this.table} WHERE is_validated IS null`);
+    return rows;
+  }
+
+  async validate(isValidated, id) {
+    const [rows] = await this.database.query(`UPDATE ${this.table} SET is_validated = ? WHERE id = ?`, [isValidated, id]);
+    return rows;
+  }    
   async edit(body, id) {
     const [row] = await this.database.query(
       `UPDATE ${this.table} SET ? WHERE id = ? `,
@@ -38,7 +47,7 @@ class AbstractRepository {
     );
     return row;
   }
-}
+};  
 
 // Ready to export
 module.exports = AbstractRepository;

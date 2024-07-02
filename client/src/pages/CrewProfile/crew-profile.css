@@ -34,17 +34,6 @@
     }
   }
 }
-.evaluate-admin-buttons {
-  display: flex;
-  svg {
-    background-color: var(--accent);
-    color: black;
-    border-radius: 5px;
-    margin: 0 0.5rem;
-    height: 1.5em;
-    width: 2em;
-  }
-}
 .desc-crew-profile {
   text-align: left;
   display: flex;
@@ -86,12 +75,6 @@
     }
     h1 {
       font-size: 3em;
-    }
-  }
-  .evaluate-admin-buttons {
-    svg {
-      height: 2.5em;
-      width: 3.5em;
     }
   }
 }

@@ -1,10 +1,20 @@
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import "./eventcard.css";
 import { FaRegHeart } from "react-icons/fa";
+import AdminButton from "../AdminButtons/AdminButtons";
 
-function EventCard({ image, name, description, date, startingHour, id }) {
+function EventCard({
+  image,
+  name,
+  description,
+  date,
+  startingHour,
+  id,
+  isValidated,
+}) {
   const navigate = useNavigate();
+  const { auth } = useOutletContext();
 
   const handleDetailsEvent = () => {
     navigate(`/event-details/${id}`);
@@ -26,9 +36,13 @@ function EventCard({ image, name, description, date, startingHour, id }) {
           </p>
         </div>
       </div>
-      <div className="heart-icon-container">
-        <FaRegHeart className="heart-icon" />
-      </div>
+      {auth.isLogged && auth.user.role === "admin" && !isValidated ? (
+        <AdminButton id={id} />
+      ) : (
+        <div className="heart-icon-container">
+          <FaRegHeart className="heart-icon" />
+        </div>
+      )}
     </div>
   );
 }
@@ -42,4 +56,5 @@ EventCard.propTypes = {
   date: PropTypes.string.isRequired,
   startingHour: PropTypes.string.isRequired,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  isValidated: PropTypes.bool,
 };

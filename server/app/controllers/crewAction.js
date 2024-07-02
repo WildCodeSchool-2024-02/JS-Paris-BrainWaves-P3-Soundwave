@@ -29,6 +29,15 @@ const readEventsByCrewId = async (req, res, next) => {
   }
 };
 
+const readPendingCrews = async ({ res, next }) => {
+  try {
+    const pendingCrews = await tables.crew.readAllPendings();
+    res.status(200).json(pendingCrews);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const edit = async (req, res, next) => {
   try {
     const crew = await tables.crew.edit(req.body, req.params.id);
@@ -42,4 +51,16 @@ const edit = async (req, res, next) => {
     next(error);
   }
 };
-module.exports = { browse, read, readEventsByCrewId, edit };
+
+const editStatus = async (req, res, next) => {
+  const { id } = req.params;
+  const isValidated = req.body.is_validated;
+  try {
+    await tables.crew.validate(isValidated, id);
+    const getOne = await tables.crew.readOne(id);
+    res.status(200).json(getOne);
+  } catch (error) {
+    next(error);
+  }
+};
+module.exports = { browse, read, readEventsByCrewId, readPendingCrews, editStatus, edit };
