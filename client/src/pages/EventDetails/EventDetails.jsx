@@ -1,16 +1,11 @@
-<<<<<<< HEAD
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate,useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react";
-=======
-import { useLoaderData, useOutletContext } from "react-router-dom";
->>>>>>> a8507d359fba431642a4f1e66a584332cb40149b
 import { FaRegHeart } from "react-icons/fa";
 import "./eventdetails.css";
 import AdminButton from "../../components/AdminButtons/AdminButtons";
 
 function EventDetail() {
   const event = useLoaderData();
-<<<<<<< HEAD
   const navigate = useNavigate();
   const [crewByEvent, setCrewByEvent] = useState([]);
 
@@ -23,9 +18,7 @@ function EventDetail() {
   const handleCrewPage = () => {
     navigate(`/crew-details/${crewByEvent.id}`);
   };
-=======
   const { auth } = useOutletContext();
->>>>>>> a8507d359fba431642a4f1e66a584332cb40149b
 
   return (
     <main className="main-event-details">
