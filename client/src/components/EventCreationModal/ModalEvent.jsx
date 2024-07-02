@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import PropTypes from "prop-types";
@@ -14,6 +14,7 @@ function ModalEvent({ closeModal }) {
   const description = useRef("");
   const image = useRef("");
   const lineup = useRef("");
+  const [category, setCategory] = useState([]);
   const [formErrors, setFormErrors] = useState({
     nameRequire: null,
     dateRequire: null,
@@ -33,6 +34,12 @@ function ModalEvent({ closeModal }) {
   };
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/categories`)
+      .then((reponse) => reponse.json())
+      .then((data) => setCategory(data));
+  }, []);
 
   const handleSubmit = async () => {
     try {
@@ -134,16 +141,31 @@ function ModalEvent({ closeModal }) {
           </div>
           <div className="section-create-event">
             <label htmlFor="description">Description</label>
-            <input
+            <textarea
               type="text"
               placeholder="Description... "
               ref={description}
+              className="description-container"
             />
             {formErrors.descriptionRequire && (
               <p>{formErrors.descriptionRequire} </p>
             )}
           </div>
-          <button type="button" onClick={handleSubmit}>
+          <div>
+            <select label="select" type="select" name="style" id="style">
+              <option label="Genres" />
+              {category.map((categories) => (
+                <option key={categories.id} label="" value={categories.style}>
+                  {categories.name}{" "}
+                </option>
+              ))}
+            </select>
+          </div>
+          <button
+            type="button"
+            onClick={handleSubmit}
+            className="modal-event-btn"
+          >
             VALIDER
           </button>
         </form>

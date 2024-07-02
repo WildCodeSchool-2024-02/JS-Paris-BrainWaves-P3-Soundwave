@@ -13,6 +13,10 @@
   border-radius: 10px;
 }
 
+.crew-name-event {
+  cursor: pointer;
+}
+
 .event-main-info {
   margin-bottom: 2rem;
 

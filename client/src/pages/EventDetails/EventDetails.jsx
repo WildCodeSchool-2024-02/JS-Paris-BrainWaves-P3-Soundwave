@@ -1,9 +1,22 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
 import "./eventdetails.css";
 
 function EventDetail() {
   const event = useLoaderData();
+  const navigate = useNavigate();
+  const [crewByEvent, setCrewByEvent] = useState([]);
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/events/${event.id}/crew`)
+      .then((response) => response.json())
+      .then((data) => setCrewByEvent(data));
+  }, [event.id]);
+
+  const handleCrewPage = () => {
+    navigate(`/crew-details/${crewByEvent.id}`);
+  };
 
   return (
     <main className="main-event-details">
@@ -12,6 +25,7 @@ function EventDetail() {
           <img src={event.image} alt="poster" className="event-details-img" />
         </div>
         <section className="event-details-info">
+          <p onClick={handleCrewPage} onKeyDown={handleCrewPage} role= "presentation" className="crew-name-event">Powerd by: {crewByEvent.name}</p>
           <div className="heart-icon-details-container">
             <FaRegHeart className="heart-icon" />
             <h1>{event.name}</h1>

@@ -26,7 +26,9 @@ const read = async (req, res, next) => {
 const add = async (req, res, next) => {
   try {
     const event = await tables.event.create(req.body);
-    res.status(201).json(event);
+    const crewId = await tables.event.readCrewId(req.body);
+    const eventCrewId = await tables.event.addCrewIdEvent(req.body)
+    res.status(201).json(event, crewId, eventCrewId);
   } catch (error) {
     next(error);
   }
@@ -41,9 +43,20 @@ const readCategoryEvents = async (req, res, next) => {
   }
 };
 
+const readCrewByEvent = async (req, res , next) => {
+  try {
+    const {id} =req.params
+    const result = await tables.event.readCrewFromEvent(id)
+    res.status(200).json(result)
+  } catch (error) {
+    next(error)
+  }
+}
+
 module.exports = {
   browse,
   read,
   add,
   readCategoryEvents,
+  readCrewByEvent,
 };
