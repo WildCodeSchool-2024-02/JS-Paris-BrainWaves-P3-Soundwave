@@ -3,6 +3,7 @@ const AbstractRepository = require("./AbstractRepository");
 class EventRepository extends AbstractRepository {
   constructor() {
     super({ table: "event" });
+    const user_id = 1;
   }
 
   async readCurrent() {
