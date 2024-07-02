@@ -11,24 +11,11 @@ function App() {
     user: null,
     token: null,
   });
-  const [admin] = useState(false);
-  const [updateEvents, setUpdateEvents] = useState(false);
-  const [updateCrews, setUpdateCrews] = useState(false);
 
   return (
     <>
       <NavBar auth={auth} setAuth={setAuth} />
-      <Outlet
-        context={{
-          auth,
-          setAuth,
-          admin,
-          updateCrews,
-          setUpdateCrews,
-          updateEvents,
-          setUpdateEvents,
-        }}
-      />
+      <Outlet context={{ auth, setAuth }} />
       <Footer />
     </>
   );
