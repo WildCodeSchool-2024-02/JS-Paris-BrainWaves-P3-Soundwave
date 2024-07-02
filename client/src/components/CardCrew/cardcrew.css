@@ -1,5 +1,6 @@
 .specific-crew-card {
   margin: 1rem 0;
+  cursor: pointer;
   border: 1px dashed var(--primary-color);
   border-radius: 5px;
   padding: 1rem;
@@ -22,7 +23,7 @@
     justify-content: space-between;
     margin-bottom: 1rem;
     position: relative;
-    .heart-icon {
+    svg {
       position: absolute;
       top: 2px;
       right: 5px;
@@ -37,7 +38,7 @@
 .specific-crew-card:nth-child(odd) {
   .crew-card-presentation {
     flex-direction: row-reverse;
-    .heart-icon {
+    svg {
       position: absolute;
       top: 2px;
       left: 5px;
@@ -65,13 +66,6 @@
       h2 {
         width: auto;
       }
-      .crew-card-name-buttons {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      }
     }
   }
   .specific-crew-card:hover {
@@ -84,9 +78,6 @@
     flex-direction: row-reverse;
     .crew-card-desc {
       align-items: flex-end;
-      .crew-card-name-buttons-for-crews {
-        flex-direction: row-reverse;
-      }
     }
   }
 }

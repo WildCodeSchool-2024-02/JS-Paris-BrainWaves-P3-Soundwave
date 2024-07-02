@@ -34,6 +34,7 @@ function EventsList() {
     }
     filterEventsByMonth();
   }, []);
+
   return (
     <main>
       <div className="event-list-container">
@@ -59,7 +60,6 @@ function EventsList() {
                       description={event.description}
                       date={event.date}
                       startingHour={event.starting_hour}
-                      isValidated={event.is_validated}
                     />
                   ))}
                 </>
