@@ -23,7 +23,6 @@ function AdminButton({ id }) {
         setText(false);
       }
     }
-    console.info(text);
 
   // validate an event
   async function validateEvent() {
@@ -126,16 +125,16 @@ function AdminButton({ id }) {
       <TiTick
         role="button" value="validate"
         onClick={() => {
-          // validateCrew();
-          // validateEvent();
+          validateCrew();
+          validateEvent();
           handleValidationModal() 
         }}
       />
       <TiTimes
         role="button" value="unvalidate"
         onClick={() => {
-          // unvalidateCrew();
-          // unvalidateEvent();
+          unvalidateCrew();
+          unvalidateEvent();
           handleValidationModal()
         }}
       />
