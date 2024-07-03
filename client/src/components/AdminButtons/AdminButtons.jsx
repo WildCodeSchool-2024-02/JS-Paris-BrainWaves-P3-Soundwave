@@ -11,6 +11,7 @@ function AdminButton({ id, type }) {
   const handleValidationModal = (bool) => {
     setText(bool);
     setOpenValidation(true);
+    document.body.classList.add("active");
   };
 
   return (

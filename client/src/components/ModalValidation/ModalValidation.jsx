@@ -122,7 +122,7 @@ function ModalValidation({ setOpenValidation, text, type, id }) {
       <section className="section-modal-validation">
         <ImCross
           onClick={handleCloseModalLogIn}
-          className="btn-close-modal-log-in"
+          className="btn-close-modal-validation"
         />
         <h1>Attention</h1>
         {text ? (

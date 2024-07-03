@@ -54,9 +54,9 @@ const edit = async (req, res, next) => {
 
 const editStatus = async (req, res, next) => {
   const { id } = req.params;
-  const isValidated = req.body.is_validated;
+  const body = req.body;
   try {
-    await tables.crew.validate(isValidated, id);
+    await tables.crew.edit(body, id);
     const getOne = await tables.crew.readOne(id);
     res.status(200).json(getOne);
   } catch (error) {
