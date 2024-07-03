@@ -152,7 +152,7 @@ function CrewProfile() {
               Ajouter
             </button>
           )}
-          {openModalEvent && <ModalEvent closeModal={setOpenModalEvent} />}
+          {openModalEvent && <ModalEvent closeModal={setOpenModalEvent}  id={crew.id}/>}
         </div>
         {events.map((event) => (
           <EventCard

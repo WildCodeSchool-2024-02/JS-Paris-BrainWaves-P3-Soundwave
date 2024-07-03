@@ -1,11 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import PropTypes from "prop-types";
+import DropDownMenu from "../DropDownMenu/DropDownMenu";
 import Mascot from "../../assets/images/masquote.svg";
 import "./modalevent.css";
 
-function ModalEvent({ closeModal }) {
+function ModalEvent({ closeModal, id }) {
   const name = useRef("");
   const date = useRef("");
   const startingHour = useRef("");
@@ -14,7 +15,6 @@ function ModalEvent({ closeModal }) {
   const description = useRef("");
   const image = useRef("");
   const lineup = useRef("");
-  const [category, setCategory] = useState([]);
   const [formErrors, setFormErrors] = useState({
     nameRequire: null,
     dateRequire: null,
@@ -35,16 +35,10 @@ function ModalEvent({ closeModal }) {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/categories`)
-      .then((reponse) => reponse.json())
-      .then((data) => setCategory(data));
-  }, []);
-
   const handleSubmit = async () => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/events`,
+        `${import.meta.env.VITE_API_URL}/api/crews/${id}/events`,
         {
           method: "POST",
           headers: {
@@ -151,15 +145,9 @@ function ModalEvent({ closeModal }) {
               <p>{formErrors.descriptionRequire} </p>
             )}
           </div>
-          <div>
-            <select label="select" type="select" name="style" id="style">
-              <option label="Genres" />
-              {category.map((categories) => (
-                <option key={categories.id} label="" value={categories.style}>
-                  {categories.name}{" "}
-                </option>
-              ))}
-            </select>
+          <div className="section-create-event">
+            <label htmlFor="Style">Style</label>
+            <DropDownMenu />
           </div>
           <button
             type="button"
@@ -178,4 +166,5 @@ export default ModalEvent;
 
 ModalEvent.propTypes = {
   closeModal: PropTypes.func.isRequired,
+  id: PropTypes.func.isRequired,
 };

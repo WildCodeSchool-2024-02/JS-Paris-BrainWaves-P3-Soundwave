@@ -3,7 +3,6 @@ const AbstractRepository = require("./AbstractRepository");
 class EventRepository extends AbstractRepository {
   constructor() {
     super({ table: "event" });
-    const user_id = 1;
   }
 
   async readCurrent() {
@@ -13,13 +12,6 @@ class EventRepository extends AbstractRepository {
     return rows;
   }
 
-  async readCrewId() {
-    const [crewId] = await this.database.query(
-      `SELECT crew FROM user WHERE owner_id = user.id`
-    )
-    return crewId;
-  }
-  
   async create(event) {
     const [results] = await this.database.query(
       `INSERT INTO ${this.table} (name, date, starting_hour, location, address, description, image, lineup) VALUES(?,?,?,?,?,?,?,?)`,
@@ -33,17 +25,16 @@ class EventRepository extends AbstractRepository {
         event.image,
         event.lineup,
       ]
-
     );
-    return results;
+    return results.insertId;
   }
 
-
-  async addCrewIdEvent (crewId, eventId) {
+  async addCrewIdEvent(eventId, crewId) {
     const [eventCrewId] = await this.database.query(
-      `INSERT INTO crew_event (crew_id, event_id) value (?, ?)`, [crewId, eventId]
-    )
-    
+      `INSERT INTO crew_event (event_id, crew_id) value (?, ?)`,
+      [eventId, crewId]
+    );
+
     return eventCrewId;
   }
 

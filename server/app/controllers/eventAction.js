@@ -34,9 +34,9 @@ const readPendingEvents = async ({ res, next }) => {
 
 const add = async (req, res, next) => {
   try {
+    const crewId = await tables.event.readOne(req.params);
     const event = await tables.event.create(req.body);
-    const crewId = await tables.event.readCrewId(req.body);
-    const eventCrewId = await tables.event.addCrewIdEvent(req.body)
+    const eventCrewId = await tables.event.addCrewIdEvent(event, req.params.id)
     res.status(201).json(event, crewId, eventCrewId);
   } catch (error) {
     next(error);

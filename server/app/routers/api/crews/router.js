@@ -10,11 +10,17 @@ const {
   edit
 } = require("../../../controllers/crewAction");
 
+const {add} =require("../../../controllers/eventAction")
+
+const { ValidateForm } = require("../../../services/validateEventForm")
+
+
 router.get("/", browse);
 router.get("/tovalidate", readPendingCrews);
 router.get("/:id", read);
 router.put("/:id", edit);
 router.put("/:id", editStatus)
+router.post("/:id/events", ValidateForm, add)
 
 router.get("/:id/events", readEventsByCrewId);
 
