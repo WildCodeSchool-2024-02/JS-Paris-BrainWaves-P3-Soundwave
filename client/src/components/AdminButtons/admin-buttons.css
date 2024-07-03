@@ -1,7 +1,7 @@
 .evaluate-admin-buttons {
     display: flex;
     justify-content: flex-end;
-    z-index: 2;
+    z-index: 100000;
     svg {
       background-color: var(--accent);
       color: black;

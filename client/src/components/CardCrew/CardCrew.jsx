@@ -11,14 +11,17 @@ function CardCrew({ result }) {
   return (
     <section
       className="specific-crew-card"
-      onClick={() => navigate(`/crew-details/${result.id}`)}
-      onKeyDown={() => navigate(`/crew-details/${result.id}`)}
-      role="presentation"
     >
       {window.innerWidth < 1024 && (
         <>
           <div className="crew-card-presentation">
-            <img src={result.image} alt="logo du collectif" />
+            <img
+              src={result.image}
+              alt="logo du collectif"
+              onClick={() => navigate(`/crew-details/${result.id}`)}
+              onKeyDown={() => navigate(`/crew-details/${result.id}`)}
+              role="presentation"
+            />
             <h2>{result.name}</h2>
             {auth.isLogged &&
             auth.user.role === "admin" &&
@@ -27,6 +30,7 @@ function CardCrew({ result }) {
                 updateCrews={updateCrews}
                 setUpdateCrews={setUpdateCrews}
                 id={result.id}
+                type="crew"
               />
             ) : (
               <FaRegHeart className="heart-icon" />
@@ -41,7 +45,13 @@ function CardCrew({ result }) {
       )}
       {window.innerWidth >= 1024 && (
         <>
-          <img src={result.image} alt="logo du collectif" />
+          <img
+            src={result.image}
+            alt="logo du collectif"
+            onClick={() => navigate(`/crew-details/${result.id}`)}
+            onKeyDown={() => navigate(`/crew-details/${result.id}`)}
+            role="presentation"
+          />
           <div className="crew-card-desc">
             <div className="crew-card-name-buttons">
               <h2>{result.name}</h2>
@@ -52,6 +62,7 @@ function CardCrew({ result }) {
                   updateCrews={updateCrews}
                   setUpdateCrews={setUpdateCrews}
                   id={result.id}
+                  type="crew"
                 />
               ) : (
                 <FaRegHeart className="heart-icon" />

@@ -37,7 +37,7 @@ function EventCard({
         </div>
       </div>
       {auth.isLogged && auth.user.role === "admin" && !isValidated ? (
-        <AdminButton id={id} />
+        <AdminButton id={id} type="event" />
       ) : (
         <div className="heart-icon-container">
           <FaRegHeart className="heart-icon" />
