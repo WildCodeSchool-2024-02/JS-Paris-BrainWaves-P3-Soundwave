@@ -39,14 +39,7 @@ class AbstractRepository {
     );
     return rows;
   }
-
-  async validate(isValidated, id) {
-    const [rows] = await this.database.query(
-      `UPDATE ${this.table} SET is_validated = ? WHERE id = ?`,
-      [isValidated, id]
-    );
-    return rows;
-  }
+ 
 
   async edit(body, id) {
     const [row] = await this.database.query(

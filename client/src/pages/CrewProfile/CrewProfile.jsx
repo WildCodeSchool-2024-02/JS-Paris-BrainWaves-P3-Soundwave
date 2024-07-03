@@ -116,7 +116,7 @@ function CrewProfile() {
             </button>
             {auth.isLogged &&
               auth.user.role === "admin" &&
-              !crew.is_validated && <AdminButton id={crew.id} />}
+              !crew.is_validated && <AdminButton id={crew.id} type="crew" />}
           </div>
         </div>
       </section>
@@ -165,6 +165,7 @@ function CrewProfile() {
             date={event.date}
             startingHour={event.starting_hour}
             isValidated={event.is_validated}
+            type="event"
           />
         ))}
       </section>

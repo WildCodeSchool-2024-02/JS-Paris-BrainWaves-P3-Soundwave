@@ -12,6 +12,7 @@
 }
 
 .section-modal-validation {
+  overflow: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -30,6 +31,13 @@
   p {
     color: var(--secondary-color);
     font-size: clamp(0.5em, 5vw, 1.5em);
+  }
+  .btn-close-modal-validation {
+    position: absolute;
+    top: 7px;
+    right: 5px;
+    background-color: transparent;
+    color: var(--accent);
   }
 }
 

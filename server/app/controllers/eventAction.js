@@ -43,9 +43,9 @@ const add = async (req, res, next) => {
 
 const editStatus = async (req, res, next) => {
   const { id } = req.params;
-  const isValidated = req.body.is_validated;
+  const { body } = req.body;
   try {
-    await tables.event.validate(isValidated, id);
+    await tables.event.edit(body, id);
     const getOne = await tables.event.readOne(id);
     res.status(200).json(getOne);
   } catch (error) {

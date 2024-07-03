@@ -17,7 +17,7 @@ function EventDetail() {
           {auth.isLogged &&
           auth.user.role === "admin" &&
           !event.is_validated ? (
-            <AdminButton id={event.id} />
+            <AdminButton id={event.id} type="event" />
           ) : (
             <div className="heart-icon-container">
               <FaRegHeart className="heart-icon" />

@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `sound_wavedb`.`event` (
   `image` TEXT NOT NULL,
   `is_validated` TINYINT NULL,
   `lineup` TEXT NULL,
+  `comment`TEXT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -57,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `sound_wavedb`.`crew` (
   `description` LONGTEXT NULL,
   `owner_id` INT NOT NULL,
   `is_validated` TINYINT NULL,
+  `comment` TEXT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_crew_user1_idx` (`owner_id` ASC) VISIBLE,
   CONSTRAINT `fk_crew_user1`
