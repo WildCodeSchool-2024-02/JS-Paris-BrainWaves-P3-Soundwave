@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import PropTypes from "prop-types";
 import DropDownMenu from "../DropDownMenu/DropDownMenu";
@@ -27,6 +27,7 @@ function ModalEvent({ closeModal, id }) {
     imageRequire: null,
     lineupRequire: null,
   });
+  const { styleInput } = useOutletContext();
 
   const handleCloseModal = () => {
     document.body.classList.remove("active");
@@ -38,7 +39,7 @@ function ModalEvent({ closeModal, id }) {
   const handleSubmit = async () => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/crews/${id}/events`,
+        `${import.meta.env.VITE_API_URL}/api/crews/${id}/events/categories`,
         {
           method: "POST",
           headers: {
@@ -53,6 +54,7 @@ function ModalEvent({ closeModal, id }) {
             description: description.current.value,
             image: image.current.value,
             lineup: lineup.current.value,
+            categories: styleInput,
           }),
         }
       );

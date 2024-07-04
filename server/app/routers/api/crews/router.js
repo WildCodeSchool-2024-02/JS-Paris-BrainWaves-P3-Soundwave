@@ -7,22 +7,20 @@ const {
   readEventsByCrewId,
   readPendingCrews,
   editStatus,
-  edit
+  edit,
 } = require("../../../controllers/crewAction");
 
-const {add} =require("../../../controllers/eventAction")
+const { add } = require("../../../controllers/eventAction");
 
-const { ValidateForm } = require("../../../services/validateEventForm")
-
+const { ValidateForm } = require("../../../services/validateEventForm");
 
 router.get("/", browse);
 router.get("/tovalidate", readPendingCrews);
-router.put("/tovalidate/:id", editStatus)
+router.put("/tovalidate/:id", editStatus);
 router.get("/:id", read);
 router.put("/:id", edit);
-router.put("/:id", editStatus)
-router.post("/:id/events", ValidateForm, add)
-
+router.put("/:id", editStatus);
+router.post("/:id/events/categories", ValidateForm, add);
 router.get("/:id/events", readEventsByCrewId);
 
 module.exports = router;

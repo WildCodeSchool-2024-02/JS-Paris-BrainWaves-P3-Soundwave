@@ -34,10 +34,14 @@ const readPendingEvents = async ({ res, next }) => {
 
 const add = async (req, res, next) => {
   try {
-    const crewId = await tables.event.readOne(req.params);
     const event = await tables.event.create(req.body);
-    const eventCrewId = await tables.event.addCrewIdEvent(event, req.params.id)
-    res.status(201).json(event, crewId, eventCrewId);
+    const eventCategories = [];
+    req.body.categories.forEach((category) =>
+      eventCategories.push([category.value, event])
+    );
+    const style = await tables.event.addStyleEvent(eventCategories);
+    const eventCrewId = await tables.event.addCrewIdEvent(event, req.params.id);
+    res.status(201).json(event, eventCrewId, style);
   } catch (error) {
     next(error);
   }
@@ -63,15 +67,15 @@ const readCategoryEvents = async (req, res, next) => {
   }
 };
 
-const readCrewByEvent = async (req, res , next) => {
+const readCrewByEvent = async (req, res, next) => {
   try {
-    const {id} =req.params
-    const result = await tables.event.readCrewFromEvent(id)
-    res.status(200).json(result)
+    const { id } = req.params;
+    const result = await tables.event.readCrewFromEvent(id);
+    res.status(200).json(result);
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
+};
 
 module.exports = {
   browse,
