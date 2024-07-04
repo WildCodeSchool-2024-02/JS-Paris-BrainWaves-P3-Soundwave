@@ -43,7 +43,7 @@ const add = async (req, res, next) => {
 
 const editStatus = async (req, res, next) => {
   const { id } = req.params;
-  const { body } = req.body;
+  const { body } = req;
   try {
     await tables.event.edit(body, id);
     const getOne = await tables.event.readOne(id);
