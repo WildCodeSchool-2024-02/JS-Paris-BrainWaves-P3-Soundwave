@@ -27,7 +27,7 @@ function EventDetail() {
           <img src={event.image} alt="poster" className="event-details-img" />
         </div>
         <section className="event-details-info">
-          <p onClick={handleCrewPage} onKeyDown={handleCrewPage} role= "presentation" className="crew-name-event">Powerd by: {crewByEvent.name}</p>
+          <p onClick={handleCrewPage} onKeyDown={handleCrewPage} role= "presentation" className="crew-name-event">Collectifs : {crewByEvent.name}</p>
           <h1>{event.name}</h1>
           {auth.isLogged &&
           auth.user.role === "admin" &&
