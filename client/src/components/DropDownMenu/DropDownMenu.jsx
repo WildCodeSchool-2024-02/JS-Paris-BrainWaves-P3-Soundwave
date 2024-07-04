@@ -18,9 +18,9 @@ function DropDownMenu() {
           `${import.meta.env.VITE_API_URL}/api/categories`
         ).then((reponse) => reponse.json());
 
-        const styleOptions = response.map((categorie) => ({
-          value: categorie.id,
-          label: categorie.style,
+        const styleOptions = response.map((category) => ({
+          value: category.id,
+          label: category.style,
         }));
         setOptions(styleOptions);
       } catch (error) {
