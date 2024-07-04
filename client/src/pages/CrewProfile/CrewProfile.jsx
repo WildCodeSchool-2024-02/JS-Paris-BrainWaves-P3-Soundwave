@@ -1,17 +1,17 @@
-import { useLoaderData } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useLoaderData, useOutletContext } from "react-router-dom";
+import { useState, useEffect } from "react";
 import "./crew-profile.css";
 import { FaRegHeart } from "react-icons/fa";
-import { TiTick, TiTimes } from "react-icons/ti";
 import EventCard from "../../components/EventCard/EventCard";
 import ModalEvent from "../../components/EventCreationModal/ModalEvent";
+import AdminButton from "../../components/AdminButtons/AdminButtons";
 
 function CrewProfile() {
   const crew = useLoaderData();
+  const { auth } = useOutletContext();
   const [login] = useState(false);
   const [edit, setEdit] = useState(false);
   const [btnValue, setBtnValue] = useState("editer");
-  const [admin] = useState(false);
   const [username, setUsername] = useState(crew.name);
   const [description, setDescription] = useState(crew.description);
   const [errors, setErrors] = useState({});
@@ -80,7 +80,8 @@ function CrewProfile() {
     fetch(`${import.meta.env.VITE_API_URL}/api/crews/${crew.id}/events`)
       .then((response) => response.json())
       .then((data) => setEvents(data));
-  }, []);
+  }, [crew.id]);
+
   const handleSubmit = async (e) => {
     if (e) e.preventDefault();
     const errorData = validate();
@@ -113,12 +114,9 @@ function CrewProfile() {
             >
               {btnValue}
             </button>
-            {!admin && (
-              <div className="evaluate-admin-buttons">
-                <TiTick role="button" />
-                <TiTimes role="button" />
-              </div>
-            )}
+            {auth.isLogged &&
+              auth.user.role === "admin" &&
+              !crew.is_validated && <AdminButton id={crew.id} type="crew" />}
           </div>
         </div>
       </section>
@@ -166,6 +164,8 @@ function CrewProfile() {
             description={event.description}
             date={event.date}
             startingHour={event.starting_hour}
+            isValidated={event.is_validated}
+            type="event"
           />
         ))}
       </section>

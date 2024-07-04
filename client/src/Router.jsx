@@ -5,7 +5,7 @@ import EventsList from "./pages/EventList/EventsList";
 import EventDetails from "./pages/EventDetails/EventDetails";
 import CrewsList from "./pages/CrewsList/CrewsList";
 import CrewProfile from "./pages/CrewProfile/CrewProfile";
-import Admin from "./pages/Admin";
+import Admin from "./pages/Admin/Admin";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import CrewCreation from "./pages/CrewCreation/CrewCreation";
 

@@ -79,7 +79,7 @@ const seed = async () => {
 
       // Use delete instead of truncate to bypass foreign key constraint
       // Wait for the delete promise to complete
-      firstOut.run();
+      await firstOut.run();
 
       // Wait for all the insertion promises to complete
       // We do want to wait in a loop to satisfy dependencies

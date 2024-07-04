@@ -54,7 +54,7 @@ function NavBar({ auth, setAuth }) {
         <div className="navigation">
           <FaSearch className="logo-searchbar" onClick={handleModalSearchBar} />{" "}
           {openModalSearchBar && (
-            <ModalSearchBar closeModalSearchBar={setOpenModalSearchBar} />
+            <ModalSearchBar closeModalSearchBar={setOpenModalSearchBar}/>
           )}
           <div
             className="burger-menu"

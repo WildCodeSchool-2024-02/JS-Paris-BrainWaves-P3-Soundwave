@@ -1,0 +1,135 @@
+.display-modal-validation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  backdrop-filter: blur(15px);
+  z-index: 9999;
+}
+
+.section-modal-validation {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  padding: 1rem;
+  background-color: var(--background-color);
+  box-shadow: var(--accent) 0 0 10px 0;
+  gap: 1rem;
+  h1 {
+    color: var(--accent);
+    font-family: var(--font-title-b);
+    font-size: clamp(1em, 7vw, 3em);
+  }
+  p {
+    color: var(--secondary-color);
+    font-size: clamp(0.5em, 5vw, 1.5em);
+  }
+  .btn-close-modal-validation {
+    position: absolute;
+    top: 7px;
+    right: 5px;
+    background-color: transparent;
+    color: var(--accent);
+  }
+}
+
+.reject {
+  width: 100%;
+  p {
+    padding-bottom: 1em;
+  }
+  form {
+    border-top: 1px dashed var(--secondary-color);
+    padding-top: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+    label {
+      color: var(--secondary-color);
+      font-family: var(--font-body);
+      font-size: clamp(0.4em, 4vw, 1em);
+      text-align: start;
+    }
+    input {
+      border: none;
+      background-color: var(--background-color);
+      border-bottom: 1px solid var(--secondary-color);
+      color: var(--secondary-color);
+    }
+    .btn-container-modal-validation {
+      display: flex;
+      flex-direction: column;
+      width: 75%;
+      align-items: center;
+      gap: 0.5em;
+      button {
+        justify-content: center;
+      }
+    }
+  }
+}
+
+.validate {
+  p {
+    margin-bottom: 1em;
+  }
+}
+
+.btn-container-modal-validation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+  button {
+    background-color: var(--accent);
+    color: black;
+    border-radius: 5px;
+    font-family: var(--font-title-b);
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-modal-validation {
+    height: 80%;
+    gap: 2em;
+  }
+  .btn-container-modal-validation {
+    button {
+      cursor: pointer;
+      width: 10%;
+      height: 120%;
+    }
+  }
+  .reject {
+    form {
+      gap: 2em;
+      padding-top: 2em;
+      .reject-form-big-screen {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        input {
+          width: 50%;
+        }
+      }
+      .btn-container-modal-validation {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        button {
+          width: 15%;
+        }
+      }
+    }
+  }
+}

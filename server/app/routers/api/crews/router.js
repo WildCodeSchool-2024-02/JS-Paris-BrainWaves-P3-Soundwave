@@ -4,12 +4,16 @@ const router = express.Router();
 const {
   browse,
   read,
-  edit,
   readEventsByCrewId,
   create,
+  readPendingCrews,
+  editStatus,
+  edit,
 } = require("../../../controllers/crewAction");
 
 router.get("/", browse);
+router.get("/tovalidate", readPendingCrews);
+router.put("/tovalidate/:id", editStatus);
 router.get("/:id", read);
 router.put("/:id", edit);
 router.put("/", create);
