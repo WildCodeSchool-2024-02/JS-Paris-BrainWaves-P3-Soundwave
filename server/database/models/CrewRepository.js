@@ -12,6 +12,15 @@ class CrewRepository extends AbstractRepository {
     );
     return events;
   }
+
+  async insertOne(crewData) {
+    const { name, image, description } = crewData;
+    const [crew] = await this.database.query(
+      `INSERT INTO ${this.table} (name, image,description) VALUES (?, ?, ?, ?, ?)`,
+      [name, image, description]
+    );
+    return crew;
+  }
 }
 
 module.exports = CrewRepository;

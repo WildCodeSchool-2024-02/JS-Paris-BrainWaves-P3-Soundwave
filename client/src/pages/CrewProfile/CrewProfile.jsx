@@ -6,7 +6,6 @@ import { TiTick, TiTimes } from "react-icons/ti";
 import EventCard from "../../components/EventCard/EventCard";
 import ModalEvent from "../../components/EventCreationModal/ModalEvent";
 
-
 function CrewProfile() {
   const crew = useLoaderData();
   const [login] = useState(false);
@@ -22,7 +21,6 @@ function CrewProfile() {
   const handleOpenModal = () => {
     setOpenModalEvent(true);
     document.body.classList.add("active");
-
   };
 
   const handleBtnValue = () => {

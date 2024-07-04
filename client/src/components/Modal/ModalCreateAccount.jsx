@@ -57,7 +57,14 @@ function ModalCreateAccount({ closeModalCreateAccount, role }) {
         }
       );
       if (response.ok) {
-        navigate(`/user-profile/`);
+        if (role === "client") {
+          navigate(`/user-profile/`);
+        } else if (role === "crew") {
+          const user = await response.json();
+          console.info(user);
+          console.info(user.id);
+          navigate(`/crew-creation/${user.id}`);
+        }
       } else {
         console.error("Il y a une erreur");
       }

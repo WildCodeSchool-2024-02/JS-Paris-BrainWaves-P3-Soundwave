@@ -42,4 +42,17 @@ const edit = async (req, res, next) => {
     next(error);
   }
 };
-module.exports = { browse, read, readEventsByCrewId, edit };
+
+const create = async (req, res, next) => {
+  try {
+    const crewData = req.body;
+
+    const result = await tables.crew.insertOne(crewData);
+    const crew = await tables.user.readOne(result.insertId);
+    res.status(201).json(crew);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { browse, read, readEventsByCrewId, edit, create };
