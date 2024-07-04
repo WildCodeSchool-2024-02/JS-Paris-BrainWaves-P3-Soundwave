@@ -19,7 +19,6 @@ router.get("/tovalidate", readPendingCrews);
 router.put("/tovalidate/:id", editStatus);
 router.get("/:id", read);
 router.put("/:id", edit);
-router.put("/:id", editStatus);
 router.post("/:id/events/categories", ValidateForm, add);
 router.get("/:id/events", readEventsByCrewId);
 
