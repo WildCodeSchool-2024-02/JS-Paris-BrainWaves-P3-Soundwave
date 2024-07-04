@@ -80,7 +80,8 @@ function CrewProfile() {
     fetch(`${import.meta.env.VITE_API_URL}/api/crews/${crew.id}/events`)
       .then((response) => response.json())
       .then((data) => setEvents(data));
-  }, []);
+  }, [crew.id]);
+
   const handleSubmit = async (e) => {
     if (e) e.preventDefault();
     const errorData = validate();
@@ -115,7 +116,7 @@ function CrewProfile() {
             </button>
             {auth.isLogged &&
               auth.user.role === "admin" &&
-              !crew.is_validated && <AdminButton id={crew.id} />}
+              !crew.is_validated && <AdminButton id={crew.id} type="crew" />}
           </div>
         </div>
       </section>
@@ -164,6 +165,7 @@ function CrewProfile() {
             date={event.date}
             startingHour={event.starting_hour}
             isValidated={event.is_validated}
+            type="event"
           />
         ))}
       </section>

@@ -22,7 +22,7 @@ function Admin() {
   }, [updateEvents, updateCrews]);
   return (
     <main className="admin-page-main">
-      <h1>Bonjour {auth.user.firstname} !</h1>
+      <h1 className="admin-page-title">Bonjour {auth.user.firstname} !</h1>
       <ToastContainer />
       <div className="button-container-admin-page">
         <button type="button" onClick={() => setToggleButtons(true)}>

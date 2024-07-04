@@ -17,6 +17,7 @@ const { ValidateForm } = require("../../../services/validateEventForm")
 
 router.get("/", browse);
 router.get("/tovalidate", readPendingCrews);
+router.put("/tovalidate/:id", editStatus)
 router.get("/:id", read);
 router.put("/:id", edit);
 router.put("/:id", editStatus)

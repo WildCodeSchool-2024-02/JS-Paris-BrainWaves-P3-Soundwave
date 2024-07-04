@@ -54,7 +54,7 @@ function NavBar({ auth, setAuth }) {
         <div className="navigation">
           <FaSearch className="logo-searchbar" onClick={handleModalSearchBar} />{" "}
           {openModalSearchBar && (
-            <ModalSearchBar closeModalSearchBar={setOpenModalSearchBar} />
+            <ModalSearchBar closeModalSearchBar={setOpenModalSearchBar}/>
           )}
           <div
             className="burger-menu"
@@ -142,6 +142,6 @@ function NavBar({ auth, setAuth }) {
 export default NavBar;
 
 NavBar.propTypes = {
-  auth: PropTypes.object.isRequired,
+  auth: PropTypes.func.isRequired,
   setAuth: PropTypes.func.isRequired,
 };

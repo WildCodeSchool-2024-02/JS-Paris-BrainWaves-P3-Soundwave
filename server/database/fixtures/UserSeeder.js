@@ -1,13 +1,13 @@
-const AbstractSeeder = require("./AbstractSeeder");
 const argon2 = require("argon2");
+const AbstractSeeder = require("./AbstractSeeder");
 
 class UserSeeder extends AbstractSeeder {
   constructor() {
     // Call the constructor of the parent class (AbstractSeeder) with appropriate options
     super({ table: "user", truncate: true });
   }
-
-  hash(password) {
+  
+  static hash(password) {
     return argon2.hash(password);
   }
   
@@ -18,7 +18,7 @@ class UserSeeder extends AbstractSeeder {
       firstname: "toto",
       lastname: "tata",
       email: "toto@gmail.com",
-      password: await this.hash("toto"),
+      password: await UserSeeder.hash("toto"),
       role: "admin",
       refName: null,
     };
@@ -27,7 +27,7 @@ class UserSeeder extends AbstractSeeder {
       firstname: "yann",
       lastname: "la",
       email: "la@gmail.com",
-      password: await this.hash("toto"),
+      password: await UserSeeder.hash("toto"),
       role: "crew",
       refName: "userCrew1"
     };
@@ -35,7 +35,7 @@ class UserSeeder extends AbstractSeeder {
       firstname: "adam",
       lastname: "ma",
       email: "ma@gmail.com",
-      password: await this.hash("toto"),
+      password: await UserSeeder.hash("toto"),
       role: "crew",
       refName: "userCrew2"
     };
@@ -43,7 +43,7 @@ class UserSeeder extends AbstractSeeder {
       firstname: "aude",
       lastname: "sed",
       email: "sed@gmail.com",
-      password: await this.hash("toto"),
+      password: await UserSeeder.hash("toto"),
       role: "crew",
       refName: "userCrew3"
     };
@@ -51,7 +51,7 @@ class UserSeeder extends AbstractSeeder {
       firstname: "manue",
       lastname: "cu",
       email: "cu@gmail.com",
-      password: await this.hash("toto"),
+      password: await UserSeeder.hash("toto"),
       role: "crew",
       refName: "userCrew4"
     };
@@ -60,7 +60,7 @@ class UserSeeder extends AbstractSeeder {
       firstname: "brian",
       lastname: "bou",
       email: "bou@gmail.com",
-      password: await this.hash("toto"),
+      password: await UserSeeder.hash("toto"),
       role: "client",
       refName: null,
     };

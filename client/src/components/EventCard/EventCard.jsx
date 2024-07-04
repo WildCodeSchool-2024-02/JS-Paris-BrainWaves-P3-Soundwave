@@ -37,7 +37,7 @@ function EventCard({
         </div>
       </div>
       {auth.isLogged && auth.user.role === "admin" && !isValidated ? (
-        <AdminButton id={id} />
+        <AdminButton id={id} type="event" />
       ) : (
         <div className="heart-icon-container">
           <FaRegHeart className="heart-icon" />
@@ -56,5 +56,5 @@ EventCard.propTypes = {
   date: PropTypes.string.isRequired,
   startingHour: PropTypes.string.isRequired,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  isValidated: PropTypes.bool,
+  isValidated: PropTypes.bool.isRequired,
 };

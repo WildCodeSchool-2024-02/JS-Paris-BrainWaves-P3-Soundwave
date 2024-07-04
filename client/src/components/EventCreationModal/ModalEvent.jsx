@@ -146,7 +146,7 @@ function ModalEvent({ closeModal, id }) {
             )}
           </div>
           <div className="section-create-event">
-            <label htmlFor="Style">Style</label>
+            <label htmlFor="Style">Styles</label>
             <DropDownMenu />
           </div>
           <button

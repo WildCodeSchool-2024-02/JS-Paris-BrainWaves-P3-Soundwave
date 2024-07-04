@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 
 const router = express.Router();
 
@@ -7,12 +7,10 @@ const {browse, read, editStatus, readPendingEvents, readCategoryEvents, readCrew
 
 router.get("/", browse);
 router.get("/tovalidate", readPendingEvents);
-router.get("/category/:genre", readCategoryEvents);
+router.get("/category/:style", readCategoryEvents);
 router.get("/:id/crew", readCrewByEvent);
 router.get("/:id", read);
 router.put("/:id", editStatus);
 // router.post("/", ValidateForm, add)
-
-
 
 module.exports = router;
