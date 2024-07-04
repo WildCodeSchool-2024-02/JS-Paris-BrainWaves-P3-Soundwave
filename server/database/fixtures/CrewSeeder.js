@@ -41,11 +41,13 @@ class CrewSeeder extends AbstractSeeder {
 
     const crew4 = {
       name: "Discolaincourt",
-      image: "https://scontent-cdg4-2.xx.fbcdn.net/v/t39.30808-6/253699694_248533500651082_1988113127034540681_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=IH1nVTO8mDcQ7kNvgEG_IJb&_nc_ht=scontent-cdg4-2.xx&oh=00_AYAKqthtuy5KPsjBKDAnb_GjkZeRoXfcey2YkHRoxY9S9Q&oe=66789D53",
-      description: "Discolaincourt, c'est l'histoire d'une rencontre de voisins de quartier du 18ème à Paris adeptes de house, disco et techno, qui se sont retrouvés autour de passions communes : l'amour du vinyle, le partage et la fête ! Ils profitent du premier confinement où tout est à l'arrêt, pour se rapprocher grâce à leur réseau de quartier et lancer 'Discolaincourt', en référence à la célèbre rue Caulaincourt du 18ème. Leur énergie leur a permis de créer une vraie synergie musicale avec de nombreux collectifs et DJ qui animent la scène électronique parisienne.",
+      image:
+        "https://scontent-cdg4-2.xx.fbcdn.net/v/t39.30808-6/253699694_248533500651082_1988113127034540681_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=IH1nVTO8mDcQ7kNvgEG_IJb&_nc_ht=scontent-cdg4-2.xx&oh=00_AYAKqthtuy5KPsjBKDAnb_GjkZeRoXfcey2YkHRoxY9S9Q&oe=66789D53",
+      description:
+        "Discolaincourt, c'est l'histoire d'une rencontre de voisins de quartier du 18ème à Paris adeptes de house, disco et techno, qui se sont retrouvés autour de passions communes : l'amour du vinyle, le partage et la fête ! Ils profitent du premier confinement où tout est à l'arrêt, pour se rapprocher grâce à leur réseau de quartier et lancer 'Discolaincourt', en référence à la célèbre rue Caulaincourt du 18ème. Leur énergie leur a permis de créer une vraie synergie musicale avec de nombreux collectifs et DJ qui animent la scène électronique parisienne.",
       is_validated: null,
       owner_id: this.getRef("userCrew4").insertId,
-    }
+    };
 
     this.insert(crew1);
     this.insert(crew2);

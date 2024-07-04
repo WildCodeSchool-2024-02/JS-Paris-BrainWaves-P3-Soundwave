@@ -19,7 +19,9 @@ class AbstractRepository {
   }
 
   async readAll() {
-    const [rows] = await this.database.query(`SELECT * FROM ${this.table} WHERE is_validated IS true`);
+    const [rows] = await this.database.query(
+      `SELECT * FROM ${this.table} WHERE is_validated IS true`
+    );
     return rows;
   }
 
@@ -32,7 +34,9 @@ class AbstractRepository {
   }
 
   async readAllPendings() {
-    const [rows] = await this.database.query(`SELECT * FROM ${this.table} WHERE is_validated IS null`);
+    const [rows] = await this.database.query(
+      `SELECT * FROM ${this.table} WHERE is_validated IS null`
+    );
     return rows;
   }
  
@@ -44,7 +48,7 @@ class AbstractRepository {
     );
     return row;
   }
-};  
+}
 
 // Ready to export
 module.exports = AbstractRepository;

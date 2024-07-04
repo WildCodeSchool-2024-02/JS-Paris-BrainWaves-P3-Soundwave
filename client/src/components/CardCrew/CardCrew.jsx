@@ -82,6 +82,7 @@ CardCrew.propTypes = {
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
+    is_validated: PropTypes.func.isRequired,
   }).isRequired,
 };
 

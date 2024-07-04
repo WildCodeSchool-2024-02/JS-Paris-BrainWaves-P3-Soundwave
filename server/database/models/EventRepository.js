@@ -24,17 +24,16 @@ class EventRepository extends AbstractRepository {
         event.description,
         event.image,
         event.lineup,
-    
       ]
     );
     return results;
   }
 
-
-  async readCategory(genre) {
-    const [results] = await this.database.query(
-      `SELECT ${this.table}.*, category.genre FROM ${this.table} JOIN category_event ON category_event.event_id = ${this.table}.id JOIN category ON category_event.category_id = category.id WHERE category.style = ?`,
-    [genre]);
+  async readCategory(style) {
+    const results = await this.database.query(
+      `SELECT ${this.table}.*, category.style FROM ${this.table} JOIN category_event ON category_event.event_id = ${this.table}.id JOIN category ON category_event.category_id = category.id WHERE category.style = ?`,
+      [style]
+    );
     return results;
   }
 }

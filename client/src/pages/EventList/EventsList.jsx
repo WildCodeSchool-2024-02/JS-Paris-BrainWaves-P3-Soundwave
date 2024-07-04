@@ -33,7 +33,7 @@ function EventsList() {
       setEvents(filteredEvents);
     }
     filterEventsByMonth();
-  }, []);
+  }, [data]);
   return (
     <main>
       <div className="event-list-container">

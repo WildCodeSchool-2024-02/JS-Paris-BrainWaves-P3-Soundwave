@@ -122,6 +122,6 @@ export default ModalLogIn;
 
 ModalLogIn.propTypes = {
   closeModalLogIn: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
+  auth: PropTypes.func.isRequired,
   setAuth: PropTypes.func.isRequired,
 };

@@ -25,7 +25,7 @@ function ModalValidation({ setOpenValidation, text, type, id }) {
           headers: {
             "Content-type": "application/json",
           },
-          body: JSON.stringify({ is_validated: true, comment : null }),
+          body: JSON.stringify({ is_validated: true, comment: null }),
         }
       );
       if (response.ok) {
@@ -76,7 +76,7 @@ function ModalValidation({ setOpenValidation, text, type, id }) {
           headers: {
             "Content-type": "application/json",
           },
-          body: JSON.stringify({ is_validated: true, comment : null }),
+          body: JSON.stringify({ is_validated: true, comment: null }),
         }
       );
       if (response.ok) {
@@ -133,13 +133,16 @@ function ModalValidation({ setOpenValidation, text, type, id }) {
             </p>
             <div className="btn-container-modal-validation">
               <button
+                type="button"
                 onClick={() =>
                   type === "event" ? validateEvent() : validateCrew()
                 }
               >
                 OUI
               </button>
-              <button onClick={handleCloseModalLogIn}>NON</button>
+              <button type="button" onClick={handleCloseModalLogIn}>
+                NON
+              </button>
             </div>
           </div>
         ) : (
@@ -169,7 +172,9 @@ function ModalValidation({ setOpenValidation, text, type, id }) {
                 >
                   CONFIRMER
                 </button>
-                <button onClick={handleCloseModalLogIn}>RETOUR</button>
+                <button type="button" onClick={handleCloseModalLogIn}>
+                  RETOUR
+                </button>
               </div>
             </form>
           </div>
@@ -183,5 +188,7 @@ export default ModalValidation;
 
 ModalValidation.propTypes = {
   setOpenValidation: PropTypes.func.isRequired,
-  text: PropTypes.bool,
+  text: PropTypes.bool.isRequired,
+  id: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
 };

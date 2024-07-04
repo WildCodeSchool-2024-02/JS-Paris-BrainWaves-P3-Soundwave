@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { TiTick, TiTimes } from "react-icons/ti";
+import PropTypes from "prop-types";
 import "./admin-buttons.css";
 import ModalValidation from "../ModalValidation/ModalValidation";
 
@@ -16,14 +17,8 @@ function AdminButton({ id, type }) {
 
   return (
     <div className="evaluate-admin-buttons">
-      <TiTick
-        role="button"
-        onClick={() => handleValidationModal(true)}
-      />
-      <TiTimes
-        role="button"
-        onClick={() => handleValidationModal(false)}
-      />
+      <TiTick role="button" onClick={() => handleValidationModal(true)} />
+      <TiTimes role="button" onClick={() => handleValidationModal(false)} />
       {openValidation && (
         <ModalValidation
           setOpenValidation={setOpenValidation}
@@ -37,3 +32,8 @@ function AdminButton({ id, type }) {
 }
 
 export default AdminButton;
+
+AdminButton.propTypes = {
+  id: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
+};

@@ -80,7 +80,8 @@ function CrewProfile() {
     fetch(`${import.meta.env.VITE_API_URL}/api/crews/${crew.id}/events`)
       .then((response) => response.json())
       .then((data) => setEvents(data));
-  }, []);
+  }, [crew.id]);
+
   const handleSubmit = async (e) => {
     if (e) e.preventDefault();
     const errorData = validate();

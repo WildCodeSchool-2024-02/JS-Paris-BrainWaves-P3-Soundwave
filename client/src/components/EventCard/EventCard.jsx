@@ -56,5 +56,5 @@ EventCard.propTypes = {
   date: PropTypes.string.isRequired,
   startingHour: PropTypes.string.isRequired,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  isValidated: PropTypes.bool,
+  isValidated: PropTypes.bool.isRequired,
 };
