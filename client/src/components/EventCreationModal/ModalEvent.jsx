@@ -1,11 +1,12 @@
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import PropTypes from "prop-types";
+import DropDownMenu from "../DropDownMenu/DropDownMenu";
 import Mascot from "../../assets/images/masquote.svg";
 import "./modalevent.css";
 
-function ModalEvent({ closeModal }) {
+function ModalEvent({ closeModal, id }) {
   const name = useRef("");
   const date = useRef("");
   const startingHour = useRef("");
@@ -17,13 +18,16 @@ function ModalEvent({ closeModal }) {
   const [formErrors, setFormErrors] = useState({
     nameRequire: null,
     dateRequire: null,
-    hourRequire: null,
+    dateCurrent: null,
     dateFormat: null,
+    hourRequire: null,
+    hourFormat: null,
     addressRequire: null,
     descriptionRequire: null,
     imageRequire: null,
     lineupRequire: null,
   });
+  const { styleInput } = useOutletContext();
 
   const handleCloseModal = () => {
     document.body.classList.remove("active");
@@ -35,7 +39,7 @@ function ModalEvent({ closeModal }) {
   const handleSubmit = async () => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/events`,
+        `${import.meta.env.VITE_API_URL}/api/crews/${id}/events/categories`,
         {
           method: "POST",
           headers: {
@@ -50,6 +54,7 @@ function ModalEvent({ closeModal }) {
             description: description.current.value,
             image: image.current.value,
             lineup: lineup.current.value,
+            categories: styleInput,
           }),
         }
       );
@@ -61,6 +66,8 @@ function ModalEvent({ closeModal }) {
         setFormErrors({
           nameRequire: null,
           dateRequire: null,
+          dateCurrent: null,
+          dateFormat: null,
           hourRequire: null,
           hourFormat: null,
           addressRequire: null,
@@ -96,7 +103,9 @@ function ModalEvent({ closeModal }) {
           <div className="section-create-event">
             <label htmlFor="date">Date</label>
             <input type="text" placeholder="ex: YYYY-MM-DD" ref={date} />
-            {formErrors.dateRequire && <p>{formErrors.dateRequire}</p>}
+            {formErrors.dateRequire && <p>{formErrors.dateRequire} </p>}
+            {formErrors.dateCurrent && <p>{formErrors.dateCurrent} </p>}
+            {formErrors.dateFormat && <p>{formErrors.dateFormat}</p>}
           </div>
           <div className="section-create-event">
             <label htmlFor="hour">Heure</label>
@@ -128,16 +137,25 @@ function ModalEvent({ closeModal }) {
           </div>
           <div className="section-create-event">
             <label htmlFor="description">Description</label>
-            <input
+            <textarea
               type="text"
               placeholder="Description... "
               ref={description}
+              className="description-container"
             />
             {formErrors.descriptionRequire && (
               <p>{formErrors.descriptionRequire} </p>
             )}
           </div>
-          <button type="button" onClick={handleSubmit}>
+          <div className="section-create-event">
+            <label htmlFor="Style">Styles</label>
+            <DropDownMenu />
+          </div>
+          <button
+            type="button"
+            onClick={handleSubmit}
+            className="modal-event-btn"
+          >
             VALIDER
           </button>
         </form>
@@ -150,4 +168,5 @@ export default ModalEvent;
 
 ModalEvent.propTypes = {
   closeModal: PropTypes.func.isRequired,
+  id: PropTypes.func.isRequired,
 };

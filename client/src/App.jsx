@@ -13,6 +13,7 @@ function App() {
   });
   const [updateEvents, setUpdateEvents] = useState(false);
   const [updateCrews, setUpdateCrews] = useState(false);
+  const [styleInput, setStyleInput] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -49,6 +50,8 @@ function App() {
           updateEvents,
           setUpdateEvents,
           isLoading,
+          styleInput,
+          setStyleInput,
         }}
       />
       <Footer />
