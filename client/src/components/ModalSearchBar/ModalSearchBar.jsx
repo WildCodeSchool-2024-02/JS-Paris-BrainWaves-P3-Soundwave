@@ -129,7 +129,7 @@ function ModalSearchBar({ closeModalSearchBar }) {
             onKeyDown={() => handleClickEvents(event.id)}
           />
         ))}
-        {filteredEvents.length === 0 && <p>No Events Found</p>}
+        {filteredEvents.length === 0 && <p>Pas d'évènement trouvé</p>}
       </section>
       <h2 className="search-events-crews-title">Collectifs</h2>
       <section className="section-display-suggestions">
@@ -144,7 +144,7 @@ function ModalSearchBar({ closeModalSearchBar }) {
             onKeyDown={() => handleClickCrews(crew.id)}
           />
         ))}
-        {filteredCrews.length === 0 && <p>No Crews Found</p>}
+        {filteredCrews.length === 0 && <p>Pas de collectif trouvé</p>}
       </section>
       <img src={mascot} alt="mascot" className="mascot-search-bar" />
     </dialog>
