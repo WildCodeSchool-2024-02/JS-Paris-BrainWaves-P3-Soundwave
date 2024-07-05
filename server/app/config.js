@@ -29,6 +29,7 @@ const cors = require("cors");
 
 app.use(
   cors({
+    exposedHeaders: ["Authorization"],
     origin: [
       process.env.CLIENT_URL, // keep this one, after checking the value in `server/.env`
     ],

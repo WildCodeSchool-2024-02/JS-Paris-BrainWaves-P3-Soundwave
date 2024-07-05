@@ -13,10 +13,14 @@ function Admin() {
   const { auth, updateEvents, updateCrews } = useOutletContext();
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/events/tovalidate`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/events/tovalidate`, {
+      headers: { Authorization: ` Bearer ${auth.token}` },
+    })
       .then((response) => response.json())
       .then((data) => setEvents(data));
-    fetch(`${import.meta.env.VITE_API_URL}/api/crews/tovalidate`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/crews/tovalidate`, {
+      headers: { Authorization: ` Bearer ${auth.token}` },
+    })
       .then((response) => response.json())
       .then((data) => setCrews(data));
   }, [updateEvents, updateCrews]);
