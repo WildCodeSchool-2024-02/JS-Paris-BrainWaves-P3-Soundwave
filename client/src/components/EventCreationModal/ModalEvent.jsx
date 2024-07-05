@@ -27,7 +27,7 @@ function ModalEvent({ closeModal, id }) {
     imageRequire: null,
     lineupRequire: null,
   });
-  const { styleInput } = useOutletContext();
+  const { styleInput, auth } = useOutletContext();
 
   const handleCloseModal = () => {
     document.body.classList.remove("active");
@@ -44,6 +44,7 @@ function ModalEvent({ closeModal, id }) {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${auth.token}`
           },
           body: JSON.stringify({
             name: name.current.value,
