@@ -44,7 +44,7 @@ function NavBar({ auth, setAuth }) {
 
   const openAccountMenu = () => {
     setMenuAccount(!menuAccount);
-  }
+  };
 
   return (
     <section className="display-navbar">
@@ -96,17 +96,25 @@ function NavBar({ auth, setAuth }) {
             >
               Collectifs
             </li>
-            {/* {auth.isLogged === "false" && ( */}
+            {!auth.isLogged && (
               <li role="presentation" onClick={handleModal}>
                 Log In
               </li>
-            {/* )} */}
-            {auth.isLogged === "true" && <RxAvatar role="presentation" onClick={openAccountMenu} onKeyDown={openAccountMenu}/>}
+            )}
+            {auth.isLogged && (
+              <RxAvatar className="avatar-icon"
+                role="presentation"
+                onClick={openAccountMenu}
+                onKeyDown={openAccountMenu}
+              />
+            )}
           </ul>
-          {/* <ul>
+        {menuAccount && (
+          <ul className="menu-account-nav-bar">
             <li>Mon compte</li>
             <li>Déconnexion</li>
-          </ul> */}
+          </ul>
+        )}
         </div>
       </nav>
       {openModalLogIn && (
