@@ -18,23 +18,30 @@ const AdminRoute = ({ children }) => {
   const navigate = useNavigate();
   useEffect(() => {
     if (!isLoading) {
-      if (!auth.isLogged) navigate("/");
+      if (!auth.isLogged) {
+        navigate("/");
+      }
     }
-  }, [auth, children, isLoading, navigate]);
-  if (!isLoading && auth.isLogged && auth.user.role === "admin")
+  }, [auth, isLoading, navigate]);
+  if (!isLoading && auth.isLogged && auth.user.role === "admin") {
     return children;
+  }
   return "...loading";
 };
+
 const ClientRoute = ({ children }) => {
   const { auth, isLoading } = useOutletContext();
   const navigate = useNavigate();
   useEffect(() => {
     if (!isLoading) {
-      if (!auth.isLogged) navigate("/");
+      if (!auth.isLogged) {
+        navigate("/");
+      }
     }
-  }, [auth, children, isLoading, navigate]);
-  if (!isLoading && auth.isLogged && auth.user.role === "client")
+  }, [auth, isLoading, navigate]);
+  if (!isLoading && auth.isLogged && auth.user.role === "client") {
     return children;
+  }
   return "...loading";
 };
 

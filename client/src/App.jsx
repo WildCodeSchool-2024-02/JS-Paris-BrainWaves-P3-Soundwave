@@ -29,7 +29,9 @@ function App() {
           setAuth({ isLogged: true, user, token });
           setIsLoading(false);
         }
-        setIsLoading(false);
+        else {
+          setIsLoading(false);
+        }
       } catch (error) {
         console.error("une erreur est survenue");
         setIsLoading(false);

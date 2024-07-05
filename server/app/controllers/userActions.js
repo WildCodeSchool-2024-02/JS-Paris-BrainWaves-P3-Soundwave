@@ -72,7 +72,6 @@ const readLogin = async (req, res, next) => {
 const refresh = async(req, res, next) => {
   try {
     const {refreshToken} = req.cookies;
-    console.log(refreshToken);
     if(!refreshToken) {
       res.status(401).json("Access Denied. No refresh token provided");
     }
