@@ -7,14 +7,14 @@ const {
   add,
   readLogin,
   refresh,
-  logout
+  logout,
 } = require("../../../controllers/userActions");
 
 router.get("/", browse);
+router.post("/", add);
 router.get("/refresh", refresh);
+router.post("/login", readLogin);
 router.get("/logout", logout);
 router.get("/:id", read);
-router.post("/", add);
-router.post("/login", readLogin);
 
 module.exports = router;

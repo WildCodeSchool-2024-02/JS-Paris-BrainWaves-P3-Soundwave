@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./navbar.css";
 import { FaSearch } from "react-icons/fa";
+import { RxAvatar } from "react-icons/rx";
 import soundwave from "../../assets/images/SoundWave.svg";
 import mascot from "../../assets/images/masquote.svg";
 import ModalLogIn from "../Modal/ModalLogIn";
@@ -16,6 +17,7 @@ function NavBar({ auth, setAuth }) {
   const [isMenuClicked, setIsMenuClicked] = useState(false);
   const [openModalLogIn, setOpenModalLogIn] = useState(false);
   const [openModalSearchBar, setOpenModalSearchBar] = useState(false);
+  const [menuAccount, setMenuAccount] = useState(false);
 
   const updateMenu = () => {
     if (!isMenuClicked) {
@@ -40,6 +42,10 @@ function NavBar({ auth, setAuth }) {
     document.body.classList.add("active");
   };
 
+  const openAccountMenu = () => {
+    setMenuAccount(!menuAccount);
+  }
+
   return (
     <section className="display-navbar">
       <nav>
@@ -54,7 +60,7 @@ function NavBar({ auth, setAuth }) {
         <div className="navigation">
           <FaSearch className="logo-searchbar" onClick={handleModalSearchBar} />{" "}
           {openModalSearchBar && (
-            <ModalSearchBar closeModalSearchBar={setOpenModalSearchBar}/>
+            <ModalSearchBar closeModalSearchBar={setOpenModalSearchBar} />
           )}
           <div
             className="burger-menu"
@@ -90,10 +96,17 @@ function NavBar({ auth, setAuth }) {
             >
               Collectifs
             </li>
-            <li role="presentation" onClick={handleModal}>
-              Log In
-            </li>
+            {/* {auth.isLogged === "false" && ( */}
+              <li role="presentation" onClick={handleModal}>
+                Log In
+              </li>
+            {/* )} */}
+            {auth.isLogged === "true" && <RxAvatar role="presentation" onClick={openAccountMenu} onKeyDown={openAccountMenu}/>}
           </ul>
+          {/* <ul>
+            <li>Mon compte</li>
+            <li>Déconnexion</li>
+          </ul> */}
         </div>
       </nav>
       {openModalLogIn && (
