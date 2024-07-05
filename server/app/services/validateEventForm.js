@@ -7,6 +7,7 @@ const ValidateForm = (req, res, next) => {
     description,
     image,
     lineup,
+    categories,
   } = req.body;
 
   const errors = [];
@@ -66,6 +67,10 @@ const ValidateForm = (req, res, next) => {
 
   if (!lineup) {
     errors.push({ label: "lineupRequire", error: "Programmation obligatoire" });
+  }
+
+  if(!categories) {
+    errors.push({ label: "StyleRequire", error: "Style obligatoire" }); 
   }
 
   if (errors.length !== 0) {

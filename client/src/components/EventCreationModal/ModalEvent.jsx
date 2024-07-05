@@ -74,6 +74,7 @@ function ModalEvent({ closeModal, id }) {
           descriptionRequire: null,
           imageRequire: null,
           lineupRequire: null,
+          styleRequire: null
         });
         result.forEach((element) => {
           setFormErrors((prev) => ({
@@ -150,6 +151,9 @@ function ModalEvent({ closeModal, id }) {
           <div className="section-create-event">
             <label htmlFor="Style">Styles</label>
             <DropDownMenu />
+            {formErrors.styleRequire && (
+              <p>{formErrors.styleRequire} </p>
+            )}
           </div>
           <button
             type="button"
