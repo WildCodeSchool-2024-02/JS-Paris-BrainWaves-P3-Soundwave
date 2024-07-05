@@ -38,7 +38,7 @@
   select {
     border-radius: 10px;
     padding: 0.5rem;
-    font-family: var(--font-title-b);
+    font-family: var(--font-title-r);
     background-color: var(--background-color);
     color: var(--secondary-color);
   }
