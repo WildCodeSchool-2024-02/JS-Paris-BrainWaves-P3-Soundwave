@@ -46,6 +46,19 @@ function NavBar({ auth, setAuth }) {
     setMenuAccount(!menuAccount);
   };
 
+  const logOut = async () => {
+    try {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/users/logout`, {
+        credentials: "include",
+      });
+      setAuth({ isLogged: false, user: null, token: null });
+      navigate("/");
+      setMenuAccount(!menuAccount);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <section className="display-navbar">
       <nav>
@@ -102,19 +115,22 @@ function NavBar({ auth, setAuth }) {
               </li>
             )}
             {auth.isLogged && (
-              <RxAvatar className="avatar-icon"
+              <RxAvatar
+                className="avatar-icon"
                 role="presentation"
                 onClick={openAccountMenu}
                 onKeyDown={openAccountMenu}
               />
             )}
           </ul>
-        {menuAccount && (
-          <ul className="menu-account-nav-bar">
-            <li>Mon compte</li>
-            <li>Déconnexion</li>
-          </ul>
-        )}
+          {menuAccount && (
+            <ul className="menu-account-nav-bar">
+              <li>Mon compte</li>
+              <li onClick={logOut} role="presentation" onKeyDown={logOut}>
+                Déconnexion
+              </li>
+            </ul>
+          )}
         </div>
       </nav>
       {openModalLogIn && (

@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
+import { ToastContainer } from "react-toastify";
 import "./global.css";
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
   return (
     <>
       <NavBar auth={auth} setAuth={setAuth} />
+      <ToastContainer theme="dark"/>
       <Outlet
         context={{
           auth,
