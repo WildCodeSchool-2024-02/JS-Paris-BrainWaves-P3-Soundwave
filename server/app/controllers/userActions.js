@@ -82,7 +82,6 @@ const refresh = async(req, res, next) => {
 
     res.header("Authorization", accessToken).json(user);
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
