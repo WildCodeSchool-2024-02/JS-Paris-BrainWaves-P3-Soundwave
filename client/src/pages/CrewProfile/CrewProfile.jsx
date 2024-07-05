@@ -148,12 +148,14 @@ function CrewProfile() {
       <section className="events-crew-profile">
         <div className="events-crew-profile-title">
           <h2>Evènements</h2>
-          {!login && (
+          {auth.isLogged && auth.user.role === "crew" && (
             <button type="button" onClick={handleOpenModal}>
               Ajouter
             </button>
           )}
-          {openModalEvent && <ModalEvent closeModal={setOpenModalEvent}  id={crew.id}/>}
+          {openModalEvent && (
+            <ModalEvent closeModal={setOpenModalEvent} id={crew.id} />
+          )}
         </div>
         {events.map((event) => (
           <EventCard
