@@ -20,6 +20,8 @@ const isAdmin = async (req, res, next) => {
   try {
     if (req.auth.role === "admin") {
       next();
+    } else {
+      res.sendStatus(403)
     }
   } catch (error) {
     console.error(error);
@@ -31,6 +33,8 @@ const isCrew = async (req, res, next) => {
   try {
     if (req.auth.role === "crew") {
       next();
+    } else {
+      res.sendStatus(403);
     }
   } catch (error) {
     console.error(error);
@@ -41,6 +45,8 @@ const isClient = async (req, res, next) => {
   try {
     if (req.auth.role === "client") {
       next();
+    } else {
+      res.sendStatus(403);
     }
   } catch (error) {
     console.error(error);
