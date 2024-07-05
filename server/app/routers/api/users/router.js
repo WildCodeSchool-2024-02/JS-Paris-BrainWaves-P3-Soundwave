@@ -8,9 +8,11 @@ const {
   readLogin,
 } = require("../../../controllers/userActions");
 
+const { ValidateUserForm } = require("../../../services/validateUserAccount");
+
 router.get("/", browse);
 router.get("/:id", read);
-router.post("/", add);
+router.post("/",ValidateUserForm, add);
 router.post("/login", readLogin);
 
 module.exports = router;

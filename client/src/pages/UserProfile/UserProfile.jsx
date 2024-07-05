@@ -1,18 +1,21 @@
 import "./userprofile.css";
 import { useLoaderData } from "react-router-dom";
-import { useState } from "react";
 
 function UserProfile() {
   const user = useLoaderData();
-  const [login] = useState(false);
+
+  // const { auth } = useOutletContext();
+
   return (
     <main>
       <section className="section-user-profile-infos">
         <div className="avatar">avatar</div>
         <div>
-          <p>{user.firstname} {user.lastname}</p>
+          <p>
+            {user.firstname} {user.lastname}
+          </p>
           <p>{user.email}</p>
-          {!login && <button type="button">Modifier</button>}
+          {/* {!login && <button type="button">Modifier</button>} */}
         </div>
       </section>
       <section className="section-user-events">
