@@ -1,10 +1,23 @@
-import { useLoaderData, useOutletContext } from "react-router-dom";
+import { useLoaderData, useNavigate,useOutletContext } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
 import "./eventdetails.css";
 import AdminButton from "../../components/AdminButtons/AdminButtons";
 
 function EventDetail() {
   const event = useLoaderData();
+  const navigate = useNavigate();
+  const [crewByEvent, setCrewByEvent] = useState([]);
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/events/${event.id}/crew`)
+      .then((response) => response.json())
+      .then((data) => setCrewByEvent(data));
+  }, [event.id]);
+
+  const handleCrewPage = () => {
+    navigate(`/crew-details/${crewByEvent.id}`);
+  };
   const { auth } = useOutletContext();
 
   return (
@@ -14,6 +27,8 @@ function EventDetail() {
           <img src={event.image} alt="poster" className="event-details-img" />
         </div>
         <section className="event-details-info">
+          <p onClick={handleCrewPage} onKeyDown={handleCrewPage} role= "presentation" className="crew-name-event">Collectifs : {crewByEvent.name}</p>
+          <h1>{event.name}</h1>
           {auth.isLogged &&
           auth.user.role === "admin" &&
           !event.is_validated ? (
@@ -24,7 +39,6 @@ function EventDetail() {
             </div>
           )}
           <div className="event-main-info">
-            <h1>{event.name}</h1>
             <p className="date-hour">
               {event.date.slice(0, 10)} | {event.starting_hour.slice(0, 5)}
             </p>

@@ -38,6 +38,18 @@
     font-size: clamp(1em, 3vw, 3em);
     text-align: center;
   }
+
+  button {
+    cursor: pointer;
+    border-radius: 5px;
+    height: 3vh;
+    color: var(--secondary-color);
+    background-image: url(/src/assets/images/Noise.png);
+    background-color: var(--primary-color);
+    font-size: clamp(0.7em, 3vw, 1.5em);
+    border: none;
+    margin-top: 2rem;
+  }
 }
 
 .section-event {
@@ -62,8 +74,15 @@
     color: var(--secondary-color);
   }
   p {
-    color: red;
+    color: var(--accent);
     font-size: clamp(0.75em, 2vw, 0.75em);
+  }
+
+  textarea {
+    border: none;
+    border-bottom: 1px solid var(--secondary-color);
+    background-color: var(--background-color);
+    color: white;
   }
 }
 
@@ -112,6 +131,13 @@
     h1 {
       margin: 0;
     }
+
+    button {
+      border-radius: 5px;
+      height: 7vh;
+      font-size: 1.25rem;
+      margin-top: 2rem;
+    }
   }
 
   .section-event {
@@ -127,6 +153,13 @@
     }
     label {
       font-size: 1.2em;
+    }
+  }
+
+  .section-create-event {
+    textarea {
+      width: 566px;
+      height: 89px;
     }
   }
 
