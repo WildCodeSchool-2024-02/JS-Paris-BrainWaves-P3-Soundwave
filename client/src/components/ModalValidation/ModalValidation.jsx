@@ -11,7 +11,7 @@ function ModalValidation({ setOpenValidation, text, type, id }) {
     document.body.classList.remove("active");
   };
   const navigate = useNavigate();
-  const { updateEvents, setUpdateEvents, updateCrews, setUpdateCrews } =
+  const { updateEvents, setUpdateEvents, updateCrews, setUpdateCrews, auth } =
     useOutletContext();
   const comment = useRef("");
 
@@ -24,8 +24,10 @@ function ModalValidation({ setOpenValidation, text, type, id }) {
           method: "PUT",
           headers: {
             "Content-type": "application/json",
+            Authorization: ` Bearer ${auth.token}`,
           },
           body: JSON.stringify({ is_validated: true, comment: null }),
+          credentials: "include"
         }
       );
       if (response.ok) {
@@ -48,11 +50,13 @@ function ModalValidation({ setOpenValidation, text, type, id }) {
           method: "PUT",
           headers: {
             "Content-type": "application/json",
+            Authorization: ` Bearer ${auth.token}`,
           },
           body: JSON.stringify({
             is_validated: false,
             comment: comment.current.value,
           }),
+          credentials: "include"
         }
       );
       if (response.ok) {
@@ -75,8 +79,10 @@ function ModalValidation({ setOpenValidation, text, type, id }) {
           method: "PUT",
           headers: {
             "Content-type": "application/json",
+            Authorization: ` Bearer ${auth.token}`,
           },
           body: JSON.stringify({ is_validated: true, comment: null }),
+          credentials: "include"
         }
       );
       if (response.ok) {
@@ -99,11 +105,13 @@ function ModalValidation({ setOpenValidation, text, type, id }) {
           method: "PUT",
           headers: {
             "Content-type": "application/json",
+            Authorization: ` Bearer ${auth.token}`,
           },
           body: JSON.stringify({
             is_validated: false,
             comment: comment.current.value,
           }),
+          credentials: "include"
         }
       );
       if (response.ok) {

@@ -65,7 +65,7 @@ const create = async (req, res, next) => {
 
 const editStatus = async (req, res, next) => {
   const { id } = req.params;
-  const { body } = req.body;
+  const { body } = req;
   try {
     await tables.crew.edit(body, id);
     const getOne = await tables.crew.readOne(id);

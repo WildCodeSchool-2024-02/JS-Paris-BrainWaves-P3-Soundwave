@@ -13,17 +13,23 @@ function Admin() {
   const { auth, updateEvents, updateCrews } = useOutletContext();
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/events/tovalidate`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/events/tovalidate`, {
+      headers: { Authorization: ` Bearer ${auth.token}` },
+      credentials: "include"
+    })
       .then((response) => response.json())
       .then((data) => setEvents(data));
-    fetch(`${import.meta.env.VITE_API_URL}/api/crews/tovalidate`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/crews/tovalidate`, {
+      headers: { Authorization: ` Bearer ${auth.token}` },
+      credentials: "include"
+    })
       .then((response) => response.json())
       .then((data) => setCrews(data));
   }, [updateEvents, updateCrews]);
   return (
     <main className="admin-page-main">
       <h1 className="admin-page-title">Bonjour {auth.user.firstname} !</h1>
-      <ToastContainer />
+      <ToastContainer theme="dark"/>
       <div className="button-container-admin-page">
         <button type="button" onClick={() => setToggleButtons(true)}>
           Evènements

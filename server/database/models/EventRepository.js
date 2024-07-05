@@ -26,7 +26,25 @@ class EventRepository extends AbstractRepository {
         event.lineup,
       ]
     );
-    return results;
+    return results.insertId;
+  }
+
+  async addCrewIdEvent(eventId, crewId) {
+    const [eventCrewId] = await this.database.query(
+      `INSERT INTO crew_event (event_id, crew_id) values (?, ?)`,
+      [eventId, crewId]
+    );
+
+    return eventCrewId;
+  }
+
+  async addStyleEvent(eventCategories) {
+    const request = this.database.format(
+      `INSERT INTO category_event (category_id, event_id) VALUES ?`,
+      [eventCategories]
+    );
+    const eventStyle = this.database.query(request);
+    return eventStyle;
   }
 
   async readLast() {
@@ -37,11 +55,19 @@ class EventRepository extends AbstractRepository {
   }
 
   async readCategory(style) {
-    const results = await this.database.query(
+    const [results] = await this.database.query(
       `SELECT ${this.table}.*, category.style FROM ${this.table} JOIN category_event ON category_event.event_id = ${this.table}.id JOIN category ON category_event.category_id = category.id WHERE category.style = ?`,
       [style]
     );
     return results;
+  }
+
+  async readCrewFromEvent(id) {
+    const [[crew]] = await this.database.query(
+      `SELECT crew.* FROM crew JOIN crew_event ON crew_event.crew_id = crew.id JOIN ${this.table} ON ${this.table}.id = crew_event.event_id WHERE event_id = ?`,
+      [id]
+    );
+    return crew;
   }
 }
 
