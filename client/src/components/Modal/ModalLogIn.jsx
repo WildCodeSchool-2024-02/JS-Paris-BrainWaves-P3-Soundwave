@@ -43,10 +43,12 @@ function ModalLogIn({ closeModalLogIn, auth, setAuth }) {
             email: email.current.value,
             password: password.current.value,
           }),
+          credentials: "include",
         }
       );
       if (response.status === 200) {
-        const { user, token } = await response.json();
+        const user = await response.json();
+        const token = response.headers.get("Authorization");
         setAuth({ isLogged: true, user, token });
         if (auth.user.role === "admin") {
           navigate("/admin");

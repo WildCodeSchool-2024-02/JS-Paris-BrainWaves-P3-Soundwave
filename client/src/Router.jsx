@@ -1,4 +1,9 @@
-import { createBrowserRouter } from "react-router-dom";
+import {
+  createBrowserRouter,
+  useNavigate,
+  useOutletContext,
+} from "react-router-dom";
+import { useEffect } from "react";
 import App from "./App";
 import Home from "./pages/Home/Home";
 import EventsList from "./pages/EventList/EventsList";
@@ -7,6 +12,38 @@ import CrewsList from "./pages/CrewsList/CrewsList";
 import CrewProfile from "./pages/CrewProfile/CrewProfile";
 import Admin from "./pages/Admin/Admin";
 import UserProfile from "./pages/UserProfile/UserProfile";
+
+const AdminRoute = ({ children }) => {
+  const { auth, isLoading } = useOutletContext();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!isLoading) {
+      if (!auth.isLogged) {
+        navigate("/");
+      }
+    }
+  }, [auth, isLoading, navigate]);
+  if (!isLoading && auth.isLogged && auth.user.role === "admin") {
+    return children;
+  }
+  return "...loading";
+};
+
+const ClientRoute = ({ children }) => {
+  const { auth, isLoading } = useOutletContext();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!isLoading) {
+      if (!auth.isLogged) {
+        navigate("/");
+      }
+    }
+  }, [auth, isLoading, navigate]);
+  if (!isLoading && auth.isLogged && auth.user.role === "client") {
+    return children;
+  }
+  return "...loading";
+};
 
 const router = createBrowserRouter([
   {
@@ -42,11 +79,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin",
-        element: <Admin />,
+        element: (
+          <AdminRoute>
+            <Admin />
+          </AdminRoute>
+        ),
       },
       {
         path: "/user-profile/:id",
-        element: <UserProfile />,
+        element: (
+          <ClientRoute>
+            <UserProfile />
+          </ClientRoute>
+        ),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/api/users/${params.id}`),
       },
