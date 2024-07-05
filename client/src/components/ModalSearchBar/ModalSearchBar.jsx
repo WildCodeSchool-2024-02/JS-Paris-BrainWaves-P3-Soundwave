@@ -4,6 +4,7 @@ import { ImCross } from "react-icons/im";
 import PropTypes from "prop-types";
 import mascot from "../../assets/images/masquote.svg";
 import "./modalsearchbar.css";
+import DateSearch from "./DateSearch";
 
 function ModalSearchBar({ closeModalSearchBar }) {
   const [crews, setCrews] = useState([]);
@@ -96,11 +97,12 @@ function ModalSearchBar({ closeModalSearchBar }) {
       />
       <input
         type="search"
-        placeholder="Recherche un événement, un collectif, une date ..."
+        placeholder="Recherche un événement, un collectif..."
         value={dataText}
         onChange={handleChange}
       />
       <section className="section-option-date-category">
+        <DateSearch/>
         <select
           label="select"
           type="select"

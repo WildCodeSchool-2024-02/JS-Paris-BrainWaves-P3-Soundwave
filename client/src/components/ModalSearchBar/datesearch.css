@@ -1,0 +1,20 @@
+.btn-calendar {
+  background-color: var(--background-color);
+  color: var(--secondary-color);
+  font-family: "Courier New", Courier, monospace;
+  border: 1px solid grey;
+  border-radius: 10px;
+  padding: 0.5rem;
+}
+
+.display-calendar {
+  position: absolute;
+  top: 25%;
+}
+
+@media (min-width: 1024px) {
+  .display-calendar {
+    left: 15%;
+    top: 20%;
+  }
+}
