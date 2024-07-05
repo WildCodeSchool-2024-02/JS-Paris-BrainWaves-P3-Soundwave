@@ -14,9 +14,10 @@ const {
 router.get("/", browse);
 router.get("/tovalidate", readPendingCrews);
 router.put("/tovalidate/:id", editStatus);
+router.post("/", create);
 router.get("/:id", read);
 router.put("/:id", edit);
-router.put("/", create);
+// router.put("/", create);
 
 router.get("/:id/events", readEventsByCrewId);
 

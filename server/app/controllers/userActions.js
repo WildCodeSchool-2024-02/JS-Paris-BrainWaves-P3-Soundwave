@@ -1,5 +1,5 @@
 const argon2 = require("argon2");
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 const tables = require("../../database/tables");
 
 const browse = async ({ res, next }) => {
@@ -28,7 +28,12 @@ const add = async (req, res, next) => {
     const userData = req.body;
     const result = await tables.user.insertOne(userData);
     const users = await tables.user.readOne(result.insertId);
-    res.status(201).json(users);
+    const token = jwt.sign(
+      { id: users.id, role: users.role },
+      process.env.APP_SECRET,
+      { expiresIn: "1h" }
+    );
+    res.status(201).json({ users, token });
   } catch (err) {
     next(err);
   }
@@ -39,9 +44,13 @@ const readLogin = async (req, res, next) => {
     const [user] = await tables.user.findByEmail(req.body.email);
     if (user) {
       if (await argon2.verify(user.password, req.body.password)) {
-        const token = jwt.sign({id: user.id, role: user.role}, process.env.APP_SECRET, {expiresIn: "1h"})
+        const token = jwt.sign(
+          { id: user.id, role: user.role },
+          process.env.APP_SECRET,
+          { expiresIn: "1h" }
+        );
         delete user.password;
-        res.status(200).json({user, token});
+        res.status(200).json({ user, token });
       } else {
         res.status(400).json("Wrong Credentials");
       }

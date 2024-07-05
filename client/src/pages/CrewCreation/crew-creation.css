@@ -95,7 +95,7 @@
     }
   }
 }
-input {
+.input-crew-crea {
   border: none;
   font-size: 3em;
   background-color: var(--background-color);
@@ -103,7 +103,7 @@ input {
   color: var(--secondary-color);
   width: 20vw;
 }
-textarea {
+.textarea-crew-crea {
   border: none;
   font-size: 3em;
   background-color: var(--background-color);

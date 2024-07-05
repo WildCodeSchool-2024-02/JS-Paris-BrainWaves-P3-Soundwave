@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./crew-creation.css";
-import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { useOutletContext, useLoaderData, useNavigate } from "react-router-dom";
 
 function CrewCreation() {
   const crew = useLoaderData();
@@ -8,8 +8,10 @@ function CrewCreation() {
   const [image, setImage] = useState(
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7mMNz8YCBvYmnr3BQUPX__YsC_WtDuAevwg&s"
   );
-  const { id } = useParams();
+
   const navigate = useNavigate();
+
+  const { auth } = useOutletContext();
 
   const [description, setDescription] = useState("description");
   const [errors, setErrors] = useState({});
@@ -37,11 +39,16 @@ function CrewCreation() {
   async function createCrewData() {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/crews/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/crews/`,
         {
           method: "post",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name: username, image, description }),
+          body: JSON.stringify({
+            name: username,
+            image,
+            ownerId: auth.users.id,
+            description,
+          }),
         }
       );
       if (response.status === 200) {
@@ -53,7 +60,9 @@ function CrewCreation() {
         setErrors({ update: "Échec de la creatoin du compte" });
       }
       if (response.ok) {
-        navigate(`/crew-details/${id}`);
+        const crew2 = await response.json();
+        console.info(crew2);
+        navigate(`/crew-details/${crew2.id}`);
       }
     } catch (err) {
       console.error(err);
@@ -78,6 +87,7 @@ function CrewCreation() {
             <div className="div-img-input">
               <img src={image} alt="logo du collectif" />
               <input
+                className="input-crew-crea"
                 onChange={(event) => setImage(event.target.value)}
                 type="text"
                 value={image}
@@ -85,6 +95,7 @@ function CrewCreation() {
             </div>
             <div className="crew-profile-title-options">
               <input
+                className="input-crew-crea"
                 onChange={(event) => setUsername(event.target.value)}
                 type="text"
                 value={username}
@@ -98,7 +109,7 @@ function CrewCreation() {
           </section>
           <section className="desc-crew-profile">
             <textarea
-              className="input-description-crew-profile"
+              className="textarea-crew-crea"
               onChange={handleInputChange}
               value={description}
             />

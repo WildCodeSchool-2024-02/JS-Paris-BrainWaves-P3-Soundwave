@@ -17,7 +17,8 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch(`${import.meta.env.VITE_API_URL}/api/events`),
+        loader: () =>
+          fetch(`${import.meta.env.VITE_API_URL}/api/events/recent`),
       },
       {
         path: "/events-list",

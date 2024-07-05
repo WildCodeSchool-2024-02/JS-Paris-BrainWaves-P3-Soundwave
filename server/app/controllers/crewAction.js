@@ -55,7 +55,6 @@ const edit = async (req, res, next) => {
 const create = async (req, res, next) => {
   try {
     const crewData = req.body;
-
     const result = await tables.crew.insertOne(crewData);
     const crew = await tables.user.readOne(result.insertId);
     res.status(201).json(crew);
@@ -63,6 +62,7 @@ const create = async (req, res, next) => {
     next(error);
   }
 };
+
 const editStatus = async (req, res, next) => {
   const { id } = req.params;
   const { body } = req.body;
