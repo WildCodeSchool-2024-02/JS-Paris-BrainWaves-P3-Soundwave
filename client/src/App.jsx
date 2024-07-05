@@ -14,6 +14,7 @@ function App() {
   const [admin] = useState(false);
   const [updateEvents, setUpdateEvents] = useState(false);
   const [updateCrews, setUpdateCrews] = useState(false);
+  const [styleInput, setStyleInput] = useState([]);
 
   return (
     <>
@@ -27,6 +28,8 @@ function App() {
           setUpdateCrews,
           updateEvents,
           setUpdateEvents,
+          styleInput,
+          setStyleInput,
         }}
       />
       <Footer />
