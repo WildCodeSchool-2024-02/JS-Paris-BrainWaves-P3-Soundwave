@@ -1,5 +1,5 @@
 const argon2 = require("argon2");
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 const tables = require("../../database/tables");
 
 const browse = async ({ res, next }) => {
@@ -39,9 +39,25 @@ const readLogin = async (req, res, next) => {
     const [user] = await tables.user.findByEmail(req.body.email);
     if (user) {
       if (await argon2.verify(user.password, req.body.password)) {
-        const token = jwt.sign({id: user.id, role: user.role}, process.env.APP_SECRET, {expiresIn: "1h"})
+        const accessToken = jwt.sign(
+          { id: user.id, role: user.role },
+          process.env.APP_SECRET,
+          { expiresIn: "1h" }
+        );
+        const refreshToken = jwt.sign(
+          { id: user.id, role: user.role },
+          process.env.APP_SECRET,
+          { expiresIn: "1d" }
+        );
         delete user.password;
-        res.status(200).json({user, token});
+        res
+          .status(200)
+          .cookie("refreshToken", refreshToken, {
+            httpOnly: true,
+            sameSite: "lax",
+          })
+          .header("Authorization", accessToken)
+          .json(user);
       } else {
         res.status(400).json("Wrong Credentials");
       }
@@ -53,4 +69,25 @@ const readLogin = async (req, res, next) => {
   }
 };
 
-module.exports = { browse, read, add, readLogin };
+const refresh = async(req, res, next) => {
+  try {
+    const {refreshToken} = req.cookies;
+    if(!refreshToken) {
+      res.status(401).json("Access Denied. No refresh token provided");
+    }
+    const decoded = jwt.verify(refreshToken, process.env.APP_SECRET);
+    const accessToken = jwt.sign({ id: decoded.id, role: decoded.role}, process.env.APP_SECRET, {expiresIn: "1h"});
+    const user = await tables.user.readOne(decoded.id);
+    delete user.password;
+
+    res.header("Authorization", accessToken).json(user);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const logout = async ({res}) => {
+  res.clearCookie("refreshToken").sendStatus(200);
+}
+
+module.exports = { browse, read, add, readLogin, refresh, logout };
