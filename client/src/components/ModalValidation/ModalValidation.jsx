@@ -27,6 +27,7 @@ function ModalValidation({ setOpenValidation, text, type, id }) {
             Authorization: ` Bearer ${auth.token}`,
           },
           body: JSON.stringify({ is_validated: true, comment: null }),
+          credentials: "include"
         }
       );
       if (response.ok) {
@@ -55,6 +56,7 @@ function ModalValidation({ setOpenValidation, text, type, id }) {
             is_validated: false,
             comment: comment.current.value,
           }),
+          credentials: "include"
         }
       );
       if (response.ok) {
@@ -80,6 +82,7 @@ function ModalValidation({ setOpenValidation, text, type, id }) {
             Authorization: ` Bearer ${auth.token}`,
           },
           body: JSON.stringify({ is_validated: true, comment: null }),
+          credentials: "include"
         }
       );
       if (response.ok) {
@@ -108,6 +111,7 @@ function ModalValidation({ setOpenValidation, text, type, id }) {
             is_validated: false,
             comment: comment.current.value,
           }),
+          credentials: "include"
         }
       );
       if (response.ok) {

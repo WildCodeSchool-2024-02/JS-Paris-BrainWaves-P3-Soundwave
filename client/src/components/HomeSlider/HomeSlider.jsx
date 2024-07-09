@@ -39,7 +39,7 @@ function HomeSlider({ events }) {
       speed={1800}
       preventClicks
       autoplay={{
-        delay: 1,
+        delay: 0,
         disableOnInteraction: false,
       }}
       modules={[FreeMode, Autoplay]}

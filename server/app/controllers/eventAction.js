@@ -67,6 +67,15 @@ const readCategoryEvents = async (req, res, next) => {
   }
 };
 
+const readLastEvents = async (req, res, next) => {
+  try {
+    const results = await tables.event.readLast();
+    res.status(200).json(results);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const readCrewByEvent = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -76,12 +85,12 @@ const readCrewByEvent = async (req, res, next) => {
     next(error);
   }
 };
-
 module.exports = {
   browse,
   read,
   readPendingEvents,
   add,
+  readLastEvents,
   editStatus,
   readCategoryEvents,
   readCrewByEvent,
