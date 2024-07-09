@@ -53,6 +53,7 @@ function ModalLogIn({ closeModalLogIn, auth, setAuth }) {
         if (auth.user.role === "admin") {
           navigate("/admin");
         } else if (auth.user.role === "client" || "crew") {
+          console.info(user)
           navigate("/");
         }
         handleCloseModalLogIn();

@@ -46,6 +46,19 @@ function NavBar({ auth, setAuth }) {
     setMenuAccount(!menuAccount);
   };
 
+  const accessAccount = () => {
+    if (auth.user.role === "client") {
+      navigate(`/user-profile/${auth.user.id}`)
+    };
+    if (auth.user.role === "crew") {
+      navigate(`/crew-details/${auth.user.id}`)
+    };
+    if (auth.user.role === "admin") {
+      navigate(`/admin`)
+    };
+    openAccountMenu();
+  };
+
   const logOut = async () => {
     try {
       await fetch(`${import.meta.env.VITE_API_URL}/api/users/logout`, {
@@ -53,7 +66,7 @@ function NavBar({ auth, setAuth }) {
       });
       setAuth({ isLogged: false, user: null, token: null });
       navigate("/");
-      setMenuAccount(!menuAccount);
+      openAccountMenu();
     } catch (error) {
       console.error(error);
     }
@@ -125,8 +138,14 @@ function NavBar({ auth, setAuth }) {
           </ul>
           {menuAccount && (
             <ul className="menu-account-nav-bar">
-              <li>Mon compte</li>
-              <li onClick={logOut} role="presentation" onKeyDown={logOut}>
+              <li
+                role="presentation"
+                onClick={accessAccount}
+                onKeyDown={accessAccount}
+              >
+                Mon compte
+              </li>
+              <li role="presentation" onClick={logOut} onKeyDown={logOut}>
                 Déconnexion
               </li>
             </ul>
