@@ -13,14 +13,6 @@ class CrewRepository extends AbstractRepository {
     return events;
   }
 
-  // async addIdOwner(userId) {
-  //   // Récupération de l'id de l'utilisateur
-  //   const result = await this.database.query(
-  //     `SELECT user.id  FROM user  JOIN ${this.table} ON user.id = ${this.table}.owner_id`,
-  //     [userId]
-  //   );
-  // }
-
   async insertOne(crewData) {
     const { name, image, description, ownerId } = crewData;
 
