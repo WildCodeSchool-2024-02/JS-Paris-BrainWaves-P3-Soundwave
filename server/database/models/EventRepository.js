@@ -47,8 +47,15 @@ class EventRepository extends AbstractRepository {
     return eventStyle;
   }
 
+  async readLast() {
+    const [rows] = await this.database.query(
+      `SELECT * FROM ${this.table} WHERE date(date) >= CURDATE() AND is_validated = true ORDER BY id DESC`
+    );
+    return rows;
+  }
+
   async readCategory(style) {
-    const [results] = await this.database.query(
+    const results = await this.database.query(
       `SELECT ${this.table}.*, category.style FROM ${this.table} JOIN category_event ON category_event.event_id = ${this.table}.id JOIN category ON category_event.category_id = category.id WHERE category.style = ?`,
       [style]
     );

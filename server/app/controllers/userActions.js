@@ -28,7 +28,12 @@ const add = async (req, res, next) => {
     const userData = req.body;
     const result = await tables.user.insertOne(userData);
     const users = await tables.user.readOne(result.insertId);
-    res.status(201).json(users);
+    const token = jwt.sign(
+      { id: users.id, role: users.role },
+      process.env.APP_SECRET,
+      { expiresIn: "1h" }
+    );
+    res.status(201).json({ users, token });
   } catch (err) {
     next(err);
   }
@@ -69,14 +74,18 @@ const readLogin = async (req, res, next) => {
   }
 };
 
-const refresh = async(req, res, next) => {
+const refresh = async (req, res, next) => {
   try {
-    const {refreshToken} = req.cookies;
-    if(!refreshToken) {
+    const { refreshToken } = req.cookies;
+    if (!refreshToken) {
       res.status(401).json("Access Denied. No refresh token provided");
     }
     const decoded = jwt.verify(refreshToken, process.env.APP_SECRET);
-    const accessToken = jwt.sign({ id: decoded.id, role: decoded.role}, process.env.APP_SECRET, {expiresIn: "1h"});
+    const accessToken = jwt.sign(
+      { id: decoded.id, role: decoded.role },
+      process.env.APP_SECRET,
+      { expiresIn: "1h" }
+    );
     const user = await tables.user.readOne(decoded.id);
     delete user.password;
 
@@ -86,8 +95,8 @@ const refresh = async(req, res, next) => {
   }
 };
 
-const logout = async ({res}) => {
+const logout = async ({ res }) => {
   res.clearCookie("refreshToken").sendStatus(200);
-}
+};
 
 module.exports = { browse, read, add, readLogin, refresh, logout };

@@ -2,20 +2,30 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import PropTypes from "prop-types";
+import Calendar from "react-calendar";
 import mascot from "../../assets/images/masquote.svg";
 import "./modalsearchbar.css";
+import "react-calendar/dist/Calendar.css";
+import "./calendar.css";
 
 function ModalSearchBar({ closeModalSearchBar }) {
   const [crews, setCrews] = useState([]);
   const [categories, setCategories] = useState([]);
   const [dataText, setDataText] = useState("");
   const [filteredEvents, setFilteredEvents] = useState([]);
+  const [events, setEvents] = useState([]);
+  const [value, setValue] = useState(new Date());
+  const [openCalendar, setOpenCalendar] = useState(false);
+  const [view, setView] = useState("month");
   const navigate = useNavigate();
 
   const fetchEvent = () => {
     fetch(`${import.meta.env.VITE_API_URL}/api/events`)
       .then((response) => response.json())
-      .then((data) => setFilteredEvents(data));
+      .then((data) => {
+        setEvents(data);
+        setFilteredEvents(data);
+      });
   };
 
   useEffect(() => {
@@ -88,6 +98,32 @@ function ModalSearchBar({ closeModalSearchBar }) {
     handleCloseModalSearchBar();
   };
 
+  const handleDateChange = async (date) => {
+    if (view === "year") {
+      const selectedMonth = date.getMonth();
+      const selectedYear = date.getFullYear();
+
+      const filtered = events.filter((event) => {
+        const eventDate = new Date(event.date);
+        return (
+          eventDate.getMonth() === selectedMonth &&
+          eventDate.getFullYear() === selectedYear
+        );
+      });
+      setFilteredEvents(filtered);
+      setOpenCalendar(false);
+    }
+    setValue(date);
+  };
+
+  const handleViewChange = (data) => {
+    setView(data.view);
+  };
+
+  const handleOpenCalendar = () => {
+    setOpenCalendar((prevState) => !prevState);
+  };
+
   return (
     <dialog className="display-modal-search-bar">
       <ImCross
@@ -96,11 +132,32 @@ function ModalSearchBar({ closeModalSearchBar }) {
       />
       <input
         type="search"
-        placeholder="Recherche un événement, un collectif, une date ..."
+        placeholder="Recherche un événement, un collectif..."
         value={dataText}
         onChange={handleChange}
       />
       <section className="section-option-date-category">
+        <section>
+          <button
+            type="button"
+            onClick={handleOpenCalendar}
+            className="btn-calendar"
+          >
+            Agenda
+          </button>
+          {openCalendar && (
+            <Calendar
+              onChange={handleDateChange}
+              value={value}
+              className="display-calendar"
+              view={view}
+              onClickMonth={handleDateChange}
+              onActiveStartDateChange={handleViewChange}
+              maxDetail="year"
+              minDetail="month"
+            />
+          )}
+        </section>
         <select
           label="select"
           type="select"
