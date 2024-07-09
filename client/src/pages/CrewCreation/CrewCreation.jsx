@@ -61,7 +61,6 @@ function CrewCreation() {
       }
       if (response.ok) {
         const crew2 = await response.json();
-        console.info(crew2);
         navigate(`/crew-details/${crew2.id}`);
       }
     } catch (err) {

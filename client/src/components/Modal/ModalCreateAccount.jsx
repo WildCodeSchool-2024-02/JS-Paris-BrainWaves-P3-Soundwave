@@ -62,9 +62,7 @@ function ModalCreateAccount({ closeModalCreateAccount, role }) {
         } else if (role === "crew") {
           const { users, token } = await response.json();
           setAuth({ isLogged: true, users, token });
-          console.info(users);
 
-          console.info(token);
           navigate(`/crew-creation/${users.id}`);
         }
       } else {
