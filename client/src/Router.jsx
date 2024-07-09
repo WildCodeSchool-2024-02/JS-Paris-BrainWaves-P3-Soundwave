@@ -12,6 +12,7 @@ import CrewsList from "./pages/CrewsList/CrewsList";
 import CrewProfile from "./pages/CrewProfile/CrewProfile";
 import Admin from "./pages/Admin/Admin";
 import UserProfile from "./pages/UserProfile/UserProfile";
+import CrewCreation from "./pages/CrewCreation/CrewCreation";
 
 const AdminRoute = ({ children }) => {
   const { auth, isLoading } = useOutletContext();
@@ -53,7 +54,8 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch(`${import.meta.env.VITE_API_URL}/api/events`),
+        loader: () =>
+          fetch(`${import.meta.env.VITE_API_URL}/api/events/recent`),
       },
       {
         path: "/events-list",
@@ -76,6 +78,10 @@ const router = createBrowserRouter([
         element: <CrewProfile />,
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/api/crews/${params.id}`),
+      },
+      {
+        path: "/crew-creation/:id",
+        element: <CrewCreation />,
       },
       {
         path: "/admin",

@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import "./modalcreateaccount.css";
 import { ImCross } from "react-icons/im";
 import PropTypes from "prop-types";
@@ -12,7 +12,7 @@ function ModalCreateAccount({ closeModalCreateAccount, role }) {
   const password = useRef("");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
-
+  const { setAuth } = useOutletContext();
   const validate = () => {
     const error = {};
 
@@ -57,7 +57,14 @@ function ModalCreateAccount({ closeModalCreateAccount, role }) {
         }
       );
       if (response.ok) {
-        navigate(`/user-profile/`);
+        if (role === "client") {
+          navigate(`/user-profile/`);
+        } else if (role === "crew") {
+          const { users, token } = await response.json();
+          setAuth({ isLogged: true, users, token });
+
+          navigate(`/crew-creation/${users.id}`);
+        }
       } else {
         console.error("Il y a une erreur");
       }

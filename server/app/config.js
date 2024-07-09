@@ -71,6 +71,7 @@ app.use(express.json());
 // Then, require the module and use it as middleware in your Express application:
 
 const cookieParser = require("cookie-parser");
+
 app.use(cookieParser());
 
 // Once `cookie-parser` is set up, you can read and set cookies in your routes.
