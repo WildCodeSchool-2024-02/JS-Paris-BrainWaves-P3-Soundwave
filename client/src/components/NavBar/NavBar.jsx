@@ -47,15 +47,15 @@ function NavBar({ auth, setAuth }) {
   };
 
   const accessAccount = () => {
-    if (auth.user.role === "client" ) {
-      navigate(`/user-profile/${auth.user.id}`)
-    };
+    if (auth.user.role === "client") {
+      navigate(`/user-profile`);
+    }
     if (auth.user.role === "crew") {
-      navigate(`/crew-details/${auth.crew.id}`)
-    };
+      navigate(`/crew-details/${auth.crew.id}`);
+    }
     if (auth.user.role === "admin") {
-      navigate(`/admin`)
-    };
+      navigate(`/admin`);
+    }
     openAccountMenu();
   };
 
@@ -67,6 +67,7 @@ function NavBar({ auth, setAuth }) {
       setAuth({ isLogged: false, user: null, token: null, crew: null });
       navigate("/");
       openAccountMenu();
+      updateMenu();
     } catch (error) {
       console.error(error);
     }
@@ -184,9 +185,21 @@ function NavBar({ auth, setAuth }) {
             >
               Collectifs
             </li>
-            <li role="presentation" onClick={handleModal}>
-              Log In
-            </li>
+            {!auth.isLogged && (
+              <li role="presentation" onClick={handleModal}>
+                Log In
+              </li>
+            )}
+            {auth.isLogged && (
+              <>
+                <li role="presentation" onClick={accessAccount}>
+                  Mon compte
+                </li>
+                <li role="presentation" onClick={logOut}>
+                  Déconnexion
+                </li>
+              </>
+            )}
           </ul>
           <img src={mascot} alt="mascot" />
         </div>

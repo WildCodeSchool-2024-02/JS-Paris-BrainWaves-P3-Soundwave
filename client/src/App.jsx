@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
-import { ToastContainer } from "react-toastify";
 import "./global.css";
 
 function App() {
@@ -51,7 +50,6 @@ function App() {
     <>
       <ToastContainer theme="dark" />
       <NavBar auth={auth} setAuth={setAuth} />
-      <ToastContainer theme="dark" />
       <Outlet
         context={{
           auth,
