@@ -25,7 +25,6 @@ const AdminRoute = ({ children }) => {
     }
   }, [auth, isLoading, navigate]);
   if (!isLoading && auth.isLogged && auth.user.role === "admin") {
-    console.log(auth);
     return children;
   }
   return "...loading";
@@ -77,7 +76,7 @@ const router = createBrowserRouter([
       {
         path: "/crew-details/:id",
         element: <CrewProfile />,
-        loader: ({params}) =>
+        loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/api/crews/${params.id}`),
       },
       {

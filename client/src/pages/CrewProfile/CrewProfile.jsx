@@ -23,8 +23,6 @@ function CrewProfile() {
     document.body.classList.add("active");
   };
 
-  console.log(auth);
-
   const handleBtnValue = () => {
     setEdit((prevEdit) => !prevEdit);
 
@@ -109,7 +107,7 @@ function CrewProfile() {
             />
           )}
           <div className="button-container-crew-profile">
-            {login && <HeartIconLike/>}
+            {login && <HeartIconLike />}
             <button
               onClick={edit ? handleSubmit : handleBtnValue}
               type="button"

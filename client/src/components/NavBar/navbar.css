@@ -97,10 +97,12 @@ nav {
   transform: rotate(45deg) translate(2vw, 3vw);
   transition: ease-out 0.5s;
 }
+
 .burger-bar.clicked:nth-child(2) {
   transform: scale(0.1);
   transition: ease-out 0.5s;
 }
+
 .burger-bar.clicked:nth-child(3) {
   transform: rotate(135deg) translate(1.5vw, 0vw);
   transition: ease-out 0.5s;
