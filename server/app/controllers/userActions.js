@@ -27,10 +27,29 @@ const add = async (req, res, next) => {
     req.body.password = hash;
     const userData = req.body;
     const result = await tables.user.insertOne(userData);
-    const users = await tables.user.readOne(result.insertId);
-    res.status(201).json(users);
+    const user = await tables.user.readOne(result.insertId);
+    const token = jwt.sign(
+      { id: user.id, role: user.role },
+      process.env.APP_SECRET,
+      { expiresIn: "1h" }
+    );
+    res.status(201).json({ user, token });
   } catch (err) {
     next(err);
+  }
+};
+
+const edit = async (req, res, next) => {
+  try {
+    const user = await tables.user.edit(req.body, req.params.id);
+    if (user) {
+      const userProfile = await tables.user.readOne(req.params.id);
+      res.status(200).json(userProfile);
+    } else {
+      res.status(404);
+    }
+  } catch (error) {
+    next(error);
   }
 };
 
@@ -107,6 +126,7 @@ module.exports = {
   browse,
   read,
   add,
+  edit,
   readLogin,
   refresh,
   logout,
