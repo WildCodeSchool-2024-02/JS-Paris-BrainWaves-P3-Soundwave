@@ -55,7 +55,7 @@ class EventRepository extends AbstractRepository {
   }
 
   async readCategory(style) {
-    const [results] = await this.database.query(
+    const results = await this.database.query(
       `SELECT ${this.table}.*, category.style FROM ${this.table} JOIN category_event ON category_event.event_id = ${this.table}.id JOIN category ON category_event.category_id = category.id WHERE category.style = ?`,
       [style]
     );
