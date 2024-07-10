@@ -5,6 +5,7 @@ const {
   browse,
   read,
   readEventsByCrewId,
+  create,
   readPendingCrews,
   editStatus,
   edit,
@@ -20,6 +21,7 @@ const imageUpload = require("../../../services/imageUpload")
 router.get("/", browse);
 router.get("/tovalidate", isAuth, isAdmin, readPendingCrews);
 router.put("/tovalidate/:id", isAuth, isAdmin, editStatus);
+router.post("/", create);
 router.get("/:id", read);
 router.put("/:id", edit);
 router.post("/:id/events/categories", isAuth, isCrew, imageUpload.single("image"), ValidateForm, add);

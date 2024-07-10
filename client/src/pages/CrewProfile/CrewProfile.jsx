@@ -115,7 +115,7 @@ function CrewProfile() {
               {btnValue}
             </button>
             {auth.isLogged &&
-              auth.user.role === "admin" &&
+              auth?.user?.role === "admin" &&
               !crew.is_validated && <AdminButton id={crew.id} type="crew" />}
           </div>
         </div>
