@@ -28,12 +28,7 @@ const add = async (req, res, next) => {
     const userData = req.body;
     const result = await tables.user.insertOne(userData);
     const users = await tables.user.readOne(result.insertId);
-    const token = jwt.sign(
-      { id: users.id, role: users.role },
-      process.env.APP_SECRET,
-      { expiresIn: "1h" }
-    );
-    res.status(201).json({ users, token });
+    res.status(201).json(users);
   } catch (err) {
     next(err);
   }
@@ -99,4 +94,21 @@ const logout = async ({ res }) => {
   res.clearCookie("refreshToken").sendStatus(200);
 };
 
-module.exports = { browse, read, add, readLogin, refresh, logout };
+const userEventLike = async (req, res, next) => {
+  try {
+    const result = await tables.user.userEventLike(req.params.id);
+    res.status(201).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = {
+  browse,
+  read,
+  add,
+  readLogin,
+  refresh,
+  logout,
+  userEventLike,
+};
