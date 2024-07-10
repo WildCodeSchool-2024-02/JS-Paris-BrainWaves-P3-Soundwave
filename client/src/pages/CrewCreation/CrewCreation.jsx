@@ -4,16 +4,14 @@ import { useOutletContext, useLoaderData, useNavigate } from "react-router-dom";
 
 function CrewCreation() {
   const crew = useLoaderData();
-  const [username, setUsername] = useState("name");
+  const [username, setUsername] = useState("Nom");
   const [image, setImage] = useState(
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7mMNz8YCBvYmnr3BQUPX__YsC_WtDuAevwg&s"
   );
 
   const navigate = useNavigate();
-
   const { auth } = useOutletContext();
-
-  const [description, setDescription] = useState("description");
+  const [description, setDescription] = useState("Description");
   const [errors, setErrors] = useState({});
 
   const handleInputChange = (event) => {
@@ -79,10 +77,10 @@ function CrewCreation() {
   };
 
   return (
-    <main className="main-crew-profile">
+    <main className="main-crew-creation">
       {!crew ? (
         <>
-          <section className="header-crew-profile">
+          <section className="header-crew-creation">
             <div className="div-img-input">
               <img src={image} alt="logo du collectif" />
               <input
@@ -92,21 +90,21 @@ function CrewCreation() {
                 value={image}
               />
             </div>
-            <div className="crew-profile-title-options">
+            <div className="crew-creation-title-options">
               <input
                 className="input-crew-crea"
                 onChange={(event) => setUsername(event.target.value)}
                 type="text"
                 value={username}
               />
-              <div className="button-container-crew-profile">
+              <div className="button-container-crew-creation">
                 <button onClick={handleSubmit} type="button">
                   send
                 </button>
               </div>
             </div>
           </section>
-          <section className="desc-crew-profile">
+          <section className="desc-crew-creation">
             <textarea
               className="textarea-crew-crea"
               onChange={handleInputChange}

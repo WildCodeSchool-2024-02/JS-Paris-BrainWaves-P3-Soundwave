@@ -1,8 +1,8 @@
-.main-crew-profile {
+.main-crew-creation {
   display: block;
   margin: 3rem 2rem;
 }
-.header-crew-profile {
+.header-crew-creation {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,13 +15,17 @@
     scale: 1.1;
     transition: all ease-in-out 800ms;
   }
-  .crew-profile-title-options {
+  .crew-creation-title-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
     margin: 1rem 0;
     h1 {
       margin: 1rem 0;
     }
   }
-  .button-container-crew-profile {
+  .button-container-crew-creation {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -45,7 +49,7 @@
     width: 2em;
   }
 }
-.desc-crew-profile {
+.desc-crew-creation {
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -53,7 +57,7 @@
   margin-bottom: 4rem;
 }
 
-.events-crew-profile-title {
+.events-crew-creation-title {
   text-align: left;
   display: flex;
   justify-content: space-between;
@@ -68,7 +72,7 @@
 }
 
 @media screen and (min-width: 1024px) {
-  .main-crew-profile {
+  .main-crew-creation {
     display: block;
     margin: 6rem 4rem;
     h2 {
@@ -76,7 +80,7 @@
     }
   }
 
-  .header-crew-profile {
+  .header-crew-creation {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -97,22 +101,32 @@
 }
 .input-crew-crea {
   border: none;
-  font-size: 3em;
-  background-color: var(--background-color);
-  border-bottom: 2px solid var(--secondary-color);
+  font-size: 1.2em;
+  background: rgb(36, 36, 36);
   color: var(--secondary-color);
-  width: 20vw;
+  width: 15vw;
+  padding-left: 1em;
+  padding-top: 0.5em;
+  font-family: "Courier New", Courier, monospace;
+  padding-right: 1em;
+  text-align: center;
+  justify-content: center;
+  border-radius: 20px;
 }
 .textarea-crew-crea {
   border: none;
-  font-size: 3em;
-  background-color: var(--background-color);
-  border-bottom: 2px solid var(--secondary-color);
-  border-top: 2px solid var(--secondary-color);
+  font-size: 1em;
+  padding-left: 1em;
+  padding-top: 0.5em;
+  font-family: "Courier New", Courier, monospace;
+  padding-right: 1em;
+  border-radius: 20px;
   color: var(--secondary-color);
   margin: auto;
   width: 90vw;
+  resize: none;
   height: "auto";
+  background: rgb(36, 36, 36);
   min-height: 10rem;
 }
 
@@ -121,6 +135,7 @@
   flex-direction: column;
   gap: 2em;
   align-items: center;
+
   img {
     object-fit: cover;
     height: 20em;
