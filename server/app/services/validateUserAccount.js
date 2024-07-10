@@ -1,4 +1,3 @@
-// const { userCheckedEmail } = require("../controllers/userActions");
 const tables = require("../../database/tables");
 
 const ValidateUserForm = async (req, res, next) => {
