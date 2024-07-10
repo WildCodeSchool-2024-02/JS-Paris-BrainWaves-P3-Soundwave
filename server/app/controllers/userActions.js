@@ -28,12 +28,7 @@ const add = async (req, res, next) => {
     const userData = req.body;
     const result = await tables.user.insertOne(userData);
     const users = await tables.user.readOne(result.insertId);
-    const token = jwt.sign(
-      { id: users.id, role: users.role },
-      process.env.APP_SECRET,
-      { expiresIn: "1h" }
-    );
-    res.status(201).json({ users, token });
+    res.status(201).json(users);
   } catch (err) {
     next(err);
   }
