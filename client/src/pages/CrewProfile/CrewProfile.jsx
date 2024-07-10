@@ -11,7 +11,7 @@ function CrewProfile() {
   const { auth } = useOutletContext();
   const [login] = useState(false);
   const [edit, setEdit] = useState(false);
-  const [btnValue, setBtnValue] = useState("diter");
+  const [btnValue, setBtnValue] = useState("Éditer");
   const [username, setUsername] = useState(crew.name);
   const [description, setDescription] = useState(crew.description);
   const [errors, setErrors] = useState({});

@@ -3,7 +3,6 @@ import { useNavigate, useOutletContext } from "react-router-dom";
 import "./modalcreateaccount.css";
 import { ImCross } from "react-icons/im";
 import { toast } from "react-toastify";
-// import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import mascot from "../../assets/images/masquote.svg";
 
