@@ -5,6 +5,7 @@ const {
   browse,
   read,
   add,
+  edit,
   readLogin,
   refresh,
   logout
@@ -16,6 +17,7 @@ router.get("/", browse);
 router.get("/refresh", refresh);
 router.get("/logout", logout);
 router.get("/:id", read);
+router.put("/:id", edit);
 router.post("/",ValidateUserForm, add);
 router.post("/login", readLogin);
 

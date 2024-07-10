@@ -11,7 +11,7 @@ function CrewProfile() {
   const { auth } = useOutletContext();
   const [login] = useState(false);
   const [edit, setEdit] = useState(false);
-  const [btnValue, setBtnValue] = useState("editer");
+  const [btnValue, setBtnValue] = useState("diter");
   const [username, setUsername] = useState(crew.name);
   const [description, setDescription] = useState(crew.description);
   const [errors, setErrors] = useState({});
@@ -27,9 +27,9 @@ function CrewProfile() {
     setEdit((prevEdit) => !prevEdit);
 
     if (edit) {
-      setBtnValue("editer");
+      setBtnValue("Éditer");
     } else {
-      setBtnValue("envoyer");
+      setBtnValue("Envoyer");
     }
   };
 

@@ -2,6 +2,8 @@ import { useState, useRef } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import "./modalcreateaccount.css";
 import { ImCross } from "react-icons/im";
+import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import mascot from "../../assets/images/masquote.svg";
 
@@ -13,6 +15,7 @@ function ModalCreateAccount({ closeModalCreateAccount, role }) {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const { setAuth } = useOutletContext();
+
   const validate = () => {
     const error = {};
 
@@ -57,13 +60,15 @@ function ModalCreateAccount({ closeModalCreateAccount, role }) {
         }
       );
       if (response.ok) {
-        if (role === "client") {
-          navigate(`/user-profile/`);
-        } else if (role === "crew") {
-          const { users, token } = await response.json();
-          setAuth({ isLogged: true, users, token });
+        const { user, token } = await response.json();
 
-          navigate(`/crew-creation/${users.id}`);
+        setAuth({ isLogged: true, user, token });
+        if (user?.role === "client") {
+          toast.success("Utilisateur créé avec succès !");
+          navigate(`/user-profile`);
+        } else if (user?.role === "crew") {
+          toast.success("Collectif créé avec succès !");
+          navigate(`/crew-creation/${user.id}`);
         }
       } else {
         console.error("Il y a une erreur");
