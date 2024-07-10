@@ -37,26 +37,25 @@ function ModalEvent({ closeModal, id }) {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
+    const form = new FormData();
+    form.append("image", image.current.files[0]);
+    form.append("name", name.current.value);
+    form.append("date", date.current.value);
+    form.append("starting_hour", startingHour.current.value);
+    form.append("location", location.current.value);
+    form.append("lineup", lineup.current.value);
+    form.append('address', address.current.value);
+    form.append("description", description.current.value)
+    form.append("categories", JSON.stringify(styleInput));
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/crews/${id}/events/categories`,
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${auth.token}`
+            Authorization: `Bearer ${auth.token}`,
           },
-          body: JSON.stringify({
-            name: name.current.value,
-            date: date.current.value,
-            starting_hour: startingHour.current.value,
-            location: location.current.value,
-            address: address.current.value,
-            description: description.current.value,
-            image: image.current.value,
-            lineup: lineup.current.value,
-            categories: styleInput,
-          }),
+          body: form,
         }
       );
       const result = await response.json();
@@ -75,7 +74,7 @@ function ModalEvent({ closeModal, id }) {
           descriptionRequire: null,
           imageRequire: null,
           lineupRequire: null,
-          styleRequire: null
+          styleRequire: null,
         });
         result.forEach((element) => {
           setFormErrors((prev) => ({
@@ -129,7 +128,7 @@ function ModalEvent({ closeModal, id }) {
           </div>
           <div className="section-create-event">
             <label htmlFor="image">Image</label>
-            <input type="text" ref={image} />
+            <input type="file" ref={image} />
             {formErrors.imageRequire && <p>{formErrors.imageRequire} </p>}
           </div>
           <div className="section-create-event">
@@ -152,9 +151,7 @@ function ModalEvent({ closeModal, id }) {
           <div className="section-create-event">
             <label htmlFor="Style">Styles</label>
             <DropDownMenu />
-            {formErrors.styleRequire && (
-              <p>{formErrors.styleRequire} </p>
-            )}
+            {formErrors.styleRequire && <p>{formErrors.styleRequire} </p>}
           </div>
           <button
             type="button"
