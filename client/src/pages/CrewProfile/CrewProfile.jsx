@@ -1,7 +1,7 @@
 import { useLoaderData, useOutletContext } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./crew-profile.css";
-import { FaRegHeart } from "react-icons/fa";
+import HeartIconLike from "../../components/HeartIconLike/HeartIconLike";
 import EventCard from "../../components/EventCard/EventCard";
 import ModalEvent from "../../components/EventCreationModal/ModalEvent";
 import AdminButton from "../../components/AdminButtons/AdminButtons";
@@ -107,7 +107,7 @@ function CrewProfile() {
             />
           )}
           <div className="button-container-crew-profile">
-            {login && <FaRegHeart className="heart-icon" />}
+            {login && <HeartIconLike/>}
             <button
               onClick={edit ? handleSubmit : handleBtnValue}
               type="button"
@@ -148,12 +148,14 @@ function CrewProfile() {
       <section className="events-crew-profile">
         <div className="events-crew-profile-title">
           <h2>Evènements</h2>
-          {!login && (
+          {auth.isLogged && auth.user.role === "crew" && (
             <button type="button" onClick={handleOpenModal}>
               Ajouter
             </button>
           )}
-          {openModalEvent && <ModalEvent closeModal={setOpenModalEvent}  id={crew.id}/>}
+          {openModalEvent && (
+            <ModalEvent closeModal={setOpenModalEvent} id={crew.id} />
+          )}
         </div>
         {events.map((event) => (
           <EventCard

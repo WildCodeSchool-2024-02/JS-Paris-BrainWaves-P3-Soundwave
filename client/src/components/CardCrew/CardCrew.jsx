@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import HeartIconLike from "../HeartIconLike/HeartIconLike";
 import "./cardcrew.css";
-import { FaRegHeart } from "react-icons/fa";
 import AdminButton from "../AdminButtons/AdminButtons";
 
 function CardCrew({ result }) {
@@ -9,9 +9,7 @@ function CardCrew({ result }) {
   const { updateCrews, setUpdateCrews, auth } = useOutletContext();
 
   return (
-    <section
-      className="specific-crew-card"
-    >
+    <section className="specific-crew-card">
       {window.innerWidth < 1024 && (
         <>
           <div className="crew-card-presentation">
@@ -33,7 +31,7 @@ function CardCrew({ result }) {
                 type="crew"
               />
             ) : (
-              <FaRegHeart className="heart-icon" />
+              <HeartIconLike />
             )}
           </div>
           {result.description.length <= 100 ? (
@@ -65,7 +63,7 @@ function CardCrew({ result }) {
                   type="crew"
                 />
               ) : (
-                <FaRegHeart className="heart-icon" />
+                <HeartIconLike />
               )}
             </div>
             <p>{result.description}</p>

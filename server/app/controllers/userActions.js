@@ -113,4 +113,22 @@ const logout = async ({ res }) => {
   res.clearCookie("refreshToken").sendStatus(200);
 };
 
-module.exports = { browse, read, add, edit, readLogin, refresh, logout };
+const userEventLike = async (req, res, next) => {
+  try {
+    const result = await tables.user.userEventLike(req.params.id);
+    res.status(201).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = {
+  browse,
+  read,
+  add,
+  edit,
+  readLogin,
+  refresh,
+  logout,
+  userEventLike,
+};

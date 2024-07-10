@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import "./eventcard.css";
-import { FaRegHeart } from "react-icons/fa";
+import HeartIconLike from "../HeartIconLike/HeartIconLike";
 import AdminButton from "../AdminButtons/AdminButtons";
 
 function EventCard({
@@ -40,7 +40,7 @@ function EventCard({
         <AdminButton id={id} type="event" />
       ) : (
         <div className="heart-icon-container">
-          <FaRegHeart className="heart-icon" />
+         <HeartIconLike/>
         </div>
       )}
     </div>
