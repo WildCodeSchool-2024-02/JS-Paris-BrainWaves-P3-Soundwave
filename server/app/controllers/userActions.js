@@ -28,12 +28,24 @@ const add = async (req, res, next) => {
     const userData = req.body;
     const result = await tables.user.insertOne(userData);
     const user = await tables.user.readOne(result.insertId);
-    const token = jwt.sign(
+    const accessToken = jwt.sign(
       { id: user.id, role: user.role },
       process.env.APP_SECRET,
       { expiresIn: "1h" }
     );
-    res.status(201).json({ user, token });
+    const refreshToken = jwt.sign(
+      { id: user.id, role: user.role },
+      process.env.APP_SECRET,
+      { expiresIn: "1d" }
+    );
+    delete user.password
+    res.status(201)
+    .cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      sameSite: "lax",
+    })
+    .header("Authorization", accessToken)
+    .json(user);
   } catch (err) {
     next(err);
   }
@@ -121,6 +133,7 @@ const userEventLike = async (req, res, next) => {
     next(error);
   }
 };
+
 
 module.exports = {
   browse,
