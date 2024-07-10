@@ -47,11 +47,11 @@ function NavBar({ auth, setAuth }) {
   };
 
   const accessAccount = () => {
-    if (auth.user.role === "client") {
+    if (auth.user.role === "client" ) {
       navigate(`/user-profile/${auth.user.id}`)
     };
     if (auth.user.role === "crew") {
-      navigate(`/crew-details/${auth.user.id}`)
+      navigate(`/crew-details/${auth.crew.id}`)
     };
     if (auth.user.role === "admin") {
       navigate(`/admin`)
@@ -64,7 +64,7 @@ function NavBar({ auth, setAuth }) {
       await fetch(`${import.meta.env.VITE_API_URL}/api/users/logout`, {
         credentials: "include",
       });
-      setAuth({ isLogged: false, user: null, token: null });
+      setAuth({ isLogged: false, user: null, token: null, crew: null });
       navigate("/");
       openAccountMenu();
     } catch (error) {

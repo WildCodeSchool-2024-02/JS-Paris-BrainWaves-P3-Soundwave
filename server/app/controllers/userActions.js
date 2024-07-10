@@ -4,7 +4,7 @@ const tables = require("../../database/tables");
 
 const browse = async ({ res, next }) => {
   try {
-    const users = await tables.user.readAll();
+    const users = await tables.user.readAllUsers();
     res.status(200).json(users);
   } catch (err) {
     next(err);
@@ -27,13 +27,13 @@ const add = async (req, res, next) => {
     req.body.password = hash;
     const userData = req.body;
     const result = await tables.user.insertOne(userData);
-    const users = await tables.user.readOne(result.insertId);
+    const user = await tables.user.readOne(result.insertId);
     const token = jwt.sign(
-      { id: users.id, role: users.role },
+      { id: user.id, role: user.role },
       process.env.APP_SECRET,
       { expiresIn: "1h" }
     );
-    res.status(201).json({ users, token });
+    res.status(201).json({ user, token });
   } catch (err) {
     next(err);
   }
@@ -55,6 +55,7 @@ const readLogin = async (req, res, next) => {
           { expiresIn: "1d" }
         );
         delete user.password;
+        const crew = await tables.user.selectCrewByUser(user.id);
         res
           .status(200)
           .cookie("refreshToken", refreshToken, {
@@ -62,7 +63,7 @@ const readLogin = async (req, res, next) => {
             sameSite: "lax",
           })
           .header("Authorization", accessToken)
-          .json(user);
+          .json({user, crew});
       } else {
         res.status(400).json("Wrong Credentials");
       }
@@ -87,9 +88,10 @@ const refresh = async (req, res, next) => {
       { expiresIn: "1h" }
     );
     const user = await tables.user.readOne(decoded.id);
+    const crew = await tables.user.selectCrewByUser(decoded.id);
     delete user.password;
 
-    res.header("Authorization", accessToken).json(user);
+    res.header("Authorization", accessToken).json({ user, crew });
   } catch (error) {
     next(error);
   }
@@ -99,4 +101,12 @@ const logout = async ({ res }) => {
   res.clearCookie("refreshToken").sendStatus(200);
 };
 
-module.exports = { browse, read, add, readLogin, refresh, logout };
+
+module.exports = {
+  browse,
+  read,
+  add,
+  readLogin,
+  refresh,
+  logout,
+};

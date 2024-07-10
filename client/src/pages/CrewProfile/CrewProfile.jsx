@@ -23,6 +23,8 @@ function CrewProfile() {
     document.body.classList.add("active");
   };
 
+  console.log(auth);
+
   const handleBtnValue = () => {
     setEdit((prevEdit) => !prevEdit);
 

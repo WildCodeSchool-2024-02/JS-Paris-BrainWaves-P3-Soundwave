@@ -11,6 +11,7 @@ function App() {
     isLogged: false,
     user: null,
     token: null,
+    crew: null,
   });
   const [updateEvents, setUpdateEvents] = useState(false);
   const [updateCrews, setUpdateCrews] = useState(false);
@@ -26,11 +27,15 @@ function App() {
         );
         if (response.ok) {
           const token = response.headers.get("Authorization");
-          const user = await response.json();
-          setAuth({ isLogged: true, user, token });
+          const result = await response.json();
+          setAuth({
+            isLogged: true,
+            user: result.user,
+            token,
+            crew: result.crew,
+          });
           setIsLoading(false);
-        }
-        else {
+        } else {
           setIsLoading(false);
         }
       } catch (error) {
@@ -44,7 +49,7 @@ function App() {
   return (
     <>
       <NavBar auth={auth} setAuth={setAuth} />
-      <ToastContainer theme="dark"/>
+      <ToastContainer theme="dark" />
       <Outlet
         context={{
           auth,
