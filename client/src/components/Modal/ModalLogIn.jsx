@@ -52,7 +52,12 @@ function ModalLogIn({ closeModalLogIn, auth, setAuth }) {
         setAuth({ isLogged: true, user, token });
         if (auth.user.role === "admin") {
           navigate("/admin");
-        } else if (auth.user.role === "client" || "crew") {
+        }
+        if (auth.user.role === "client") {
+          navigate("/");
+        }
+
+        if (auth.user.role === "crew") {
           navigate("/");
         }
         handleCloseModalLogIn();

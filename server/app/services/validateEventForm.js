@@ -5,8 +5,8 @@ const ValidateForm = (req, res, next) => {
     starting_hour: startingHour,
     address,
     description,
-    image,
     lineup,
+    categories,
   } = req.body;
 
   const errors = [];
@@ -60,12 +60,16 @@ const ValidateForm = (req, res, next) => {
     });
   }
 
-  if (!image) {
+  if (!req?.file?.filename) {
     errors.push({ label: "imageRequire", error: "Image obligatoire" });
   }
 
   if (!lineup) {
     errors.push({ label: "lineupRequire", error: "Programmation obligatoire" });
+  }
+
+  if(!categories) {
+    errors.push({ label: "StyleRequire", error: "Style obligatoire" }); 
   }
 
   if (errors.length !== 0) {
