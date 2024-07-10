@@ -39,6 +39,20 @@ const add = async (req, res, next) => {
   }
 };
 
+const edit = async (req, res, next) => {
+  try {
+    const user = await tables.user.edit(req.body, req.params.id);
+    if (user) {
+      const userProfile = await tables.user.readOne(req.params.id);
+      res.status(200).json(userProfile);
+    } else {
+      res.status(404);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 const readLogin = async (req, res, next) => {
   try {
     const [user] = await tables.user.findByEmail(req.body.email);
@@ -101,12 +115,22 @@ const logout = async ({ res }) => {
   res.clearCookie("refreshToken").sendStatus(200);
 };
 
+const userEventLike = async (req, res, next) => {
+  try {
+    const result = await tables.user.userEventLike(req.params.id);
+    res.status(201).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   browse,
   read,
   add,
+  edit,
   readLogin,
   refresh,
   logout,
+  userEventLike,
 };

@@ -33,10 +33,12 @@ const readPendingEvents = async ({ res, next }) => {
 };
 
 const add = async (req, res, next) => {
+  const uploadDest = `${process.env.APP_HOST}/upload/`;
+  if (req.file) req.body.image = uploadDest + req.file.filename;
   try {
     const event = await tables.event.create(req.body);
     const eventCategories = [];
-    req.body.categories.forEach((category) =>
+    JSON.parse(req.body.categories).forEach((category) =>
       eventCategories.push([category.value, event])
     );
     const style = await tables.event.addStyleEvent(eventCategories);

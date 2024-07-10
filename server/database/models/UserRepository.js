@@ -21,7 +21,7 @@ class UserRepository extends AbstractRepository {
   }
 
   async insertOne(userData) {
-    const {firstname, lastname, email, password, role} = userData
+    const { firstname, lastname, email, password, role } = userData;
     const [user] = await this.database.query(
       `INSERT INTO ${this.table} (firstname, lastname, email, password, role) VALUES (?, ?, ?, ?, ?)`,
       [firstname, lastname, email, password, role]
@@ -42,6 +42,13 @@ class UserRepository extends AbstractRepository {
     return crew;
   }
   
+  async userLikeEvent(eventId, userId) {
+    const [likeId] = await this.database.query(
+      `INSERT INTO user_event_like (event_id, user_id) VALUES (?,?)`,
+      [eventId, userId]
+    );
+    return likeId;
+  }
 }
 
 module.exports = UserRepository;

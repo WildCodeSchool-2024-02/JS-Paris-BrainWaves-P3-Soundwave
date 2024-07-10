@@ -93,12 +93,12 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/user-profile/:id",
+        path: "/user-profile",
         element: (
           <ClientRoute>
             <UserProfile />
           </ClientRoute>
-        )
+        ),
       },
     ],
   },

@@ -41,6 +41,7 @@ const isCrew = async (req, res, next) => {
     res.sendStatus(403);
   }
 };
+
 const isClient = async (req, res, next) => {
   try {
     if (req.auth.role === "client") {
