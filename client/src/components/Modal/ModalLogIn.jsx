@@ -47,17 +47,16 @@ function ModalLogIn({ closeModalLogIn, auth, setAuth }) {
         }
       );
       if (response.status === 200) {
-        const user = await response.json();
+        const { user, crew } = await response.json();
         const token = response.headers.get("Authorization");
-        setAuth({ isLogged: true, user, token });
-        if (auth.user.role === "admin") {
+        setAuth({ isLogged: true, user, token, crew });
+        if (user.role === "admin") {
           navigate("/admin");
         }
-        if (auth.user.role === "client") {
+        if (user.role === "client") {
           navigate("/");
         }
-
-        if (auth.user.role === "crew") {
+        if (user.role === "crew") {
           navigate("/");
         }
         handleCloseModalLogIn();

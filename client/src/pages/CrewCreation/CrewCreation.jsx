@@ -120,7 +120,7 @@ function CrewCreation() {
           </section>
         </>
       ) : (
-        <p>'vous avez deja un crew :)'</p>
+        <p>vous avez deja un crew :/</p>
       )}
     </main>
   );

@@ -107,7 +107,7 @@ function CrewProfile() {
             />
           )}
           <div className="button-container-crew-profile">
-            {login && <HeartIconLike/>}
+            {login && <HeartIconLike />}
             <button
               onClick={edit ? handleSubmit : handleBtnValue}
               type="button"
