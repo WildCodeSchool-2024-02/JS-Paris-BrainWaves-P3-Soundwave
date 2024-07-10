@@ -1,6 +1,6 @@
-import { useLoaderData, useNavigate,useOutletContext } from "react-router-dom";
+import { useLoaderData, useNavigate, useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FaRegHeart } from "react-icons/fa";
+import HeartIconLike from "../../components/HeartIconLike/HeartIconLike";
 import "./eventdetails.css";
 import AdminButton from "../../components/AdminButtons/AdminButtons";
 
@@ -18,6 +18,7 @@ function EventDetail() {
   const handleCrewPage = () => {
     navigate(`/crew-details/${crewByEvent.id}`);
   };
+
   const { auth } = useOutletContext();
 
   return (
@@ -27,7 +28,14 @@ function EventDetail() {
           <img src={event.image} alt="poster" className="event-details-img" />
         </div>
         <section className="event-details-info">
-          <p onClick={handleCrewPage} onKeyDown={handleCrewPage} role= "presentation" className="crew-name-event">Collectifs : {crewByEvent.name}</p>
+          <p
+            onClick={handleCrewPage}
+            onKeyDown={handleCrewPage}
+            role="presentation"
+            className="crew-name-event"
+          >
+            Collectifs : {crewByEvent.name}
+          </p>
           <h1>{event.name}</h1>
           {auth.isLogged &&
           auth.user.role === "admin" &&
@@ -35,7 +43,7 @@ function EventDetail() {
             <AdminButton id={event.id} type="event" />
           ) : (
             <div className="heart-icon-container">
-              <FaRegHeart className="heart-icon" />
+              <HeartIconLike />
             </div>
           )}
           <div className="event-main-info">
