@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./navbar.css";
 import { FaSearch } from "react-icons/fa";
+import { RxAvatar } from "react-icons/rx";
 import soundwave from "../../assets/images/SoundWave.svg";
 import mascot from "../../assets/images/masquote.svg";
 import ModalLogIn from "../Modal/ModalLogIn";
@@ -16,6 +17,7 @@ function NavBar({ auth, setAuth }) {
   const [isMenuClicked, setIsMenuClicked] = useState(false);
   const [openModalLogIn, setOpenModalLogIn] = useState(false);
   const [openModalSearchBar, setOpenModalSearchBar] = useState(false);
+  const [menuAccount, setMenuAccount] = useState(false);
 
   const updateMenu = () => {
     if (!isMenuClicked) {
@@ -40,6 +42,37 @@ function NavBar({ auth, setAuth }) {
     document.body.classList.add("active");
   };
 
+  const openAccountMenu = () => {
+    setMenuAccount(!menuAccount);
+  };
+
+  const accessAccount = () => {
+    if (auth.user.role === "client") {
+      navigate(`/user-profile`);
+    }
+    if (auth.user.role === "crew") {
+      navigate(`/crew-details/${auth.crew.id}`);
+    }
+    if (auth.user.role === "admin") {
+      navigate(`/admin`);
+    }
+    openAccountMenu();
+  };
+
+  const logOut = async () => {
+    try {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/users/logout`, {
+        credentials: "include",
+      });
+      setAuth({ isLogged: false, user: null, token: null, crew: null });
+      navigate("/");
+      openAccountMenu();
+      updateMenu();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <section className="display-navbar">
       <nav>
@@ -54,7 +87,7 @@ function NavBar({ auth, setAuth }) {
         <div className="navigation">
           <FaSearch className="logo-searchbar" onClick={handleModalSearchBar} />{" "}
           {openModalSearchBar && (
-            <ModalSearchBar closeModalSearchBar={setOpenModalSearchBar}/>
+            <ModalSearchBar closeModalSearchBar={setOpenModalSearchBar} />
           )}
           <div
             className="burger-menu"
@@ -90,10 +123,34 @@ function NavBar({ auth, setAuth }) {
             >
               Collectifs
             </li>
-            <li role="presentation" onClick={handleModal}>
-              Log In
-            </li>
+            {!auth.isLogged && (
+              <li role="presentation" onClick={handleModal}>
+                Log In
+              </li>
+            )}
+            {auth.isLogged && (
+              <RxAvatar
+                className="avatar-icon"
+                role="presentation"
+                onClick={openAccountMenu}
+                onKeyDown={openAccountMenu}
+              />
+            )}
           </ul>
+          {menuAccount && (
+            <ul className="menu-account-nav-bar">
+              <li
+                role="presentation"
+                onClick={accessAccount}
+                onKeyDown={accessAccount}
+              >
+                Mon compte
+              </li>
+              <li role="presentation" onClick={logOut} onKeyDown={logOut}>
+                Déconnexion
+              </li>
+            </ul>
+          )}
         </div>
       </nav>
       {openModalLogIn && (
@@ -128,9 +185,21 @@ function NavBar({ auth, setAuth }) {
             >
               Collectifs
             </li>
-            <li role="presentation" onClick={handleModal}>
-              Log In
-            </li>
+            {!auth.isLogged && (
+              <li role="presentation" onClick={handleModal}>
+                Log In
+              </li>
+            )}
+            {auth.isLogged && (
+              <>
+                <li role="presentation" onClick={accessAccount}>
+                  Mon compte
+                </li>
+                <li role="presentation" onClick={logOut}>
+                  Déconnexion
+                </li>
+              </>
+            )}
           </ul>
           <img src={mascot} alt="mascot" />
         </div>

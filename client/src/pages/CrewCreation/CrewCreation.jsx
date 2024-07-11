@@ -115,7 +115,7 @@ function CrewCreation() {
           </section>
         </>
       ) : (
-        <p>Vous avez déjà un crew :)</p>
+        <p>vous avez deja un crew :/</p>
       )}
     </main>
   );

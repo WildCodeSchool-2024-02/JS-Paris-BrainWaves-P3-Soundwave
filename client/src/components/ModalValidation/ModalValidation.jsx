@@ -33,6 +33,7 @@ function ModalValidation({ setOpenValidation, text, type, id }) {
       if (response.ok) {
         setUpdateEvents(!updateEvents);
         toast.success("L'évènement a été validé !");
+        document.body.classList.remove("active");
         navigate("/admin");
       }
     } catch (error) {
@@ -62,6 +63,7 @@ function ModalValidation({ setOpenValidation, text, type, id }) {
       if (response.ok) {
         setUpdateEvents(!updateEvents);
         toast.success("L'évènement a été rejeté");
+        document.body.classList.remove("active");
         navigate("/admin");
       }
     } catch (error) {
@@ -88,6 +90,7 @@ function ModalValidation({ setOpenValidation, text, type, id }) {
       if (response.ok) {
         setUpdateCrews(!updateCrews);
         toast.success("Le collectif a été validé !");
+        document.body.classList.remove("active");
         navigate("/admin");
       }
     } catch (error) {
@@ -116,8 +119,9 @@ function ModalValidation({ setOpenValidation, text, type, id }) {
       );
       if (response.ok) {
         setUpdateCrews(!updateCrews);
-        navigate("/admin");
         toast.success("Le collectif a été rejeté");
+        document.body.classList.remove("active");
+        navigate("/admin");
       }
     } catch (error) {
       console.error(error);
