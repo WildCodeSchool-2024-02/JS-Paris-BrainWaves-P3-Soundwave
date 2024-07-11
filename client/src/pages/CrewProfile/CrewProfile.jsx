@@ -1,5 +1,5 @@
 import { useLoaderData, useOutletContext } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./crew-profile.css";
 import HeartIconLike from "../../components/HeartIconLike/HeartIconLike";
 import EventCard from "../../components/EventCard/EventCard";
@@ -17,6 +17,16 @@ function CrewProfile() {
   const [errors, setErrors] = useState({});
   const [events, setEvents] = useState([]);
   const [openModalEvent, setOpenModalEvent] = useState(false);
+  const [image, setImage] = useState(crew.image); // State for image URL
+  const imageInputRef = useRef();
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setImage(imageUrl); // Update the state with the new image URL
+    }
+  };
 
   const handleOpenModal = () => {
     setOpenModalEvent(true);
@@ -53,54 +63,68 @@ function CrewProfile() {
     return error;
   };
 
-  async function updateCrewData() {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/crews/${crew.id}`,
-        {
-          method: "put",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name: username, description }),
-        }
-      );
-      if (response.status === 200) {
-        const result = await response.json();
-        setUsername(result.name);
-        setDescription(result.description);
-        setEdit(false);
-        setBtnValue("editer");
-      } else {
-        setErrors({ update: "Échec de la mise à jour" });
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  }
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/crews/${crew.id}/events`)
       .then((response) => response.json())
       .then((data) => setEvents(data));
   }, [crew.id]);
 
-  const handleSubmit = async (e) => {
-    if (e) e.preventDefault();
+  const handleSubmit = async () => {
     const errorData = validate();
     if (Object.keys(errorData).length > 0) {
       setErrors(errorData);
     } else {
-      await updateCrewData();
+      try {
+        const form = new FormData();
+        form.append("name", username);
+        form.append("description", description);
+        if (imageInputRef.current.files[0]) {
+          form.append("image", imageInputRef.current.files[0]);
+        }
+
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/crews/${crew.id}`,
+          {
+            method: "put",
+            headers: { Authorization: `Bearer ${auth.token}` },
+            body: form,
+          }
+        );
+        if (response.status === 200) {
+          const result = await response.json();
+          setUsername(result.name);
+          setDescription(result.description);
+          setImage(result.image);
+          setEdit(false);
+          setBtnValue("Éditer");
+        } else {
+          setErrors({ update: "Échec de la mise à jour" });
+        }
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
 
   return (
     <main className="main-crew-profile">
       <section className="header-crew-profile">
-        <img src={crew.image} alt="logo du collectif" />
+        <div className="header-crew-image">
+          <img src={image} alt="logo du collectif" />
+          {edit && (
+            <input
+              type="file"
+              ref={imageInputRef}
+              onChange={handleImageChange}
+            />
+          )}
+        </div>
         <div className="crew-profile-title-options">
           {!edit ? (
             <h1>{username}</h1>
           ) : (
             <input
+              className="input-crew-edit"
               onChange={(event) => setUsername(event.target.value)}
               type="text"
               value={username}
@@ -108,6 +132,7 @@ function CrewProfile() {
           )}
           <div className="button-container-crew-profile">
             {login && <HeartIconLike />}
+
             <button
               onClick={edit ? handleSubmit : handleBtnValue}
               type="button"
@@ -115,7 +140,7 @@ function CrewProfile() {
               {btnValue}
             </button>
             {auth.isLogged &&
-              auth?.user?.role === "admin" &&
+              auth.user?.role === "admin" &&
               !crew.is_validated && <AdminButton id={crew.id} type="crew" />}
           </div>
         </div>
@@ -129,14 +154,8 @@ function CrewProfile() {
       ) : (
         <section className="desc-crew-profile">
           <textarea
-            className="input-description-crew-profile"
+            className="textarea-crew-edit"
             onChange={handleInputChange}
-            style={{
-              height: "auto",
-              minHeight: "10rem",
-              width: "50rem",
-              minWidth: "10rem",
-            }}
             value={description}
           />
         </section>
@@ -147,8 +166,8 @@ function CrewProfile() {
 
       <section className="events-crew-profile">
         <div className="events-crew-profile-title">
-          <h2>Evènements</h2>
-          {auth.isLogged && auth.user.role === "crew" && (
+          <h2>Évènements</h2>
+          {auth.isLogged && auth.user?.role === "crew" && (
             <button type="button" onClick={handleOpenModal}>
               Ajouter
             </button>

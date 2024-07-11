@@ -5,7 +5,7 @@ import { ImCross } from "react-icons/im";
 import PropTypes from "prop-types";
 import mascot from "../../assets/images/masquote.svg";
 
-function ModalLogIn({ closeModalLogIn, auth, setAuth }) {
+function ModalLogIn({ closeModalLogIn, setAuth }) {
   const email = useRef("");
   const password = useRef("");
   const [errors, setErrors] = useState([]);
@@ -127,6 +127,5 @@ export default ModalLogIn;
 
 ModalLogIn.propTypes = {
   closeModalLogIn: PropTypes.func.isRequired,
-  auth: PropTypes.func.isRequired,
   setAuth: PropTypes.func.isRequired,
 };
