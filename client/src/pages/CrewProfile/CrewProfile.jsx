@@ -19,7 +19,8 @@ function CrewProfile() {
   const [UnvalidatedEvents, setUnvalidatedEvents] = useState([]);
   const [openModalEvent, setOpenModalEvent] = useState(false);
   const [toggleEvents, setToggleEvents] = useState(true);
-  const [isActive, setActive] = useState(false);
+  const [isActiveValidated, setActiveValidated] = useState(false);
+  const [isActiveUnValidated, setActiveUnValidated] = useState(false);
 
   const handleOpenModal = () => {
     setOpenModalEvent(true);
@@ -105,14 +106,15 @@ function CrewProfile() {
   };
 
   // switch the display of the events.
-  const handleToggle = () => {
-    setToggleEvents(!toggleEvents);
-    toggleClass();
+  const handleToggleValidated = () => {
+    setToggleEvents(true);
+    setActiveValidated(true);
+    setActiveUnValidated(false);
   };
-
-  // toggle class of events buttons.
-  const toggleClass = () => {
-    setActive(!isActive);
+  const handleToggleUnValidated = () => {
+    setToggleEvents(false);
+    setActiveValidated(false);
+    setActiveUnValidated(true);
   };
 
   return (
@@ -172,35 +174,35 @@ function CrewProfile() {
         <div className="events-crew-profile-title">
           <div className="title-add-btn-container">
             <h2>Evènements</h2>
-            {auth.isLogged && auth.user.role === "crew" && ( 
-            <button type="button" onClick={handleOpenModal}>
-              Ajouter
-            </button>
+            {auth.isLogged && auth.user.role === "crew" && (
+              <button type="button" onClick={handleOpenModal}>
+                Ajouter
+              </button>
             )}
           </div>
-          {auth.isLogged && auth.user.role === "crew" && ( 
-          <div className="button-container-events-status">
-            <button
-              onClick={handleToggle}
-              className={
-                isActive
-                  ? "button-events-status"
-                  : "button-events-status active"
-              }
-            >
-              Validés
-            </button>
-            <button
-              onClick={handleToggle}
-              className={
-                isActive
-                  ? "button-events-status"
-                  : "button-events-status active"
-              }
-            >
-              Non Validés
-            </button>
-          </div>
+          {auth.isLogged && auth.user.role === "crew" && (
+            <div className="button-container-events-status">
+              <button
+                onClick={handleToggleValidated}
+                className={
+                  !isActiveValidated
+                    ? "button-events-status"
+                    : "button-events-status active"
+                }
+              >
+                Validés
+              </button>
+              <button
+                onClick={handleToggleUnValidated}
+                className={
+                  !isActiveUnValidated
+                    ? "button-events-status"
+                    : "button-events-status active"
+                }
+              >
+                Non Validés
+              </button>
+            </div>
           )}
           {openModalEvent && (
             <ModalEvent closeModal={setOpenModalEvent} id={crew.id} />
@@ -220,7 +222,8 @@ function CrewProfile() {
                 type="event"
               />
             ))
-          : auth.isLogged && auth.user.role === "crew" && 
+          : auth.isLogged &&
+            auth.user.role === "crew" &&
             UnvalidatedEvents.map((event) => (
               <EventCard
                 key={event.id}
