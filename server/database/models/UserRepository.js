@@ -31,12 +31,28 @@ class UserRepository extends AbstractRepository {
   }
 
   async userLikeEvent(eventId, userId) {
-    const [likeId] = await this.database.query(
-      `INSERT INTO user_event_like (event_id, user_id) VALUES (?,?)`,
+    const [addLike] = await this.database.query(
+      `INSERT INTO user_event_like (event_id, user_id) VALUES (?, ?)`,
       [eventId, userId]
     );
-    return likeId;
+    return addLike;
   }
+
+  async deleteEventLike(eventId, userId) {
+    const [deleteLike] = await this.database.query(
+      `DELETE FROM user_event_like WHERE event_id = ? AND user_id = ?`,
+      [eventId, userId]
+    );
+    return deleteLike;
+  }
+
+  async readEventLike (userId) {
+    const [readLikes] = await this.database.query(
+      `SELECT event_id FROM user_event_like WHERE user_id = ?`,
+      [userId]
+    );
+    return readLikes;
+  } 
 }
 
 module.exports = UserRepository;

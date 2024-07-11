@@ -96,7 +96,31 @@ const logout = async ({ res }) => {
 
 const userEventLike = async (req, res, next) => {
   try {
-    const result = await tables.user.userEventLike(req.params.id);
+    const result = await tables.user.userLikeEvent(
+      req.body.event_id,
+      req.auth.id
+    );
+    res.status(201).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const eventDeleteLike = async (req, res, next) => {
+  try {
+    const result = await tables.user.deleteEventLike(
+      req.body.event_id,
+      req.auth.id
+    );
+    res.status(201).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const allEventLike = async (req, res, next) => {
+  try {
+    const result = await tables.user.readEventLike(req.auth.id);
     res.status(201).json(result);
   } catch (error) {
     next(error);
@@ -111,4 +135,6 @@ module.exports = {
   refresh,
   logout,
   userEventLike,
+  eventDeleteLike,
+  allEventLike,
 };

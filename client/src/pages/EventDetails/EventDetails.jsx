@@ -43,7 +43,7 @@ function EventDetail() {
             <AdminButton id={event.id} type="event" />
           ) : (
             <div className="heart-icon-container">
-              <HeartIconLike />
+              <HeartIconLike  event = {event}/>
             </div>
           )}
           <div className="event-main-info">

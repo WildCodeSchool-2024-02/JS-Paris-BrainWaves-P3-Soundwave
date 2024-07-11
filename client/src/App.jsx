@@ -15,6 +15,7 @@ function App() {
   const [updateCrews, setUpdateCrews] = useState(false);
   const [styleInput, setStyleInput] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [eventLike, setEventLike] = useState([]);
 
   useEffect(() => {
     const getAuth = async () => {
@@ -54,6 +55,8 @@ function App() {
           isLoading,
           styleInput,
           setStyleInput,
+          eventLike, 
+          setEventLike,
         }}
       />
       <Footer />
