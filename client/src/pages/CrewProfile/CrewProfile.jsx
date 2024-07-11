@@ -9,7 +9,6 @@ import AdminButton from "../../components/AdminButtons/AdminButtons";
 function CrewProfile() {
   const crew = useLoaderData();
   const { auth } = useOutletContext();
-  const [login] = useState(false);
   const [edit, setEdit] = useState(false);
   const [btnValue, setBtnValue] = useState("Éditer");
   const [username, setUsername] = useState(crew.name);
@@ -132,13 +131,15 @@ function CrewProfile() {
             />
           )}
           <div className="button-container-crew-profile">
-            {login && <HeartIconLike />}
-            <button
-              onClick={edit ? handleSubmit : handleBtnValue}
-              type="button"
-            >
-              {btnValue}
-            </button>
+            {auth.isLogged && auth?.user?.role !== "crew" || "admin" && <HeartIconLike />}
+            {auth.isLogged && auth?.user?.role === "crew" && (
+              <button
+                onClick={edit ? handleSubmit : handleBtnValue}
+                type="button"
+              >
+                {btnValue}
+              </button>
+            )}
             {auth.isLogged &&
               auth?.user?.role === "admin" &&
               !crew.is_validated && <AdminButton id={crew.id} type="crew" />}
