@@ -125,13 +125,14 @@ function CrewProfile() {
             <h1>{username}</h1>
           ) : (
             <input
-              onChange={(event) => setUsername(event.target.value)}
-              type="text"
-              value={username}
+            onChange={(event) => setUsername(event.target.value)}
+            type="text"
+            value={username}
             />
           )}
+          {auth?.user?.role === "crew" && !crew.isValidated && <p className="admin-comment">Raison du refus par l'administrateur : {crew.comment}</p>}
           <div className="button-container-crew-profile">
-            {auth.isLogged && auth?.user?.role !== "crew" || "admin" && <HeartIconLike />}
+            {auth?.user?.role !== "crew" || auth?.user?.role === "admin" && <HeartIconLike />}
             {auth.isLogged && auth?.user?.role === "crew" && (
               <button
                 onClick={edit ? handleSubmit : handleBtnValue}

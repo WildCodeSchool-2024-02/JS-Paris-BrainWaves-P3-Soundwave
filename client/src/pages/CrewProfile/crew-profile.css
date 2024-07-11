@@ -33,6 +33,11 @@
       padding: 0.3em 1em;
     }
   }
+  .admin-comment{
+    color: red;
+    font-family: var(--font-title-r);
+    padding: 1em;
+  }
 }
 .desc-crew-profile {
   text-align: left;

@@ -35,7 +35,7 @@ function EventCard({
           <p className="date-hour">
             {date.slice(0, 10)} | {startingHour.slice(0, 5)}
           </p>
-          {!isValidated && <p className="admin-comment">Raison du refus par l'administrateur : {comment}</p>}
+          {isValidated === false && <p className="admin-comment">Raison du refus par l'administrateur : {comment}</p>}
         </div>
       </div>
       {auth.isLogged && auth.user.role === "admin" && !isValidated ? (
