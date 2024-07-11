@@ -2,20 +2,29 @@
   display: block;
   margin: 3rem 2rem;
 }
+.header-crew-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img {
+    width: 50%;
+    transition: all ease-in-out 800ms;
+  }
+}
 .header-crew-profile {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 4rem;
-  img {
-    width: 50%;
-    transition: all ease-in-out 800ms;
-  }
+
   img:hover {
     scale: 1.1;
     transition: all ease-in-out 800ms;
   }
   .crew-profile-title-options {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
     margin: 1rem 0;
     h1 {
       margin: 1rem 0;
@@ -64,17 +73,60 @@
       font-size: 2em;
     }
   }
+  .header-crew-image {
+    width: 30vw;
+    height: 20vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: flex-start;
 
+    img {
+      width: 70%;
+      height: 70%;
+      margin-bottom: 1em;
+      border-radius: 10px;
+      transition: all ease-in-out 800ms;
+    }
+  }
   .header-crew-profile {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    img {
-      border-radius: 10px;
-      width: 30%;
-    }
+
     h1 {
       font-size: 3em;
     }
   }
+}
+
+.input-crew-edit {
+  border: none;
+  font-size: 1.2em;
+  background: rgb(36, 36, 36);
+  color: var(--secondary-color);
+  width: 15vw;
+  padding-left: 1em;
+  padding-top: 0.5em;
+  font-family: "Courier New", Courier, monospace;
+  padding-right: 1em;
+  text-align: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+.textarea-crew-edit {
+  border: none;
+  font-size: 1em;
+  padding-left: 1em;
+  padding-top: 0.5em;
+  font-family: "Courier New", Courier, monospace;
+  padding-right: 1em;
+  border-radius: 10px;
+  color: var(--secondary-color);
+  margin: auto;
+  width: 80rem;
+  resize: none;
+  height: "auto";
+  background: rgb(36, 36, 36);
+  min-height: 10rem;
 }

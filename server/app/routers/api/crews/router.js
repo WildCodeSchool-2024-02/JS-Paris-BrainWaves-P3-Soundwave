@@ -15,16 +15,22 @@ const { isAuth, isAdmin, isCrew } = require("../../../services/auth");
 const { add } = require("../../../controllers/eventAction");
 
 const { ValidateForm } = require("../../../services/validateEventForm");
-const imageUpload = require("../../../services/imageUpload")
-
+const imageUpload = require("../../../services/imageUpload");
 
 router.get("/", browse);
 router.get("/tovalidate", isAuth, isAdmin, readPendingCrews);
 router.put("/tovalidate/:id", isAuth, isAdmin, editStatus);
-router.post("/", create);
+router.post("/", isAuth, isCrew, imageUpload.single("image"), create);
 router.get("/:id", read);
-router.put("/:id", edit);
-router.post("/:id/events/categories", isAuth, isCrew, imageUpload.single("image"), ValidateForm, add);
+router.put("/:id", isAuth, isCrew, imageUpload.single("image"), edit);
+router.post(
+  "/:id/events/categories",
+  isAuth,
+  isCrew,
+  imageUpload.single("image"),
+  ValidateForm,
+  add
+);
 router.get("/:id/events", readEventsByCrewId);
 
 module.exports = router;
