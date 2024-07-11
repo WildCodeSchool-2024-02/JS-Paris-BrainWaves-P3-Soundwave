@@ -58,6 +58,8 @@ nav {
 .navbar-btns {
   position: relative;
   top: 40px;
+  background-color: var(--background-color);
+  box-shadow: 0px 0px 20px 20px var(--background-color);
   ul,
   img {
     display: flex;
@@ -95,10 +97,12 @@ nav {
   transform: rotate(45deg) translate(2vw, 3vw);
   transition: ease-out 0.5s;
 }
+
 .burger-bar.clicked:nth-child(2) {
   transform: scale(0.1);
   transition: ease-out 0.5s;
 }
+
 .burger-bar.clicked:nth-child(3) {
   transform: rotate(135deg) translate(1.5vw, 0vw);
   transition: ease-out 0.5s;
@@ -110,6 +114,9 @@ nav {
 }
 
 @media (min-width: 1024px) {
+  nav {
+    margin-top: 1em;
+  }
   .display-navbar {
     display: flex;
     justify-content: space-evenly;
@@ -139,6 +146,7 @@ nav {
     display: flex;
     align-items: center;
     width: 35%;
+    position: relative;
     ul {
       width: 100%;
       padding: 0;
@@ -146,6 +154,25 @@ nav {
       font-family: var(--font-title-b);
       cursor: pointer;
       color: var(--secondary-color);
+      align-items: center;
+    }
+    .menu-account-nav-bar {
+      background-color: var(--background-color);
+      border-radius: 0 0 10px 10px;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      width: 10em;
+      height: 4em;
+      top: 45px;
+      right: -6px;
+    }
+
+    .avatar-icon {
+      width: 2em;
+      height: 2em;
     }
   }
 }

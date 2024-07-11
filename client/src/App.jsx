@@ -1,6 +1,7 @@
 import "./reset.css";
 import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { ToastContainer } from "react-toastify";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import "./global.css";
@@ -10,6 +11,7 @@ function App() {
     isLogged: false,
     user: null,
     token: null,
+    crew: null,
   });
   const [updateEvents, setUpdateEvents] = useState(false);
   const [updateCrews, setUpdateCrews] = useState(false);
@@ -26,11 +28,15 @@ function App() {
         );
         if (response.ok) {
           const token = response.headers.get("Authorization");
-          const user = await response.json();
-          setAuth({ isLogged: true, user, token });
+          const result = await response.json();
+          setAuth({
+            isLogged: true,
+            user: result.user,
+            token,
+            crew: result.crew,
+          });
           setIsLoading(false);
-        }
-        else {
+        } else {
           setIsLoading(false);
         }
       } catch (error) {
@@ -43,6 +49,7 @@ function App() {
 
   return (
     <>
+      <ToastContainer theme="dark" />
       <NavBar auth={auth} setAuth={setAuth} />
       <Outlet
         context={{

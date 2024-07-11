@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import "./modalcreateaccount.css";
 import { ImCross } from "react-icons/im";
+import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import mascot from "../../assets/images/masquote.svg";
 
@@ -10,37 +11,19 @@ function ModalCreateAccount({ closeModalCreateAccount, role }) {
   const lastname = useRef("");
   const email = useRef("");
   const password = useRef("");
-  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const { setAuth } = useOutletContext();
-  const validate = () => {
-    const error = {};
+  const [formUserErrors, setFormUserErrors] = useState({
+    firstnameRequire: null,
+    lastnameRequire: null,
+    emailRequire: null,
+    emailFormat: null,
+    emailChecked: null,
+    passwordRequire: null,
+    passwordFormat: null,
+  });
 
-    if (!firstname.current.value) {
-      error.firstname = "Prénom obligatoire";
-    }
-
-    if (!lastname.current.value) {
-      error.lastname = "Nom obligatoire";
-    }
-
-    if (!email.current.value) {
-      error.email = "Email obligatoire";
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email.current.value)
-    ) {
-      error.email = "Saisissez une adresse mail";
-    }
-
-    if (!password.current.value) {
-      error.password = "Mot de passe obligatoire";
-    } else if (password.current.value.length < 4) {
-      error.password = "Le mot de passe doit contenir au moins 4 caractères";
-    }
-
-    return error;
-  };
-  async function createUser() {
+  const handleSubmit = async () => {
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/users`,
@@ -54,38 +37,48 @@ function ModalCreateAccount({ closeModalCreateAccount, role }) {
             password: password.current.value,
             role,
           }),
+          credentials: "include",
         }
       );
+      const user = await response.json();
+      const token = response.headers.get("Authorization");
       if (response.ok) {
-        if (role === "client") {
-          navigate(`/user-profile/`);
-        } else if (role === "crew") {
-          const { users, token } = await response.json();
-          setAuth({ isLogged: true, users, token });
-
-          navigate(`/crew-creation/${users.id}`);
+        setAuth({ isLogged: true, user, token });
+        if (user?.role === "client") {
+          toast.success("Utilisateur créé avec succès !");
+          navigate(`/user-profile`);
+          document.body.classList.remove("active");
+        } else if (user?.role === "crew") {
+          toast.success("Collectif créé avec succès !");
+          navigate(`/crew-creation/${user.id}`);
+          document.body.classList.remove("active");
         }
       } else {
-        console.error("Il y a une erreur");
+        setFormUserErrors({
+          firstnameRequire: null,
+          lastnameRequire: null,
+          emailRequire: null,
+          emailFormat: null,
+          emailChecked: null,
+          passwordRequire: null,
+          passwordFormat: null,
+        });
+        user.forEach((element) => {
+          setFormUserErrors((prev) => ({
+            ...prev,
+            [element.label]: element.error,
+          }));
+        });
+        console.error("Erreur création");
       }
     } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   const handleCloseModalLogIn = () => {
     closeModalCreateAccount(false);
     document.body.classList.remove("active");
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const errorData = validate();
-    if (Object.keys(errorData).length > 0) setErrors(errorData);
-    else {
-      handleCloseModalLogIn();
-      createUser();
-    }
   };
 
   return (
@@ -106,8 +99,8 @@ function ModalCreateAccount({ closeModalCreateAccount, role }) {
               placeholder="John"
               ref={firstname}
             />
-            {errors.firstname && (
-              <p className="error-create-account-infos">{errors.firstname}</p>
+            {formUserErrors.firstnameRequire && (
+              <p>{formUserErrors.firstnameRequire}</p>
             )}
           </div>
           <div className="section-register-create-account">
@@ -118,8 +111,8 @@ function ModalCreateAccount({ closeModalCreateAccount, role }) {
               placeholder="Doe"
               ref={lastname}
             />
-            {errors.lastname && (
-              <p className="error-create-account-infos">{errors.lastname}</p>
+            {formUserErrors.lastnameRequire && (
+              <p>{formUserErrors.lastnameRequire}</p>
             )}
           </div>
           <div className="section-register-create-account">
@@ -130,9 +123,10 @@ function ModalCreateAccount({ closeModalCreateAccount, role }) {
               placeholder="youremail@gmail.com"
               ref={email}
             />
-            {errors.email && (
-              <p className="error-create-account-infos">{errors.email}</p>
+            {formUserErrors.emailRequire && (
+              <p>{formUserErrors.emailRequire}</p>
             )}
+            {formUserErrors.emailFormat && <p>{formUserErrors.emailFormat}</p>}
           </div>
           <div className="section-register-create-account">
             <label htmlFor="password">Mot de passe</label>
@@ -142,16 +136,19 @@ function ModalCreateAccount({ closeModalCreateAccount, role }) {
               placeholder="********"
               ref={password}
             />
-            {errors.password && (
-              <p className="error-create-account-infos">{errors.password}</p>
+            {formUserErrors.passwordRequire && (
+              <p>{formUserErrors.passwordRequire}</p>
+            )}
+            {formUserErrors.passwordFormat && (
+              <p>{formUserErrors.passwordFormat}</p>
             )}
           </div>
           <div className="display-btn-connection-create-account">
             <button type="button" onClick={handleSubmit}>
               Je m'inscris
             </button>
-            {errors.login && <p className="error-login">{errors.login}</p>}
           </div>
+          {formUserErrors.emailChecked && <p>{formUserErrors.emailChecked}</p>}
         </form>
         <section className="section-already-connect">
           <p>Tu as déjà un compte ? </p>
