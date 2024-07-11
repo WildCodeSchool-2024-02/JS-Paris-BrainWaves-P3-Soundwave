@@ -12,6 +12,7 @@ function EventCard({
   startingHour,
   id,
   isValidated,
+  comment
 }) {
   const navigate = useNavigate();
   const { auth } = useOutletContext();
@@ -34,6 +35,7 @@ function EventCard({
           <p className="date-hour">
             {date.slice(0, 10)} | {startingHour.slice(0, 5)}
           </p>
+          {!isValidated && <p className="admin-comment">Raison du refus par l'administrateur : {comment}</p>}
         </div>
       </div>
       {auth.isLogged && auth.user.role === "admin" && !isValidated ? (
@@ -57,4 +59,5 @@ EventCard.propTypes = {
   startingHour: PropTypes.string.isRequired,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   isValidated: PropTypes.bool.isRequired,
+  comment: PropTypes.string.isRequired,
 };

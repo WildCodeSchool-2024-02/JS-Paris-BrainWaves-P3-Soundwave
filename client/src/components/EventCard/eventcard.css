@@ -36,6 +36,11 @@
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
+  .admin-comment{
+    color: red;
+    font-family: var(--font-title-r);
+    padding: 1em;
+  }
 }
 
 .heart-icon {

@@ -5,9 +5,17 @@ class CrewRepository extends AbstractRepository {
     super({ table: "crew" });
   }
 
-  async readAllEventsFromCrew(id) {
+  async readValidatedEventsFromCrew(id) {
     const [events] = await this.database.query(
-      `SELECT event.* FROM event JOIN crew_event ON crew_event.event_id = event.id JOIN ${this.table} ON ${this.table}.id = crew_event.crew_id WHERE ${this.table}.id = ?`,
+      `SELECT event.* FROM event JOIN crew_event ON crew_event.event_id = event.id JOIN ${this.table} ON ${this.table}.id = crew_event.crew_id WHERE event.is_validated IS true AND ${this.table}.id = ?`,
+      [id]
+    );
+    return events;
+  }
+
+  async readUnvalidatedEventsFromCrew(id) {
+    const [events] = await this.database.query(
+      `SELECT event.* FROM event JOIN crew_event ON crew_event.event_id = event.id JOIN ${this.table} ON ${this.table}.id = crew_event.crew_id WHERE event.is_validated IS false AND ${this.table}.id = ?`,
       [id]
     );
     return events;

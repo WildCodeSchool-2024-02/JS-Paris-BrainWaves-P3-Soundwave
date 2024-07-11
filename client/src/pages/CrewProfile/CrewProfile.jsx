@@ -15,8 +15,11 @@ function CrewProfile() {
   const [username, setUsername] = useState(crew.name);
   const [description, setDescription] = useState(crew.description);
   const [errors, setErrors] = useState({});
-  const [events, setEvents] = useState([]);
+  const [ValidatedEvents, setValidatedEvents] = useState([]);
+  const [UnvalidatedEvents, setUnvalidatedEvents] = useState([]);
   const [openModalEvent, setOpenModalEvent] = useState(false);
+  const [toggleEvents, setToggleEvents] = useState(true);
+  const [isActive, setActive] = useState(false);
 
   const handleOpenModal = () => {
     setOpenModalEvent(true);
@@ -76,10 +79,19 @@ function CrewProfile() {
       console.error(err);
     }
   }
+
+  // fetch the events of the crew weither they are validated or not.
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/crews/${crew.id}/events`)
+    fetch(
+      `${import.meta.env.VITE_API_URL}/api/crews/${crew.id}/validated-events`
+    )
       .then((response) => response.json())
-      .then((data) => setEvents(data));
+      .then((data) => setValidatedEvents(data));
+    fetch(
+      `${import.meta.env.VITE_API_URL}/api/crews/${crew.id}/unvalidated-events`
+    )
+      .then((response) => response.json())
+      .then((data) => setUnvalidatedEvents(data));
   }, [crew.id]);
 
   const handleSubmit = async (e) => {
@@ -90,6 +102,17 @@ function CrewProfile() {
     } else {
       await updateCrewData();
     }
+  };
+
+  // switch the display of the events.
+  const handleToggle = () => {
+    setToggleEvents(!toggleEvents);
+    toggleClass();
+  };
+
+  // toggle class of events buttons.
+  const toggleClass = () => {
+    setActive(!isActive);
   };
 
   return (
@@ -147,29 +170,71 @@ function CrewProfile() {
 
       <section className="events-crew-profile">
         <div className="events-crew-profile-title">
-          <h2>Evènements</h2>
-          {auth.isLogged && auth.user.role === "crew" && (
+          <div className="title-add-btn-container">
+            <h2>Evènements</h2>
+            {auth.isLogged && auth.user.role === "crew" && ( 
             <button type="button" onClick={handleOpenModal}>
               Ajouter
             </button>
+            )}
+          </div>
+          {auth.isLogged && auth.user.role === "crew" && ( 
+          <div className="button-container-events-status">
+            <button
+              onClick={handleToggle}
+              className={
+                isActive
+                  ? "button-events-status"
+                  : "button-events-status active"
+              }
+            >
+              Validés
+            </button>
+            <button
+              onClick={handleToggle}
+              className={
+                isActive
+                  ? "button-events-status"
+                  : "button-events-status active"
+              }
+            >
+              Non Validés
+            </button>
+          </div>
           )}
           {openModalEvent && (
             <ModalEvent closeModal={setOpenModalEvent} id={crew.id} />
           )}
         </div>
-        {events.map((event) => (
-          <EventCard
-            key={event.id}
-            id={event.id}
-            image={event.image}
-            name={event.name}
-            description={event.description}
-            date={event.date}
-            startingHour={event.starting_hour}
-            isValidated={event.is_validated}
-            type="event"
-          />
-        ))}
+        {toggleEvents
+          ? ValidatedEvents.map((event) => (
+              <EventCard
+                key={event.id}
+                id={event.id}
+                image={event.image}
+                name={event.name}
+                description={event.description}
+                date={event.date}
+                startingHour={event.starting_hour}
+                isValidated={event.is_validated}
+                type="event"
+              />
+            ))
+          : auth.isLogged && auth.user.role === "crew" && 
+            UnvalidatedEvents.map((event) => (
+              <EventCard
+                key={event.id}
+                id={event.id}
+                image={event.image}
+                name={event.name}
+                description={event.description}
+                date={event.date}
+                startingHour={event.starting_hour}
+                isValidated={event.is_validated}
+                comment={event.comment}
+                type="event"
+              />
+            ))}
       </section>
     </main>
   );

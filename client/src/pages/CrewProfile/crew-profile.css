@@ -43,16 +43,40 @@
 }
 
 .events-crew-profile-title {
-  text-align: left;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  button {
-    background-color: var(--accent);
-    border-radius: 10px;
-    font-family: var(--font-title-b);
-    font-size: clamp(0.7em, 3vw, 1em);
-    padding: 0.3em 1em;
+  flex-direction: column;
+  .title-add-btn-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button {
+      background-color: var(--accent);
+      border-radius: 10px;
+      font-family: var(--font-title-b);
+      font-size: clamp(0.7em, 3vw, 1.5em);
+      padding: 0.3em 1em;
+    }
+  }
+  .button-container-events-status {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 1em;
+    .button-events-status {
+      border: 1px solid var(--primary-color);
+      background-color: var(--background-color);
+      color: var(--text);
+      font-size: clamp(0.7em, 3vw, 1.5em);
+      padding: 0.3em 1em;
+    }
+    .button-events-status:hover {
+      background-color: var(--primary-color);
+    }
+    .button-events-status.active {
+      background-color: var(--primary-color);
+    }
   }
 }
 
@@ -76,5 +100,9 @@
     h1 {
       font-size: 3em;
     }
+  }
+
+  .button-container-events-status {
+    margin: 2em;
   }
 }

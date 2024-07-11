@@ -19,15 +19,25 @@ const read = async (req, res, next) => {
   }
 };
 
-const readEventsByCrewId = async (req, res, next) => {
+const readValidatedEventsByCrewId = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const events = await tables.crew.readAllEventsFromCrew(id);
+    const events = await tables.crew.readValidatedEventsFromCrew(id);
     res.status(200).json(events);
   } catch (error) {
     next(error);
   }
 };
+
+const readUnvalidatedEventsByCrewId = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const events = await tables.crew.readUnvalidatedEventsFromCrew(id);
+    res.status(200).json(events);
+  } catch (error) {
+    next(error);
+  }
+}
 
 const readPendingCrews = async ({ res, next }) => {
   try {
@@ -77,9 +87,10 @@ const editStatus = async (req, res, next) => {
 module.exports = {
   browse,
   read,
-  readEventsByCrewId,
+  readValidatedEventsByCrewId,
   readPendingCrews,
   editStatus,
   edit,
   create,
+  readUnvalidatedEventsByCrewId,
 };
