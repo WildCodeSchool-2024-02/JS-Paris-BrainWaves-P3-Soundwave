@@ -4,11 +4,12 @@ const router = express.Router();
 const {
   browse,
   read,
-  readEventsByCrewId,
+  readValidatedEventsByCrewId,
   create,
   readPendingCrews,
   editStatus,
   edit,
+  readUnvalidatedEventsByCrewId,
 } = require("../../../controllers/crewAction");
 
 const { isAuth, isAdmin, isCrew } = require("../../../services/auth");
@@ -31,6 +32,6 @@ router.post(
   ValidateForm,
   add
 );
-router.get("/:id/events", readEventsByCrewId);
-
+router.get("/:id/validated-events", readValidatedEventsByCrewId);
+router.get("/:id/unvalidated-events", readUnvalidatedEventsByCrewId);
 module.exports = router;
