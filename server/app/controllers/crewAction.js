@@ -19,15 +19,25 @@ const read = async (req, res, next) => {
   }
 };
 
-const readEventsByCrewId = async (req, res, next) => {
+const readValidatedEventsByCrewId = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const events = await tables.crew.readAllEventsFromCrew(id);
+    const events = await tables.crew.readValidatedEventsFromCrew(id);
     res.status(200).json(events);
   } catch (error) {
     next(error);
   }
 };
+
+const readUnvalidatedEventsByCrewId = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const events = await tables.crew.readUnvalidatedEventsFromCrew(id);
+    res.status(200).json(events);
+  } catch (error) {
+    next(error);
+  }
+}
 
 const readPendingCrews = async ({ res, next }) => {
   try {
@@ -39,6 +49,8 @@ const readPendingCrews = async ({ res, next }) => {
 };
 
 const edit = async (req, res, next) => {
+  const uploadDest = `${process.env.APP_HOST}/upload/`;
+  if (req.file) req.body.image = uploadDest + req.file.filename;
   try {
     const crew = await tables.crew.edit(req.body, req.params.id);
     if (crew) {
@@ -53,11 +65,12 @@ const edit = async (req, res, next) => {
 };
 
 const create = async (req, res, next) => {
+  const uploadDest = `${process.env.APP_HOST}/upload/`;
+  if (req.file) req.body.image = uploadDest + req.file.filename;
   try {
     const crewData = req.body;
     const result = await tables.crew.insertOne(crewData);
-    const crew = await tables.user.readOne(result.insertId);
-    res.status(201).json(crew);
+    res.status(201).json(result.insertId);
   } catch (error) {
     next(error);
   }
@@ -77,9 +90,10 @@ const editStatus = async (req, res, next) => {
 module.exports = {
   browse,
   read,
-  readEventsByCrewId,
+  readValidatedEventsByCrewId,
   readPendingCrews,
   editStatus,
   edit,
   create,
+  readUnvalidatedEventsByCrewId,
 };

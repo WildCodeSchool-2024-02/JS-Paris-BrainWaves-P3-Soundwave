@@ -66,8 +66,14 @@ function NavBar({ auth, setAuth }) {
       });
       setAuth({ isLogged: false, user: null, token: null, crew: null });
       navigate("/");
-      openAccountMenu();
-      updateMenu();
+      if (window.innerWidth > 1024) {
+        openAccountMenu();
+      }
+      if (window.innerWidth < 1024) {
+        setIsMenuClicked(false);
+        setMenuClass("menu hidden");
+        setBurgerClass("burger-bar unclicked");
+      }
     } catch (error) {
       console.error(error);
     }
