@@ -1,4 +1,4 @@
-import { useLoaderData, useOutletContext } from "react-router-dom";
+import { useLoaderData, useOutletContext, useParams } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import "./crew-profile.css";
 import HeartIconLike from "../../components/HeartIconLike/HeartIconLike";
@@ -7,12 +7,12 @@ import ModalEvent from "../../components/EventCreationModal/ModalEvent";
 import AdminButton from "../../components/AdminButtons/AdminButtons";
 
 function CrewProfile() {
-  const crew = useLoaderData();
+  const crewData = useLoaderData();
   const { auth } = useOutletContext();
   const [edit, setEdit] = useState(false);
   const [btnValue, setBtnValue] = useState("Éditer");
-  const [username, setUsername] = useState(crew.name);
-  const [description, setDescription] = useState(crew.description);
+  const [username, setUsername] = useState(crewData.name);
+  const [description, setDescription] = useState(crewData.description);
   const [errors, setErrors] = useState({});
   const [ValidatedEvents, setValidatedEvents] = useState([]);
   const [UnvalidatedEvents, setUnvalidatedEvents] = useState([]);
@@ -20,8 +20,9 @@ function CrewProfile() {
   const [toggleEvents, setToggleEvents] = useState(true);
   const [isActiveValidated, setActiveValidated] = useState(false);
   const [isActiveUnValidated, setActiveUnValidated] = useState(false);
-  const [image, setImage] = useState(crew.image); // State for image URL
+  const [image, setImage] = useState(crewData.image); // State for image URL
   const imageInputRef = useRef();
+  let params = useParams();
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -68,16 +69,16 @@ function CrewProfile() {
 
   useEffect(() => {
     fetch(
-      `${import.meta.env.VITE_API_URL}/api/crews/${crew.id}/validated-events`
+      `${import.meta.env.VITE_API_URL}/api/crews/${crewData.id}/validated-events`
     )
       .then((response) => response.json())
       .then((data) => setValidatedEvents(data));
     fetch(
-      `${import.meta.env.VITE_API_URL}/api/crews/${crew.id}/unvalidated-events`
+      `${import.meta.env.VITE_API_URL}/api/crews/${crewData.id}/unvalidated-events`
     )
       .then((response) => response.json())
       .then((data) => setUnvalidatedEvents(data));
-  }, [crew.id]);
+  }, [crewData.id]);
 
   const handleSubmit = async () => {
     const errorData = validate();
@@ -93,7 +94,7 @@ function CrewProfile() {
         }
 
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/crews/${crew.id}`,
+          `${import.meta.env.VITE_API_URL}/api/crews/${crewData.id}`,
           {
             method: "put",
             headers: { Authorization: `Bearer ${auth.token}` },
@@ -152,10 +153,17 @@ function CrewProfile() {
               value={username}
             />
           )}
-          {auth?.user?.role === "crew" && !crew.isValidated && <p className="admin-comment">Raison du refus par l'administrateur : {crew.comment}</p>}
+          {auth.isLogged &&
+            auth?.crew?.id == params.id &&
+            crewData.isValidated && (
+              <p className="admin-comment">
+                Raison du refus par l'administrateur : {crewData.comment}
+              </p>
+            )}
           <div className="button-container-crew-profile">
-            {auth?.user?.role !== "crew" || auth?.user?.role === "admin" && <HeartIconLike />}
-            {auth.isLogged && auth?.user?.role === "crew" && (
+            {auth?.user?.role !== "crew" ||
+              (auth?.user?.role === "admin" && <HeartIconLike />)}
+            {auth.isLogged && auth?.crew?.id == params.id && (
               <button
                 onClick={edit ? handleSubmit : handleBtnValue}
                 type="button"
@@ -165,7 +173,9 @@ function CrewProfile() {
             )}
             {auth.isLogged &&
               auth.user?.role === "admin" &&
-              !crew.is_validated && <AdminButton id={crew.id} type="crew" />}
+              !crewData.is_validated && (
+                <AdminButton id={crewData.id} type="crew" />
+              )}
           </div>
         </div>
       </section>
@@ -192,13 +202,13 @@ function CrewProfile() {
         <div className="events-crew-profile-title">
           <div className="title-add-btn-container">
             <h2>Evènements</h2>
-            {auth.isLogged && auth.user.role === "crew" && (
+            {auth?.crew?.id == params.id && (
               <button type="button" onClick={handleOpenModal}>
                 Ajouter
               </button>
             )}
           </div>
-          {auth.isLogged && auth.user.role === "crew" && (
+          {auth?.crew?.id == params.id && (
             <div className="button-container-events-status">
               <button
                 onClick={handleToggleValidated}
@@ -223,7 +233,7 @@ function CrewProfile() {
             </div>
           )}
           {openModalEvent && (
-            <ModalEvent closeModal={setOpenModalEvent} id={crew.id} />
+            <ModalEvent closeModal={setOpenModalEvent} id={crewData.id} />
           )}
         </div>
         {toggleEvents
@@ -240,8 +250,7 @@ function CrewProfile() {
                 type="event"
               />
             ))
-          : auth.isLogged &&
-            auth.user.role === "crew" &&
+          : auth?.crew?.id == params.id &&
             UnvalidatedEvents.map((event) => (
               <EventCard
                 key={event.id}
