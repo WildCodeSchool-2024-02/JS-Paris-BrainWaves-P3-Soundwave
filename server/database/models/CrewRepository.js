@@ -23,7 +23,6 @@ class CrewRepository extends AbstractRepository {
 
   async insertOne(crewData) {
     const { name, image, description, ownerId } = crewData;
-
     const [crew] = await this.database.query(
       `INSERT INTO ${this.table} (name, image, description, owner_id) VALUES (?, ?, ?, ?)`,
       [name, image, description, ownerId]

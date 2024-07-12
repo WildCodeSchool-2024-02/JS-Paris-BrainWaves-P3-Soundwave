@@ -21,7 +21,7 @@ const isAdmin = async (req, res, next) => {
     if (req.auth.role === "admin") {
       next();
     } else {
-      res.sendStatus(403)
+      res.sendStatus(403);
     }
   } catch (error) {
     console.error(error);
