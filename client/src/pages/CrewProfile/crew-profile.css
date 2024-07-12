@@ -111,6 +111,8 @@
     justify-content: space-evenly;
     margin: 1em;
     .button-events-status {
+      border-radius: 10px;
+      font-family: var(--font-title-b);
       border: 1px solid var(--primary-color);
       background-color: var(--background-color);
       color: var(--text);
