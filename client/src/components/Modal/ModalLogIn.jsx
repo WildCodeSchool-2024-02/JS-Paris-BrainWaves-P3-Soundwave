@@ -47,9 +47,9 @@ function ModalLogIn({ closeModalLogIn, setAuth }) {
         }
       );
       if (response.status === 200) {
-        const { user, crew } = await response.json();
+        const { user, crew, likeEvent } = await response.json();
         const token = response.headers.get("Authorization");
-        setAuth({ isLogged: true, user, token, crew });
+        setAuth({ isLogged: true, user, token, crew, likeEvent });
         if (user.role === "admin") {
           navigate("/admin");
         }

@@ -8,6 +8,7 @@ function EventDetail() {
   const event = useLoaderData();
   const navigate = useNavigate();
   const [crewByEvent, setCrewByEvent] = useState([]);
+ 
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/events/${event.id}/crew`)

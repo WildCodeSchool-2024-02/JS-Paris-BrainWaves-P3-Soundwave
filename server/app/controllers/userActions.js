@@ -82,6 +82,7 @@ const readLogin = async (req, res, next) => {
         );
         delete user.password;
         const crew = await tables.user.selectCrewByUser(user.id);
+        const likeEvent = await tables.user.readEventLike(user.id);
         res
           .status(200)
           .cookie("refreshToken", refreshToken, {
@@ -89,7 +90,7 @@ const readLogin = async (req, res, next) => {
             sameSite: "lax",
           })
           .header("Authorization", accessToken)
-          .json({user, crew});
+          .json({user, crew, likeEvent});
       } else {
         res.status(400).json("Wrong Credentials");
       }
@@ -115,9 +116,11 @@ const refresh = async (req, res, next) => {
     );
     const user = await tables.user.readOne(decoded.id);
     const crew = await tables.user.selectCrewByUser(decoded.id);
+    const likeEvent = await tables.user.readEventLike(decoded.id);
+
     delete user.password;
 
-    res.header("Authorization", accessToken).json({ user, crew });
+    res.header("Authorization", accessToken).json({ user, crew, likeEvent });
   } catch (error) {
     next(error);
   }

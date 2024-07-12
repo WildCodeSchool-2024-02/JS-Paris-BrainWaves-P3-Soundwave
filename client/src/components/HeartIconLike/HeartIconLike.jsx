@@ -5,11 +5,11 @@ import { useOutletContext } from "react-router-dom";
 import PropTypes from "prop-types";
 
 function HeartIconLike({ event }) {
-  const [likeEvent, setLikeEvent] = useState(false);
-  const { auth, setEventLike } = useOutletContext();
+  const [liked, setLiked] = useState(false);
+  const { auth, eventLike, setEventLike } = useOutletContext();
 
   const handleLikeEvent = () => {
-    setLikeEvent(!likeEvent);
+    setLiked(!liked);
   };
 
   const handleLikeUser = async () => {
@@ -28,8 +28,7 @@ function HeartIconLike({ event }) {
         }
       );
       if (response.ok) {
-        const result = await response.json();
-        setEventLike(result);
+        setEventLike((prev) => ([...prev, {event_id: event.id}]));
       } else {
         console.error("Like non pris en compte");
       }
@@ -54,8 +53,7 @@ function HeartIconLike({ event }) {
         }
       );
       if (response.ok) {
-        const result = await response.json();
-        setEventLike(result);
+        setEventLike(eventLike.filter((like) => like.event_id !== event.id))
       }
     } catch (error) {
       console.error(error);
@@ -64,20 +62,20 @@ function HeartIconLike({ event }) {
 
   return (
     <div>
-      {!likeEvent ? (
-        <FaRegHeart
-          className="heart-icon"
-          onClick={() => {
-            handleLikeUser();
-            handleLikeEvent();
-          }}
-        />
-      ) : (
+      {eventLike?.find((likedEvent) => likedEvent.event_id === event.id) ? (
         <FaHeart
           className="heart-icon"
           onClick={() => {
             handleLikeEvent();
             handleLikeDelete();
+          }}
+        />
+      ) : (
+        <FaRegHeart
+          className="heart-icon"
+          onClick={() => {
+            handleLikeUser();
+            handleLikeEvent();
           }}
         />
       )}

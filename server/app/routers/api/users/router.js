@@ -20,8 +20,8 @@ router.get("/", browse);
 router.post("/", add);
 router.get("/refresh", refresh);
 router.post("/login", readLogin);
-router.post("/like", isAuth, isClient, userEventLike)
-router.delete("/like", isAuth, isClient, eventDeleteLike)
+router.post("/like", isAuth, isClient, userEventLike);
+router.delete("/like", isAuth, isClient, eventDeleteLike);
 router.get("/logout", logout);
 router.post("/", ValidateUserForm, add);
 
