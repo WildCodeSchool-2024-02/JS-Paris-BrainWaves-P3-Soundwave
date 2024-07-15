@@ -38,27 +38,30 @@ const add = async (req, res, next) => {
       process.env.APP_SECRET,
       { expiresIn: "1d" }
     );
-    delete user.password
-    res.status(201)
-    .cookie("refreshToken", refreshToken, {
-      httpOnly: true,
-      sameSite: "lax",
-    })
-    .header("Authorization", accessToken)
-    .json(user);
+    delete user.password;
+    res
+      .status(201)
+      .cookie("refreshToken", refreshToken, {
+        httpOnly: true,
+        sameSite: "lax",
+      })
+      .header("Authorization", accessToken)
+      .json(user);
   } catch (err) {
     next(err);
   }
 };
 
 const edit = async (req, res, next) => {
+  const uploadDest = `${process.env.APP_HOST}/upload/`;
+  if (req.file) req.body.image = uploadDest + req.file.filename;
   try {
-    const user = await tables.user.edit(req.body, req.params.id);
-    if (user) {
-      const userProfile = await tables.user.readOne(req.params.id);
-      res.status(200).json(userProfile);
+    const result = await tables.user.edit(req.body, req.auth.id);
+    if (result.affectedRows > 0) {
+      const user = await tables.user.readOne(req.auth.id);
+      res.status(200).json(user);
     } else {
-      res.status(404);
+      res.sendStatus(404);
     }
   } catch (error) {
     next(error);
@@ -89,7 +92,7 @@ const readLogin = async (req, res, next) => {
             sameSite: "lax",
           })
           .header("Authorization", accessToken)
-          .json({user, crew});
+          .json({ user, crew });
       } else {
         res.status(400).json("Wrong Credentials");
       }
@@ -135,7 +138,6 @@ const userEventLike = async (req, res, next) => {
     next(error);
   }
 };
-
 
 module.exports = {
   browse,
