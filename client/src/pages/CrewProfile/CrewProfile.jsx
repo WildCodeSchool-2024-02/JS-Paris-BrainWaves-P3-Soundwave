@@ -5,10 +5,11 @@ import HeartIconLike from "../../components/HeartIconLike/HeartIconLike";
 import EventCard from "../../components/EventCard/EventCard";
 import ModalEvent from "../../components/EventCreationModal/ModalEvent";
 import AdminButton from "../../components/AdminButtons/AdminButtons";
+import ModalValidation from "../../components/ModalValidation/ModalValidation";
 
 function CrewProfile() {
   const crewData = useLoaderData();
-  const { auth } = useOutletContext();
+  const { auth, setType } = useOutletContext();
   const [edit, setEdit] = useState(false);
   const [btnValue, setBtnValue] = useState("Éditer");
   const [username, setUsername] = useState(crewData.name);
@@ -21,8 +22,12 @@ function CrewProfile() {
   const [isActiveValidated, setActiveValidated] = useState(false);
   const [isActiveUnValidated, setActiveUnValidated] = useState(false);
   const [image, setImage] = useState(crewData.image); // State for image URL
+  const [openValidation, setOpenValidation] = useState(false);
+  const [text, setText] = useState(false);
   const imageInputRef = useRef();
   let params = useParams();
+
+  setType("crew");
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -174,7 +179,11 @@ function CrewProfile() {
             {auth.isLogged &&
               auth.user?.role === "admin" &&
               !crewData.is_validated && (
-                <AdminButton id={crewData.id} type="crew" />
+                <AdminButton
+                  id={crewData.id}
+                  setText={setText}
+                  setOpenValidation={setOpenValidation}
+                />
               )}
           </div>
         </div>
@@ -247,7 +256,6 @@ function CrewProfile() {
                 date={event.date}
                 startingHour={event.starting_hour}
                 isValidated={event.is_validated}
-                type="event"
               />
             ))
           : auth?.crew?.id == params.id &&
@@ -262,10 +270,16 @@ function CrewProfile() {
                 startingHour={event.starting_hour}
                 isValidated={event.is_validated}
                 comment={event.comment}
-                type="event"
               />
             ))}
       </section>
+      {openValidation && (
+        <ModalValidation
+          setOpenValidation={setOpenValidation}
+          text={text}
+          validationId={crewData.id}
+        />
+      )}
     </main>
   );
 }

@@ -4,9 +4,11 @@ import HeartIconLike from "../HeartIconLike/HeartIconLike";
 import "./cardcrew.css";
 import AdminButton from "../AdminButtons/AdminButtons";
 
-function CardCrew({ result }) {
+function CardCrew({ result, setOpenValidation, setText, setValidationId }) {
   const navigate = useNavigate();
-  const { updateCrews, setUpdateCrews, auth } = useOutletContext();
+  const { auth, setType } = useOutletContext();
+
+  setType("crew");
 
   return (
     <section className="specific-crew-card">
@@ -25,10 +27,10 @@ function CardCrew({ result }) {
             auth.user.role === "admin" &&
             !result.is_validated ? (
               <AdminButton
-                updateCrews={updateCrews}
-                setUpdateCrews={setUpdateCrews}
+                setText={setText}
+                setOpenValidation={setOpenValidation}
+                setValidationId={setValidationId}
                 id={result.id}
-                type="crew"
               />
             ) : (
               <HeartIconLike />
@@ -57,10 +59,10 @@ function CardCrew({ result }) {
               auth.user.role === "admin" &&
               !result.is_validated ? (
                 <AdminButton
-                  updateCrews={updateCrews}
-                  setUpdateCrews={setUpdateCrews}
+                  setText={setText}
+                  setOpenValidation={setOpenValidation}
+                  setValidationId={setValidationId}
                   id={result.id}
-                  type="crew"
                 />
               ) : (
                 <HeartIconLike />
@@ -80,8 +82,10 @@ CardCrew.propTypes = {
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
-    is_validated: PropTypes.func.isRequired,
+    is_validated: PropTypes.func,
   }).isRequired,
+  setOpenValidation: PropTypes.func.isRequired,
+  setText: PropTypes.func.isRequired,
 };
 
 export default CardCrew;
