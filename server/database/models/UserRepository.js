@@ -6,9 +6,7 @@ class UserRepository extends AbstractRepository {
   }
 
   async readAllUsers() {
-    const [rows] = await this.database.query(
-      `SELECT * FROM ${this.table}`
-    );
+    const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
     return rows;
   }
 
@@ -38,10 +36,13 @@ class UserRepository extends AbstractRepository {
   }
 
   async selectCrewByUser(id) {
-    const [[crew]] = await this.database.query(`SELECT crew.id FROM crew JOIN ${this.table} ON crew.owner_id = ${this.table}.id where ${this.table}.id = ?`, [id]);
+    const [[crew]] = await this.database.query(
+      `SELECT crew.id FROM crew JOIN ${this.table} ON crew.owner_id = ${this.table}.id where ${this.table}.id = ?`,
+      [id]
+    );
     return crew;
   }
-  
+
   async userLikeEvent(eventId, userId) {
     const [addLike] = await this.database.query(
       `INSERT INTO user_event_like (event_id, user_id) VALUES (?, ?)`,

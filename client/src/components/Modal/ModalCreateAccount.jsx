@@ -5,6 +5,7 @@ import { ImCross } from "react-icons/im";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import mascot from "../../assets/images/masquote.svg";
+import formatName from "../../utils/formatName";
 
 function ModalCreateAccount({ closeModalCreateAccount, role }) {
   const firstname = useRef("");
@@ -31,8 +32,8 @@ function ModalCreateAccount({ closeModalCreateAccount, role }) {
           method: "post",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            firstname: firstname.current.value,
-            lastname: lastname.current.value,
+            firstname: formatName(firstname.current.value),
+            lastname: formatName(lastname.current.value),
             email: email.current.value,
             password: password.current.value,
             role,

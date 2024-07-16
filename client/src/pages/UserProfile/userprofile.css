@@ -4,13 +4,28 @@
   align-items: center;
   width: 100vw;
   height: 50vh;
+  .section-picture-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 10px;
+    height: 25vh;
+    width: 40vw;
+    .avatar-client-change {
+      width: 8em;
+      height: 8em;
+      border-radius: 5px;
+    }
+  }
   .avatar-client {
-    width: 35%;
-    height: 40%;
+    width: 8em;
+    height: 8em;
     border-radius: 5px;
   }
   p {
     font-family: var(--font-title-r);
+    font-size: xx-small;
   }
   .client-edition-profile {
     display: flex;
@@ -49,9 +64,16 @@
 
 @media (min-width: 1024px) {
   .section-user-profile-infos {
+    .section-picture-profile {
+      height: max-content;
+      .avatar-client-change {
+        width: 15em;
+        height: 15em;
+      }
+    }
     .avatar-client {
-      width: 20%;
-      height: 60%;
+      width: 15em;
+      height: 15em;
     }
     p {
       font-family: var(--font-title-r);

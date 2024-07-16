@@ -11,6 +11,12 @@
   z-index: 9999;
   animation: useraccount 1000ms;
   animation-fill-mode: forwards;
+  .form-create-account {
+    p {
+      color: var(--accent);
+      font-size: clamp(0.75em, 2vw, 0.75em);
+    }
+  }
 }
 
 .btn-close-modal-create-account {
@@ -55,10 +61,6 @@
     background-color: var(--background-color);
     border-bottom: 1px solid var(--secondary-color);
     color: var(--secondary-color);
-  }
-  p {
-    color: red;
-    font-size: clamp(0.75em, 2vw, 0.75em);
   }
 }
 
