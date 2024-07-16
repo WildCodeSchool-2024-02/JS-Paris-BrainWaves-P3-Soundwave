@@ -38,27 +38,30 @@ const add = async (req, res, next) => {
       process.env.APP_SECRET,
       { expiresIn: "1d" }
     );
-    delete user.password
-    res.status(201)
-    .cookie("refreshToken", refreshToken, {
-      httpOnly: true,
-      sameSite: "lax",
-    })
-    .header("Authorization", accessToken)
-    .json(user);
+    delete user.password;
+    res
+      .status(201)
+      .cookie("refreshToken", refreshToken, {
+        httpOnly: true,
+        sameSite: "lax",
+      })
+      .header("Authorization", accessToken)
+      .json(user);
   } catch (err) {
     next(err);
   }
 };
 
 const edit = async (req, res, next) => {
+  const uploadDest = `${process.env.APP_HOST}/upload/`;
+  if (req.file) req.body.image = uploadDest + req.file.filename;
   try {
-    const user = await tables.user.edit(req.body, req.params.id);
-    if (user) {
-      const userProfile = await tables.user.readOne(req.params.id);
-      res.status(200).json(userProfile);
+    const result = await tables.user.edit(req.body, req.auth.id);
+    if (result.affectedRows > 0) {
+      const user = await tables.user.readOne(req.auth.id);
+      res.status(200).json(user);
     } else {
-      res.status(404);
+      res.sendStatus(404);
     }
   } catch (error) {
     next(error);
@@ -82,6 +85,7 @@ const readLogin = async (req, res, next) => {
         );
         delete user.password;
         const crew = await tables.user.selectCrewByUser(user.id);
+        const likeEvent = await tables.user.readEventLike(user.id);
         res
           .status(200)
           .cookie("refreshToken", refreshToken, {
@@ -89,7 +93,7 @@ const readLogin = async (req, res, next) => {
             sameSite: "lax",
           })
           .header("Authorization", accessToken)
-          .json({user, crew});
+          .json({user, crew, likeEvent});
       } else {
         res.status(400).json("Wrong Credentials");
       }
@@ -115,9 +119,11 @@ const refresh = async (req, res, next) => {
     );
     const user = await tables.user.readOne(decoded.id);
     const crew = await tables.user.selectCrewByUser(decoded.id);
+    const likeEvent = await tables.user.readEventLike(decoded.id);
+
     delete user.password;
 
-    res.header("Authorization", accessToken).json({ user, crew });
+    res.header("Authorization", accessToken).json({ user, crew, likeEvent });
   } catch (error) {
     next(error);
   }
@@ -129,13 +135,36 @@ const logout = async ({ res }) => {
 
 const userEventLike = async (req, res, next) => {
   try {
-    const result = await tables.user.userEventLike(req.params.id);
+    const result = await tables.user.userLikeEvent(
+      req.body.event_id,
+      req.auth.id
+    );
     res.status(201).json(result);
   } catch (error) {
     next(error);
   }
 };
 
+const eventDeleteLike = async (req, res, next) => {
+  try {
+    const result = await tables.user.deleteEventLike(
+      req.body.event_id,
+      req.auth.id
+    );
+    res.status(201).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const allEventLike = async (req, res, next) => {
+  try {
+    const result = await tables.user.readEventLike(req.auth.id);
+    res.status(201).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   browse,
@@ -146,4 +175,6 @@ module.exports = {
   refresh,
   logout,
   userEventLike,
+  eventDeleteLike,
+  allEventLike,
 };

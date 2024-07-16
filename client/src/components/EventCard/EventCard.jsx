@@ -16,6 +16,7 @@ function EventCard({
   setOpenValidation,
   setText,
   setValidationId
+  event,
 }) {
   const navigate = useNavigate();
   const { auth, setType } = useOutletContext();
@@ -50,7 +51,7 @@ function EventCard({
         <AdminButton setText={setText} setOpenValidation={setOpenValidation} setValidationId={setValidationId} id={id}/>
       ) : (
         <div className="heart-icon-container">
-          <HeartIconLike />
+         <HeartIconLike event={event} />
         </div>
       )}
     </div>
@@ -71,4 +72,5 @@ EventCard.propTypes = {
   setOpenValidation: PropTypes.func.isRequired,
   setText: PropTypes.func.isRequired,
   setValidationId: PropTypes.func,
+  event: PropTypes.func.isRequired,
 };

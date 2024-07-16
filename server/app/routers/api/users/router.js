@@ -9,18 +9,23 @@ const {
   readLogin,
   refresh,
   logout,
+  userEventLike,
+  eventDeleteLike,
 } = require("../../../controllers/userActions");
 
+const {isAuth, isClient} = require("../../../services/auth")
 const { ValidateUserForm } = require("../../../services/validateUserAccount");
+const imageUpload = require("../../../services/imageUpload")
 
 router.get("/", browse);
-router.post("/", add);
+router.post("/", ValidateUserForm, add);
 router.get("/refresh", refresh);
 router.post("/login", readLogin);
+router.post("/like", isAuth, isClient, userEventLike);
+router.delete("/like", isAuth, isClient, eventDeleteLike);
 router.get("/logout", logout);
-router.post("/", ValidateUserForm, add);
 
 router.get("/:id", read);
-router.put("/:id", edit);
+router.put("/",isAuth, isClient, imageUpload.single("image"), edit);
 
 module.exports = router;

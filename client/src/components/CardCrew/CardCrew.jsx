@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import HeartIconLike from "../HeartIconLike/HeartIconLike";
+import { FaRegHeart } from "react-icons/fa";
 import "./cardcrew.css";
 import AdminButton from "../AdminButtons/AdminButtons";
 
@@ -33,7 +33,7 @@ function CardCrew({ result, setOpenValidation, setText, setValidationId }) {
                 id={result.id}
               />
             ) : (
-              <HeartIconLike />
+              <FaRegHeart/>
             )}
           </div>
           {result.description.length <= 100 ? (
@@ -65,7 +65,7 @@ function CardCrew({ result, setOpenValidation, setText, setValidationId }) {
                   id={result.id}
                 />
               ) : (
-                <HeartIconLike />
+                <FaRegHeart/>
               )}
             </div>
             <p>{result.description}</p>

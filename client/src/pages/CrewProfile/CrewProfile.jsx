@@ -25,7 +25,7 @@ function CrewProfile() {
   const [openValidation, setOpenValidation] = useState(false);
   const [text, setText] = useState(false);
   const imageInputRef = useRef();
-  let params = useParams();
+  const params = useParams();
 
   setType("crew");
 
@@ -159,7 +159,7 @@ function CrewProfile() {
             />
           )}
           {auth.isLogged &&
-            auth?.crew?.id == params.id &&
+            auth?.crew?.id === params.id &&
             crewData.isValidated && (
               <p className="admin-comment">
                 Raison du refus par l'administrateur : {crewData.comment}
@@ -168,7 +168,7 @@ function CrewProfile() {
           <div className="button-container-crew-profile">
             {auth?.user?.role !== "crew" ||
               (auth?.user?.role === "admin" && <HeartIconLike />)}
-            {auth.isLogged && auth?.crew?.id == params.id && (
+            {auth.isLogged && auth?.crew?.id === params.id && (
               <button
                 onClick={edit ? handleSubmit : handleBtnValue}
                 type="button"
@@ -211,15 +211,16 @@ function CrewProfile() {
         <div className="events-crew-profile-title">
           <div className="title-add-btn-container">
             <h2>Evènements</h2>
-            {auth?.crew?.id == params.id && (
+            {auth?.crew?.id === params.id && (
               <button type="button" onClick={handleOpenModal}>
                 Ajouter
               </button>
             )}
           </div>
-          {auth?.crew?.id == params.id && (
+          {auth?.crew?.id === params.id && (
             <div className="button-container-events-status">
               <button
+                type="button"
                 onClick={handleToggleValidated}
                 className={
                   !isActiveValidated
@@ -230,6 +231,7 @@ function CrewProfile() {
                 Validés
               </button>
               <button
+                type="button"
                 onClick={handleToggleUnValidated}
                 className={
                   !isActiveUnValidated
@@ -256,9 +258,10 @@ function CrewProfile() {
                 date={event.date}
                 startingHour={event.starting_hour}
                 isValidated={event.is_validated}
+                event={event}
               />
             ))
-          : auth?.crew?.id == params.id &&
+          : auth?.crew?.id === params.id &&
             UnvalidatedEvents.map((event) => (
               <EventCard
                 key={event.id}
@@ -270,6 +273,7 @@ function CrewProfile() {
                 startingHour={event.starting_hour}
                 isValidated={event.is_validated}
                 comment={event.comment}
+                event={event}
               />
             ))}
       </section>

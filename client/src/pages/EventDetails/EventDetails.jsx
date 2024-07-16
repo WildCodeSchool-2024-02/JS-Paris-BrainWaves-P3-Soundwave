@@ -47,7 +47,7 @@ function EventDetail() {
             <AdminButton id={event.id} setText={setText} setOpenValidation={setOpenValidation} />
           ) : (
             <div className="heart-icon-container">
-              <HeartIconLike />
+              <HeartIconLike  event = {event}/>
             </div>
           )}
           <div className="event-main-info">
