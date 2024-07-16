@@ -13,14 +13,18 @@ function EventCard({
   id,
   isValidated,
   comment,
+  setOpenValidation,
+  setText,
+  setValidationId
   event,
 }) {
   const navigate = useNavigate();
-  const { auth } = useOutletContext();
-
+  const { auth, setType } = useOutletContext();
   const handleDetailsEvent = () => {
     navigate(`/event-details/${id}`);
   };
+
+  setType("event");
 
   return (
     <div className="event-card-container">
@@ -36,11 +40,15 @@ function EventCard({
           <p className="date-hour">
             {date.slice(0, 10)} | {startingHour.slice(0, 5)}
           </p>
-          {isValidated === false && <p className="admin-comment">Raison du refus par l'administrateur : {comment}</p>}
+          {isValidated === false && (
+            <p className="admin-comment">
+              Raison du refus par l'administrateur : {comment}
+            </p>
+          )}
         </div>
       </div>
       {auth.isLogged && auth.user.role === "admin" && !isValidated ? (
-        <AdminButton id={id} type="event" />
+        <AdminButton setText={setText} setOpenValidation={setOpenValidation} setValidationId={setValidationId} id={id}/>
       ) : (
         <div className="heart-icon-container">
          <HeartIconLike event={event} />
@@ -59,7 +67,10 @@ EventCard.propTypes = {
   date: PropTypes.string.isRequired,
   startingHour: PropTypes.string.isRequired,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  isValidated: PropTypes.bool.isRequired,
-  comment: PropTypes.string.isRequired,
+  isValidated: PropTypes.bool,
+  comment: PropTypes.string,
+  setOpenValidation: PropTypes.func.isRequired,
+  setText: PropTypes.func.isRequired,
+  setValidationId: PropTypes.func,
   event: PropTypes.func.isRequired,
 };

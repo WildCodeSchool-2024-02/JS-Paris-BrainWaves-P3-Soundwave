@@ -17,6 +17,7 @@ function App() {
   const [updateCrews, setUpdateCrews] = useState(false);
   const [styleInput, setStyleInput] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [type, setType] = useState("event");
   const [eventLike, setEventLike] = useState([]);
 
 
@@ -66,6 +67,8 @@ function App() {
           isLoading,
           styleInput,
           setStyleInput,
+          type,
+          setType,
           eventLike, 
           setEventLike,
         }}
