@@ -15,7 +15,7 @@ function EventCard({
   comment,
   setOpenValidation,
   setText,
-  setValidationId
+  setValidationId,
   event,
 }) {
   const navigate = useNavigate();
