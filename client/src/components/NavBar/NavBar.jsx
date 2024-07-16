@@ -9,7 +9,7 @@ import mascot from "../../assets/images/masquote.svg";
 import ModalLogIn from "../Modal/ModalLogIn";
 import ModalSearchBar from "../ModalSearchBar/ModalSearchBar";
 
-function NavBar({ auth, setAuth }) {
+function NavBar({ auth, setAuth, setEventLike }) {
   const navigate = useNavigate();
 
   const [burgerClass, setBurgerClass] = useState("burger-bar unclicked");
@@ -164,6 +164,7 @@ function NavBar({ auth, setAuth }) {
           closeModalLogIn={setOpenModalLogIn}
           auth={auth}
           setAuth={setAuth}
+          setEventLike={setEventLike}
         />
       )}
       <nav className={menuClass}>
@@ -219,4 +220,5 @@ export default NavBar;
 NavBar.propTypes = {
   auth: PropTypes.func.isRequired,
   setAuth: PropTypes.func.isRequired,
+  setEventLike: PropTypes.func.isRequired,
 };

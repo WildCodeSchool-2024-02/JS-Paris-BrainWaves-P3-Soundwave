@@ -8,6 +8,7 @@ function EventDetail() {
   const event = useLoaderData();
   const navigate = useNavigate();
   const [crewByEvent, setCrewByEvent] = useState([]);
+ 
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/events/${event.id}/crew`)
@@ -43,7 +44,7 @@ function EventDetail() {
             <AdminButton id={event.id} type="event" />
           ) : (
             <div className="heart-icon-container">
-              <HeartIconLike />
+              <HeartIconLike  event = {event}/>
             </div>
           )}
           <div className="event-main-info">

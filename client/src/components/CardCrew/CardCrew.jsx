@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import HeartIconLike from "../HeartIconLike/HeartIconLike";
+import { FaRegHeart } from "react-icons/fa";
 import "./cardcrew.css";
 import AdminButton from "../AdminButtons/AdminButtons";
 
@@ -31,7 +31,7 @@ function CardCrew({ result }) {
                 type="crew"
               />
             ) : (
-              <HeartIconLike />
+              <FaRegHeart/>
             )}
           </div>
           {result.description.length <= 100 ? (
@@ -63,7 +63,7 @@ function CardCrew({ result }) {
                   type="crew"
                 />
               ) : (
-                <HeartIconLike />
+                <FaRegHeart/>
               )}
             </div>
             <p>{result.description}</p>

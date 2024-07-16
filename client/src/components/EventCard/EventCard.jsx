@@ -12,7 +12,8 @@ function EventCard({
   startingHour,
   id,
   isValidated,
-  comment
+  comment,
+  event,
 }) {
   const navigate = useNavigate();
   const { auth } = useOutletContext();
@@ -42,7 +43,7 @@ function EventCard({
         <AdminButton id={id} type="event" />
       ) : (
         <div className="heart-icon-container">
-         <HeartIconLike/>
+         <HeartIconLike event={event} />
         </div>
       )}
     </div>
@@ -60,4 +61,5 @@ EventCard.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   isValidated: PropTypes.bool.isRequired,
   comment: PropTypes.string.isRequired,
+  event: PropTypes.func.isRequired,
 };

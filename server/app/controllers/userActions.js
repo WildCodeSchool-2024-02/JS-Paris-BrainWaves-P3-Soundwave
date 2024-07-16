@@ -85,6 +85,7 @@ const readLogin = async (req, res, next) => {
         );
         delete user.password;
         const crew = await tables.user.selectCrewByUser(user.id);
+        const likeEvent = await tables.user.readEventLike(user.id);
         res
           .status(200)
           .cookie("refreshToken", refreshToken, {
@@ -92,7 +93,7 @@ const readLogin = async (req, res, next) => {
             sameSite: "lax",
           })
           .header("Authorization", accessToken)
-          .json({ user, crew });
+          .json({user, crew, likeEvent});
       } else {
         res.status(400).json("Wrong Credentials");
       }
@@ -118,9 +119,11 @@ const refresh = async (req, res, next) => {
     );
     const user = await tables.user.readOne(decoded.id);
     const crew = await tables.user.selectCrewByUser(decoded.id);
+    const likeEvent = await tables.user.readEventLike(decoded.id);
+
     delete user.password;
 
-    res.header("Authorization", accessToken).json({ user, crew });
+    res.header("Authorization", accessToken).json({ user, crew, likeEvent });
   } catch (error) {
     next(error);
   }
@@ -132,7 +135,31 @@ const logout = async ({ res }) => {
 
 const userEventLike = async (req, res, next) => {
   try {
-    const result = await tables.user.userEventLike(req.params.id);
+    const result = await tables.user.userLikeEvent(
+      req.body.event_id,
+      req.auth.id
+    );
+    res.status(201).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const eventDeleteLike = async (req, res, next) => {
+  try {
+    const result = await tables.user.deleteEventLike(
+      req.body.event_id,
+      req.auth.id
+    );
+    res.status(201).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const allEventLike = async (req, res, next) => {
+  try {
+    const result = await tables.user.readEventLike(req.auth.id);
     res.status(201).json(result);
   } catch (error) {
     next(error);
@@ -148,4 +175,6 @@ module.exports = {
   refresh,
   logout,
   userEventLike,
+  eventDeleteLike,
+  allEventLike,
 };
