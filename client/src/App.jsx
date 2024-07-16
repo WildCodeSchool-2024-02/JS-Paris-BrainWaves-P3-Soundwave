@@ -54,7 +54,7 @@ function App() {
   return (
     <>
       <ToastContainer theme="dark" />
-      <NavBar auth={auth} setAuth={setAuth} />
+      <NavBar auth={auth} setAuth={setAuth} setEventLike={setEventLike} />
       <Outlet
         context={{
           auth,
