@@ -21,7 +21,7 @@ const imageUpload = require("../../../services/imageUpload");
 
 router.get("/", browse);
 router.get("/tovalidate", isAuth, isAdmin, readPendingCrews);
-router.get("/:id", readByOwnerId);
+router.get("/user/:id", readByOwnerId);
 router.get("/:id", read);
 router.get("/:id/validated-events", readValidatedEventsByCrewId);
 router.get("/:id/unvalidated-events", readUnvalidatedEventsByCrewId);

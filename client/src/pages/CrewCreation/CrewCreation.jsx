@@ -26,7 +26,7 @@ function CrewCreation() {
     const checkOwnerId = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/crews/${auth.user.id}`,
+          `${import.meta.env.VITE_API_URL}/api/crews/user/${auth.user.id}`,
           {
             method: "GET",
             headers: {
@@ -37,7 +37,7 @@ function CrewCreation() {
         if (response.ok) {
           const data = await response.json();
           if (data.length > 0) {
-            navigate(`/crew-details/${auth.user.id}`);
+            navigate(`/crew-details/${data[0].id}`);
           }
         }
       } catch (error) {
@@ -46,7 +46,7 @@ function CrewCreation() {
     };
 
     checkOwnerId();
-  }, [auth.user.id, navigate]);
+  }, [auth?.user?.id, navigate]);
 
   const handleInputChange = (event) => {
     const textarea = event.target;
@@ -98,8 +98,8 @@ function CrewCreation() {
       );
       if (response.status === 201) {
         toast.success("Votre profil a été envoyé aux admins pour validation");
-
-        navigate(`/crew-details/${auth.user.id}`);
+        const crewId = await response.json();
+        navigate(`/crew-details/${crewId}`);
       } else {
         toast.warning("Un problème est survenu");
         setErrors({ update: "Échec de la création du compte" });

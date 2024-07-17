@@ -7,7 +7,7 @@ import ModalEvent from "../../components/EventCreationModal/ModalEvent";
 import AdminButton from "../../components/AdminButtons/AdminButtons";
 
 function CrewProfile() {
-  const [crew] = useLoaderData();
+  const crew = useLoaderData();
   const { auth } = useOutletContext();
   const [edit, setEdit] = useState(false);
   const [btnValue, setBtnValue] = useState("Éditer");

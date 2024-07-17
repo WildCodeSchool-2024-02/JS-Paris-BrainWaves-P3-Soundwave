@@ -7,7 +7,9 @@ import AdminButton from "../AdminButtons/AdminButtons";
 function CardCrew({ result }) {
   const navigate = useNavigate();
   const { updateCrews, setUpdateCrews, auth } = useOutletContext();
-
+  const navigatte = () => {
+    navigate(`/crew-details/${result.id}`);
+  };
   return (
     <section className="specific-crew-card">
       {window.innerWidth < 1024 && (
@@ -16,7 +18,7 @@ function CardCrew({ result }) {
             <img
               src={result.image}
               alt="logo du collectif"
-              onClick={() => navigate(`/crew-details/${result.id}`)}
+              onClick={() => navigatte()}
               onKeyDown={() => navigate(`/crew-details/${result.id}`)}
               role="presentation"
             />
