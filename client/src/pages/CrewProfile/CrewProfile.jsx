@@ -7,7 +7,7 @@ import ModalEvent from "../../components/EventCreationModal/ModalEvent";
 import AdminButton from "../../components/AdminButtons/AdminButtons";
 
 function CrewProfile() {
-  const crew = useLoaderData();
+  const [crew] = useLoaderData();
   const { auth } = useOutletContext();
   const [edit, setEdit] = useState(false);
   const [btnValue, setBtnValue] = useState("Éditer");
@@ -152,9 +152,14 @@ function CrewProfile() {
               value={username}
             />
           )}
-          {auth?.user?.role === "crew" && !crew.isValidated && <p className="admin-comment">Raison du refus par l'administrateur : {crew.comment}</p>}
+          {auth?.user?.role === "crew" && !crew.isValidated && (
+            <p className="admin-comment">
+              Raison du refus par l'administrateur : {crew.comment}
+            </p>
+          )}
           <div className="button-container-crew-profile">
-            {auth?.user?.role !== "crew" || auth?.user?.role === "admin" && <HeartIconLike />}
+            {auth?.user?.role !== "crew" ||
+              (auth?.user?.role === "admin" && <HeartIconLike />)}
             {auth.isLogged && auth?.user?.role === "crew" && (
               <button
                 onClick={edit ? handleSubmit : handleBtnValue}
@@ -201,6 +206,7 @@ function CrewProfile() {
           {auth.isLogged && auth.user.role === "crew" && (
             <div className="button-container-events-status">
               <button
+                type="button"
                 onClick={handleToggleValidated}
                 className={
                   !isActiveValidated
@@ -211,6 +217,7 @@ function CrewProfile() {
                 Validés
               </button>
               <button
+                type="button"
                 onClick={handleToggleUnValidated}
                 className={
                   !isActiveUnValidated
