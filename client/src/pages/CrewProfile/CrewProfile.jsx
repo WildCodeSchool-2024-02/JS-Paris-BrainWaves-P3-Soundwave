@@ -67,6 +67,7 @@ function CrewProfile() {
     return error;
   };
 
+
   useEffect(() => {
     fetch(
       `${import.meta.env.VITE_API_URL}/api/crews/${crewData.id}/validated-events`
@@ -128,6 +129,7 @@ function CrewProfile() {
     setActiveValidated(false);
     setActiveUnValidated(true);
   };
+  
 
   return (
     <main className="main-crew-profile">

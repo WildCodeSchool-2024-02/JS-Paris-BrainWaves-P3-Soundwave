@@ -37,6 +37,7 @@ function EventDetail() {
           >
             Collectifs : {crewByEvent.name}
           </p>
+          <section className="heart-title-container">
           <h1>{event.name}</h1>
           {auth.isLogged &&
           auth.user.role === "admin" &&
@@ -47,6 +48,7 @@ function EventDetail() {
               <HeartIconLike  event = {event}/>
             </div>
           )}
+          </section>
           <div className="event-main-info">
             <p className="date-hour">
               {event.date.slice(0, 10)} | {event.starting_hour.slice(0, 5)}

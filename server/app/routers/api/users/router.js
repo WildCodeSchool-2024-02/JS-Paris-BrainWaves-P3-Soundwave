@@ -11,6 +11,7 @@ const {
   logout,
   userEventLike,
   eventDeleteLike,
+  allEventLike,
 } = require("../../../controllers/userActions");
 
 const {isAuth, isClient} = require("../../../services/auth")
@@ -22,6 +23,7 @@ router.post("/", ValidateUserForm, add);
 router.get("/refresh", refresh);
 router.post("/login", readLogin);
 router.post("/like", isAuth, isClient, userEventLike);
+router.get("/like", isAuth, isClient, allEventLike);
 router.delete("/like", isAuth, isClient, eventDeleteLike);
 router.get("/logout", logout);
 

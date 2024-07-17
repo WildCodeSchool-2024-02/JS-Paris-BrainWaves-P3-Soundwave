@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 function HeartIconLike({ event }) {
   const [liked, setLiked] = useState(false);
-  const { auth, eventLike, setEventLike } = useOutletContext();
+  const { auth, eventLike, setEventLike, updateEvents, setUpdateEvents } = useOutletContext();
 
   const handleLikeEvent = () => {
     setLiked(!liked);
@@ -54,6 +54,7 @@ function HeartIconLike({ event }) {
       );
       if (response.ok) {
         setEventLike(eventLike.filter((like) => like.event_id !== event.id))
+        setUpdateEvents(!updateEvents)
       }
     } catch (error) {
       console.error(error);
