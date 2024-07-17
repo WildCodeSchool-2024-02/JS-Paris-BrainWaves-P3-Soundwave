@@ -72,7 +72,6 @@ function CrewProfile() {
     return error;
   };
 
-
   useEffect(() => {
     fetch(
       `${import.meta.env.VITE_API_URL}/api/crews/${crewData.id}/validated-events`
@@ -134,7 +133,6 @@ function CrewProfile() {
     setActiveValidated(false);
     setActiveUnValidated(true);
   };
-  
 
   return (
     <main className="main-crew-profile">
@@ -169,8 +167,10 @@ function CrewProfile() {
             )}
           <div className="button-container-crew-profile">
             {auth?.user?.role !== "crew" ||
-              (auth?.user?.role === "admin" && <HeartIconFollowCrews crew={crewData}/>)}
-              <HeartIconFollowCrews crew={crewData}/>
+              (auth?.user?.role === "admin" && (
+                <HeartIconFollowCrews crew={crewData} />
+              ))}
+            <HeartIconFollowCrews crew={crewData} />
             {auth.isLogged && auth?.crew?.id === Number(params.id) && (
               <button
                 onClick={edit ? handleSubmit : handleBtnValue}

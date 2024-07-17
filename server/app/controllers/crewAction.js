@@ -37,7 +37,7 @@ const readUnvalidatedEventsByCrewId = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-}
+};
 
 const readPendingCrews = async ({ res, next }) => {
   try {
@@ -67,10 +67,21 @@ const edit = async (req, res, next) => {
 const create = async (req, res, next) => {
   const uploadDest = `${process.env.APP_HOST}/upload/`;
   if (req.file) req.body.image = uploadDest + req.file.filename;
+
   try {
     const crewData = req.body;
     const result = await tables.crew.insertOne(crewData);
     res.status(201).json(result.insertId);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const readByOwnerId = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const crew = await tables.crew.findByOwnerId(id);
+    res.status(200).json(crew);
   } catch (error) {
     next(error);
   }
@@ -81,8 +92,8 @@ const editStatus = async (req, res, next) => {
   const { body } = req;
   try {
     await tables.crew.edit(body, id);
-    const getOne = await tables.crew.readOne(id);
-    res.status(200).json(getOne);
+    const get = await tables.crew.readOne(id);
+    res.status(200).json(get);
   } catch (error) {
     next(error);
   }
@@ -96,4 +107,5 @@ module.exports = {
   edit,
   create,
   readUnvalidatedEventsByCrewId,
+  readByOwnerId,
 };
