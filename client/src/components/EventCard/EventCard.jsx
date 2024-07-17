@@ -23,7 +23,6 @@ function EventCard({
   const handleDetailsEvent = () => {
     navigate(`/event-details/${id}`);
   };
-
   setType("event");
 
   return (
@@ -56,7 +55,7 @@ function EventCard({
         />
       ) : (
         <div className="heart-icon-container">
-          <HeartIconLike event={event} />
+         {auth.isLogged === true && auth.user.role === "client" && <HeartIconLike event={event} />}
         </div>
       )}
     </div>
@@ -88,4 +87,3 @@ EventCard.defaultProps = {
   comment: "", // Valeur par défaut pour comment
   setValidationId: () => {}, // Valeur par défaut pour setValidationId (une fonction vide)
 };
-
