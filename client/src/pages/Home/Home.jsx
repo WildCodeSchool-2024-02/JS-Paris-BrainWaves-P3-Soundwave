@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useOutletContext } from "react-router-dom";
 import { useState } from "react";
 import heart from "../../assets/images/masquote.svg";
 import "./home.css";
@@ -6,6 +6,7 @@ import HomeSlider from "../../components/HomeSlider/HomeSlider";
 import ModalCreateAccount from "../../components/Modal/ModalCreateAccount";
 
 function Home() {
+  const { auth } = useOutletContext();
   const results = useLoaderData();
   const [isOpen, setIsOpen] = useState(false);
   const [openModalCreateAccount, setOpenModalCreateAccount] = useState(false);
@@ -48,52 +49,58 @@ function Home() {
           <h3 className="label-slider-home-page">Nos Événements</h3>
           <HomeSlider events={results} className="swiperr" />
         </div>
-        <p className="p-title-header-home-page">REJOINS NOUS !</p>
+        {!auth.isLogged && (
+          <p className="p-title-header-home-page">REJOINS NOUS !</p>
+        )}
         <div className="div-btn-register">
-          <div className="btn-side-home">
-            <button
-              className="home-btn"
-              type="button"
-              onClick={() => {
-                handleCreateModal();
-                setRole("client");
-              }}
-            >
-              Waver
-            </button>
-            {openModalCreateAccount && (
-              <ModalCreateAccount
-                closeModalCreateAccount={setOpenModalCreateAccount}
-                role={role}
-              />
-            )}
-            <div className="description">
-              <p className="p-home-btn">Qu’est ce qu’un Waver ?</p>
-              <p className="p-home-btn">
-                Si tu ne trouves jamais d’événements où t’ambiancer, crée ton
-                espace perso !
-              </p>
+          {!auth.isLogged && (
+            <div className="btn-side-home">
+              <button
+                className="home-btn"
+                type="button"
+                onClick={() => {
+                  handleCreateModal();
+                  setRole("client");
+                }}
+              >
+                Waver
+              </button>
+              {openModalCreateAccount && (
+                <ModalCreateAccount
+                  closeModalCreateAccount={setOpenModalCreateAccount}
+                  role={role}
+                />
+              )}
+              <div className="description">
+                <p className="p-home-btn">Qu’est ce qu’un Waver ?</p>
+                <p className="p-home-btn">
+                  Si tu ne trouves jamais d’événements où t’ambiancer, crée ton
+                  espace perso !
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="btn-side-home">
-            <button
-              className="home-btn"
-              type="button"
-              onClick={() => {
-                handleCreateModal();
-                setRole("crew");
-              }}
-            >
-              Soundwaver
-            </button>
-            <div className="description">
-              <p className="p-home-btn">Qu’est ce qu’un Soundwaver ? </p>
-              <p className="p-home-btn">
-                Tu es un collectif et tu souhaites promouvoir ton projet et tes
-                événements, crée ton compte !
-              </p>
+          )}
+          {!auth.isLogged && (
+            <div className="btn-side-home">
+              <button
+                className="home-btn"
+                type="button"
+                onClick={() => {
+                  handleCreateModal();
+                  setRole("crew");
+                }}
+              >
+                Soundwaver
+              </button>
+              <div className="description">
+                <p className="p-home-btn">Qu’est ce qu’un Soundwaver ? </p>
+                <p className="p-home-btn">
+                  Tu es un collectif et tu souhaites promouvoir ton projet et
+                  tes événements, crée ton compte !
+                </p>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
     </main>

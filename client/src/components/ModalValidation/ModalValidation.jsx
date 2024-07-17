@@ -5,129 +5,138 @@ import { toast } from "react-toastify";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { useRef } from "react";
 
-function ModalValidation({ setOpenValidation, text, type, id }) {
+function ModalValidation({ setOpenValidation, text, validationId }) {
+
   const handleCloseModalLogIn = () => {
     setOpenValidation(false);
     document.body.classList.remove("active");
   };
   const navigate = useNavigate();
-  const { updateEvents, setUpdateEvents, updateCrews, setUpdateCrews, auth } =
-    useOutletContext();
+  const {
+    updateEvents,
+    setUpdateEvents,
+    updateCrews,
+    setUpdateCrews,
+    auth,
+    type,
+  } = useOutletContext();
   const comment = useRef("");
 
   // validate an event
-  async function validateEvent() {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/events/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-type": "application/json",
-            Authorization: ` Bearer ${auth.token}`,
-          },
-          body: JSON.stringify({ is_validated: true, comment: null }),
-          credentials: "include"
+
+      async function validateEvent() {
+        try {
+          const response = await fetch(
+            `${import.meta.env.VITE_API_URL}/api/events/${validationId}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-type": "application/json",
+                Authorization: ` Bearer ${auth.token}`,
+              },
+              body: JSON.stringify({ is_validated: true, comment: null }),
+              credentials: "include",
+            }
+          );
+          if (response.ok) {
+            setUpdateEvents(!updateEvents);
+            toast.success("L'évènement a été validé !");
+            handleCloseModalLogIn();
+            navigate("/admin");
+          }
+        } catch (error) {
+          console.error(error);
+          toast.error("Une erreur est survenue");
         }
-      );
-      if (response.ok) {
-        setUpdateEvents(!updateEvents);
-        toast.success("L'évènement a été validé !");
-        document.body.classList.remove("active");
-        navigate("/admin");
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error("Une erreur est survenue");
-    }
-  }
+      };
 
   // reject an event
-  async function unvalidateEvent() {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/events/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-type": "application/json",
-            Authorization: ` Bearer ${auth.token}`,
-          },
-          body: JSON.stringify({
-            is_validated: false,
-            comment: comment.current.value,
-          }),
-          credentials: "include"
+      async function unvalidateEvent() {
+        try {
+          const response = await fetch(
+            `${import.meta.env.VITE_API_URL}/api/events/${validationId}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-type": "application/json",
+                Authorization: ` Bearer ${auth.token}`,
+              },
+              body: JSON.stringify({
+                is_validated: false,
+                comment: comment.current.value,
+              }),
+              credentials: "include",
+            }
+          );
+          if (response.ok) {
+            setUpdateEvents(!updateEvents);
+            toast.success("L'évènement a été rejeté");
+            handleCloseModalLogIn();
+            navigate("/admin");
+
+          }
+        } catch (error) {
+          console.error(error);
+          toast.error("Une erreur est survenue");
         }
-      );
-      if (response.ok) {
-        setUpdateEvents(!updateEvents);
-        toast.success("L'évènement a été rejeté");
-        document.body.classList.remove("active");
-        navigate("/admin");
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error("Une erreur est survenue");
-    }
-  }
+      };
 
   // validate a crew
-  async function validateCrew() {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/crews/tovalidate/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-type": "application/json",
-            Authorization: ` Bearer ${auth.token}`,
-          },
-          body: JSON.stringify({ is_validated: true, comment: null }),
-          credentials: "include"
+      async function validateCrew() {
+        try {
+          const response = await fetch(
+            `${import.meta.env.VITE_API_URL}/api/crews/tovalidate/${validationId}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-type": "application/json",
+                Authorization: ` Bearer ${auth.token}`,
+              },
+              body: JSON.stringify({ is_validated: true, comment: null }),
+              credentials: "include",
+            }
+          );
+          if (response.ok) {
+            setUpdateCrews(!updateCrews);
+            toast.success("Le collectif a été validé !");
+            handleCloseModalLogIn();
+            navigate("/admin");
+          }
+        } catch (error) {
+          console.error(error);
+          toast.error("Une erreur est survenue");
         }
-      );
-      if (response.ok) {
-        setUpdateCrews(!updateCrews);
-        toast.success("Le collectif a été validé !");
-        document.body.classList.remove("active");
-        navigate("/admin");
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error("Une erreur est survenue");
-    }
-  }
+      };
 
   // reject a crew
-  async function unvalidateCrew() {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/crews/tovalidate/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-type": "application/json",
-            Authorization: ` Bearer ${auth.token}`,
-          },
-          body: JSON.stringify({
-            is_validated: false,
-            comment: comment.current.value,
-          }),
-          credentials: "include"
+      async function unvalidateCrew() {
+        try {
+          const response = await fetch(
+            `${import.meta.env.VITE_API_URL}/api/crews/tovalidate/${validationId}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-type": "application/json",
+                Authorization: ` Bearer ${auth.token}`,
+              },
+              body: JSON.stringify({
+                is_validated: false,
+                comment: comment.current.value,
+              }),
+              credentials: "include",
+            }
+          );
+          if (response.ok) {
+            setUpdateCrews(!updateCrews);
+            toast.success("Le collectif a été rejeté");
+            handleCloseModalLogIn();
+            navigate("/admin");
+          }
+        } catch (error) {
+          console.error(error);
+          toast.error("Une erreur est survenue");
         }
-      );
-      if (response.ok) {
-        setUpdateCrews(!updateCrews);
-        toast.success("Le collectif a été rejeté");
-        document.body.classList.remove("active");
-        navigate("/admin");
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error("Une erreur est survenue");
-    }
-  }
+      };
 
   return (
     <dialog className="display-modal-validation">
@@ -201,6 +210,5 @@ export default ModalValidation;
 ModalValidation.propTypes = {
   setOpenValidation: PropTypes.func.isRequired,
   text: PropTypes.bool.isRequired,
-  id: PropTypes.number.isRequired,
-  type: PropTypes.string.isRequired,
+  validationId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
