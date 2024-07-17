@@ -15,7 +15,7 @@ function EventCard({
   comment,
   setOpenValidation,
   setText,
-  setValidationId
+  setValidationId,
   event,
 }) {
   const navigate = useNavigate();
@@ -72,5 +72,15 @@ EventCard.propTypes = {
   setOpenValidation: PropTypes.func.isRequired,
   setText: PropTypes.func.isRequired,
   setValidationId: PropTypes.func,
-  event: PropTypes.func.isRequired,
+  event: PropTypes.shape({
+    eventId: PropTypes.number.isRequired,
+    eventName: PropTypes.string.isRequired,
+  }).isRequired,
 };
+
+EventCard.defaultProps = {
+  isValidated: false, // Valeur par défaut pour isValidated
+  comment: "", // Valeur par défaut pour comment
+  setValidationId: () => {}, // Valeur par défaut pour setValidationId (une fonction vide)
+};
+
