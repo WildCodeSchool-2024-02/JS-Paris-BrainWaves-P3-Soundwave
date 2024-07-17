@@ -120,7 +120,7 @@ function NavBar({ auth, setAuth, setEventLike }) {
               onClick={() => navigate("/events-list")}
               onKeyDown={() => navigate("/events-list")}
             >
-              Événements
+              Évènements
             </li>
             <li
               role="presentation"

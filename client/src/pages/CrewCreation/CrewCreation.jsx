@@ -1,5 +1,6 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./crew-creation.css";
+import { toast } from "react-toastify";
 import { useOutletContext, useLoaderData, useNavigate } from "react-router-dom";
 
 function CrewCreation() {
@@ -18,9 +19,34 @@ function CrewCreation() {
     const file = event.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      setImage(imageUrl); // Update the state with the new image URL
+      setImage(imageUrl);
     }
   };
+  useEffect(() => {
+    const checkOwnerId = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/crews/user/${auth.user.id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        if (response.ok) {
+          const data = await response.json();
+          if (data.length > 0) {
+            navigate(`/crew-details/${data[0].id}`);
+          }
+        }
+      } catch (error) {
+        console.error("Erreur lors de la vérification du ownerId:", error);
+      }
+    };
+
+    checkOwnerId();
+  }, [auth?.user?.id, navigate]);
 
   const handleInputChange = (event) => {
     const textarea = event.target;
@@ -38,39 +64,49 @@ function CrewCreation() {
     if (!description) {
       error.description = "Description requise";
     }
+    if (!imageInputRef.current.files[0]) {
+      error.image = "Image requise";
+    }
 
     return error;
   };
 
   const handleSubmit = async () => {
+    const errorData = validate();
+    if (Object.keys(errorData).length > 0) {
+      setErrors(errorData);
+      Object.keys(errorData).forEach((key) => {
+        toast.error(errorData[key]);
+      });
+      return;
+    }
+
     const form = new FormData();
     form.append("name", username);
     form.append("image", imageInputRef.current.files[0]);
     form.append("ownerId", auth.user.id);
     form.append("description", description);
 
-    const errorData = validate();
-    if (Object.keys(errorData).length > 0) {
-      setErrors(errorData);
-    } else {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/crews/`,
-          {
-            method: "post",
-            headers: { Authorization: ` Bearer ${auth.token}` },
-            body: form,
-          }
-        );
-        if (response.status === 201) {
-          const crew2 = await response.json();
-          navigate(`/crew-details/${crew2}`);
-        } else {
-          setErrors({ update: "Échec de la création du compte" });
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/crews/`,
+        {
+          method: "post",
+          headers: { Authorization: `Bearer ${auth.token}` },
+          body: form,
         }
-      } catch (err) {
-        console.error(err);
+      );
+      if (response.status === 201) {
+        toast.success("Votre profil a été envoyé aux admins pour validation");
+        const crewId = await response.json();
+        navigate(`/crew-details/${crewId}`);
+      } else {
+        toast.warning("Un problème est survenu");
+        setErrors({ update: "Échec de la création du compte" });
       }
+    } catch (err) {
+      console.error(err);
+      toast.error("Erreur lors de la soumission du formulaire");
     }
   };
 
@@ -96,7 +132,7 @@ function CrewCreation() {
               />
               <div className="button-container-crew-creation">
                 <button onClick={handleSubmit} type="button">
-                  send
+                  Send
                 </button>
               </div>
             </div>
@@ -115,7 +151,7 @@ function CrewCreation() {
           </section>
         </>
       ) : (
-        <p>vous avez deja un crew :/</p>
+        <p>Vous avez déjà un crew :/</p>
       )}
     </main>
   );
