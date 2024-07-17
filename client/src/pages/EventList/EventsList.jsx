@@ -60,6 +60,7 @@ function EventsList() {
                       date={event.date}
                       startingHour={event.starting_hour}
                       isValidated={event.is_validated}
+                      event= {event}
                     />
                   ))}
                 </>

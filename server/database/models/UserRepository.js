@@ -6,9 +6,7 @@ class UserRepository extends AbstractRepository {
   }
 
   async readAllUsers() {
-    const [rows] = await this.database.query(
-      `SELECT * FROM ${this.table}`
-    );
+    const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
     return rows;
   }
 
@@ -38,16 +36,77 @@ class UserRepository extends AbstractRepository {
   }
 
   async selectCrewByUser(id) {
-    const [[crew]] = await this.database.query(`SELECT crew.id FROM crew JOIN ${this.table} ON crew.owner_id = ${this.table}.id where ${this.table}.id = ?`, [id]);
+    const [[crew]] = await this.database.query(
+      `SELECT crew.id FROM crew JOIN ${this.table} ON crew.owner_id = ${this.table}.id where ${this.table}.id = ?`,
+      [id]
+    );
     return crew;
   }
-  
+
   async userLikeEvent(eventId, userId) {
-    const [likeId] = await this.database.query(
-      `INSERT INTO user_event_like (event_id, user_id) VALUES (?,?)`,
+    const [addLike] = await this.database.query(
+      `INSERT INTO user_event_like (event_id, user_id) VALUES (?, ?)`,
       [eventId, userId]
     );
-    return likeId;
+    return addLike;
+  }
+
+  async deleteEventLike(eventId, userId) {
+    const [deleteLike] = await this.database.query(
+      `DELETE FROM user_event_like WHERE event_id = ? AND user_id = ?`,
+      [eventId, userId]
+    );
+    return deleteLike;
+  }
+
+  async readEventLike(userId) {
+    const [readLikes] = await this.database.query(
+      `SELECT event_id FROM user_event_like WHERE user_id = ?`,
+      [userId]
+    );
+    return readLikes;
+  } 
+  
+  async readAllEventLike (userId) {
+    const [readLikes] = await this.database.query(
+      `SELECT event.* FROM event JOIN user_event_like ON user_event_like.event_id = event.id JOIN ${this.table} ON ${this.table}.id = user_event_like.user_id WHERE user_id = ?`,
+      [userId]
+    );
+    return readLikes;
+  }
+
+  
+
+  async userFollowCrew(crewId, userId) {
+    const [addFollow] = await this.database.query(
+      `INSERT INTO user_crew_follow (crew_id, user_id) VALUES (?, ?)`,
+      [crewId, userId]
+    );
+    return addFollow;
+  }
+
+  async deleteCrewFollow(crewId, userId) {
+    const [deleteFollow] = await this.database.query(
+      `DELETE FROM user_crew_follow WHERE crew_id = ? AND user_id = ?`,
+      [crewId, userId]
+    );
+    return deleteFollow;
+  }
+
+  async readCrewFollow(userId) {
+    const [readFollows] = await this.database.query(
+      `SELECT crew_id FROM user_crew_follow WHERE user_id = ?`,
+      [userId]
+    );
+    return readFollows;
+  }
+
+  async allCrewFollow(userId) {
+    const [allFollows] = await this.database.query(
+      `SELECT crew.* FROM crew JOIN user_crew_follow ON user_crew_follow.crew_id = crew.id JOIN user ON user.id = user_crew_follow.user_id WHERE = user_id = ?`,
+      [userId]
+    );
+    return allFollows;
   }
 }
 

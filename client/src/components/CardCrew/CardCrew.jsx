@@ -1,15 +1,15 @@
 import PropTypes from "prop-types";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import HeartIconLike from "../HeartIconLike/HeartIconLike";
 import "./cardcrew.css";
 import AdminButton from "../AdminButtons/AdminButtons";
+import HeartIconFollowCrews from "../HeartIconFollowCrews/HeartIconFollowCrews";
 
-function CardCrew({ result }) {
+function CardCrew({ result, setOpenValidation, setText, setValidationId }) {
   const navigate = useNavigate();
-  const { updateCrews, setUpdateCrews, auth } = useOutletContext();
-  const navigatte = () => {
-    navigate(`/crew-details/${result.id}`);
-  };
+  const { auth, setType } = useOutletContext();
+
+  setType("crew");
+
   return (
     <section className="specific-crew-card">
       {window.innerWidth < 1024 && (
@@ -18,7 +18,7 @@ function CardCrew({ result }) {
             <img
               src={result.image}
               alt="logo du collectif"
-              onClick={() => navigatte()}
+              onClick={() => navigate(`/crew-details/${result.id}`)}
               onKeyDown={() => navigate(`/crew-details/${result.id}`)}
               role="presentation"
             />
@@ -27,13 +27,13 @@ function CardCrew({ result }) {
             auth.user.role === "admin" &&
             !result.is_validated ? (
               <AdminButton
-                updateCrews={updateCrews}
-                setUpdateCrews={setUpdateCrews}
+                setText={setText}
+                setOpenValidation={setOpenValidation}
+                setValidationId={setValidationId}
                 id={result.id}
-                type="crew"
               />
             ) : (
-              <HeartIconLike />
+              <HeartIconFollowCrews crew={result} />
             )}
           </div>
           {result.description.length <= 100 ? (
@@ -59,13 +59,13 @@ function CardCrew({ result }) {
               auth.user.role === "admin" &&
               !result.is_validated ? (
                 <AdminButton
-                  updateCrews={updateCrews}
-                  setUpdateCrews={setUpdateCrews}
+                  setText={setText}
+                  setOpenValidation={setOpenValidation}
+                  setValidationId={setValidationId}
                   id={result.id}
-                  type="crew"
                 />
               ) : (
-                <HeartIconLike />
+                <HeartIconFollowCrews crew={result} />
               )}
             </div>
             <p>{result.description}</p>
@@ -82,8 +82,15 @@ CardCrew.propTypes = {
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
-    is_validated: PropTypes.func.isRequired,
+    is_validated: PropTypes.func,
   }).isRequired,
+  setOpenValidation: PropTypes.func.isRequired,
+  setText: PropTypes.func.isRequired,
+  setValidationId: PropTypes.func,
+};
+
+CardCrew.defaultProps = {
+  setValidationId: null,
 };
 
 export default CardCrew;
