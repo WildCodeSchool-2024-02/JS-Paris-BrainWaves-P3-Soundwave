@@ -177,24 +177,24 @@ nav {
       width: 100%;
       left: 0;
     }
-    .menu-account-nav-bar {
-      background-color: var(--background-color);
-      border-radius: 0 0 10px 10px;
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-around;
-      width: 10em;
-      height: 4em;
-      top: 45px;
-      right: -6px;
-    }
-
+    
     .avatar-icon {
       width: 2em;
       height: 2em;
     }
+  }
+  .menu-account-nav-bar {
+    background-color: var(--background-color);
+    border-radius: 0 0 10px 10px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 10em;
+    height: 4em;
+    top: 45px;
+    right: -6px;
   }
 }
 }

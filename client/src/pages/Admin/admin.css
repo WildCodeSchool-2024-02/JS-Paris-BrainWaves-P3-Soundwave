@@ -29,6 +29,10 @@
   .button-container-admin-page {
     button {
       padding: 1em 2em;
+      transition: transform ease-in-out .3s;
+    }
+    button:hover {
+      transform: scale(1.2);
     }
   }
   .events-to-validate {

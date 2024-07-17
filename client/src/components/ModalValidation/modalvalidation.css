@@ -107,6 +107,10 @@
       cursor: pointer;
       width: 10%;
       height: 120%;
+      transition: transform ease-in-out .3s;
+    }
+    button:hover{
+      transform: scale(1.2);
     }
   }
   .reject {
