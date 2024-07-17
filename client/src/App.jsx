@@ -11,7 +11,7 @@ function App() {
     isLogged: false,
     user: null,
     token: null,
-    crew: null
+    crew: null,
   });
   const [updateEvents, setUpdateEvents] = useState(false);
   const [updateCrews, setUpdateCrews] = useState(false);
@@ -19,8 +19,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [type, setType] = useState("event");
   const [eventLike, setEventLike] = useState([]);
-
-
+  const [crewFollow, setCrewFollow] = useState([]);
 
   useEffect(() => {
     const getAuth = async () => {
@@ -32,14 +31,15 @@ function App() {
         if (response.ok) {
           const token = response.headers.get("Authorization");
           const result = await response.json();
-          
+
           setAuth({
             isLogged: true,
             user: result.user,
             token,
-            crew: result.crew
+            crew: result.crew,
           });
           setEventLike(result.likeEvent);
+          setCrewFollow(result.followCrew);
           setIsLoading(false);
         } else {
           setIsLoading(false);
@@ -69,8 +69,10 @@ function App() {
           setStyleInput,
           type,
           setType,
-          eventLike, 
+          eventLike,
           setEventLike,
+          crewFollow,
+          setCrewFollow,
         }}
       />
       <Footer />

@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import { FaRegHeart } from "react-icons/fa";
 import "./cardcrew.css";
 import AdminButton from "../AdminButtons/AdminButtons";
+import HeartIconFollowCrews from "../HeartIconFollowCrews/HeartIconFollowCrews";
 
 function CardCrew({ result, setOpenValidation, setText, setValidationId }) {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ function CardCrew({ result, setOpenValidation, setText, setValidationId }) {
                 id={result.id}
               />
             ) : (
-              <FaRegHeart/>
+              <HeartIconFollowCrews crew={result} />
             )}
           </div>
           {result.description.length <= 100 ? (
@@ -65,7 +65,7 @@ function CardCrew({ result, setOpenValidation, setText, setValidationId }) {
                   id={result.id}
                 />
               ) : (
-                <FaRegHeart/>
+                <HeartIconFollowCrews crew={result} />
               )}
             </div>
             <p>{result.description}</p>
@@ -86,6 +86,11 @@ CardCrew.propTypes = {
   }).isRequired,
   setOpenValidation: PropTypes.func.isRequired,
   setText: PropTypes.func.isRequired,
+  setValidationId: PropTypes.func,
+};
+
+CardCrew.defaultProps = {
+  setValidationId: null,
 };
 
 export default CardCrew;

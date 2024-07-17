@@ -42,7 +42,7 @@
       padding: 0.3em 1em;
     }
   }
-  .admin-comment{
+  .admin-comment {
     color: red;
     font-family: var(--font-title-r);
     padding: 1em;
@@ -163,11 +163,10 @@
 
   .button-container-events-status {
     margin: 2em;
-  }  
+  }
   .button-container-crew-profile {
     display: flex;
     flex-direction: column;
-    align-items: none;
     button {
       background-color: var(--accent);
       border-radius: 10px;
