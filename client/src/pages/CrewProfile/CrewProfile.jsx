@@ -1,11 +1,11 @@
 import { useLoaderData, useOutletContext, useParams } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import "./crew-profile.css";
-import HeartIconLike from "../../components/HeartIconLike/HeartIconLike";
 import EventCard from "../../components/EventCard/EventCard";
 import ModalEvent from "../../components/EventCreationModal/ModalEvent";
 import AdminButton from "../../components/AdminButtons/AdminButtons";
 import ModalValidation from "../../components/ModalValidation/ModalValidation";
+import HeartIconFollowCrews from "../../components/HeartIconFollowCrews/HeartIconFollowCrews";
 
 function CrewProfile() {
   const crewData = useLoaderData();
@@ -167,7 +167,8 @@ function CrewProfile() {
             )}
           <div className="button-container-crew-profile">
             {auth?.user?.role !== "crew" ||
-              (auth?.user?.role === "admin" && <HeartIconLike />)}
+              (auth?.user?.role === "admin" && <HeartIconFollowCrews crew={crewData}/>)}
+              <HeartIconFollowCrews crew={crewData}/>
             {auth.isLogged && auth?.crew?.id === params.id && (
               <button
                 onClick={edit ? handleSubmit : handleBtnValue}

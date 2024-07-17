@@ -86,6 +86,7 @@ const readLogin = async (req, res, next) => {
         delete user.password;
         const crew = await tables.user.selectCrewByUser(user.id);
         const likeEvent = await tables.user.readEventLike(user.id);
+        const followCrew = await tables.user.readCrewFollow(user.id);
         res
           .status(200)
           .cookie("refreshToken", refreshToken, {
@@ -93,7 +94,7 @@ const readLogin = async (req, res, next) => {
             sameSite: "lax",
           })
           .header("Authorization", accessToken)
-          .json({user, crew, likeEvent});
+          .json({ user, crew, likeEvent, followCrew });
       } else {
         res.status(400).json("Wrong Credentials");
       }
@@ -120,10 +121,13 @@ const refresh = async (req, res, next) => {
     const user = await tables.user.readOne(decoded.id);
     const crew = await tables.user.selectCrewByUser(decoded.id);
     const likeEvent = await tables.user.readEventLike(decoded.id);
+    const followCrew = await tables.user.readCrewFollow(decoded.id);
 
     delete user.password;
 
-    res.header("Authorization", accessToken).json({ user, crew, likeEvent });
+    res
+      .header("Authorization", accessToken)
+      .json({ user, crew, likeEvent, followCrew });
   } catch (error) {
     next(error);
   }
@@ -166,6 +170,48 @@ const allEventLike = async (req, res, next) => {
   }
 };
 
+const userCrewFollow = async (req, res, next) => {
+  try {
+    const result = await tables.user.userFollowCrew(
+      req.body.crew_id,
+      req.auth.id
+    );
+    res.status(201).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const crewDeleteFollow = async (req, res, next) => {
+  try {
+    const result = await tables.user.deleteCrewFollow(
+      req.body.crew_id,
+      req.auth.id
+    );
+    res.status(201).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const readCrewFollow = async (req, res, next) => {
+  try {
+    const result = await tables.user.readCrewFollow(req.auth.id);
+    res.status(201).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const allCrewFollow = async (req, res, next) => {
+  try {
+    const result = await tables.user.allCrewFollow(req.auth.id);
+    res.status(201).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   browse,
   read,
@@ -177,4 +223,8 @@ module.exports = {
   userEventLike,
   eventDeleteLike,
   allEventLike,
+  userCrewFollow,
+  crewDeleteFollow,
+  readCrewFollow,
+  allCrewFollow,
 };
