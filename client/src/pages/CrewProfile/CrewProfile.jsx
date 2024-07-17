@@ -1,11 +1,11 @@
 import { useLoaderData, useOutletContext, useParams } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import "./crew-profile.css";
-import HeartIconLike from "../../components/HeartIconLike/HeartIconLike";
 import EventCard from "../../components/EventCard/EventCard";
 import ModalEvent from "../../components/EventCreationModal/ModalEvent";
 import AdminButton from "../../components/AdminButtons/AdminButtons";
 import ModalValidation from "../../components/ModalValidation/ModalValidation";
+import HeartIconFollowCrews from "../../components/HeartIconFollowCrews/HeartIconFollowCrews";
 
 function CrewProfile() {
   const crewData = useLoaderData();
@@ -72,6 +72,7 @@ function CrewProfile() {
     return error;
   };
 
+
   useEffect(() => {
     fetch(
       `${import.meta.env.VITE_API_URL}/api/crews/${crewData.id}/validated-events`
@@ -133,6 +134,7 @@ function CrewProfile() {
     setActiveValidated(false);
     setActiveUnValidated(true);
   };
+  
 
   return (
     <main className="main-crew-profile">
@@ -159,7 +161,7 @@ function CrewProfile() {
             />
           )}
           {auth.isLogged &&
-            auth?.crew?.id === params.id &&
+            auth?.crew?.id === Number(params.id) &&
             crewData.isValidated && (
               <p className="admin-comment">
                 Raison du refus par l'administrateur : {crewData.comment}
@@ -167,8 +169,9 @@ function CrewProfile() {
             )}
           <div className="button-container-crew-profile">
             {auth?.user?.role !== "crew" ||
-              (auth?.user?.role === "admin" && <HeartIconLike />)}
-            {auth.isLogged && auth?.crew?.id === params.id && (
+              (auth?.user?.role === "admin" && <HeartIconFollowCrews crew={crewData}/>)}
+              <HeartIconFollowCrews crew={crewData}/>
+            {auth.isLogged && auth?.crew?.id === Number(params.id) && (
               <button
                 onClick={edit ? handleSubmit : handleBtnValue}
                 type="button"
@@ -211,13 +214,13 @@ function CrewProfile() {
         <div className="events-crew-profile-title">
           <div className="title-add-btn-container">
             <h2>Evènements</h2>
-            {auth?.crew?.id === params.id && (
+            {auth?.crew?.id === Number(params.id) && (
               <button type="button" onClick={handleOpenModal}>
                 Ajouter
               </button>
             )}
           </div>
-          {auth?.crew?.id === params.id && (
+          {auth?.crew?.id === Number(params.id) && (
             <div className="button-container-events-status">
               <button
                 type="button"
@@ -261,7 +264,7 @@ function CrewProfile() {
                 event={event}
               />
             ))
-          : auth?.crew?.id === params.id &&
+          : auth?.crew?.id === Number(params.id) &&
             UnvalidatedEvents.map((event) => (
               <EventCard
                 key={event.id}

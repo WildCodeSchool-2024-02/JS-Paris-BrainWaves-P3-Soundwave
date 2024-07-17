@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./userprofile.css";
 import { toast } from "react-toastify";
 import { useOutletContext } from "react-router-dom";
 import avatar from "../../assets/images/avatar-profile.png";
 import formatName from "../../utils/formatName";
+import EventCard from "../../components/EventCard/EventCard";
 
 function UserProfile() {
-  const { auth, setAuth } = useOutletContext();
+  const { auth, setAuth, updateEvents } = useOutletContext();
   const [errors, setErrors] = useState({});
   const [firstname, setFirstname] = useState(auth.user.firstname);
   const [lastname, setLastname] = useState(auth.user.lastname);
@@ -14,6 +15,7 @@ function UserProfile() {
   const [selectedImage, setSelectedImage] = useState(auth.user.image);
   const [edit, setEdit] = useState(false);
   const [btnValue, setBtnValue] = useState("Éditer");
+  const [dataEventLiked, setDataEventLiked] = useState([]);
 
   const validate = () => {
     const error = {};
@@ -68,6 +70,16 @@ function UserProfile() {
       console.error(err);
     }
   };
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/users/like`, {
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => setDataEventLiked(data));
+  }, [updateEvents]);
 
   return (
     <main>
@@ -132,6 +144,20 @@ function UserProfile() {
       </section>
       <section className="section-user-events">
         <h2>Mes Événements</h2>
+        <div>
+          {dataEventLiked.map((eventLiked) => (
+            <EventCard
+              key={eventLiked.id}
+              id={eventLiked.id}
+              image={eventLiked.image}
+              name={eventLiked.name}
+              description={eventLiked.description}
+              date={eventLiked.date}
+              startingHour={eventLiked.starting_hour}
+              event={eventLiked}
+            />
+          ))}
+        </div>
       </section>
       <section className="section-user-crews">
         <h2>Mes Collectifs</h2>
