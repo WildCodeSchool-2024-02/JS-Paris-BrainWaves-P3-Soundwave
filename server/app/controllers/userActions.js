@@ -163,7 +163,7 @@ const eventDeleteLike = async (req, res, next) => {
 
 const allEventLike = async (req, res, next) => {
   try {
-    const result = await tables.user.readEventLike(req.auth.id);
+    const result = await tables.user.readAllEventLike(req.auth.id);
     res.status(201).json(result);
   } catch (error) {
     next(error);

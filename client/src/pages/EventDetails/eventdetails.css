@@ -49,6 +49,12 @@
   width: 80%;
 }
 
+.heart-title-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 @media screen and (min-width: 1024px) {
   .event-details-img {
     border-radius: 5px;
@@ -63,5 +69,11 @@
   .event-details-description {
     font-size: 1em;
     width: 80%;
+  }
+
+  .heart-title-container {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
   }
 }

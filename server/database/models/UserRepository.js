@@ -65,7 +65,17 @@ class UserRepository extends AbstractRepository {
       [userId]
     );
     return readLikes;
+  } 
+  
+  async readAllEventLike (userId) {
+    const [readLikes] = await this.database.query(
+      `SELECT event.* FROM event JOIN user_event_like ON user_event_like.event_id = event.id JOIN ${this.table} ON ${this.table}.id = user_event_like.user_id WHERE user_id = ?`,
+      [userId]
+    );
+    return readLikes;
   }
+
+  
 
   async userFollowCrew(crewId, userId) {
     const [addFollow] = await this.database.query(

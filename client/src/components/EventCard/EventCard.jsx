@@ -88,3 +88,4 @@ EventCard.defaultProps = {
   comment: "", // Valeur par défaut pour comment
   setValidationId: () => {}, // Valeur par défaut pour setValidationId (une fonction vide)
 };
+
