@@ -9,6 +9,7 @@ const {
   readPendingCrews,
   editStatus,
   edit,
+  readByOwnerId,
   readUnvalidatedEventsByCrewId,
 } = require("../../../controllers/crewAction");
 
@@ -20,10 +21,13 @@ const imageUpload = require("../../../services/imageUpload");
 
 router.get("/", browse);
 router.get("/tovalidate", isAuth, isAdmin, readPendingCrews);
+router.get("/user/:id", readByOwnerId);
+router.get("/:id", read);
+router.get("/:id/validated-events", readValidatedEventsByCrewId);
+router.get("/:id/unvalidated-events", readUnvalidatedEventsByCrewId);
+router.put("/:id", isAuth, isCrew, imageUpload.single("image"), edit);
 router.put("/tovalidate/:id", isAuth, isAdmin, editStatus);
 router.post("/", isAuth, isCrew, imageUpload.single("image"), create);
-router.get("/:id", read);
-router.put("/:id", isAuth, isCrew, imageUpload.single("image"), edit);
 router.post(
   "/:id/events/categories",
   isAuth,
@@ -32,6 +36,4 @@ router.post(
   ValidateForm,
   add
 );
-router.get("/:id/validated-events", readValidatedEventsByCrewId);
-router.get("/:id/unvalidated-events", readUnvalidatedEventsByCrewId);
 module.exports = router;

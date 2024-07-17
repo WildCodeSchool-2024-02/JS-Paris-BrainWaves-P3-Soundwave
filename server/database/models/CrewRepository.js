@@ -29,6 +29,14 @@ class CrewRepository extends AbstractRepository {
     );
     return crew;
   }
+
+  async findByOwnerId(ownerId) {
+    const [crew] = await this.database.query(
+      `SELECT * FROM ${this.table} WHERE owner_id = ? `,
+      [ownerId]
+    );
+    return crew;
+  }
 }
 
 module.exports = CrewRepository;
