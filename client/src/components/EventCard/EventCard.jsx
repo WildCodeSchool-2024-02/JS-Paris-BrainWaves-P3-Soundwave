@@ -48,10 +48,15 @@ function EventCard({
         </div>
       </div>
       {auth.isLogged && auth.user.role === "admin" && !isValidated ? (
-        <AdminButton setText={setText} setOpenValidation={setOpenValidation} setValidationId={setValidationId} id={id}/>
+        <AdminButton
+          setText={setText}
+          setOpenValidation={setOpenValidation}
+          setValidationId={setValidationId}
+          id={id}
+        />
       ) : (
         <div className="heart-icon-container">
-         <HeartIconLike event={event} />
+          <HeartIconLike event={event} />
         </div>
       )}
     </div>

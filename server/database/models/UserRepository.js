@@ -59,7 +59,7 @@ class UserRepository extends AbstractRepository {
     return deleteLike;
   }
 
-  async readEventLike (userId) {
+  async readEventLike(userId) {
     const [readLikes] = await this.database.query(
       `SELECT event_id FROM user_event_like WHERE user_id = ?`,
       [userId]
@@ -75,6 +75,39 @@ class UserRepository extends AbstractRepository {
     return readLikes;
   }
 
+  
+
+  async userFollowCrew(crewId, userId) {
+    const [addFollow] = await this.database.query(
+      `INSERT INTO user_crew_follow (crew_id, user_id) VALUES (?, ?)`,
+      [crewId, userId]
+    );
+    return addFollow;
+  }
+
+  async deleteCrewFollow(crewId, userId) {
+    const [deleteFollow] = await this.database.query(
+      `DELETE FROM user_crew_follow WHERE crew_id = ? AND user_id = ?`,
+      [crewId, userId]
+    );
+    return deleteFollow;
+  }
+
+  async readCrewFollow(userId) {
+    const [readFollows] = await this.database.query(
+      `SELECT crew_id FROM user_crew_follow WHERE user_id = ?`,
+      [userId]
+    );
+    return readFollows;
+  }
+
+  async allCrewFollow(userId) {
+    const [allFollows] = await this.database.query(
+      `SELECT crew.* FROM crew JOIN user_crew_follow ON user_crew_follow.crew_id = crew.id JOIN user ON user.id = user_crew_follow.user_id WHERE = user_id = ?`,
+      [userId]
+    );
+    return allFollows;
+  }
 }
 
 module.exports = UserRepository;
