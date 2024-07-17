@@ -1,5 +1,6 @@
 import { useLoaderData, useOutletContext } from "react-router-dom";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import heart from "../../assets/images/masquote.svg";
 import "./home.css";
 import HomeSlider from "../../components/HomeSlider/HomeSlider";
@@ -17,13 +18,64 @@ function Home() {
     document.body.classList.add("active");
   };
 
+  // split the title to animate it
+  const text = "Bienvenue sur SoundWave";
+  const words = text.split(" ");
+
+  // animate the container of the title
+  const container = {
+    hidden: { opacity: 0 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      transition: { staggerChildren: 0.12, delayChildren: 0.04 * i },
+    }),
+  };
+
+  // animate each letters
+  const child = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      y: 20,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+  };
+
   return (
     <main className="home">
       <section className="header-home-page">
         <img className="heart-home" src={heart} alt="" />
         <div className="presentation-home-page">
-          <h1 className="title-header-home-page">Bienvenue sur SoundWave</h1>
-          <div>
+          <motion.h1
+            className="title-header-home-page"
+            variants={container}
+            initial="hidden"
+            animate="visible"
+          >
+            {words.map((word, index) => (
+              <motion.span variants={child} style={{ marginRight: "15px" }} key={index}>
+                {word}
+              </motion.span>
+            ))}
+          </motion.h1>
+          <motion.div
+            className="transition-p"
+            initial={{ y: "100%", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ ease: "easeOut", duration: 2 }}
+          >
             <p className={isOpen ? "header-p-less" : "header-p-more"}>
               Soundwave est la plateforme ultime pour découvrir tous les
               événements des collectifs français, que ce soit pour les
@@ -41,12 +93,12 @@ function Home() {
             >
               {isOpen ? "read less..." : "read more..."}
             </button>
-          </div>
+          </motion.div>
         </div>
       </section>
       <section className="main-home-page">
         <div>
-          <h3 className="label-slider-home-page">Nos Événements</h3>
+          <h3 className="label-slider-home-page">Les Événements</h3>
           <HomeSlider events={results} className="swiperr" />
         </div>
         {!auth.isLogged && (

@@ -3,26 +3,27 @@ nav {
   height: 5vh;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 0.5rem;
   z-index: 1;
+  align-items: flex-end;
+  margin-top: 1em;
 }
 
 .navbar-logo {
-  width: 35%;
+  width: 45%;
 }
 
 .navigation {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 1rem;
   height: 100%;
 }
 
 .logo-searchbar {
   color: var(--primary-color);
-  width: 80%;
-  height: 80%;
+  width: 1.5em;
+  height: 1.5em;
 }
 
 .burger-menu {
@@ -114,9 +115,6 @@ nav {
 }
 
 @media (min-width: 1024px) {
-  nav {
-    margin-top: 1em;
-  }
   .display-navbar {
     display: flex;
     justify-content: space-evenly;
@@ -129,8 +127,14 @@ nav {
   }
 
   .logo-searchbar-desktop {
+    height: 1.5em;
+    width: 1.5em;
     color: var(--secondary-color);
     cursor: pointer;
+    transition: scale ease-in-out .2s;
+  }
+  .logo-searchbar-desktop:hover{
+    scale: 1.2;
   }
 
   .navbar-logo {
@@ -150,11 +154,28 @@ nav {
     ul {
       width: 100%;
       padding: 0;
-      justify-content: space-evenly;
+      justify-content: space-around;
       font-family: var(--font-title-b);
       cursor: pointer;
       color: var(--secondary-color);
       align-items: center;
+      li{
+        position: relative;
+        padding-top: 0.3em;
+      }
+      li:after{
+        content: '';
+        position: absolute;
+        width: 0px;
+        height: 1px;
+        bottom: 0;
+        left: 50%;
+        background-color: var(--secondary-color);
+        transition: all ease-in-out .3s
+    }
+    li:hover:after{
+      width: 100%;
+      left: 0;
     }
     .menu-account-nav-bar {
       background-color: var(--background-color);
@@ -175,4 +196,5 @@ nav {
       height: 2em;
     }
   }
+}
 }

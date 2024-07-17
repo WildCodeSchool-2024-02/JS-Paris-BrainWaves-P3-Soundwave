@@ -49,6 +49,11 @@
   }
   .title-header-home-page {
     color: var(--secondary-color);
+    font-size: clamp(1.5em, 3vw, 2.5em);
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 
@@ -69,12 +74,13 @@
 
 .label-slider-home-page {
   text-align: left;
-  margin: 2rem;
+  margin: 2rem 0 1rem 1rem;
 }
 
 .p-title-header-home-page {
-  font-size: 1.25rem;
+  font-size: clamp(1.25rem, 3vw, 2rem);
   font-weight: bold;
+  margin-top: 2rem;
 }
 
 .div-btn-register {
@@ -118,16 +124,17 @@
   .div-btn-register {
     display: flex;
     flex-direction: row;
-    gap: 10rem;
-  }
-  .heart-home:hover {
-    animation: spin 15s infinite linear;
+    width: 90vw;
+    justify-content: space-evenly;
   }
   .header-home-page {
     height: 70vh;
     flex-direction: row;
     align-items: center;
 
+    .transition-p {
+      overflow: hidden;
+    }
     .header-p-more {
       width: 70%;
       height: fit-content;
@@ -143,6 +150,14 @@
   .heart-home {
     height: 50vh;
     animation: none;
+    animation: spin 15s infinite linear;
+  }
+  .home-btn {
+    transition: all ease-in-out 0.3s;
+  }
+  .home-btn:hover {
+    transform: scale(1.2);
+    font-size: 1.5rem;
   }
 
   .btn-side-home {
