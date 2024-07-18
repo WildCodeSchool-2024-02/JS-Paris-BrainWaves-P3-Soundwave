@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import videoBanner from "../../assets/video-accueil-event.mov";
 import EventCard from "../../components/EventCard/EventCard";
 import "./eventlist.css";
 
 function EventsList() {
   const data = useLoaderData();
   const [events, setEvents] = useState([]);
+  const videoRef = useRef(null);
+  const playbackSpeed = 0.8;
+
   const months = [
     "Janvier",
     "Février",
@@ -34,10 +38,27 @@ function EventsList() {
     }
     filterEventsByMonth();
   }, [data]);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = playbackSpeed;
+    }
+  }, [playbackSpeed]);
+
   return (
     <main>
       <div className="event-list-container">
-        <img src={data[1].image} alt="" className="event-page-img" />
+        <video
+          ref={videoRef}
+          src={videoBanner}
+          className="event-page-img"
+          muted
+          loop
+          autoPlay
+          playsInline
+        >
+          Your browser does not support the video tag.
+        </video>
         <h1 className="title-txt-list">Trouve ta soirée pour t'éclater</h1>
         <section className="event-title-section">
           <h2>Événements</h2>
@@ -60,7 +81,7 @@ function EventsList() {
                       date={event.date}
                       startingHour={event.starting_hour}
                       isValidated={event.is_validated}
-                      event= {event}
+                      event={event}
                     />
                   ))}
                 </>
