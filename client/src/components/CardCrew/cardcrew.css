@@ -1,8 +1,10 @@
 .specific-crew-card {
-  margin: 1rem 0;
   border: 1px dashed var(--primary-color);
   border-radius: 5px;
   padding: 1rem;
+  transition: ease-in-out 0.5s;
+  margin: 1rem 0;
+  width: 80vw;
   h2 {
     color: var(--accent);
     text-align: center;
@@ -14,7 +16,6 @@
     height: 10%;
     border-radius: 10px;
   }
-
   .crew-card-presentation {
     display: flex;
     flex-direction: row;
@@ -34,15 +35,9 @@
   }
 }
 
-.specific-crew-card:nth-child(odd) {
-  .crew-card-presentation {
-    flex-direction: row-reverse;
-    .heart-icon {
-      position: absolute;
-      top: 2px;
-      left: 5px;
-    }
-  }
+.specific-crew-card:hover {
+  border: 1px dashed var(--accent);
+  transform: scale(1.05);
 }
 
 @media (min-width: 1024px) {
@@ -50,9 +45,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-items: flex-start;
-    margin: 3rem 0;
-    border: none;
+    width: 85vw;
     img {
       width: 25%;
     }
@@ -71,21 +64,6 @@
         align-items: center;
         justify-content: space-between;
         width: 100%;
-      }
-    }
-  }
-  .specific-crew-card:hover {
-    border: 1px dashed var(--primary-color);
-    border-radius: 5px;
-    padding: 1rem;
-    transition: ease-in-out 0.3s;
-  }
-  .specific-crew-card:nth-child(odd) {
-    flex-direction: row-reverse;
-    .crew-card-desc {
-      align-items: flex-end;
-      .crew-card-name-buttons-for-crews {
-        flex-direction: row-reverse;
       }
     }
   }

@@ -32,11 +32,16 @@ class CrewEventSeeder extends AbstractSeeder {
       crew_id: this.getRef("crew_3").insertId,
       event_id: this.getRef("event_5").insertId,
     };
+    const crewEvent6 = {
+      crew_id: this.getRef("crew_3").insertId,
+      event_id: this.getRef("event_6").insertId,
+    };
     this.insert(crewEvent1);
     this.insert(crewEvent2);
     this.insert(crewEvent3);
     this.insert(crewEvent4);
     this.insert(crewEvent5);
+    this.insert(crewEvent6);
   }
 }
 

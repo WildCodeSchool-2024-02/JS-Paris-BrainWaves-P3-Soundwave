@@ -127,11 +127,6 @@ function ModalEvent({ closeModal, id }) {
             {formErrors.addressRequire && <p>{formErrors.addressRequire}</p>}
           </div>
           <div className="section-create-event">
-            <label htmlFor="image">Image</label>
-            <input type="file" ref={image} />
-            {formErrors.imageRequire && <p>{formErrors.imageRequire} </p>}
-          </div>
-          <div className="section-create-event">
             <label htmlFor="lineup">Line-Up</label>
             <input type="text" placeholder="ex: XXXX, XXXX" ref={lineup} />
             {formErrors.lineupRequire && <p>{formErrors.lineupRequire}</p>}
@@ -152,6 +147,13 @@ function ModalEvent({ closeModal, id }) {
             <label htmlFor="Style">Styles</label>
             <DropDownMenu />
             {formErrors.styleRequire && <p>{formErrors.styleRequire} </p>}
+          </div>
+          <div className="section-create-event">
+            <label htmlFor="image">Image</label>
+            <div className="btn-image-select">
+            <input type="file" ref={image} label="image" className="input-image-select" />
+            </div>
+            {formErrors.imageRequire && <p>{formErrors.imageRequire} </p>}
           </div>
           <button
             type="button"

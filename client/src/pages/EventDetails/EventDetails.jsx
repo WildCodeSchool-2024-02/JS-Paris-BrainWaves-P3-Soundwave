@@ -48,7 +48,7 @@ function EventDetail() {
             <AdminButton id={event.id} setText={setText} setOpenValidation={setOpenValidation} />
           ) : (
             <div className="heart-icon-container">
-              <HeartIconLike  event = {event}/>
+              {auth.user.role === "client" && <HeartIconLike event={event} />}
             </div>
           )}
           </section>
@@ -61,7 +61,6 @@ function EventDetail() {
           </div>
           <h2>Description</h2>
           <p className="event-details-description">{event.description}</p>
-          <p>ajout de la map pour adresse</p>
         </section>
       </div>
       {openValidation && (

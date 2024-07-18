@@ -101,9 +101,9 @@ class UserRepository extends AbstractRepository {
     return readFollows;
   }
 
-  async allCrewFollow(userId) {
+  async allCrewFollows(userId) {
     const [allFollows] = await this.database.query(
-      `SELECT crew.* FROM crew JOIN user_crew_follow ON user_crew_follow.crew_id = crew.id JOIN user ON user.id = user_crew_follow.user_id WHERE = user_id = ?`,
+      `SELECT crew.* FROM crew JOIN user_crew_follow ON user_crew_follow.crew_id = crew.id JOIN ${this.table} ON ${this.table}.id = user_crew_follow.user_id WHERE user_id = ?`,
       [userId]
     );
     return allFollows;

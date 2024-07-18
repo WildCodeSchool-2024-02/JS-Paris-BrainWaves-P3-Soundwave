@@ -167,10 +167,7 @@ function CrewProfile() {
             )}
           <div className="button-container-crew-profile">
             {auth?.user?.role !== "crew" ||
-              (auth?.user?.role === "admin" && (
-                <HeartIconFollowCrews crew={crewData} />
-              ))}
-            <HeartIconFollowCrews crew={crewData} />
+              (auth?.user?.role === "admin" && <HeartIconFollowCrews crew={crewData}/>)}
             {auth.isLogged && auth?.crew?.id === Number(params.id) && (
               <button
                 onClick={edit ? handleSubmit : handleBtnValue}

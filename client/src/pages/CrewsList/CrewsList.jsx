@@ -6,7 +6,7 @@ function CrewsList() {
   const results = useLoaderData();
   return (
     <main className="card-crew-container">
-      <h1>Nos collectifs</h1>
+      <h1>Les collectifs</h1>
       {results.map((result) => (
         <CardCrew result={result} key={result.id} />
       ))}
