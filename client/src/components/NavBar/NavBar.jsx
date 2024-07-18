@@ -9,13 +9,12 @@ import mascot from "../../assets/images/masquote.svg";
 import ModalLogIn from "../Modal/ModalLogIn";
 import ModalSearchBar from "../ModalSearchBar/ModalSearchBar";
 
-function NavBar({ auth, setAuth, setEventLike }) {
+function NavBar({ auth, setAuth, setEventLike, openModalLogIn, setOpenModalLogIn }) {
   const navigate = useNavigate();
 
   const [burgerClass, setBurgerClass] = useState("burger-bar unclicked");
   const [menuClass, setMenuClass] = useState("menu hidden");
   const [isMenuClicked, setIsMenuClicked] = useState(false);
-  const [openModalLogIn, setOpenModalLogIn] = useState(false);
   const [openModalSearchBar, setOpenModalSearchBar] = useState(false);
   const [menuAccount, setMenuAccount] = useState(false);
 
@@ -57,6 +56,8 @@ function NavBar({ auth, setAuth, setEventLike }) {
       navigate(`/admin`);
     }
     openAccountMenu();
+    setMenuClass("menu hidden");
+    setBurgerClass("burger-bar unclicked");
   };
 
   const logOut = async () => {
@@ -221,4 +222,6 @@ NavBar.propTypes = {
   auth: PropTypes.func.isRequired,
   setAuth: PropTypes.func.isRequired,
   setEventLike: PropTypes.func.isRequired,
+  openModalLogIn: PropTypes.func.isRequired,
+  setOpenModalLogIn: PropTypes.func.isRequired,
 };

@@ -13,11 +13,6 @@ function Footer() {
 
           <ul className="ul-footer">
             <li>
-              <a className="lien-footer" href="/about">
-                About Us
-              </a>
-            </li>
-            <li>
               <a className="lien-footer" href="/contact">
                 Contact
               </a>

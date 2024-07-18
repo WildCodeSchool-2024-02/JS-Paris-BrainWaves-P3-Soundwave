@@ -20,7 +20,7 @@ function App() {
   const [type, setType] = useState("event");
   const [eventLike, setEventLike] = useState([]);
   const [crewFollow, setCrewFollow] = useState([]);
-
+  const [openModalLogIn, setOpenModalLogIn] = useState(false);
 
   useEffect(() => {
     const getAuth = async () => {
@@ -56,7 +56,13 @@ function App() {
   return (
     <>
       <ToastContainer theme="dark" />
-      <NavBar auth={auth} setAuth={setAuth} setEventLike={setEventLike} />
+      <NavBar
+        auth={auth}
+        setAuth={setAuth}
+        setEventLike={setEventLike}
+        openModalLogIn={openModalLogIn}
+        setOpenModalLogIn={setOpenModalLogIn}
+      />
       <Outlet
         context={{
           auth,
@@ -74,6 +80,8 @@ function App() {
           setEventLike,
           crewFollow,
           setCrewFollow,
+          openModalLogIn,
+          setOpenModalLogIn,
         }}
       />
       <Footer />
