@@ -95,7 +95,7 @@
 }
 
 .redirection-sign-in {
-  a{
+  a {
     text-decoration: none;
     color: var(--primary-color);
   }
@@ -136,10 +136,10 @@
       width: 60%;
       height: 8vh;
       font-size: 1.5rem;
-      transition: transform ease-in-out .3s;
+      transition: transform ease-in-out 0.3s;
     }
-    button:hover{
-      transform: scale(1.1)
+    button:hover {
+      transform: scale(1.1);
     }
   }
 
