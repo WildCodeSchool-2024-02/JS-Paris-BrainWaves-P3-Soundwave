@@ -48,7 +48,7 @@ function EventDetail() {
             <AdminButton id={event.id} setText={setText} setOpenValidation={setOpenValidation} />
           ) : (
             <div className="heart-icon-container">
-              <HeartIconLike  event = {event}/>
+              {auth.user.role === "client" && <HeartIconLike event={event} />}
             </div>
           )}
           </section>

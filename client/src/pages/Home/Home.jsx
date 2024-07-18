@@ -64,8 +64,12 @@ function Home() {
             initial="hidden"
             animate="visible"
           >
-            {words.map((word, index) => (
-              <motion.span variants={child} style={{ marginRight: "15px" }} key={index}>
+            {words.map((word) => (
+              <motion.span
+                variants={child}
+                style={{ marginRight: "15px" }}
+                key={word}
+              >
                 {word}
               </motion.span>
             ))}

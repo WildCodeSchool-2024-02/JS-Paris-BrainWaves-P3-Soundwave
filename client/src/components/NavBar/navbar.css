@@ -131,9 +131,9 @@ nav {
     width: 1.5em;
     color: var(--secondary-color);
     cursor: pointer;
-    transition: scale ease-in-out .2s;
+    transition: scale ease-in-out 0.2s;
   }
-  .logo-searchbar-desktop:hover{
+  .logo-searchbar-desktop:hover {
     scale: 1.2;
   }
 
@@ -159,28 +159,42 @@ nav {
       cursor: pointer;
       color: var(--secondary-color);
       align-items: center;
-      li{
+      li {
         position: relative;
         padding-top: 0.3em;
       }
-      li:after{
-        content: '';
+      li:after {
+        content: "";
         position: absolute;
         width: 0px;
         height: 1px;
         bottom: 0;
         left: 50%;
         background-color: var(--secondary-color);
-        transition: all ease-in-out .3s
-    }
-    li:hover:after{
-      width: 100%;
-      left: 0;
-    }
-    
-    .avatar-icon {
-      width: 2em;
-      height: 2em;
+        transition: all ease-in-out 0.3s;
+      }
+      li:hover:after {
+        width: 100%;
+        left: 0;
+      }
+      .menu-account-nav-bar {
+        background-color: var(--background-color);
+        border-radius: 0 0 10px 10px;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        width: 10em;
+        height: 4em;
+        top: 45px;
+        right: -6px;
+      }
+
+      .avatar-icon {
+        width: 2em;
+        height: 2em;
+      }
     }
   }
   .menu-account-nav-bar {
@@ -196,5 +210,4 @@ nav {
     top: 45px;
     right: -6px;
   }
-}
 }

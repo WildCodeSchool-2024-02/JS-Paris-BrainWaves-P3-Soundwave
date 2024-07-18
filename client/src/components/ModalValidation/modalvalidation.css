@@ -107,9 +107,9 @@
       cursor: pointer;
       width: 10%;
       height: 120%;
-      transition: transform ease-in-out .3s;
+      transition: transform ease-in-out 0.3s;
     }
-    button:hover{
+    button:hover {
       transform: scale(1.2);
     }
   }
