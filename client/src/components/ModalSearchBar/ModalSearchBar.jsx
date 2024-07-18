@@ -99,7 +99,7 @@ function ModalSearchBar({ closeModalSearchBar }) {
   };
 
   const handleDateChange = async (date) => {
-    if (view === "year") {
+    if (view === "month") {
       const selectedMonth = date.getMonth();
       const selectedYear = date.getFullYear();
 
@@ -153,7 +153,6 @@ function ModalSearchBar({ closeModalSearchBar }) {
               view={view}
               onClickMonth={handleDateChange}
               onActiveStartDateChange={handleViewChange}
-              minDetail="month"
               maxDetail="year"
             />
           )}
