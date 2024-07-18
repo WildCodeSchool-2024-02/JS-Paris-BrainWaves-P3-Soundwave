@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 
 function HomeSlider({ events }) {
   const [spaceBetween, setSpaceBetween] = useState(5);
+  const [slidePerView, setSlidePerView] = useState(2);
   const navigate = useNavigate();
 
   const handleDetailsEvent = (id) => {
@@ -17,9 +18,11 @@ function HomeSlider({ events }) {
   useEffect(() => {
     const updateSpaceBetween = () => {
       if (window.innerWidth > 760) {
-        setSpaceBetween(15);
+        setSlidePerView(3);
+        setSpaceBetween(10);
       } else {
-        setSpaceBetween(20);
+        setSlidePerView(2);
+        setSpaceBetween(10);
       }
     };
     updateSpaceBetween();
@@ -32,7 +35,7 @@ function HomeSlider({ events }) {
   return (
     <Swiper
       direction="horizontal"
-      slidesPerView={3}
+      slidesPerView={slidePerView}
       spaceBetween={spaceBetween}
       loop
       freeMode

@@ -136,6 +136,10 @@
       font-size: 2em;
     }
   }
+  .admin-comment{
+    width: 80%;
+    text-align: left;
+  }
   .header-crew-image {
     width: 30vw;
     height: 20vw;
