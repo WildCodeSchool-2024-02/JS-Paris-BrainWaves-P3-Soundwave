@@ -61,7 +61,6 @@ function EventDetail() {
           </div>
           <h2>Description</h2>
           <p className="event-details-description">{event.description}</p>
-          <p>ajout de la map pour adresse</p>
         </section>
       </div>
       {openValidation && (
