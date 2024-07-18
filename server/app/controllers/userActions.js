@@ -194,15 +194,6 @@ const crewDeleteFollow = async (req, res, next) => {
   }
 };
 
-// const readCrewFollow = async (req, res, next) => {
-//   try {
-//     const result = await tables.user.readCrewFollow(req.auth.id);
-//     res.status(201).json(result);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
 const allCrewFollow = async (req, res, next) => {
   try {
     const result = await tables.user.allCrewFollows(req.auth.id);
@@ -225,6 +216,5 @@ module.exports = {
   allEventLike,
   userCrewFollow,
   crewDeleteFollow,
-  // readCrewFollow,
   allCrewFollow,
 };

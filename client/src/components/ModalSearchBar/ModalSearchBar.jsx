@@ -153,7 +153,6 @@ function ModalSearchBar({ closeModalSearchBar }) {
               view={view}
               onClickMonth={handleDateChange}
               onActiveStartDateChange={handleViewChange}
-              // minDetail="year"
               maxDetail="year"
             />
           )}
