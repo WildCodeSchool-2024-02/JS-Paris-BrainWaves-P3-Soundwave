@@ -40,11 +40,11 @@ function EventCard({
           <p className="date-hour">
             {date.slice(0, 10)} | {startingHour.slice(0, 5)}
           </p>
-          { auth?.crew?.id === Number(params.id) && isValidated === 0 && 
+          {auth?.crew?.id === Number(params.id) && isValidated === 0 && (
             <p className="admin-comment">
               Raison du refus par l'administrateur : {comment}
             </p>
-          }
+          )}
         </div>
       </div>
       {auth.isLogged && auth.user.role === "admin" && !isValidated ? (
@@ -56,7 +56,9 @@ function EventCard({
         />
       ) : (
         <div className="heart-icon-container">
-         {auth.isLogged === true && auth.user.role === "client" && <HeartIconLike event={event} />}
+          {auth.isLogged === true && auth.user.role === "client" && (
+            <HeartIconLike event={event} />
+          )}
         </div>
       )}
     </div>
