@@ -1,21 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./userprofile.css";
 import { toast } from "react-toastify";
 import { useOutletContext } from "react-router-dom";
 import avatar from "../../assets/images/avatar-profile.png";
 import formatName from "../../utils/formatName";
 import EventCard from "../../components/EventCard/EventCard";
+import CardCrew from "../../components/CardCrew/CardCrew";
 
 function UserProfile() {
-  const { auth, setAuth, updateEvents } = useOutletContext();
+  const { auth, setAuth, updateEvents, updateCrews } = useOutletContext();
   const [errors, setErrors] = useState({});
   const [firstname, setFirstname] = useState(auth.user.firstname);
   const [lastname, setLastname] = useState(auth.user.lastname);
-  const [image, setImage] = useState(null);
+  const image = useRef();
   const [selectedImage, setSelectedImage] = useState(auth.user.image);
   const [edit, setEdit] = useState(false);
   const [btnValue, setBtnValue] = useState("Éditer");
   const [dataEventLiked, setDataEventLiked] = useState([]);
+  const [dataCrewFollow, setDataCrewFollow] = useState([]);
 
   const validate = () => {
     const error = {};
@@ -42,7 +44,7 @@ function UserProfile() {
 
   const handleSubmit = async () => {
     const form = new FormData();
-    if (image) form.append("image", image);
+    if (image?.current?.files[0]) form.append("image", image.current.files[0]);
     form.append("firstname", formatName(firstname));
     form.append("lastname", formatName(lastname));
     try {
@@ -79,33 +81,55 @@ function UserProfile() {
     })
       .then((response) => response.json())
       .then((data) => setDataEventLiked(data));
-  }, [updateEvents]);
+
+    fetch(`${import.meta.env.VITE_API_URL}/api/users/follow`, {
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => setDataCrewFollow(data));
+  }, [updateEvents, updateCrews]);
 
   return (
     <main>
       <section className="section-user-profile-infos">
-        {!edit ? (
-          <img
-            src={auth?.user?.image ? auth.user.image : avatar}
-            alt="avatar-profile"
-            className="avatar-client"
-          />
-        ) : (
-          <section className="section-picture-profile">
+        <figure
+          className={
+            edit
+              ? `display-avatar-profile display-avatar-default`
+              : "display-avatar-default"
+          }
+          role="presentation"
+          onClick={() => {
+            if (edit) image.current.click();
+          }}
+        >
+          {!edit ? (
             <img
-              src={selectedImage || auth.user.image}
+              src={auth?.user?.image ? auth.user.image : avatar}
               alt="avatar-profile"
               className="avatar-client-change"
             />
-            <input
-              onChange={(e) => {
-                setSelectedImage(URL.createObjectURL(e.target.files[0]));
-                setImage(e.target.files[0]);
-              }}
-              type="file"
-            />
-          </section>
-        )}
+          ) : (
+            <>
+              <img
+                src={selectedImage || auth.user.image}
+                alt="avatar-profile"
+                className="avatar-client-change"
+                role="presentation"
+              />
+              <input
+                type="file"
+                hidden
+                ref={image}
+                onChange={(e) => {
+                  setSelectedImage(URL.createObjectURL(e.target.files[0]));
+                }}
+              />
+            </>
+          )}
+        </figure>
         <section className="client-edition-profile">
           {!edit ? (
             <h1>{firstname}</h1>
@@ -144,7 +168,7 @@ function UserProfile() {
       </section>
       <section className="section-user-events">
         <h2>Mes Événements</h2>
-        <div>
+        <section className="display-liked-events">
           {dataEventLiked.map((eventLiked) => (
             <EventCard
               key={eventLiked.id}
@@ -157,10 +181,15 @@ function UserProfile() {
               event={eventLiked}
             />
           ))}
-        </div>
+        </section>
       </section>
       <section className="section-user-crews">
         <h2>Mes Collectifs</h2>
+        <section className="display-followed-crew">
+          {dataCrewFollow.map((crewFollowed) => (
+            <CardCrew key={crewFollowed.id} result={crewFollowed} />
+          ))}
+        </section>
       </section>
     </main>
   );

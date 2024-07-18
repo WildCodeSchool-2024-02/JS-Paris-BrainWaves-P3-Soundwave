@@ -14,7 +14,8 @@
   border: none;
   position: fixed;
   top: 25%;
-  animation: calendar 1000ms;
+  left: 5%;
+  animation: calendar 1s;
   animation-fill-mode: backwards;
 }
 .react-calendar,

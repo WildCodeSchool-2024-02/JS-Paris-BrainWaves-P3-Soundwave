@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 function HeartIconFollowCrews({ crew }) {
   const [follow, setFollow] = useState(false);
-  const { auth, crewFollow, setCrewFollow } = useOutletContext();
+  const { auth, crewFollow, setCrewFollow, updateCrews, setUpdateCrews } = useOutletContext();
 
   const handleIsFollow = () => {
     setFollow(!follow)
@@ -53,8 +53,11 @@ function HeartIconFollowCrews({ crew }) {
         }
       );
       if (response.ok) {
-        setCrewFollow(crewFollow.filter((follows) => follows.crew_id !== crew.id))
-      }
+        setCrewFollow(crewFollow.filter((follows) => follows.crew_id !== crew.id));
+        setUpdateCrews(!updateCrews);
+      } else {
+        console.error("Unfollow non pris en compte");
+    }
     } catch (error) {
       console.error(error);
     }
