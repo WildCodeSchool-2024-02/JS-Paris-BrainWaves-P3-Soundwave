@@ -44,6 +44,7 @@ const add = async (req, res, next) => {
       .cookie("refreshToken", refreshToken, {
         httpOnly: true,
         sameSite: "lax",
+        secure: (process.env.APP_ENV === "production")
       })
       .header("Authorization", accessToken)
       .json(user);
@@ -92,6 +93,7 @@ const readLogin = async (req, res, next) => {
           .cookie("refreshToken", refreshToken, {
             httpOnly: true,
             sameSite: "lax",
+            secure: (process.env.APP_ENV === "production")
           })
           .header("Authorization", accessToken)
           .json({ user, crew, likeEvent, followCrew });
