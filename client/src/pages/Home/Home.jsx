@@ -128,7 +128,7 @@ function Home() {
                 />
               )}
               <div className="description">
-                <p className="p-home-btn">Qu’est ce qu’un Waver ?</p>
+                <p className="p-home-title">Qu’est ce qu’un Waver ?</p>
                 <p className="p-home-btn">
                   Si tu ne trouves jamais d’événements où t’ambiancer, crée ton
                   espace perso !
@@ -149,7 +149,7 @@ function Home() {
                 Soundwaver
               </button>
               <div className="description">
-                <p className="p-home-btn">Qu’est ce qu’un Soundwaver ? </p>
+                <p className="p-home-title">Qu’est ce qu’un Soundwaver ? </p>
                 <p className="p-home-btn">
                   Tu es un collectif et tu souhaites promouvoir ton projet et
                   tes événements, crée ton compte !

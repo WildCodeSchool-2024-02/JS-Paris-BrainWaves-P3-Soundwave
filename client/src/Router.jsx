@@ -13,6 +13,8 @@ import CrewProfile from "./pages/CrewProfile/CrewProfile";
 import Admin from "./pages/Admin/Admin";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import CrewCreation from "./pages/CrewCreation/CrewCreation";
+import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService/TermsOfService";
 
 const AdminRoute = ({ children }) => {
   const { auth, isLoading } = useOutletContext();
@@ -98,6 +100,14 @@ const router = createBrowserRouter([
             <UserProfile />
           </ClientRoute>
         ),
+      },
+      {
+        path: "/privacy-policy",
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: "/terms-of-service",
+        element: <TermsOfService />,
       },
     ],
   },
