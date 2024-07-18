@@ -5,11 +5,11 @@ import { useOutletContext, useLoaderData, useNavigate } from "react-router-dom";
 
 function CrewCreation() {
   const crew = useLoaderData();
-  const [username, setUsername] = useState("Nom");
+  const [username, setUsername] = useState("");
   const [image, setImage] = useState(
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7mMNz8YCBvYmnr3BQUPX__YsC_WtDuAevwg&s"
   );
-  const [description, setDescription] = useState("Description");
+  const [description, setDescription] = useState("");
   const navigate = useNavigate();
   const { auth } = useOutletContext();
   const [errors, setErrors] = useState({});
@@ -128,6 +128,7 @@ function CrewCreation() {
                 className="input-crew-crea"
                 type="text"
                 value={username}
+                placeholder="Nom"
                 onChange={(e) => setUsername(e.target.value)}
               />
               <div className="button-container-crew-creation">
@@ -141,6 +142,7 @@ function CrewCreation() {
             <textarea
               className="textarea-crew-crea"
               value={description}
+              placeholder="Description"
               onChange={handleInputChange}
             />
             {errors.username && <p className="error">{errors.username}</p>}
