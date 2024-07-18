@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { NavHashLink } from "react-router-hash-link";
 import "./modallogin.css";
 import { ImCross } from "react-icons/im";
 import PropTypes from "prop-types";
@@ -80,7 +81,7 @@ function ModalLogIn({ closeModalLogIn, setAuth, setEventLike }) {
 
   return (
     <dialog className="display-modal-log-in">
-      <section className="section-modal-log-in">
+      <section id="section-modal-log-in">
         <ImCross
           onClick={handleCloseModalLogIn}
           className="btn-close-modal-log-in"
@@ -117,7 +118,7 @@ function ModalLogIn({ closeModalLogIn, setAuth, setEventLike }) {
         </form>
         <section className="section-not-login">
           <p>Tu n’as pas encore de compte ? </p>
-          <p className="redirection-sign-in">Inscris-toi !</p>
+          <p className="redirection-sign-in"><NavHashLink to="/#div-btn-register" role="presentation" onClick={handleCloseModalLogIn} onKeyDown={handleCloseModalLogIn}>Inscris-toi !</NavHashLink></p>
         </section>
       </section>
     </dialog>

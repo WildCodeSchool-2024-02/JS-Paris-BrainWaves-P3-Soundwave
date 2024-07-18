@@ -104,7 +104,7 @@ function Home() {
         {!auth.isLogged && (
           <p className="p-title-header-home-page">REJOINS NOUS !</p>
         )}
-        <div className="div-btn-register">
+        <div id="div-btn-register">
           {!auth.isLogged && (
             <div className="btn-side-home">
               <button

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import "./eventcard.css";
 import HeartIconLike from "../HeartIconLike/HeartIconLike";
 import AdminButton from "../AdminButtons/AdminButtons";
@@ -25,6 +25,7 @@ function EventCard({
   };
 
   setType("event");
+  const params = useParams();
 
   return (
     <div className="event-card-container">
@@ -40,11 +41,11 @@ function EventCard({
           <p className="date-hour">
             {date.slice(0, 10)} | {startingHour.slice(0, 5)}
           </p>
-          {isValidated === false && (
+          { auth?.crew?.id === Number(params.id) && isValidated === false && 
             <p className="admin-comment">
               Raison du refus par l'administrateur : {comment}
             </p>
-          )}
+          }
         </div>
       </div>
       {auth.isLogged && auth.user.role === "admin" && !isValidated ? (
