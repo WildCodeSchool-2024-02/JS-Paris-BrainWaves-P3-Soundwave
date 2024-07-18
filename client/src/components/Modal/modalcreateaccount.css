@@ -122,6 +122,9 @@
       }
     }
   }
+  .redirection-sign-in{
+    cursor: pointer;
+  }
 }
 
 @keyframes useraccount {

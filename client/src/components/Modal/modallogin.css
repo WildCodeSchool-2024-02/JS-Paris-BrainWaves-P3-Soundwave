@@ -9,6 +9,8 @@
   background-color: transparent;
   backdrop-filter: blur(15px);
   z-index: 9999;
+  animation: useraccount 1000ms;
+  animation-fill-mode: forwards;
 }
 
 .btn-close-modal-log-in {
@@ -144,5 +146,14 @@
   .section-not-login {
     display: flex;
     gap: 0.5rem;
+  }
+}
+
+@keyframes useraccount {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
