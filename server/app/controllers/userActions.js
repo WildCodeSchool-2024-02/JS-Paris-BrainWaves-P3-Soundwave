@@ -194,18 +194,18 @@ const crewDeleteFollow = async (req, res, next) => {
   }
 };
 
-const readCrewFollow = async (req, res, next) => {
-  try {
-    const result = await tables.user.readCrewFollow(req.auth.id);
-    res.status(201).json(result);
-  } catch (error) {
-    next(error);
-  }
-};
+// const readCrewFollow = async (req, res, next) => {
+//   try {
+//     const result = await tables.user.readCrewFollow(req.auth.id);
+//     res.status(201).json(result);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 const allCrewFollow = async (req, res, next) => {
   try {
-    const result = await tables.user.allCrewFollow(req.auth.id);
+    const result = await tables.user.allCrewFollows(req.auth.id);
     res.status(201).json(result);
   } catch (error) {
     next(error);
@@ -225,6 +225,6 @@ module.exports = {
   allEventLike,
   userCrewFollow,
   crewDeleteFollow,
-  readCrewFollow,
+  // readCrewFollow,
   allCrewFollow,
 };

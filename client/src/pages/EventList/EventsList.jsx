@@ -40,7 +40,7 @@ function EventsList() {
         <img src={data[1].image} alt="" className="event-page-img" />
         <h1 className="title-txt-list">Trouve ta soirée pour t'éclater</h1>
         <section className="event-title-section">
-          <h2>Événements</h2>
+          <h2>Évènements</h2>
         </section>
         <div className="card-event-content">
           {events.map(
