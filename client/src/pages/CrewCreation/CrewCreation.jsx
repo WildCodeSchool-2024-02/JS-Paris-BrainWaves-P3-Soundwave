@@ -6,20 +6,21 @@ import { useOutletContext, useLoaderData, useNavigate } from "react-router-dom";
 function CrewCreation() {
   const crew = useLoaderData();
   const [username, setUsername] = useState("");
-  const [image, setImage] = useState(
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7mMNz8YCBvYmnr3BQUPX__YsC_WtDuAevwg&s"
-  );
+  const image =
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7mMNz8YCBvYmnr3BQUPX__YsC_WtDuAevwg&s";
+
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
   const { auth } = useOutletContext();
   const [errors, setErrors] = useState({});
   const imageInputRef = useRef();
+  const [selectedImage, setSelectedImage] = useState(null); // New state for selected image
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      setImage(imageUrl);
+      setSelectedImage(imageUrl); // Update the selected image state
     }
   };
   useEffect(() => {
@@ -116,12 +117,32 @@ function CrewCreation() {
         <>
           <section className="header-crew-creation">
             <div className="div-img-input">
-              <img src={image} alt="logo du collectif" />
+              {/* <img src={image} alt="logo du collectif" />
               <input
                 type="file"
                 ref={imageInputRef}
                 onChange={handleImageChange}
-              />
+              /> */}
+              <figure
+                className="display-avatar-profile display-avatar-default"
+                role="presentation"
+                onClick={() => {
+                  imageInputRef.current.click();
+                }}
+              >
+                <img
+                  src={selectedImage || image}
+                  alt="avatar-profile"
+                  className="avatar-client-change"
+                  role="presentation"
+                />
+                <input
+                  type="file"
+                  hidden
+                  ref={imageInputRef}
+                  onChange={handleImageChange}
+                />
+              </figure>
             </div>
             <div className="crew-creation-title-options">
               <input

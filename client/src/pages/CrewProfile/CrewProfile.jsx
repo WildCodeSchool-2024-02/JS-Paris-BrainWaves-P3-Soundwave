@@ -1,6 +1,7 @@
 import { useLoaderData, useOutletContext, useParams } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import "./crew-profile.css";
+import "../UserProfile/userprofile.css";
 import EventCard from "../../components/EventCard/EventCard";
 import ModalEvent from "../../components/EventCreationModal/ModalEvent";
 import AdminButton from "../../components/AdminButtons/AdminButtons";
