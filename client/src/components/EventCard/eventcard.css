@@ -9,6 +9,7 @@
   transition: ease-in-out 0.5s;
   h1 {
     font-size: 1rem;
+    margin: 0.5rem 0;
   }
   p {
     font-size: 0.6rem;
@@ -23,6 +24,9 @@
 
 .event-img {
   border-radius: 5px;
+  object-fit: fill;
+  width: 100%;
+  height: 19vh;
 }
 
 .date-hour {
@@ -55,6 +59,7 @@
   .event-img {
     width: 50vh;
     height: 30vh;
+    object-fit: fill;
   }
 
   .event-card-container {
