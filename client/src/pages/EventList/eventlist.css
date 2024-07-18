@@ -1,7 +1,13 @@
 .event-page-img {
-  width: 100%;
-  height: 150px;
-  margin: 3rem 0rem 3rem 0rem;
+  position: relative;
+  width: 100vw;
+  height: 30vh;
+  margin: 3rem 0;
+  object-fit: cover;
+  z-index: 0;
+  filter: blur(7px);
+  background-attachment: fixed;
+  object-position: bottom;
 }
 
 .event-list-container {
@@ -39,9 +45,11 @@
   }
 
   .event-page-img {
-    width: 100%;
-    height: 300px;
-    margin: 3rem 0rem 3rem 0rem;
+    width: 100vw;
+    height: 60vh;
+    margin: 3rem 0;
+    object-fit: cover;
+    object-position: bottom;
   }
 
   .title-txt-list {
