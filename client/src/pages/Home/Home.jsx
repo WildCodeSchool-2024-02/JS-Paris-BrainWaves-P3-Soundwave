@@ -101,8 +101,8 @@ function Home() {
         </div>
       </section>
       <section className="main-home-page">
-        <div>
-          <h3 className="label-slider-home-page">Les Événements</h3>
+        <div className="slider-home-page">
+          <h3 className="label-slider-home-page">Les Évènements</h3>
           <HomeSlider events={results} className="swiperr" />
         </div>
         {!auth.isLogged && (

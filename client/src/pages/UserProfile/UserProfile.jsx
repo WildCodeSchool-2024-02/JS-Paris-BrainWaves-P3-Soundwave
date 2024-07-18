@@ -167,7 +167,7 @@ function UserProfile() {
         </section>
       </section>
       <section className="section-user-events">
-        <h2>Mes Événements</h2>
+        <h2 className="user-profile-like-follow">Mes Événements</h2>
         <section className="display-liked-events">
           {dataEventLiked.map((eventLiked) => (
             <EventCard
@@ -184,7 +184,7 @@ function UserProfile() {
         </section>
       </section>
       <section className="section-user-crews">
-        <h2>Mes Collectifs</h2>
+        <h2 className="user-profile-like-follow">Mes Collectifs</h2>
         <section className="display-followed-crew">
           {dataCrewFollow.map((crewFollowed) => (
             <CardCrew key={crewFollowed.id} result={crewFollowed} />
