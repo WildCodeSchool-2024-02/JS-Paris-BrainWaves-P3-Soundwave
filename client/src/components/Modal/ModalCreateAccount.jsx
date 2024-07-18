@@ -158,7 +158,7 @@ function ModalCreateAccount({ closeModalCreateAccount, role }) {
         </form>
         <section className="section-already-connect">
           <p>Tu as déjà un compte ? </p>
-          <p className="redirection-sign-in"role="presention" onClick={() =>{handleCloseModalCreateAccount(); handleModalLogIn()}} onKeyDown= {() =>{handleCloseModalCreateAccount(); handleModalLogIn()}}>Connecte-toi !</p>
+          <p className="redirection-sign-in" role="presention" onClick={() =>{handleCloseModalCreateAccount(); handleModalLogIn()}} onKeyDown= {() =>{handleCloseModalCreateAccount(); handleModalLogIn()}}>Connecte-toi !</p>
         </section>
       </section>
     </dialog>
