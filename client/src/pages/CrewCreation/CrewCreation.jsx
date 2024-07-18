@@ -117,12 +117,6 @@ function CrewCreation() {
         <>
           <section className="header-crew-creation">
             <div className="div-img-input">
-              {/* <img src={image} alt="logo du collectif" />
-              <input
-                type="file"
-                ref={imageInputRef}
-                onChange={handleImageChange}
-              /> */}
               <figure
                 className="display-avatar-profile display-avatar-default"
                 role="presentation"
