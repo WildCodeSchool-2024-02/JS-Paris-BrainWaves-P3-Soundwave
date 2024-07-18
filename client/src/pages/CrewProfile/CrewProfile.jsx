@@ -158,16 +158,18 @@ function CrewProfile() {
               value={username}
             />
           )}
-          {auth.isLogged &&
-            auth?.crew?.id === Number(params.id) &&
-            crewData.isValidated && (
+          {auth?.crew?.id === Number(params.id) &&
+            crewData.is_validated === 0 && (
               <p className="admin-comment">
-                Raison du refus par l'administrateur : {crewData.comment}
+                Modification(s) demandée(s) par l'administrateur :{" "}
+                {crewData.comment}
               </p>
             )}
           <div className="button-container-crew-profile">
             {auth?.user?.role !== "crew" ||
-              (auth?.user?.role === "admin" && <HeartIconFollowCrews crew={crewData}/>)}
+              (auth?.user?.role === "admin" && (
+                <HeartIconFollowCrews crew={crewData} />
+              ))}
             {auth.isLogged && auth?.crew?.id === Number(params.id) && (
               <button
                 onClick={edit ? handleSubmit : handleBtnValue}
