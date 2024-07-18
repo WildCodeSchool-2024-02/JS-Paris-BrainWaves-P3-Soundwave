@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import { NavHashLink } from "react-router-hash-link";
 import "./modalcreateaccount.css";
 import { ImCross } from "react-icons/im";
 import { toast } from "react-toastify";
@@ -13,7 +14,7 @@ function ModalCreateAccount({ closeModalCreateAccount, role }) {
   const email = useRef("");
   const password = useRef("");
   const navigate = useNavigate();
-  const { setAuth } = useOutletContext();
+  const { setAuth, setOpenModalLogIn } = useOutletContext();
   const [formUserErrors, setFormUserErrors] = useState({
     firstnameRequire: null,
     lastnameRequire: null,
@@ -77,16 +78,20 @@ function ModalCreateAccount({ closeModalCreateAccount, role }) {
     }
   };
 
-  const handleCloseModalLogIn = () => {
+  const handleCloseModalCreateAccount = () => {
     closeModalCreateAccount(false);
     document.body.classList.remove("active");
   };
+
+  const handleModalLogIn = () => {
+    setOpenModalLogIn(true);
+  }
 
   return (
     <dialog className="display-modal-create-account">
       <section className="section-modal-create-account">
         <ImCross
-          onClick={handleCloseModalLogIn}
+          onClick= {handleCloseModalCreateAccount}
           className="btn-close-modal-create-account"
         />
         <img src={mascot} alt="mascot" />
@@ -153,7 +158,7 @@ function ModalCreateAccount({ closeModalCreateAccount, role }) {
         </form>
         <section className="section-already-connect">
           <p>Tu as déjà un compte ? </p>
-          <p className="redirection-sign-in">Connecte-toi !</p>
+          <p className="redirection-sign-in"role="presention" onClick={() =>{handleCloseModalCreateAccount(); handleModalLogIn()}} onKeyDown= {() =>{handleCloseModalCreateAccount(); handleModalLogIn()}}>Connecte-toi !</p>
         </section>
       </section>
     </dialog>

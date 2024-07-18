@@ -18,7 +18,7 @@
   right: 5px;
 }
 
-.section-modal-log-in {
+#section-modal-log-in {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -86,17 +86,21 @@
 .section-not-login {
   display: flex;
   flex-wrap: wrap;
-  font-size: 0.5rem;
+  font-size: clamp(0.7rem, 2vw, 1rem);
+  justify-content: center;
   text-align: center;
   color: var(--secondary-color);
 }
 
 .redirection-sign-in {
-  color: var(--primary-color);
+  a{
+    text-decoration: none;
+    color: var(--primary-color);
+  }
 }
 
 @media (min-width: 1024px) {
-  .section-modal-log-in {
+  #section-modal-log-in {
     padding: 1rem;
     img {
       display: block;
@@ -127,9 +131,13 @@
     width: 100%;
     height: 20vh;
     button {
-      width: 80%;
+      width: 60%;
       height: 8vh;
       font-size: 1.5rem;
+      transition: transform ease-in-out .3s;
+    }
+    button:hover{
+      transform: scale(1.1)
     }
   }
 
