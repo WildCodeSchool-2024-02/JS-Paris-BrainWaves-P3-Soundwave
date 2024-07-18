@@ -98,7 +98,7 @@ function CrewCreation() {
         }
       );
       if (response.status === 201) {
-        toast.success("Votre profil a été envoyé aux admins pour validation");
+        toast.info("Votre profil a été envoyé aux admins pour validation");
         const crewId = await response.json();
         navigate(`/crew-details/${crewId}`);
       } else {

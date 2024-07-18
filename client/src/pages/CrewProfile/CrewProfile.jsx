@@ -201,7 +201,7 @@ function CrewProfile() {
             )}
           <div className="button-container-crew-profile">
             {auth?.user?.role !== "crew" ||
-              (auth?.user?.role === "admin" && (
+              (auth?.user?.role !== "admin" && (
                 <HeartIconFollowCrews crew={crewData} />
               ))}
             {auth.isLogged && auth?.crew?.id === Number(params.id) && (
