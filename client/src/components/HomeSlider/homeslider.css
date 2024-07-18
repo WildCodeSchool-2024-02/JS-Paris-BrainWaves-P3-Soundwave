@@ -1,8 +1,8 @@
 .swiper-slide img {
   display: block;
   border-radius: 10px;
-  width: 7rem;
-  height: 7rem;
+  width: 10rem;
+  height: 10rem;
   object-fit: cover;
   cursor: pointer;
 }
