@@ -95,7 +95,7 @@ function Home() {
               className="btn-show-home-page"
               onClick={() => setIsOpen(!isOpen)}
             >
-              {isOpen ? "read less..." : "read more..."}
+              {isOpen ? "voir moins..." : "voir plus..."}
             </button>
           </motion.div>
         </div>
