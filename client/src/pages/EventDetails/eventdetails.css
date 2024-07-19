@@ -15,11 +15,10 @@
 
 .crew-name-event {
   cursor: pointer;
+  position: relative;
 }
 
 .event-main-info {
-  margin-bottom: 2rem;
-
   h1 {
     font-size: 1.2em;
   }
@@ -39,8 +38,13 @@
   margin-top: 3rem;
   text-align: left;
 
+  h1 {
+    margin: 1rem 0rem;
+  }
+
   h2 {
     font-size: 1em;
+    margin: 1rem 0rem;
   }
 }
 
@@ -75,5 +79,30 @@
     display: flex;
     justify-content: space-between;
     width: 90%;
+  }
+
+  .event-details-info {
+    h1 {
+      margin: 1rem 0rem;
+    }
+    h2 {
+      margin: 1rem 0rem;
+    }
+
+    .crew-name-event:after {
+      content: "";
+      position: absolute;
+      width: 0px;
+      height: 1px;
+      bottom: 0;
+      left: 50%;
+      background-color: var(--secondary-color);
+      transition: all ease-in-out 0.3s;
+    }
+
+    .crew-name-event:hover:after {
+      width: 100%;
+      left: 0;
+    }
   }
 }

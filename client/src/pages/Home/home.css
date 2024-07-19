@@ -107,6 +107,10 @@
   }
 }
 
+.input-image-select {
+  font-size: 0.7em;
+}
+
 .home-btn {
   cursor: pointer;
   border-radius: 10px;
