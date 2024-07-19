@@ -73,7 +73,7 @@
   color: var(--text);
 }
 
-.slider-home-page{
+.slider-home-page {
   margin-bottom: 5rem;
 }
 
@@ -85,7 +85,6 @@
 .p-title-header-home-page {
   font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: bold;
-
 }
 
 #div-btn-register {
@@ -162,7 +161,7 @@
     animation: spin 15s infinite linear;
   }
 
-  .p-title-header-home-page{
+  .p-title-header-home-page {
     margin-top: 2em;
   }
 
