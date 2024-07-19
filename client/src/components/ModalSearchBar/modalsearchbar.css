@@ -55,13 +55,19 @@
   display: flex;
   align-items: flex-start;
   margin: 1rem 0;
-  gap: 1.5rem;
+  gap: 1rem;
   overflow: hidden;
   overflow-x: scroll;
-  img {
+  .picture-events{
     border-radius: 10px;
-    width: 115px;
-    height: 100px;
+    width: 10em;
+    height: 6em;
+    cursor: pointer;
+  }
+  .picture-crews{
+    border-radius: 10px;
+    width: 6em;
+    height: 6em;
     cursor: pointer;
   }
   p {
@@ -88,6 +94,7 @@
 
 @media (min-width: 1024px) {
   .display-modal-search-bar {
+    /* height: max-content; */
     .section-option-date-category {
       display: flex;
       justify-content: space-evenly;
@@ -102,9 +109,16 @@
 
   .section-display-suggestions {
     scrollbar-width: none;
-    img {
-      width: 175px;
-      height: 150px;
+    .picture-events {
+      width: 15em;
+      height: 10em;
     }
+    .picture-crews {
+      width: 10em;
+      height: 10em;
+    }
+  }
+  .mascot-search-bar{
+    width: 12%;
   }
 }
