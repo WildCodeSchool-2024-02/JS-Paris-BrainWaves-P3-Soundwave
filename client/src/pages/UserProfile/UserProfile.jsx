@@ -63,7 +63,7 @@ function UserProfile() {
         setLastname(user.lastname);
         setEdit(false);
         setBtnValue("Éditer");
-        toast.success("Vos modifications ont bien été prise en compte !");
+        toast.success("Vos modifications ont bien été prises en compte !");
       } else {
         validate();
         setErrors({ update: "Échec de la mise à jour" });

@@ -3,33 +3,26 @@ import "./footer.css";
 function Footer() {
   return (
     <footer className="footer">
-      <div className="footer-container">
-        <div className="footer-content">
-          <div>
-            <p className="p-footer">
-              &copy; 2024 Your Company Name. All rights reserved.
-            </p>
-          </div>
-
-          <ul className="ul-footer">
-            <li>
-              <a className="lien-footer" href="/contact">
-                Contact
-              </a>
-            </li>
-            <li>
-              <a className="lien-footer" href="/privacy">
-                Privacy Policy
-              </a>
-            </li>
-            <li>
-              <a className="lien-footer" href="/terms">
-                Terms of Service
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <p className="p-footer">
+        &copy; 2024 AYAM Company. Tous droits réservés.
+      </p>
+      <ul className="ul-footer">
+        <li>
+          <a className="link-footer" href="mailto:soundwave.app75@gmail.com">
+            Contact
+          </a>
+        </li>
+        <li>
+          <a className="link-footer" href="/privacy-policy">
+            Politique de confidentialité
+          </a>
+        </li>
+        <li>
+          <a className="link-footer" href="/terms-of-service">
+            Mentions légales
+          </a>
+        </li>
+      </ul>
     </footer>
   );
 }
