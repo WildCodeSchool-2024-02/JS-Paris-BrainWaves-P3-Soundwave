@@ -200,7 +200,7 @@ function CrewProfile() {
               </p>
             )}
           <div className="button-container-crew-profile">
-            {auth?.user?.role !== "crew" ||
+            {auth?.user?.role !== "crew" &&
               (auth?.user?.role !== "admin" && (
                 <HeartIconFollowCrews crew={crewData} />
               ))}
@@ -246,7 +246,7 @@ function CrewProfile() {
       <section className="events-crew-profile">
         <div className="events-crew-profile-title">
           <div className="title-add-btn-container">
-            <h2>Évènements</h2>
+            <h2>Nos Évènements</h2>
             {auth?.crew?.id === Number(params.id) && (
               <button type="button" onClick={handleOpenModal}>
                 Ajouter
