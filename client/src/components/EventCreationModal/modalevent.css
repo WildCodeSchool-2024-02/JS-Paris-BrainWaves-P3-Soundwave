@@ -1,0 +1,218 @@
+.display-modal-event {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 150vh;
+  background-color: transparent;
+  backdrop-filter: blur(15px);
+  z-index: 9999;
+}
+
+.btn-close-modal-event {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: var(--secondary-color);
+}
+
+.section-modal-event {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 95vh;
+  align-items: center;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 95%;
+  padding: 1rem;
+  background-color: var(--background-color);
+  box-shadow: var(--secondary-color) 0 0 10px 0;
+  gap: 1rem;
+  img {
+    display: none;
+  }
+  h1 {
+    color: var(--secondary-color);
+    font-family: var(--font-title-b);
+    font-size: clamp(1em, 3vw, 3em);
+    text-align: center;
+  }
+
+  button {
+    cursor: pointer;
+    border-radius: 5px;
+    height: 3vh;
+    color: var(--secondary-color);
+    background-image: url(/src/assets/images/Noise.png);
+    background-color: var(--primary-color);
+    font-size: clamp(0.7em, 3vw, 1.5em);
+    border: none;
+    margin-top: 2rem;
+  }
+}
+
+.section-event {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-create-event {
+  display: flex;
+  flex-direction: column;
+  color: var(--secondary-color);
+  font-family: "Courier New", Courier, monospace;
+  padding: 0.5rem;
+  label {
+    text-align: start;
+  }
+  input {
+    border: none;
+    background-color: var(--background-color);
+    border-bottom: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+  }
+  p {
+    color: var(--accent);
+    font-size: clamp(0.75em, 2vw, 0.75em);
+  }
+
+  textarea {
+    border: none;
+    border-bottom: 1px solid var(--secondary-color);
+    background-color: var(--background-color);
+    color: white;
+  }
+}
+
+.display-btn-connexion-event {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 10vh;
+  button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 10px;
+    width: 80%;
+    height: 55%;
+    font-size: 0.75rem;
+    font-family: var(--font-title-b);
+  }
+}
+
+.section-not-event {
+  display: flex;
+  font-size: 0.5rem;
+  text-align: center;
+}
+
+.redirection-sign-in {
+  color: var(--primary-color);
+}
+
+.btn-image-select {
+  width: 54vw;
+}
+
+.input-image-select {
+  margin: 1rem 0;
+}
+
+.display-modal-event {
+  .modal-event-btn {
+    width: 60%;
+    border-radius: 10px;
+    height: 6vh;
+    color: var(--secondary-color);
+    background-image: url("../../assets/images/Noise.png");
+    background-color: var(--primary-color);
+    font-size: 1.2rem;
+    font-family: var(--font-title-b);
+    border: none;
+    
+  }
+
+}
+
+@media (min-width: 1024px) {
+  .section-modal-event {
+    overflow: hidden;
+    height: 90vh;
+    display: flex;
+    justify-content: flex-start;
+    overflow-y: scroll;
+    padding: 1rem;
+    scrollbar-width: none;
+
+    img {
+      display: block;
+    }
+    h1 {
+      margin: 0;
+    }
+
+    button {
+      border-radius: 5px;
+      height: 7vh;
+      font-size: 1.25rem;
+      margin-top: 2rem;
+    }
+  }
+
+  .section-event {
+    width: 80%;
+    .section-create-event {
+      height: 35%;
+      gap: 0.5rem;
+      justify-content: center;
+      width: 70%;
+      input {
+        width: 100%;
+      }
+    }
+    label {
+      font-size: 1.2em;
+    }
+  }
+
+  .section-create-event {
+    textarea {
+      width: 566px;
+      height: 89px;
+    }
+  }
+
+  .display-btn-connexion-event {
+    width: 100%;
+    height: 20vh;
+    button {
+      width: 80%;
+      height: 8vh;
+      font-size: 1.5rem;
+    }
+  }
+
+  .section-not-login {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .btn-image-select {
+    width: auto;
+  }
+
+  .display-modal-event {
+    .modal-event-btn {
+      width: 20%;
+    
+    }
+  }
+}

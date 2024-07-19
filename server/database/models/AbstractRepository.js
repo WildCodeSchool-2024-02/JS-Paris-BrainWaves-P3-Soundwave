@@ -17,6 +17,37 @@ class AbstractRepository {
     // Provide access to the database client
     this.database = database;
   }
+
+  async readAll() {
+    const [rows] = await this.database.query(
+      `SELECT * FROM ${this.table} WHERE is_validated IS true`
+    );
+    return rows;
+  }
+
+  async readOne(id) {
+    const [[row]] = await this.database.query(
+      `SELECT * FROM ${this.table} WHERE id = ?`,
+      [id]
+    );
+    return row;
+  }
+
+  async readAllPendings() {
+    const [rows] = await this.database.query(
+      `SELECT * FROM ${this.table} WHERE is_validated IS null`
+    );
+    return rows;
+  }
+ 
+
+  async edit(body, id) {
+    const [row] = await this.database.query(
+      `UPDATE ${this.table} SET ? WHERE id = ? `,
+      [body, id]
+    );
+    return row;
+  }
 }
 
 // Ready to export

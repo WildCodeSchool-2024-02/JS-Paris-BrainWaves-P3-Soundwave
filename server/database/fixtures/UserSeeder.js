@@ -1,3 +1,4 @@
+const argon2 = require("argon2");
 const AbstractSeeder = require("./AbstractSeeder");
 
 class UserSeeder extends AbstractSeeder {
@@ -5,22 +6,70 @@ class UserSeeder extends AbstractSeeder {
     // Call the constructor of the parent class (AbstractSeeder) with appropriate options
     super({ table: "user", truncate: true });
   }
-
+  
+  static hash(password) {
+    return argon2.hash(password);
+  }
+  
+  
   // The run method - Populate the 'user' table with fake data
+  async run() {
+    const userAdmin = {
+      firstname: "toto",
+      lastname: "tata",
+      email: "toto@gmail.com",
+      password: await UserSeeder.hash("toto"),
+      role: "admin",
+      refName: null,
+    };
 
-  run() {
-    // Generate and insert fake data into the 'user' table
-    for (let i = 0; i < 10; i += 1) {
-      // Generate fake user data
-      const fakeUser = {
-        email: this.faker.internet.email(), // Generate a fake email using faker library
-        password: this.faker.internet.password(), // Generate a fake password using faker library
-        refName: `user_${i}`, // Create a reference name for the user
-      };
+    const userCrew1 = {
+      firstname: "yann",
+      lastname: "la",
+      email: "la@gmail.com",
+      password: await UserSeeder.hash("toto"),
+      role: "crew",
+      refName: "userCrew1"
+    };
+    const userCrew2 = {
+      firstname: "adam",
+      lastname: "ma",
+      email: "ma@gmail.com",
+      password: await UserSeeder.hash("toto"),
+      role: "crew",
+      refName: "userCrew2"
+    };
+    const userCrew3 = {
+      firstname: "aude",
+      lastname: "sed",
+      email: "sed@gmail.com",
+      password: await UserSeeder.hash("toto"),
+      role: "crew",
+      refName: "userCrew3"
+    };
+    const userCrew4 = {
+      firstname: "manue",
+      lastname: "cu",
+      email: "cu@gmail.com",
+      password: await UserSeeder.hash("toto"),
+      role: "crew",
+      refName: "userCrew4"
+    };
 
-      // Insert the fakeUser data into the 'user' table
-      this.insert(fakeUser); // insert into user(email, password) values (?, ?)
-    }
+    const userClient = {
+      firstname: "brian",
+      lastname: "bou",
+      email: "bou@gmail.com",
+      password: await UserSeeder.hash("toto"),
+      role: "client",
+      refName: null,
+    };
+    this.insert(userAdmin);
+    this.insert(userCrew1);
+    this.insert(userCrew2);
+    this.insert(userCrew3);
+    this.insert(userCrew4);
+    this.insert(userClient);
   }
 }
 

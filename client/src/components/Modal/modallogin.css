@@ -1,0 +1,162 @@
+.display-modal-log-in {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  backdrop-filter: blur(15px);
+  z-index: 9999;
+  animation: useraccount 1000ms;
+  animation-fill-mode: forwards;
+}
+
+.btn-close-modal-log-in {
+  color: var(--secondary-color);
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+#section-modal-log-in {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 60%;
+  padding: 1rem;
+  background-color: var(--background-color);
+  box-shadow: var(--secondary-color) 0 0 10px 0;
+  gap: 1rem;
+  img {
+    display: none;
+  }
+  h1 {
+    color: var(--secondary-color);
+    font-family: var(--font-title-b);
+    font-size: clamp(1em, 7vw, 3em);
+  }
+}
+
+.section-register-log-in {
+  display: flex;
+  flex-direction: column;
+  color: var(--secondary-color);
+  font-family: "Courier New", Courier, monospace;
+  padding: 0.5rem;
+  label {
+    text-align: start;
+  }
+  input {
+    border: none;
+    background-color: var(--background-color);
+    border-bottom: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+  }
+  p {
+    color: red;
+    font-size: clamp(0.75em, 2vw, 0.75em);
+  }
+}
+
+.display-btn-connection-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 10vh;
+  button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 10px;
+    width: 80%;
+    height: 55%;
+    font-size: 0.75rem;
+    font-family: var(--font-title-b);
+  }
+  p {
+    color: red;
+    font-size: clamp(0.75em, 2vw, 0.75em);
+  }
+}
+
+.section-not-login {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: clamp(0.7rem, 2vw, 1rem);
+  justify-content: center;
+  text-align: center;
+  color: var(--secondary-color);
+}
+
+.redirection-sign-in {
+  a {
+    text-decoration: none;
+    color: var(--primary-color);
+  }
+}
+
+@media (min-width: 1024px) {
+  #section-modal-log-in {
+    padding: 1rem;
+    width: 70%;
+    height: 100%;
+    img {
+      display: block;
+      width: 10%;
+    }
+    h1 {
+      margin: 0;
+    }
+  }
+
+  .form-log-in {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    .section-register-log-in {
+      justify-content: center;
+      height: 35%;
+      gap: 0.5rem;
+      width: 70%;
+      input {
+        width: 100%;
+      }
+    }
+  }
+
+  .display-btn-connection-login {
+    width: 100%;
+    height: 20vh;
+    button {
+      width: 60%;
+      height: 8vh;
+      font-size: 1.5rem;
+      transition: transform ease-in-out 0.3s;
+    }
+    button:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .section-not-login {
+    display: flex;
+    gap: 0.5rem;
+  }
+}
+
+@keyframes useraccount {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

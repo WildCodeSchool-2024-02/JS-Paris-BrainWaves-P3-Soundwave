@@ -1,0 +1,223 @@
+.main-crew-profile {
+  display: block;
+  margin: 3rem 2rem;
+}
+.header-crew-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+  }
+}
+.display-avatar-default,
+.display-avatar-profile {
+  object-fit: cover;
+  height: 20em;
+  position: relative;
+  width: 20em;
+}
+
+.display-avatar-profile:hover:before {
+  opacity: 1;
+}
+.display-avatar-profile:before {
+  content: "\002B";
+  font-size: 90px;
+  transform: translate(-50%, -50%);
+  transition: 0.5s ease;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  border-radius: 5px;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.header-crew-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 4rem;
+
+  .crew-profile-title-options {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 1rem 0;
+    h1 {
+      margin: 1rem 0;
+    }
+  }
+  .button-container-crew-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    button {
+      background-color: var(--accent);
+      border-radius: 10px;
+      font-family: var(--font-title-b);
+      font-size: clamp(0.7em, 3vw, 1.5em);
+      padding: 0.3em 1em;
+    }
+  }
+  .admin-comment {
+    color: red;
+    font-family: var(--font-title-r);
+    padding: 1em;
+  }
+}
+.desc-crew-profile {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  margin-bottom: 4rem;
+}
+.input-crew-edit {
+  border: none;
+  font-size: 1.2em;
+  background: rgb(36, 36, 36);
+  color: var(--secondary-color);
+
+  width: 20vw;
+  padding-left: 1em;
+  padding-top: 0.5em;
+  font-family: "Courier New", Courier, monospace;
+  padding-right: 1em;
+  text-align: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.textarea-crew-edit {
+  border: none;
+  font-size: 1em;
+  padding-left: 1em;
+  padding-top: 0.5em;
+  font-family: "Courier New", Courier, monospace;
+  padding-right: 1em;
+  border-radius: 10px;
+  color: var(--secondary-color);
+  margin: auto;
+  resize: none;
+  height: "auto";
+  background: rgb(36, 36, 36);
+  min-height: 10rem;
+  width: 80vw;
+}
+
+.events-crew-profile-title {
+  display: flex;
+  flex-direction: column;
+  .title-add-btn-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button {
+      background-color: var(--accent);
+      border-radius: 10px;
+      font-family: var(--font-title-b);
+      font-size: clamp(0.7em, 3vw, 1.5em);
+      padding: 0.3em 1em;
+    }
+  }
+  .button-container-events-status {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 1em;
+    .button-events-status {
+      border-radius: 10px;
+      font-family: var(--font-title-b);
+      border: 1px solid var(--primary-color);
+      background-color: var(--background-color);
+      color: var(--text);
+      font-size: clamp(0.7em, 3vw, 1.5em);
+      padding: 0.3em 1em;
+    }
+    .button-events-status:hover {
+      background-color: var(--primary-color);
+    }
+    .button-events-status.active {
+      background-color: var(--primary-color);
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .main-crew-profile {
+    display: block;
+    margin: 6rem 4rem;
+    h2 {
+      font-size: 2em;
+    }
+  }
+  .admin-comment{
+    width: 80%;
+    text-align: left;
+  }
+  .header-crew-image {
+    width: 30vw;
+    height: 20vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: flex-start;
+  }
+  .display-avatar-profile {
+    object-fit: cover;
+    height: 20em;
+    position: relative;
+    width: 20em;
+    border-radius: 20px;
+  }
+  .header-crew-profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 40vh;
+    h1 {
+      font-size: 3em;
+    }
+  }
+
+  .button-container-events-status {
+    margin: 2em;
+  }
+  .button-container-crew-profile {
+    display: flex;
+    flex-direction: column;
+    button {
+      background-color: var(--accent);
+      border-radius: 10px;
+      font-family: var(--font-title-b);
+      font-size: clamp(0.7em, 3vw, 1.5em);
+      padding: 0.3em 1em;
+      transition: transform ease-in-out 0.3s;
+    }
+    button:hover {
+      transform: scale(1.2);
+    }
+  }
+  .input-crew-edit {
+    width: 15vw;
+  }
+
+  .textarea-crew-edit {
+    width: 80vw;
+  }
+  .title-add-btn-container {
+    button {
+      transition: transform ease-in-out 0.3s;
+    }
+    button:hover {
+      transform: scale(1.2);
+    }
+  }
+}

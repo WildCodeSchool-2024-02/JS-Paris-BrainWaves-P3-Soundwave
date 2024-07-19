@@ -1,0 +1,28 @@
+.evaluate-admin-buttons {
+  display: flex;
+  justify-content: flex-end;
+  z-index: 99;
+  svg {
+    background-color: var(--accent);
+    color: black;
+    border-radius: 5px;
+    margin: 0 0.5rem;
+    height: 1.5em;
+    width: 2em;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .evaluate-admin-buttons {
+    z-index: 2;
+    svg {
+      height: 2.5em;
+      width: 3.5em;
+      cursor: pointer;
+    }
+    svg:hover {
+      padding: 0.2em;
+      transition: width 0.5s ease 0s;
+    }
+  }
+}

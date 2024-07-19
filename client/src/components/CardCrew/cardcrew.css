@@ -1,0 +1,89 @@
+.specific-crew-card {
+  display: flex;
+  border: 1px dashed var(--primary-color);
+  border-radius: 5px;
+  padding: 1rem;
+  transition: ease-in-out 0.5s;
+  margin: 1rem 0;
+  width: 80vw;
+  h2 {
+    color: var(--accent);
+    text-align: start;
+    width: 50%;
+    font-size: clamp(1em, -1.5em + 8vw, 2em);
+  }
+  img {
+    width: 30vw;
+    height: 15vh;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  .display-crew-card-infos {
+    display: flex;
+    flex-direction: column;
+    .display-crew-card-title-img {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  .crew-card-presentation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    position: relative;
+    .heart-icon {
+      position: absolute;
+      top: 2px;
+      right: 5px;
+    }
+  }
+  p {
+    text-align: left;
+    font-size: 0.8em;
+    margin-top: 1rem;
+  }
+}
+.display-adminbtn-heart-mobile {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.specific-crew-card:hover {
+  border: 1px dashed var(--accent);
+  transform: scale(1.05);
+}
+
+@media (min-width: 1024px) {
+  .specific-crew-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 85vw;
+    img {
+      width: 20vw;
+      height: 30vh;
+      object-fit: fill;
+    }
+    .crew-card-desc {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 60%;
+      gap: 1rem;
+      h2 {
+        width: auto;
+        text-align: start;
+      }
+      .crew-card-name-buttons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
+  }
+}

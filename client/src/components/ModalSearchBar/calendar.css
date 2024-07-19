@@ -1,0 +1,51 @@
+.btn-calendar {
+  background-color: var(--background-color);
+  color: var(--secondary-color);
+  font-family: var(--font-title-r);
+  border: 1px solid grey;
+  border-radius: 10px;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.display-calendar {
+  background-color: var(--background-color);
+  box-shadow: 0 0 20px 1px var(--secondary-color);
+  border: none;
+  position: fixed;
+  top: 25%;
+  left: 5%;
+  animation: calendar 1s;
+  animation-fill-mode: backwards;
+}
+.react-calendar,
+.react-calendar *,
+.react-calendar *:before,
+.react-calendar *:after {
+  color: var(--secondary-color);
+}
+
+.react-calendar__year-view .react-calendar__tile,
+.react-calendar__decade-view .react-calendar__tile,
+.react-calendar__century-view .react-calendar__tile {
+  padding: 2em 0.5em;
+  background-color: var(--background-color);
+}
+
+@media (min-width: 1024px) {
+  .display-calendar {
+    left: 20%;
+    top: 20%;
+  }
+}
+
+@keyframes calendar {
+  from {
+    transform: translateY(-30%);
+    opacity: 0.25;
+  }
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
