@@ -100,9 +100,12 @@
   flex-direction: column;
   width: 80vw;
   gap: 1rem;
-  .p-home-btn {
-    font-size: 0.813rem;
+  .p-home-btn, .p-home-title {
+    font-size: clamp(0.9em, 3vw, 1.25em);
     text-align: left;
+  }
+  .p-home-title{
+    font-weight: 700;
   }
 }
 
@@ -175,16 +178,11 @@
 
   .btn-side-home {
     width: 20rem;
-    .description {
-      .p-home-btn {
-        font-size: 1em;
-      }
     }
   }
   .btn-show-home-page {
     display: none;
   }
-}
 
 @keyframes spin {
   0% {

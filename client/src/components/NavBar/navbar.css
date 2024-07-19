@@ -151,7 +151,7 @@ nav {
     align-items: center;
     width: 35%;
     position: relative;
-    ul {
+    .navbar-desktop-ul {
       width: 100%;
       padding: 0;
       justify-content: space-around;
@@ -177,19 +177,6 @@ nav {
         width: 100%;
         left: 0;
       }
-      .menu-account-nav-bar {
-        background-color: var(--background-color);
-        border-radius: 0 0 10px 10px;
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
-        width: 10em;
-        height: 4em;
-        top: 45px;
-        right: -6px;
-      }
 
       .avatar-icon {
         width: 2em;
@@ -198,16 +185,24 @@ nav {
     }
   }
   .menu-account-nav-bar {
+    font-family: var(--font-title-b);
+    cursor: pointer;
+    color: var(--secondary-color);
     background-color: var(--background-color);
     border-radius: 0 0 10px 10px;
+    border-bottom: 1px solid var(--primary-color);
+    border-left: 1px solid var(--primary-color);
+    border-right: 1px solid var(--primary-color);
     position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    width: 10em;
+    width: 12em;
     height: 4em;
     top: 45px;
-    right: -6px;
+    right: 5px;
+    padding: 0;
+    margin: 0.1rem;
   }
 }

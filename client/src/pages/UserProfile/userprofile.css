@@ -54,6 +54,16 @@
     flex-direction: column;
     align-items: center;
     gap: 0.25rem;
+    h1{
+      color: var(--accent);
+    }
+    input {
+      background-color: var(--background-color);
+      color: var(--secondary-color);
+      font-family: 'Courier New', Courier, monospace;
+      width: 80%;
+      border-radius: 5px;
+    }
     .btn-edition-client-profile {
       width: 75%;
       border-radius: 5px;

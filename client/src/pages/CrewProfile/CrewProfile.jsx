@@ -200,10 +200,9 @@ function CrewProfile() {
               </p>
             )}
           <div className="button-container-crew-profile">
-            {auth?.user?.role !== "crew" ||
-              (auth?.user?.role !== "admin" && (
+            {auth?.user?.role === "client"  && (
                 <HeartIconFollowCrews crew={crewData} />
-              ))}
+              )}
             {auth.isLogged && auth?.crew?.id === Number(params.id) && (
               <button
                 onClick={edit ? handleSubmit : handleBtnValue}
@@ -246,7 +245,7 @@ function CrewProfile() {
       <section className="events-crew-profile">
         <div className="events-crew-profile-title">
           <div className="title-add-btn-container">
-            <h2>Évènements</h2>
+            <h2>Nos Évènements</h2>
             {auth?.crew?.id === Number(params.id) && (
               <button type="button" onClick={handleOpenModal}>
                 Ajouter
@@ -275,7 +274,7 @@ function CrewProfile() {
                     : "button-events-status active"
                 }
               >
-                Non Validés
+                Refusés
               </button>
             </div>
           )}

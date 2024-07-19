@@ -63,7 +63,7 @@ function UserProfile() {
         setLastname(user.lastname);
         setEdit(false);
         setBtnValue("Éditer");
-        toast.success("Vos modifications ont bien été prise en compte !");
+        toast.success("Vos modifications ont bien été prises en compte !");
       } else {
         validate();
         setErrors({ update: "Échec de la mise à jour" });
@@ -107,14 +107,14 @@ function UserProfile() {
         >
           {!edit ? (
             <img
-              src={auth?.user?.image ? auth.user.image : avatar}
+              src={auth?.user?.image ? auth?.user?.image : avatar}
               alt="avatar-profile"
               className="avatar-client-change"
             />
           ) : (
             <>
               <img
-                src={selectedImage || auth.user.image}
+                src={selectedImage || auth.user.image || avatar }
                 alt="avatar-profile"
                 className="avatar-client-change"
                 role="presentation"
@@ -167,7 +167,7 @@ function UserProfile() {
         </section>
       </section>
       <section className="section-user-events">
-        <h2 className="user-profile-like-follow">Mes Événements</h2>
+        <h2 className="user-profile-like-follow">Mes Évènements</h2>
         <section className="display-liked-events">
           {dataEventLiked.map((eventLiked) => (
             <EventCard
