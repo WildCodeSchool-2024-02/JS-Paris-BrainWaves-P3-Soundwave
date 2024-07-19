@@ -27,7 +27,7 @@ function EventCard({
   const params = useParams();
 
   return (
-    <div className="event-card-container">
+    <section className="event-card-container">
       <div
         className="event-all-container"
         onClick={handleDetailsEvent}
@@ -61,7 +61,7 @@ function EventCard({
           )}
         </div>
       )}
-    </div>
+    </section>
   );
 }
 
