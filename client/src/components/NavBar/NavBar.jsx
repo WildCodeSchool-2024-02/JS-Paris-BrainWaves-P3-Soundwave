@@ -121,7 +121,7 @@ function NavBar({
           {openModalSearchBar && (
             <ModalSearchBar closeModalSearchBar={setOpenModalSearchBar} />
           )}
-          <ul>
+          <ul className="navbar-desktop-ul">
             <li
               role="presentation"
               onClick={() => navigate("/events-list")}

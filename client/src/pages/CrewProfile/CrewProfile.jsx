@@ -200,10 +200,9 @@ function CrewProfile() {
               </p>
             )}
           <div className="button-container-crew-profile">
-            {auth?.user?.role !== "crew" ||
-              (auth?.user?.role !== "admin" && (
+            {auth?.user?.role === "client"  && (
                 <HeartIconFollowCrews crew={crewData} />
-              ))}
+              )}
             {auth.isLogged && auth?.crew?.id === Number(params.id) && (
               <button
                 onClick={edit ? handleSubmit : handleBtnValue}
@@ -275,7 +274,7 @@ function CrewProfile() {
                     : "button-events-status active"
                 }
               >
-                Non Validés
+                Refusés
               </button>
             </div>
           )}
