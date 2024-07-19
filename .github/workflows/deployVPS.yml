@@ -25,7 +25,7 @@ jobs:
           source ~/.nvm/nvm.sh
           npm i -g pm2
           cd /var/www/html/JS-Paris-BrainWaves-P3-Soundwave
-          git pull origin dev
+          git pull origin main
           npm i
           cd client && npm run build
           pm2 reload soundwave
