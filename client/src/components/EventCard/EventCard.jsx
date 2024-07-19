@@ -25,6 +25,7 @@ function EventCard({
   };
   setType("event");
   const params = useParams();
+  console.log(date);
 
   return (
     <div className="event-card-container">

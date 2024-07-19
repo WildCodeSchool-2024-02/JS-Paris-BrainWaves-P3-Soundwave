@@ -11,17 +11,16 @@ function CardCrew({ result, setOpenValidation, setText, setValidationId }) {
   setType("crew");
 
   return (
-    <section className="specific-crew-card">
+    <section
+      className="specific-crew-card"
+      onClick={() => navigate(`/crew-details/${result.id}`)}
+      onKeyDown={() => navigate(`/crew-details/${result.id}`)}
+      role="presentation"
+    >
       {window.innerWidth < 1024 && (
         <>
           <div className="crew-card-presentation">
-            <img
-              src={result.image}
-              alt="logo du collectif"
-              onClick={() => navigate(`/crew-details/${result.id}`)}
-              onKeyDown={() => navigate(`/crew-details/${result.id}`)}
-              role="presentation"
-            />
+            <img src={result.image} alt="logo du collectif" />
             <h2>{result.name}</h2>
             {auth.isLogged &&
             auth.user.role === "admin" &&
@@ -45,25 +44,21 @@ function CardCrew({ result, setOpenValidation, setText, setValidationId }) {
       )}
       {window.innerWidth >= 1024 && (
         <>
-          <img
-            src={result.image}
-            alt="logo du collectif"
-            onClick={() => navigate(`/crew-details/${result.id}`)}
-            onKeyDown={() => navigate(`/crew-details/${result.id}`)}
-            role="presentation"
-          />
+          <img src={result.image} alt="logo du collectif" />
           <div className="crew-card-desc">
             <div className="crew-card-name-buttons">
               <h2>{result.name}</h2>
               {auth.isLogged &&
               auth.user.role === "admin" &&
               !result.is_validated ? (
+                <div style={{zIndex: 99}}>
                 <AdminButton
                   setText={setText}
                   setOpenValidation={setOpenValidation}
                   setValidationId={setValidationId}
                   id={result.id}
                 />
+                </div>
               ) : (
                 <HeartIconFollowCrews crew={result} />
               )}
