@@ -24,7 +24,7 @@ jobs:
           export NVM_DIR=~/.nvm
           source ~/.nvm/nvm.sh
           npm i -g pm2
-          cd /var/wwww/html/JS-Paris-BrainWaves-P3-Soundwave
+          cd /var/www/html/JS-Paris-BrainWaves-P3-Soundwave
           git pull origin main
           npm i
           cd client && npm run build
