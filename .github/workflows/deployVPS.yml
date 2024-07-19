@@ -21,10 +21,10 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: 22
         script: |
-          export NVM_DIR=-/.nvm
-          source -/.nvm/nvm/.sh
+          export NVM_DIR=~/.nvm
+          source ~/.nvm/nvm/.sh
           npm i -g pm2
-          cd /var/wwww/html/soundwave
+          cd /var/wwww/html/JS-Paris-BrainWaves-P3-Soundwave
           git pull origin main
           npm i
           cd client && npm run build
