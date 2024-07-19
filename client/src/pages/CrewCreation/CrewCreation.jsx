@@ -5,21 +5,22 @@ import { useOutletContext, useLoaderData, useNavigate } from "react-router-dom";
 
 function CrewCreation() {
   const crew = useLoaderData();
-  const [username, setUsername] = useState("Nom");
-  const [image, setImage] = useState(
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7mMNz8YCBvYmnr3BQUPX__YsC_WtDuAevwg&s"
-  );
-  const [description, setDescription] = useState("Description");
+  const [username, setUsername] = useState("");
+  const image =
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7mMNz8YCBvYmnr3BQUPX__YsC_WtDuAevwg&s";
+
+  const [description, setDescription] = useState("");
   const navigate = useNavigate();
   const { auth } = useOutletContext();
   const [errors, setErrors] = useState({});
   const imageInputRef = useRef();
+  const [selectedImage, setSelectedImage] = useState(null); // New state for selected image
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      setImage(imageUrl);
+      setSelectedImage(imageUrl); // Update the selected image state
     }
   };
   useEffect(() => {
@@ -97,7 +98,7 @@ function CrewCreation() {
         }
       );
       if (response.status === 201) {
-        toast.success("Votre profil a été envoyé aux admins pour validation");
+        toast.info("Votre profil a été envoyé aux admins pour validation");
         const crewId = await response.json();
         navigate(`/crew-details/${crewId}`);
       } else {
@@ -116,18 +117,33 @@ function CrewCreation() {
         <>
           <section className="header-crew-creation">
             <div className="div-img-input">
-              <img src={image} alt="logo du collectif" />
-              <input
-                type="file"
-                ref={imageInputRef}
-                onChange={handleImageChange}
-              />
+              <figure
+                className="display-avatar-profile display-avatar-default"
+                role="presentation"
+                onClick={() => {
+                  imageInputRef.current.click();
+                }}
+              >
+                <img
+                  src={selectedImage || image}
+                  alt="avatar-profile"
+                  className="avatar-client-change"
+                  role="presentation"
+                />
+                <input
+                  type="file"
+                  hidden
+                  ref={imageInputRef}
+                  onChange={handleImageChange}
+                />
+              </figure>
             </div>
             <div className="crew-creation-title-options">
               <input
                 className="input-crew-crea"
                 type="text"
                 value={username}
+                placeholder="Nom"
                 onChange={(e) => setUsername(e.target.value)}
               />
               <div className="button-container-crew-creation">
@@ -141,6 +157,7 @@ function CrewCreation() {
             <textarea
               className="textarea-crew-crea"
               value={description}
+              placeholder="Description"
               onChange={handleInputChange}
             />
             {errors.username && <p className="error">{errors.username}</p>}

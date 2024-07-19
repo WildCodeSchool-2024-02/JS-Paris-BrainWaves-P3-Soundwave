@@ -11,17 +11,71 @@ function CardCrew({ result, setOpenValidation, setText, setValidationId }) {
   setType("crew");
 
   return (
-    <section
-      className="specific-crew-card"
-      onClick={() => navigate(`/crew-details/${result.id}`)}
-      onKeyDown={() => navigate(`/crew-details/${result.id}`)}
-      role="presentation"
-    >
+    <section className="specific-crew-card">
       {window.innerWidth < 1024 && (
+        <section>
+          <section className="display-crew-card-infos">
+            <section
+              className="display-crew-card-title-img"
+              onClick={() => navigate(`/crew-details/${result.id}`)}
+              onKeyDown={() => navigate(`/crew-details/${result.id}`)}
+              role="presentation"
+            >
+              <img src={result.image} alt="logo du collectif" />
+              <h2>{result.name}</h2>
+            </section>
+            <div
+              className="crew-card-presentation"
+              onClick={() => navigate(`/crew-details/${result.id}`)}
+              onKeyDown={() => navigate(`/crew-details/${result.id}`)}
+              role="presentation"
+            >
+              {result.description.length <= 100 ? (
+                <p>{result.description}</p>
+              ) : (
+                <p>{result.description.slice(0, 100)}...</p>
+              )}
+            </div>
+            <div className="display-adminbtn-heart-mobile">
+              {auth.isLogged &&
+              auth.user.role === "admin" &&
+              !result.is_validated ? (
+                <AdminButton
+                  setText={setText}
+                  setOpenValidation={setOpenValidation}
+                  setValidationId={setValidationId}
+                  id={result.id}
+                />
+              ) : (
+                <HeartIconFollowCrews crew={result} />
+              )}
+            </div>
+          </section>
+        </section>
+      )}
+      {window.innerWidth >= 1024 && (
         <>
-          <div className="crew-card-presentation">
-            <img src={result.image} alt="logo du collectif" />
+          <img
+            src={result.image}
+            alt="logo du collectif"
+            onClick={() => navigate(`/crew-details/${result.id}`)}
+            onKeyDown={() => navigate(`/crew-details/${result.id}`)}
+            role="presentation"
+          />
+          <div
+            className="crew-card-desc"
+            onClick={() => navigate(`/crew-details/${result.id}`)}
+            onKeyDown={() => navigate(`/crew-details/${result.id}`)}
+            role="presentation"
+          >
             <h2>{result.name}</h2>
+            {result.description.length <= 250 ? (
+              <p>{result.description}</p>
+            ) : (
+              <p>{result.description.slice(0, 250)}...</p>
+            )}
+          </div>
+          <div className="crew-card-name-buttons" style={{ zIndex: 99 }}>
             {auth.isLogged &&
             auth.user.role === "admin" &&
             !result.is_validated ? (
@@ -32,38 +86,12 @@ function CardCrew({ result, setOpenValidation, setText, setValidationId }) {
                 id={result.id}
               />
             ) : (
-              <HeartIconFollowCrews crew={result} />
+              <div>
+                {auth.isLogged === true && auth?.user?.role === "client" && (
+                  <HeartIconFollowCrews crew={result} />
+                )}
+              </div>
             )}
-          </div>
-          {result.description.length <= 100 ? (
-            <p>{result.description}</p>
-          ) : (
-            <p>{result.description.slice(0, 100)}...</p>
-          )}
-        </>
-      )}
-      {window.innerWidth >= 1024 && (
-        <>
-          <img src={result.image} alt="logo du collectif" />
-          <div className="crew-card-desc">
-            <div className="crew-card-name-buttons">
-              <h2>{result.name}</h2>
-              {auth.isLogged &&
-              auth.user.role === "admin" &&
-              !result.is_validated ? (
-                <div style={{zIndex: 99}}>
-                <AdminButton
-                  setText={setText}
-                  setOpenValidation={setOpenValidation}
-                  setValidationId={setValidationId}
-                  id={result.id}
-                />
-                </div>
-              ) : (
-                <HeartIconFollowCrews crew={result} />
-              )}
-            </div>
-            <p>{result.description}</p>
           </div>
         </>
       )}

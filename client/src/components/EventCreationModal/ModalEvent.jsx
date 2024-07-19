@@ -1,12 +1,13 @@
 import { useRef, useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 import DropDownMenu from "../DropDownMenu/DropDownMenu";
 import Mascot from "../../assets/images/masquote.svg";
 import "./modalevent.css";
 
-function ModalEvent({ closeModal, id }) {
+function ModalEvent({ closeModal, id}) {
   const name = useRef("");
   const date = useRef("");
   const startingHour = useRef("");
@@ -28,13 +29,11 @@ function ModalEvent({ closeModal, id }) {
     lineupRequire: null,
   });
   const { styleInput, auth } = useOutletContext();
-
   const handleCloseModal = () => {
     document.body.classList.remove("active");
     closeModal(false);
   };
 
-  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     const form = new FormData();
@@ -61,7 +60,8 @@ function ModalEvent({ closeModal, id }) {
       const result = await response.json();
       if (response.status === 201) {
         document.body.classList.remove("active");
-        navigate(`/events-list`);
+        closeModal(false);
+        toast.info("Evènement en cours de validation")
       } else {
         setFormErrors({
           nameRequire: null,

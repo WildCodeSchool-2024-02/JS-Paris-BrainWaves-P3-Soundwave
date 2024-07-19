@@ -26,22 +26,26 @@ function CrewProfile() {
   const [text, setText] = useState(false);
   const imageInputRef = useRef();
   const params = useParams();
+  const [selectedImage, setSelectedImage] = useState(null); // New state for selected image
 
   setType("crew");
 
+  // Function to handle image change when user selects a new image
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      setImage(imageUrl); // Update the state with the new image URL
+      setSelectedImage(imageUrl); // Update the selected image state
     }
   };
 
+  // Function to handle opening the modal for adding new events
   const handleOpenModal = () => {
     setOpenModalEvent(true);
     document.body.classList.add("active");
   };
 
+  // Function to handle toggling between edit mode and normal mode
   const handleBtnValue = () => {
     setEdit((prevEdit) => !prevEdit);
 
@@ -52,6 +56,7 @@ function CrewProfile() {
     }
   };
 
+  // Function to handle input change for the description textarea
   const handleInputChange = (event) => {
     const textarea = event.target;
     textarea.style.height = ""; // Reset the height
@@ -59,6 +64,7 @@ function CrewProfile() {
     setDescription(textarea.value); // Update the state with the textarea value
   };
 
+  // Function to validate form inputs
   const validate = () => {
     const error = {};
     if (!username) {
@@ -72,6 +78,7 @@ function CrewProfile() {
     return error;
   };
 
+  // Effect to fetch validated and unvalidated events when crewData.id changes
   useEffect(() => {
     fetch(
       `${import.meta.env.VITE_API_URL}/api/crews/${crewData.id}/validated-events`
@@ -85,6 +92,7 @@ function CrewProfile() {
       .then((data) => setUnvalidatedEvents(data));
   }, [crewData.id]);
 
+  // Function to handle form submission
   const handleSubmit = async () => {
     const errorData = validate();
     if (Object.keys(errorData).length > 0) {
@@ -122,7 +130,7 @@ function CrewProfile() {
     }
   };
 
-  // switch the display of the events.
+  // Function to handle toggling between validated and non-validated events
   const handleToggleValidated = () => {
     setToggleEvents(true);
     setActiveValidated(true);
@@ -138,14 +146,40 @@ function CrewProfile() {
     <main className="main-crew-profile">
       <section className="header-crew-profile">
         <div className="header-crew-image">
-          <img src={image} alt="logo du collectif" />
-          {edit && (
-            <input
-              type="file"
-              ref={imageInputRef}
-              onChange={handleImageChange}
-            />
-          )}
+          <figure
+            className={
+              edit
+                ? "display-avatar-profile display-avatar-default"
+                : "display-avatar-default"
+            }
+            role="presentation"
+            onClick={() => {
+              if (edit) imageInputRef.current.click();
+            }}
+          >
+            {!edit ? (
+              <img
+                src={image}
+                alt="avatar-profile"
+                className="avatar-client-change"
+              />
+            ) : (
+              <>
+                <img
+                  src={selectedImage || image}
+                  alt="avatar-profile"
+                  className="avatar-client-change"
+                  role="presentation"
+                />
+                <input
+                  type="file"
+                  hidden
+                  ref={imageInputRef}
+                  onChange={handleImageChange}
+                />
+              </>
+            )}
+          </figure>
         </div>
         <div className="crew-profile-title-options">
           {!edit ? (
@@ -167,7 +201,7 @@ function CrewProfile() {
             )}
           <div className="button-container-crew-profile">
             {auth?.user?.role !== "crew" ||
-              (auth?.user?.role === "admin" && (
+              (auth?.user?.role !== "admin" && (
                 <HeartIconFollowCrews crew={crewData} />
               ))}
             {auth.isLogged && auth?.crew?.id === Number(params.id) && (
@@ -212,7 +246,7 @@ function CrewProfile() {
       <section className="events-crew-profile">
         <div className="events-crew-profile-title">
           <div className="title-add-btn-container">
-            <h2>Evènements</h2>
+            <h2>Évènements</h2>
             {auth?.crew?.id === Number(params.id) && (
               <button type="button" onClick={handleOpenModal}>
                 Ajouter
@@ -289,5 +323,4 @@ function CrewProfile() {
     </main>
   );
 }
-
 export default CrewProfile;

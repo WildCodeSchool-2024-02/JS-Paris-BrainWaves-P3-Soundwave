@@ -101,6 +101,7 @@
   }
 
   .section-display-suggestions {
+    scrollbar-width: none;
     img {
       width: 175px;
       height: 150px;

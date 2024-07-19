@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import "./global.css";
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
   const [eventLike, setEventLike] = useState([]);
   const [crewFollow, setCrewFollow] = useState([]);
   const [openModalLogIn, setOpenModalLogIn] = useState(false);
-
+  
   useEffect(() => {
     const getAuth = async () => {
       try {
@@ -56,6 +57,7 @@ function App() {
   return (
     <>
       <ToastContainer theme="dark" />
+      <ScrollToTop/>
       <NavBar
         auth={auth}
         setAuth={setAuth}
