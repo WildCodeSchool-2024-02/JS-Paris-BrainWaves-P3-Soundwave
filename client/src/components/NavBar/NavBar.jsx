@@ -9,7 +9,13 @@ import mascot from "../../assets/images/masquote.svg";
 import ModalLogIn from "../Modal/ModalLogIn";
 import ModalSearchBar from "../ModalSearchBar/ModalSearchBar";
 
-function NavBar({ auth, setAuth, setEventLike, openModalLogIn, setOpenModalLogIn }) {
+function NavBar({
+  auth,
+  setAuth,
+  setEventLike,
+  openModalLogIn,
+  setOpenModalLogIn,
+}) {
   const navigate = useNavigate();
 
   const [burgerClass, setBurgerClass] = useState("burger-bar unclicked");

@@ -15,17 +15,21 @@ function CardCrew({ result, setOpenValidation, setText, setValidationId }) {
       {window.innerWidth < 1024 && (
         <section>
           <section className="display-crew-card-infos">
-            <section className="display-crew-card-title-img">
-              <img
-                src={result.image}
-                alt="logo du collectif"
-                onClick={() => navigate(`/crew-details/${result.id}`)}
-                onKeyDown={() => navigate(`/crew-details/${result.id}`)}
-                role="presentation"
-              />
+            <section
+              className="display-crew-card-title-img"
+              onClick={() => navigate(`/crew-details/${result.id}`)}
+              onKeyDown={() => navigate(`/crew-details/${result.id}`)}
+              role="presentation"
+            >
+              <img src={result.image} alt="logo du collectif" />
               <h2>{result.name}</h2>
             </section>
-            <div className="crew-card-presentation">
+            <div
+              className="crew-card-presentation"
+              onClick={() => navigate(`/crew-details/${result.id}`)}
+              onKeyDown={() => navigate(`/crew-details/${result.id}`)}
+              role="presentation"
+            >
               {result.description.length <= 100 ? (
                 <p>{result.description}</p>
               ) : (
@@ -58,7 +62,12 @@ function CardCrew({ result, setOpenValidation, setText, setValidationId }) {
             onKeyDown={() => navigate(`/crew-details/${result.id}`)}
             role="presentation"
           />
-          <div className="crew-card-desc">
+          <div
+            className="crew-card-desc"
+            onClick={() => navigate(`/crew-details/${result.id}`)}
+            onKeyDown={() => navigate(`/crew-details/${result.id}`)}
+            role="presentation"
+          >
             <h2>{result.name}</h2>
             {result.description.length <= 250 ? (
               <p>{result.description}</p>
@@ -66,7 +75,7 @@ function CardCrew({ result, setOpenValidation, setText, setValidationId }) {
               <p>{result.description.slice(0, 250)}...</p>
             )}
           </div>
-          <div className="crew-card-name-buttons">
+          <div className="crew-card-name-buttons" style={{ zIndex: 99 }}>
             {auth.isLogged &&
             auth.user.role === "admin" &&
             !result.is_validated ? (
