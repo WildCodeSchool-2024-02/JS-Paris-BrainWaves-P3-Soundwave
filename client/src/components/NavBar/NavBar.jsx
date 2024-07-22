@@ -26,11 +26,13 @@ function NavBar({
 
   const updateMenu = () => {
     if (!isMenuClicked) {
+      document.body.classList.add("active");
       setBurgerClass("burger-bar clicked");
       setMenuClass("menu visible");
     } else {
       setBurgerClass("burger-bar unclicked");
       setMenuClass("menu hidden");
+      document.body.classList.remove("active");
     }
     setIsMenuClicked(!isMenuClicked);
   };
@@ -64,6 +66,7 @@ function NavBar({
     openAccountMenu();
     setMenuClass("menu hidden");
     setBurgerClass("burger-bar unclicked");
+    document.body.classList.remove("active");
   };
 
   const logOut = async () => {
@@ -75,11 +78,13 @@ function NavBar({
       navigate("/");
       if (window.innerWidth > 1024) {
         openAccountMenu();
+        document.body.classList.remove("active");
       }
       if (window.innerWidth < 1024) {
         setIsMenuClicked(false);
         setMenuClass("menu hidden");
         setBurgerClass("burger-bar unclicked");
+        document.body.classList.remove("active");
       }
     } catch (error) {
       console.error(error);

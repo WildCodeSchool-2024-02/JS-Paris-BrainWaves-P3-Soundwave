@@ -87,6 +87,16 @@ const readCrewByEvent = async (req, res, next) => {
     next(error);
   }
 };
+
+const deleteEvent = async (req, res, next) => {
+  try {
+    const event = Number(req.params.id);
+    const deletedEvent = await tables.event.dropEvent(event);
+    res.status(204).json(deletedEvent);
+  } catch (error) {
+    next(error);
+  }
+};
 module.exports = {
   browse,
   read,
@@ -96,4 +106,5 @@ module.exports = {
   editStatus,
   readCategoryEvents,
   readCrewByEvent,
+  deleteEvent,
 };

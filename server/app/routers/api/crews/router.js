@@ -14,7 +14,7 @@ const {
 } = require("../../../controllers/crewAction");
 
 const { isAuth, isAdmin, isCrew } = require("../../../services/auth");
-const { add } = require("../../../controllers/eventAction");
+const { add, deleteEvent } = require("../../../controllers/eventAction");
 
 const { ValidateForm } = require("../../../services/validateEventForm");
 const imageUpload = require("../../../services/imageUpload");
@@ -36,4 +36,5 @@ router.post(
   ValidateForm,
   add
 );
+router.delete("/:id/events/:id", isAuth, isCrew, deleteEvent);
 module.exports = router;

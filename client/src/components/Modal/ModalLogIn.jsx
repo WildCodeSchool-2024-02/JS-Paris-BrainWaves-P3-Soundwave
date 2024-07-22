@@ -52,11 +52,10 @@ function ModalLogIn({ closeModalLogIn, setAuth, setEventLike }) {
         setAuth({ isLogged: true, user, token, crew });
         if (user.role === "admin") {
           navigate("/admin");
-
         }
         if (user.role === "client") {
           navigate("/");
-          setEventLike(likeEvent)
+          setEventLike(likeEvent);
         }
         if (user.role === "crew") {
           navigate("/");
@@ -118,7 +117,16 @@ function ModalLogIn({ closeModalLogIn, setAuth, setEventLike }) {
         </form>
         <section className="section-not-login">
           <p>Tu n’as pas encore de compte ? </p>
-          <p className="redirection-sign-in"><NavHashLink to="/#div-btn-register" role="presentation" onClick={handleCloseModalLogIn} onKeyDown={handleCloseModalLogIn}>Inscris-toi !</NavHashLink></p>
+          <p className="redirection-sign-in">
+            <NavHashLink
+              to="/#div-btn-register"
+              role="presentation"
+              onClick={handleCloseModalLogIn}
+              onKeyDown={handleCloseModalLogIn}
+            >
+              Inscris-toi !
+            </NavHashLink>
+          </p>
         </section>
       </section>
     </dialog>
