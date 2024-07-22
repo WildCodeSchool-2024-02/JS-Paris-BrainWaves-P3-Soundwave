@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import "./eventcard.css";
 import HeartIconLike from "../HeartIconLike/HeartIconLike";
 import AdminButton from "../AdminButtons/AdminButtons";
@@ -26,6 +27,24 @@ function EventCard({
   setType("event");
   const params = useParams();
 
+  const handleDelete = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/crews/${params.id}/events/${id}`,
+        {
+          method: "delete",
+          headers: { Authorization: `Bearer ${auth.token}` },
+          body: JSON.stringify({ id }),
+        }
+      );
+      if (response.ok) {
+        toast.success("Évènement supprimé");
+      }
+    } catch (error) {
+      toast.error("Suppression non prise en compte");
+      console.error("Suppression non prise en compte");
+    }
+  };
   return (
     <section className="event-card-container">
       <div
@@ -58,6 +77,11 @@ function EventCard({
         <div className="heart-icon-container">
           {auth.isLogged === true && auth.user.role === "client" && (
             <HeartIconLike event={event} />
+          )}
+          {auth?.crew?.id === Number(params.id) && (
+            <button type="button" onClick={handleDelete}>
+              delete
+            </button>
           )}
         </div>
       )}

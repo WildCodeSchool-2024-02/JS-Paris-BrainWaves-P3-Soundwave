@@ -75,7 +75,7 @@ function ModalSearchBar({ closeModalSearchBar }) {
         );
         setFilteredEvents(filteredEventsData);
       } else {
-        console.error("je suis dans erros");
+        console.error("je suis dans error");
       }
     } catch (err) {
       console.error(err);
