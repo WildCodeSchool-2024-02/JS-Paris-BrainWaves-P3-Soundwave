@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import "./crew-creation.css";
 import { toast } from "react-toastify";
 import { useOutletContext, useLoaderData, useNavigate } from "react-router-dom";
+import DropDownMenu from "../../components/DropDownMenu/DropDownMenu";
 
 function CrewCreation() {
   const crew = useLoaderData();
@@ -11,10 +12,11 @@ function CrewCreation() {
 
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
-  const { auth } = useOutletContext();
+  const { auth, styleInput } = useOutletContext();
   const [errors, setErrors] = useState({});
   const imageInputRef = useRef();
   const [selectedImage, setSelectedImage] = useState(null); // New state for selected image
+ 
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -87,6 +89,7 @@ function CrewCreation() {
     form.append("image", imageInputRef.current.files[0]);
     form.append("ownerId", auth.user.id);
     form.append("description", description);
+    form.append("categories", JSON.stringify(styleInput))
 
     try {
       const response = await fetch(
@@ -99,8 +102,8 @@ function CrewCreation() {
       );
       if (response.status === 201) {
         toast.info("Votre profil a été envoyé aux admins pour validation");
-        const crewId = await response.json();
-        navigate(`/crew-details/${crewId}`);
+        const {result} = await response.json();
+        navigate(`/crew-details/${result}`);
       } else {
         toast.warning("Un problème est survenu");
         setErrors({ update: "Échec de la création du compte" });
@@ -154,6 +157,7 @@ function CrewCreation() {
             </div>
           </section>
           <section className="desc-crew-creation">
+            <DropDownMenu/>
             <textarea
               className="textarea-crew-crea"
               value={description}

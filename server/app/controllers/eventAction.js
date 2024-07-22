@@ -43,7 +43,7 @@ const add = async (req, res, next) => {
     );
     const style = await tables.event.addStyleEvent(eventCategories);
     const eventCrewId = await tables.event.addCrewIdEvent(event, req.params.id);
-    res.status(201).json(event, eventCrewId, style);
+    res.status(201).json({event, eventCrewId, style});
   } catch (error) {
     next(error);
   }

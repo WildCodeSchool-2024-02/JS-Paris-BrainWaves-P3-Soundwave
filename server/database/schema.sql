@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `sound_wavedb`.`event` (
   `image` TEXT NOT NULL,
   `is_validated` TINYINT NULL,
   `lineup` TEXT NULL,
-  `comment`TEXT NULL,
+  `comment` TEXT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -91,12 +91,12 @@ CREATE TABLE IF NOT EXISTS `sound_wavedb`.`user_event_like` (
   CONSTRAINT `fk_event_has_user_event`
     FOREIGN KEY (`event_id`)
     REFERENCES `sound_wavedb`.`event` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_event_has_user_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `sound_wavedb`.`user` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -135,12 +135,12 @@ CREATE TABLE IF NOT EXISTS `sound_wavedb`.`crew_event` (
   CONSTRAINT `fk_event_has_crew_event1`
     FOREIGN KEY (`event_id`)
     REFERENCES `sound_wavedb`.`event` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_event_has_crew_crew1`
     FOREIGN KEY (`crew_id`)
     REFERENCES `sound_wavedb`.`crew` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -157,12 +157,12 @@ CREATE TABLE IF NOT EXISTS `sound_wavedb`.`category_event` (
   CONSTRAINT `fk_event_has_category_category1`
     FOREIGN KEY (`category_id`)
     REFERENCES `sound_wavedb`.`category` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_category_event_event1`
     FOREIGN KEY (`event_id`)
     REFERENCES `sound_wavedb`.`event` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -173,7 +173,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `sound_wavedb`.`category_crew` (
   `category_id` INT NOT NULL,
   `crew_id` INT NOT NULL,
-  PRIMARY KEY (`category_id`),
+  PRIMARY KEY (`category_id`, `crew_id`),
   INDEX `fk_category_has_crew_crew1_idx` (`crew_id` ASC) VISIBLE,
   INDEX `fk_category_has_crew_category1_idx` (`category_id` ASC) VISIBLE,
   CONSTRAINT `fk_category_has_crew_category1`
@@ -192,3 +192,4 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+

@@ -71,7 +71,12 @@ const create = async (req, res, next) => {
   try {
     const crewData = req.body;
     const result = await tables.crew.insertOne(crewData);
-    res.status(201).json(result.insertId);
+    const crewCategories = [];
+    JSON.parse(req.body.categories).forEach((category) => 
+    crewCategories.push([category.value, result.insertId])
+    )
+    const styleCrew = await tables.crew.addStyleCrew(crewCategories)
+    res.status(201).json({result:result.insertId, styleCrew});
   } catch (error) {
     next(error);
   }
