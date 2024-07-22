@@ -29,6 +29,7 @@ function ModalEvent({ closeModal, id}) {
     lineupRequire: null,
   });
   const { styleInput, auth } = useOutletContext();
+  
   const handleCloseModal = () => {
     document.body.classList.remove("active");
     closeModal(false);
