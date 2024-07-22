@@ -20,7 +20,7 @@ function EventCard({
   event,
 }) {
   const navigate = useNavigate();
-  const { auth, setType } = useOutletContext();
+  const { auth, setType, updateEvents, setUpdateEvents } = useOutletContext();
   const handleDetailsEvent = () => {
     navigate(`/event-details/${id}`);
   };
@@ -39,12 +39,14 @@ function EventCard({
       );
       if (response.ok) {
         toast.success("Évènement supprimé");
+        setUpdateEvents(!updateEvents);
       }
     } catch (error) {
       toast.error("Suppression non prise en compte");
       console.error("Suppression non prise en compte");
     }
   };
+
   return (
     <section className="event-card-container">
       <div
@@ -80,7 +82,7 @@ function EventCard({
           )}
           {auth?.crew?.id === Number(params.id) && (
             <button type="button" onClick={handleDelete}>
-              delete
+              Supprimer
             </button>
           )}
         </div>

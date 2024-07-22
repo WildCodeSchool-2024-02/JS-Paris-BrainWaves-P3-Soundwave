@@ -71,6 +71,7 @@
   border-radius: 0.5rem;
   height: 30%;
   color: var(--text);
+  margin-top: 1rem;
 }
 
 .slider-home-page {
@@ -180,9 +181,10 @@
   .btn-side-home {
     width: 20rem;
   }
-}
-.btn-show-home-page {
-  display: none;
+
+  .btn-show-home-page {
+    display: none;
+  }
 }
 
 @keyframes spin {
