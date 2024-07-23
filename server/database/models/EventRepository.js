@@ -69,6 +69,14 @@ class EventRepository extends AbstractRepository {
     );
     return crew;
   }
+
+  async dropEvent(event) {
+    const result = await this.database.query(
+      `DELETE FROM ${this.table} WHERE id = ?`,
+      [event]
+    );
+    return result;
+  }
 }
 
 module.exports = EventRepository;

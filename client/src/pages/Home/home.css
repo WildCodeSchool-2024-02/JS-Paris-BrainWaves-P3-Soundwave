@@ -71,6 +71,7 @@
   border-radius: 0.5rem;
   height: 30%;
   color: var(--text);
+  margin-top: 1rem;
 }
 
 .slider-home-page {
@@ -100,11 +101,12 @@
   flex-direction: column;
   width: 80vw;
   gap: 1rem;
-  .p-home-btn, .p-home-title {
+  .p-home-btn,
+  .p-home-title {
     font-size: clamp(0.9em, 3vw, 1.25em);
     text-align: left;
   }
-  .p-home-title{
+  .p-home-title {
     font-weight: 700;
   }
 }
@@ -178,11 +180,12 @@
 
   .btn-side-home {
     width: 20rem;
-    }
   }
+
   .btn-show-home-page {
     display: none;
   }
+}
 
 @keyframes spin {
   0% {

@@ -54,6 +54,20 @@
 .heart-icon-container {
   display: flex;
   justify-content: flex-end;
+  button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border-radius: 5px;
+    border: none;
+    font-family: var(--font-title-b);
+    font-size: clamp(0.7em, 3vw, 1em);
+    padding: 0.3rem;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: var(--accent);
+    color: var(--background-color);
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -93,5 +107,16 @@
   .heart-icon {
     width: 2rem;
     height: 2rem;
+  }
+
+  .heart-icon-container {
+    button {
+      height: 20%;
+      align-self: flex-end;
+    }
+    button:hover {
+      background-color: var(--accent);
+      color: var(--background-color);
+    }
   }
 }
