@@ -84,11 +84,10 @@ function Home() {
               Soundwave est la plateforme ultime pour découvrir tous les
               événements des collectifs français, que ce soit pour les
               passionnés de soirées ou les organisateurs. Viens explorer les
-              soirées incontournables et les événements exclusifs près de chez
-              toi grâce à notre interface intuitive. Pour les organisateurs,
-              c'est l'outil idéal pour partager et promouvoir tes événements
-              auprès d'un large public. Engage et développe ton projet comme
-              jamais auparavant !
+              soirées incontournables et les événements exclusifs grâce à notre
+              interface intuitive. Pour les organisateurs, c'est l'outil idéal
+              pour partager et promouvoir tes événements auprès d'un large
+              public. Engage et développe ton projet comme jamais auparavant !
             </p>
             <button
               type="button"
