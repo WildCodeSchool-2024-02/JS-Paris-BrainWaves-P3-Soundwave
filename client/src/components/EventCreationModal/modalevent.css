@@ -22,10 +22,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  height: 95vh;
   align-items: center;
   overflow-y: scroll;
-  width: 85%;
+  overflow-x: hidden;
+  width: 95%;
   padding: 1rem;
   background-color: var(--background-color);
   box-shadow: var(--secondary-color) 0 0 10px 0;
@@ -124,6 +126,22 @@
   margin: 1rem 0;
 }
 
+.display-modal-event {
+  .modal-event-btn {
+    width: 60%;
+    border-radius: 10px;
+    height: 6vh;
+    color: var(--secondary-color);
+    background-image: url("../../assets/images/Noise.png");
+    background-color: var(--primary-color);
+    font-size: 1.2rem;
+    font-family: var(--font-title-b);
+    border: none;
+    
+  }
+
+}
+
 @media (min-width: 1024px) {
   .section-modal-event {
     overflow: hidden;
@@ -189,5 +207,12 @@
 
   .btn-image-select {
     width: auto;
+  }
+
+  .display-modal-event {
+    .modal-event-btn {
+      width: 20%;
+    
+    }
   }
 }

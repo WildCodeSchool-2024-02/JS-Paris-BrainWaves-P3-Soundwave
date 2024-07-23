@@ -30,6 +30,15 @@ class CrewRepository extends AbstractRepository {
     return crew;
   }
 
+  async addStyleCrew(crewCategories) {
+    const request = this.database.format(
+      `INSERT INTO category_crew (category_id, crew_id) VALUES ?`,
+      [crewCategories]
+    );
+    const crewStyle = this.database.query(request);
+    return crewStyle;
+  }
+
   async findByOwnerId(ownerId) {
     const [crew] = await this.database.query(
       `SELECT * FROM ${this.table} WHERE owner_id = ? `,

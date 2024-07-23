@@ -43,7 +43,7 @@ const add = async (req, res, next) => {
     );
     const style = await tables.event.addStyleEvent(eventCategories);
     const eventCrewId = await tables.event.addCrewIdEvent(event, req.params.id);
-    res.status(201).json(event, eventCrewId, style);
+    res.status(201).json({event, eventCrewId, style});
   } catch (error) {
     next(error);
   }
@@ -87,6 +87,16 @@ const readCrewByEvent = async (req, res, next) => {
     next(error);
   }
 };
+
+const deleteEvent = async (req, res, next) => {
+  try {
+    const event = Number(req.params.id);
+    const deletedEvent = await tables.event.dropEvent(event);
+    res.status(204).json(deletedEvent);
+  } catch (error) {
+    next(error);
+  }
+};
 module.exports = {
   browse,
   read,
@@ -96,4 +106,5 @@ module.exports = {
   editStatus,
   readCategoryEvents,
   readCrewByEvent,
+  deleteEvent,
 };

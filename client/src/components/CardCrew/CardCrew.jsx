@@ -37,16 +37,15 @@ function CardCrew({ result, setOpenValidation, setText, setValidationId }) {
               )}
             </div>
             <div className="display-adminbtn-heart-mobile">
-              {auth.isLogged &&
-              auth.user.role === "admin" &&
-              !result.is_validated ? (
+              {auth?.user?.role === "admin" && !result.is_validated && (
                 <AdminButton
                   setText={setText}
                   setOpenValidation={setOpenValidation}
                   setValidationId={setValidationId}
                   id={result.id}
                 />
-              ) : (
+              )}
+              {auth?.user?.role === "client" && (
                 <HeartIconFollowCrews crew={result} />
               )}
             </div>

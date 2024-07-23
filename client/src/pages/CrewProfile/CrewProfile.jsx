@@ -9,7 +9,7 @@ import HeartIconFollowCrews from "../../components/HeartIconFollowCrews/HeartIco
 
 function CrewProfile() {
   const crewData = useLoaderData();
-  const { auth, setType } = useOutletContext();
+  const { auth, setType, updateEvents } = useOutletContext();
   const [edit, setEdit] = useState(false);
   const [btnValue, setBtnValue] = useState("Éditer");
   const [username, setUsername] = useState(crewData.name);
@@ -90,7 +90,7 @@ function CrewProfile() {
     )
       .then((response) => response.json())
       .then((data) => setUnvalidatedEvents(data));
-  }, [crewData.id]);
+  }, [crewData.id, updateEvents]);
 
   // Function to handle form submission
   const handleSubmit = async () => {
@@ -200,9 +200,9 @@ function CrewProfile() {
               </p>
             )}
           <div className="button-container-crew-profile">
-            {auth?.user?.role === "client"  && (
-                <HeartIconFollowCrews crew={crewData} />
-              )}
+            {auth?.user?.role === "client" && (
+              <HeartIconFollowCrews crew={crewData} />
+            )}
             {auth.isLogged && auth?.crew?.id === Number(params.id) && (
               <button
                 onClick={edit ? handleSubmit : handleBtnValue}
@@ -245,7 +245,7 @@ function CrewProfile() {
       <section className="events-crew-profile">
         <div className="events-crew-profile-title">
           <div className="title-add-btn-container">
-            <h2>Évènements</h2>
+            <h2>Nos Évènements</h2>
             {auth?.crew?.id === Number(params.id) && (
               <button type="button" onClick={handleOpenModal}>
                 Ajouter

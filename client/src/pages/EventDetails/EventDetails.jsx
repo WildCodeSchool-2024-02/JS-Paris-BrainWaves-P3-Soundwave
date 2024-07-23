@@ -41,26 +41,34 @@ function EventDetail() {
             Collectifs : {crewByEvent.name}
           </p>
           <section className="heart-title-container">
-          <h1>{event.name}</h1>
-          {auth.isLogged &&
-          auth.user.role === "admin" &&
-          !event.is_validated ? (
-            <AdminButton id={event.id} setText={setText} setOpenValidation={setOpenValidation} />
-          ) : (
-            <div className="heart-icon-container">
-              {auth?.user?.role === "client" && <HeartIconLike event={event} />}
-            </div>
-          )}
+            <h1>{event.name}</h1>
+            {auth.isLogged &&
+            auth.user.role === "admin" &&
+            !event.is_validated ? (
+              <AdminButton
+                id={event.id}
+                setText={setText}
+                setOpenValidation={setOpenValidation}
+              />
+            ) : (
+              <div className="heart-icon-container">
+                {auth?.user?.role === "client" && (
+                  <HeartIconLike event={event} />
+                )}
+              </div>
+            )}
           </section>
           <div className="event-main-info">
             <p className="date-hour">
               {event.date.slice(0, 10)} | {event.starting_hour.slice(0, 5)}
             </p>
-            <p>Adresse: {event.address}</p>
+            <h2>Programmation</h2>
             <p>{event.lineup}</p>
           </div>
           <h2>Description</h2>
           <p className="event-details-description">{event.description}</p>
+          <h2>Adresse </h2>
+          <p>{event.address}</p>
         </section>
       </div>
       {openValidation && (
