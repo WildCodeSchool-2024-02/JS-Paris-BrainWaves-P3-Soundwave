@@ -188,6 +188,7 @@ function NavBar({
                 navigate("/events-list");
                 setMenuClass("menu hidden");
                 setBurgerClass("burger-bar unclicked");
+                document.body.classList.remove("active");
               }}
               onKeyDown={() => navigate("/events-list")}
             >
@@ -199,6 +200,7 @@ function NavBar({
                 navigate("/crews-list");
                 setMenuClass("menu hidden");
                 setBurgerClass("burger-bar unclicked");
+                document.body.classList.remove("active");
               }}
               onKeyDown={() => navigate("/crews-list")}
             >
