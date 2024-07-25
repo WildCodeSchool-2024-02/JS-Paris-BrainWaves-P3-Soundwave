@@ -24,11 +24,13 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 90%;
   height: 60%;
   padding: 1rem;
+  overflow-y: auto;
+  overflow-y: scroll;
   background-color: var(--background-color);
   box-shadow: var(--secondary-color) 0 0 10px 0;
   gap: 1rem;
